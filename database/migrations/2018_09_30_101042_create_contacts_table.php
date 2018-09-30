@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePromosTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreatePromosTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_promos', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('foto');
-            $table->string('kode_promo');
-            $table->string('nama_promo');
-            $table->integer('diskon');
-            $table->date('berlaku_awal');
-            $table->date('berlaku_akhir');
-            $table->integer('min_pembelian');
+            $table->string('email');
+            $table->text('pesan');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreatePromosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('promos');
+        Schema::dropIfExists('contacts');
     }
 }

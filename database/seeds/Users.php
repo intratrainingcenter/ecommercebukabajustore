@@ -13,7 +13,10 @@ class Users extends Seeder
     {
       DB::table('master_users')->insert([ [
          'kode_user' => '1',
-         'foto' => 'kosong',
+         'avatar' => 'http://www.haipic.com/icon/12247/12247.png',
+         'avatar_original' => 'http://www.haipic.com/icon/12247/12247.png',
+         'provider_id' => '',
+         'provider' => '',
          'username' => 'admin',
          'email' => 'admin@gmail.com',
          'password' => bcrypt('admin'),
@@ -24,7 +27,10 @@ class Users extends Seeder
          'status' => 'aktif',
      ],[
        'kode_user' => '2',
-       'foto' => 'kosong',
+       'avatar' => 'http://www.dicomtech.com.pe/img/servicios-profesionales-outsourcing/servicios-profesionales-outsourcing-cio-services-descripcion.png',
+       'avatar_original' => 'http://www.dicomtech.com.pe/img/servicios-profesionales-outsourcing/servicios-profesionales-outsourcing-cio-services-descripcion.png',
+       'provider_id' => '',
+       'provider' => '',
        'username' => 'member',
        'email' => 'member@gmail.com',
        'password' => bcrypt('member'),
@@ -35,7 +41,10 @@ class Users extends Seeder
        'status' => 'aktif',
    ],[
        'kode_user' => '3',
-      'foto' => 'kosong',
+       'avatar' => 'http://www.clker.com/cliparts/7/9/2/e/13704027641946237223business_user_process-1.png',
+       'avatar_original' => 'http://www.clker.com/cliparts/7/9/2/e/13704027641946237223business_user_process-1.png',
+       'provider_id' => '',
+       'provider' => '',
       'username' => 'spv',
       'email' => 'spv@gmail.com',
       'password' => bcrypt('spv'),

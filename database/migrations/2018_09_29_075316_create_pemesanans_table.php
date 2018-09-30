@@ -22,6 +22,7 @@ class CreatePemesanansTable extends Migration
             $table->integer('grandtotal');
             $table->integer('dibayar');
             $table->text('keterangan');
+            $table->string('kode_ongkir');
             $table->string('status');
             $table->timestamps();
         });

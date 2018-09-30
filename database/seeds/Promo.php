@@ -16,6 +16,9 @@ class Promo extends Seeder
          'kode_promo' => 'weekendpromo',
          'nama_promo' => 'promo weekend',
          'diskon' => '50',
+         'berlaku_awal' => date('Y-m-d'),
+         'berlaku_akhir' => date('Y-m-d'),
+         'min_pembelian' => '50000',
      ]);
     }
 }

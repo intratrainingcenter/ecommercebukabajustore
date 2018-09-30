@@ -30,5 +30,7 @@ class DatabaseSeeder extends Seeder
       $this->call(Retur::class);
       $this->call(Opsi_Retur::class);
       $this->call(Ulasan::class);
+      $this->call(Ongkir::class);
+      $this->call(Contact::class);
     }
 }
