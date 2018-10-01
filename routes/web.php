@@ -20,6 +20,12 @@ Route::prefix('dashboard')->group(function ()
 	Route::get('','DashboardController@index')->name('dashboardIndex');
 });
 
+Route::prefix('promo')->group(function ()
+{
+	Route::get('','BpromoController@index')->name('promoIndex');
+	Route::get('detailpromo/{id}','BpromoController@detailpromo')->name('promoDetail');
+});
+
 
 /* END ROUTE FOR BACKEND */
 

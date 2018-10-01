@@ -1,7 +1,4 @@
 @extends('backend.general.master')
-@push('csspersonal')
-
-@endpush
 @section('content')
 	    <div class="container-fluid">
       <div class="row">
@@ -212,6 +209,3 @@
 </div>
 	<!-- end row -->
 @endsection
-@push('jspersonal')
-	
-@endpush
