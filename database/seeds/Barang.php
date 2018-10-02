@@ -13,6 +13,7 @@ class Barang extends Seeder
     {
       DB::table('master_barangs')->insert([
          'foto' => 'kosong',
+         'lokasifoto' => 'kosong',
          'kode_kategori' => 'KT-1',
          'kode_barang' => 'BR-1',
          'nama_barang' => 'Barang 1',

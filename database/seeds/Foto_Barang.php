@@ -14,6 +14,7 @@ class Foto_Barang extends Seeder
       DB::table('foto_barangs')->insert([
          'kode_barang' => 'BR-1',
          'foto' => 'kosong',
+         'lokasifoto' => 'kosong',
      ]);
     }
 }
