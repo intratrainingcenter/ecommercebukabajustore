@@ -22,15 +22,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                            @foreach($dataPromo as $itemPromo)
                             <tr>
-                                <td>1</td>
-                                <td>ANTIGHIBAH</td>
-                                <td>Promo Untuk Orang Tidak Ghibah</td>
-                                <td>2011/06/27 - 2011/06/30</td>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $itemPromo->kode_promo }}</td>
+                                <td>{{ $itemPromo->nama_promo }}</td>
+                                <td> {{ $itemPromo->berlaku_awal }} - {{ $itemPromo->berlaku_akhir }}</td>
                                 <td>
                                     {!!Backendhelper::promo_read_update_delete_byid(5)!!}
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
