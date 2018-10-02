@@ -28,6 +28,15 @@ Route::prefix('promo')->group(function ()
 	Route::get('detailpromo/{id}','BpromoController@detailpromo')->name('promoDetail');
 });
 
+Route::prefix('story')->group(function()
+{
+  Route::get('','Backend\BstoryController@index')->name('storyIndex');
+  Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
+  Route::post('createstory','Backend\BstoryController@createstory')->name('storyCreate');
+  Route::get('updatestory/{id}','Backend\BstoryController@updatestory')->name('storyUpdate');
+  Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
+});
+
 
 /* END ROUTE FOR BACKEND */
 
