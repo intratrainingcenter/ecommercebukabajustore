@@ -212,6 +212,7 @@ return [
         'Backendhelper' => App\Helpers\Backendhelper::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Backendhelper' => App\Library\Backendhelper::class,
 
     ],
 
