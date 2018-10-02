@@ -4,9 +4,10 @@
             <div class="card m-b-20">
                 <div class="card-body">
                     <h4 class="mt-0 header-title">Image promo</h4>
-                    <div class="m-b-30">
+                    <div class="m-b-30 form-group @if($errors->has('imagePromo')) has-primary @endif">
                         <div class="fallback">
-                            <input name="image" type="file" class="inputImagepromo">
+                            <input name="image" type="file" class="inputImagepromo form-control">
+                              @if($errors->has('imagePromo')) <div class="form-control-feedback">Choose and Crop image again </div> @endif
                         </div>
                     </div>
                     <div id="cropimagepromo" class="col-md-12"></div>
