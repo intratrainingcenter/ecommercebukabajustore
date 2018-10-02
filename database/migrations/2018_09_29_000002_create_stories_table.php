@@ -17,6 +17,7 @@ class CreateStoriesTable extends Migration
             $table->increments('id');
             $table->string('created_by');
             $table->string('foto');
+            $table->string('lokasifoto');
             $table->text('deskripsi');
             $table->string('status');
             $table->timestamps();

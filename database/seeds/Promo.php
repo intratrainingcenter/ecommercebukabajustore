@@ -13,6 +13,7 @@ class Promo extends Seeder
     {
       DB::table('master_promos')->insert([
          'foto' => 'kosong',
+         'lokasifoto' => 'kosong',
          'kode_promo' => 'weekendpromo',
          'nama_promo' => 'promo weekend',
          'diskon' => '50',

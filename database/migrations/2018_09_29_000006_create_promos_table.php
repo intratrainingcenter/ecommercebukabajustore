@@ -16,6 +16,7 @@ class CreatePromosTable extends Migration
         Schema::create('master_promos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('foto');
+            $table->string('lokasifoto');
             $table->string('kode_promo');
             $table->string('nama_promo');
             $table->integer('diskon');

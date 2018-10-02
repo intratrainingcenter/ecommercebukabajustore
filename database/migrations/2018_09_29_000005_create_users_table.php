@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('kode_user');
             $table->string('avatar');
             $table->string('avatar_original');
+            $table->string('lokasifoto');
             $table->string('provider_id')->nullable();
             $table->string('provider')->nullable();
             $table->string('username');
