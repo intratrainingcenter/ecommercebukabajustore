@@ -17,6 +17,7 @@ class CreateFotoBarangsTable extends Migration
             $table->increments('id');
             $table->string('kode_barang');
             $table->string('foto');
+            $table->string('lokasifoto');
             $table->timestamps();
         });
     }
