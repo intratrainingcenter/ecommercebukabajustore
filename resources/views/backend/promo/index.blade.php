@@ -7,7 +7,7 @@
             <div class="card m-b-20">
                 <div class="card-body">
                     <h4 class="mt-0 header-title">Data Promo
-                        <button type="button" class="btn btn-outline-success waves-effect waves-light pull-right"><i class="fa fa-plus  "></i> Add</button>
+                        <a href="{{route('promoAdd')}}"><button type="button" class="btn btn-outline-success waves-effect waves-light pull-right"><i class="fa fa-plus  "></i> Add</button></a>
                     </h4>
                     <br>
                     <hr>
@@ -28,7 +28,7 @@
                                 <td>Promo Untuk Orang Tidak Ghibah</td>
                                 <td>2011/06/27 - 2011/06/30</td>
                                 <td>
-                                    {!!Backendhelper::button_read_update_delete_byid(5)!!}
+                                    {!!Backendhelper::promo_read_update_delete_byid(5)!!}
                                 </td>
                             </tr>
                         </tbody>

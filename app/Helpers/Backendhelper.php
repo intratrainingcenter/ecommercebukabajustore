@@ -3,7 +3,7 @@ namespace App\Helpers;
 
 class Backendhelper
 {
-	public static function button_read_update_delete_byid($id)
+	public static function promo_read_update_delete_byid($id)
 	{
 		$data = '<a><button type="button" class="btn btn-outline-primary waves-effect waves-light pull-right" id="deleteData" style="margin-right: 10px;" attr-id='.$id.' title="Hapus"><i class="fa fa-trash-o"></i>
 			</button></a>

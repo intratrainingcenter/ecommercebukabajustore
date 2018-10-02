@@ -15,6 +15,14 @@ class BpromoController extends Controller
     	return view('backend.promo.index',$data);
     }
 
+    public function addpromo()
+    {
+    	$data = array(
+    		'page' => 'Promo',
+    	);
+    	return view('backend.promo.addpromo',$data);
+    }
+
     public function detailpromo($id)
     {
     	$data =  array(
