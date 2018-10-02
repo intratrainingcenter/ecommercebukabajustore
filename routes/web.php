@@ -24,6 +24,8 @@ Route::prefix('promo')->group(function ()
 {
 	Route::get('','Backend\BpromoController@index')->name('promoIndex');
 	Route::get('addpromo','Backend\BpromoController@addpromo')->name('promoAdd');
+	Route::get('editpromo/{id}','Backend\BpromoController@editpromo')->name('promoEdit');
+	Route::put('updatepromo','Backend\BpromoController@updatepromo')->name('promoUpdate');
 	Route::post('createpromo','Backend\BpromoController@createpromo')->name('promoCreate');
 	Route::get('detailpromo/{id}','Backend\BpromoController@detailpromo')->name('promoDetail');
 	Route::delete('deletepromo','Backend\BpromoController@deletepromo')->name('promoDelete');

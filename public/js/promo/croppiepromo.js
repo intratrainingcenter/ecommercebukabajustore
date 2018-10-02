@@ -22,7 +22,7 @@ $(document).ready(function () {
 				$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
 				$('.apply').click(function (event) {
 					event.preventDefault();
-					croppiepromo.croppie('result').then(function (result) {
+					croppiepromo.croppie('result','base64').then(function (result) {
 						$('#cropimagepromo').empty();
 						$('input[name="imagePromo"]').val(result);
 					});
