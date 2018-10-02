@@ -13,6 +13,7 @@
                     </h4>
                     <br>
                     <hr>
+                    {{Form::open(['route'=>'promoCreate','method'=>'post'])}}
                     <div class="row">
                         <div class="form-group col-md-6">
                             {{Form::label('Kode Promo')}}
@@ -27,6 +28,8 @@
                             </div>
                         </div>
                     </div>
+                    {{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
+                    {{Form::close()}}
                 </div>
             </div>
         </div>
