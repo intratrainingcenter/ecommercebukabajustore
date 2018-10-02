@@ -60,6 +60,23 @@ class BpromoController extends Controller
     return redirect()->route('promoIndex'); 
 }
 
+public function loaddatapromo()
+{
+    $data = array(
+        'dataPromo' => Promo::all(),
+    );
+    return view('backend.promo.tabledatapromo',$data);
+}
+
+public function deletepromo(Request $request)
+{
+    $deletepromo = Promo::find($request->idPromo);
+    Storage::delete('public/imagepromo'.'/'.$deletepromo->foto);
+    $deletepromo->delete();
+
+    return 'success';
+}
+
 public function detailpromo($id)
 {
    $data =  array(

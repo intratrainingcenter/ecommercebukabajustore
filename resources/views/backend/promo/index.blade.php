@@ -21,7 +21,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="dataPromo">
                             @php
                                 $no = 1;
                             @endphp
@@ -31,9 +31,7 @@
                                 <td>{{ $itemPromo->kode_promo }}</td>
                                 <td>{{ $itemPromo->nama_promo }}</td>
                                 <td> {{ $itemPromo->berlaku_awal }} - {{ $itemPromo->berlaku_akhir }}</td>
-                                <td>
-                                    {!!Backendhelper::promo_read_update_delete_byid(5)!!}
-                                </td>
+                                <td>{!!Backendhelper::promo_read_update_delete_byid($itemPromo->id,'promo')!!}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -52,6 +50,7 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure will delete this data promo ?</p>
+                <input type="hidden" name="idPromo" id="idPromo">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>

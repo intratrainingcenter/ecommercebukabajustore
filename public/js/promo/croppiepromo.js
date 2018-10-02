@@ -7,7 +7,7 @@ $(document).ready(function () {
 			type: 'square'
 		},
 		boundary: {
-			width: 1000,
+			width: 900,
 			height: 500
 		},
 		url:'../../image/free.jpg'
