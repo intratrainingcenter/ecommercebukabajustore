@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\ImageManagerStatic as Image;
-
 use App\Story;
 
 class BstoryController extends Controller
@@ -19,31 +17,86 @@ class BstoryController extends Controller
       );
       return view('backend.story.index',$data);
     }
+
     public function addstory()
     {
       return view('backend.story.addstory',['page' => 'Story']);
     }
+
     public function createstory(Request $request)
     {
+      $createdirectory = Storage::makeDirectory('public/imagestory');
+      $image = str_replace('data:image/png;base64,', '', $request->imageStory);
+      $image = str_replace(' ','+',$image);
+      $namefile = str_random(16).'.png';
+      Storage::put('public/imagestory'.'/'.$namefile, base64_decode($image));
       $save = Story::create([
         'created_by'  =>'tono',
-        'foto'        =>$request->images,
-        'lokasifoto'  =>'mana aja',
+        'foto'        =>$namefile,
+        'lokasifoto'  =>'/public/imagestory',
         'deskripsi'   =>$request->deskripsi,
         'status'      =>'Aktif',
       ]);
       return redirect('story')->with('add','Story');
     }
-    public function updatestory($id)
+
+    public function showupdatestory($id)
     {
-      dd('ini edit'.$id);
+      $data = array(
+        'story' => Story::find($id),
+        'page'  => 'Story',
+      );
+      return view('backend.story.updatestory',$data);
     }
+
+    public function updatestory(Request $request)
+    {
+      if ($request->images == null)
+      {
+        $storyupdate = Story::find($request->storyid);
+        $storyupdate->update([
+          'deskripsi' =>$request->deskripsi,
+          'status'    =>$request->status,
+        ]);
+        return redirect('story')->with('update','Story');
+      }else
+      {
+        $createdirectory = Storage::makeDirectory('public/imagestory');
+        $image = str_replace('data:image/png;base64,', '', $request->imageStory);
+        $image = str_replace(' ','+',$image);
+        $namefile = str_random(16).'.png';
+        Storage::put('public/imagestory'.'/'.$namefile, base64_decode($image));
+        Storage::delete('public/imagestory'.'/'.$request->valueImage);
+        $storyupdate = Story::find($request->storyid);
+        $storyupdate->update([
+          'foto'      =>$namefile,
+          'deskripsi' =>$request->deskripsi,
+          'status'    =>$request->status,
+        ]);
+        return redirect('story')->with('update','Story');
+      }
+    }
+
     public function deletestory(Request $request)
     {
-      dd($request->id);
+      $deletestory = Story::find($request->idStory);
+      Storage::delete('public/imagestory'.'/'.$deletestory->foto);
+      $deletestory->delete();
+
+      return 'success';
     }
+
     public function detailstory($id)
     {
-      dd('ini detail'.$id);
+      $data =array(
+        'page'    =>'Story',
+        'detailstory'  => Story::find($id),
+      );
+      return view('backend.story.detailstory',$data);
+    }
+
+    public function loadstory()
+    {
+      return view('backend.story.tabledatastory',['data'=> story::all()]);
     }
 }

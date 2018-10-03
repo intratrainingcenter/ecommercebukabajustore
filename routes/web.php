@@ -37,9 +37,11 @@ Route::prefix('story')->group(function()
   Route::get('','Backend\BstoryController@index')->name('storyIndex');
   Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
   Route::post('createstory','Backend\BstoryController@createstory')->name('storyCreate');
-  Route::get('updatestory/{id}','Backend\BstoryController@updatestory')->name('storyUpdate');
-  Route::Post('deletestory','Backend\BstoryController@deletestory')->name('storyDelete');
+  Route::get('updatestory/{id}','Backend\BstoryController@showupdatestory')->name('ShowstoryUpdate');
+  Route::post('updatestory','Backend\BstoryController@updatestory')->name('storyUpdate');
+  Route::delete('deletestory','Backend\BstoryController@deletestory')->name('storyDelete');
   Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
+  Route::get('loadstory','Backend\BstoryController@loadstory');
 });
 
 
@@ -54,3 +56,7 @@ Route::prefix('story')->group(function()
 /*
 | END ROUTE FOR FRONTEND
 */
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

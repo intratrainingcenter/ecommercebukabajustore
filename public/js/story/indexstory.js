@@ -15,4 +15,37 @@ $('.deleteData').click(function () {
 
 $('#deleteStory').click(function () {
     story_id = $(document).find('#idStory').val();
+    $.ajax({
+      headers:{
+        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content'),
+      },
+      method:'delete',
+      url: location.origin+"/story/deletestory",
+      data:{idStory:story_id},
+      success:function (data) {
+        loaddatastory();
+        $('#modalDelete').modal('hide');
+        if(data == 'success'){
+          swal(
+          'Deleted!',
+          'Data Story has been deleted.',
+          'success',
+          );
+        }
+      }
+    });
+
+  function loaddatastory()
+  {
+    $.ajax({
+      headers:{
+        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content'),
+      },
+      method:'get',
+      url:location.origin+'/story/loadstory',
+      success:function (data) {
+        $('#loaddatastory').html(data);
+      }
+    });
+  }
 });

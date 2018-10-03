@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div class="row">   
+    <div class="row">
         <div class="form-group col-md-6 @if($errors->has('codePromo')) has-primary @endif">
             <div class="col-sm-12">
                 {{Form::label('Code Promo')}}
@@ -63,7 +63,7 @@
                 {{Form::date('periodEnd',null,['class'=>'form-control'])}}
                 @if($errors->has('periodEnd')) <div class="form-control-feedback">{{ $errors->first('periodEnd') }}</div> @endif
             </div>
-        </div>  
+        </div>
     </div>
     {{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
     {{Form::close()}}

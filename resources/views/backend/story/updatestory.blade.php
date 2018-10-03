@@ -6,18 +6,20 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Add Story
+                    <h4 class="mt-0 header-title">Update Story
                     </h4>
                     <br>
                     <hr>
-                    {{Form::open(['route'=>'storyCreate','method'=>'post'])}}
+                    {{Form::open(['route'=>'storyUpdate','method'=>'post'])}}
                     <div class="row">
                         <div class="form-group col-md-12">
                           <div class="col-sm-12">
-                            {{Form::label('Images')}}
+                              {{Form::label('Images')}}
                           </div>
                             <div class="col-sm-12">
-                              {{Form::file('images',['class'=>'inputImagestory','required'])}}
+                                {{Form::file('images',['class'=>'inputImagestory'])}}
+                                {{Form::hidden('valueImage',$story->foto)}}
+                                {{Form::hidden('storyid',$story->id)}}
                             </div>
                         </div>
                         <div id="cropimagestory" class="col-md-12"></div>
@@ -26,7 +28,13 @@
                         <div class="form-group col-md-12">
                             <div class="col-sm-12">
                               {{Form::label('Deskripsi')}}
-                              {{Form::textarea('deskripsi',null,['class'=>'form-control','placeholder'=>'Deskripsi Image','required'])}}
+                                {{Form::textarea('deskripsi',$story->deskripsi,['class'=>'form-control','placeholder'=>'Deskripsi Image','required'])}}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-sm-12">
+                              {{Form::label('Status')}}
+                              {{Form::select('status', ['Aktif' => 'Aktif', 'NonAktif' => 'NonAktif'], $story->status,['class'=>'form-control','required'])}}
                             </div>
                         </div>
                     </div>

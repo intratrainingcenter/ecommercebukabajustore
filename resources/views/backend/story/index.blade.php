@@ -10,6 +10,10 @@
                     <div class="alert alert-success" role="alert">
                        <strong>Well done!</strong> The data was successfully added.
                    </div>
+                 @elseif (session('update'))
+                   <div class="alert alert-success" role="alert">
+                      <strong>Well done!</strong> Story data has been updated successfully.
+                  </div>
                   @endif
                     <h4 class="mt-0 header-title">Data Story
                         <a href="{{route('storyAdd')}}"><button type="button" class="btn btn-outline-success waves-effect waves-light pull-right"><i class="fa fa-plus  "></i> Add</button></a>
@@ -20,21 +24,24 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>images</th>
-                                <th>Create By</th>
+                                <th>Images</th>
+                                <th>User Upload</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                          @foreach($story as $no => $show)
+                        <tbody id="loaddatastory">
+                          @php
+                            $no = 1;
+                          @endphp
+                          @foreach($story as $show)
                             <tr>
                                 <td>{{$no++}}</td>
-                                <td><img src="{{$show->foto}}" alt="" style="width:100px; height:100px;"></td>
+                                <td><img src="{{ asset('storage/imagestory'.'/'.$show->foto) }}" alt="" style="width:100px; height:100px;"></td>
                                 <td>{{$show->created_by}}</td>
-                                <td><i class="badge badge-success">{{$show->status}}</i></td>
+                                <td><i class=@if ($show->status == 'Aktif')"badge badge-success" @else "badge badge-primary" @endif >{{$show->status}}</i></td>
                                 <td>
-                                    {!!Backendhelper::promo_read_update_delete_byid($show->id,route('storyUpdate',['id'=>$show->id]),route('storyDetail',['id'=>$show->id]))!!}
+                                    {!!Backendhelper::story_read_update_delete_byid($show->id,route('ShowstoryUpdate',['id'=>$show->id]),route('storyDetail',['id'=>$show->id]))!!}
                                 </td>
                             </tr>
                           @endforeach
@@ -54,7 +61,7 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure will delete this data Story ?</p>
-                <input type="text" name="" value="" id="idStory">
+                <input type="hidden" name="" value="" id="idStory">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect waves-light pull-left" data-dismiss="modal">Cancel</button>
