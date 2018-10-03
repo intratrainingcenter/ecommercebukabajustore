@@ -9,7 +9,7 @@
                     <h4 class="mt-0 header-title">Add Promo</h4>
                     <br>
                     <hr>
-                    @include('backend.promo.formaddpromo')
+                    @include('backend.promo.formeditpromo')
                 </div>
             </div>
         </div>
