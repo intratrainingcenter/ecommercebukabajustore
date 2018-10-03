@@ -19,7 +19,6 @@ class CreateUsersTable extends Migration
             $table->string('avatar');
             $table->string('avatar_original');
             $table->string('lokasifoto');
-            $table->string('lokasifoto_original');
             $table->string('provider_id')->nullable();
             $table->string('provider')->nullable();
             $table->string('username');
