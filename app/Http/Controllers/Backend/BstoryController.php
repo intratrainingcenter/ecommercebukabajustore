@@ -38,6 +38,10 @@ class BstoryController extends Controller
     {
       dd('ini edit'.$id);
     }
+    public function deletestory(Request $request)
+    {
+      dd($request->id);
+    }
     public function detailstory($id)
     {
       dd('ini detail'.$id);

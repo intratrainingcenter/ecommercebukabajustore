@@ -34,6 +34,7 @@ Route::prefix('story')->group(function()
   Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
   Route::post('createstory','Backend\BstoryController@createstory')->name('storyCreate');
   Route::get('updatestory/{id}','Backend\BstoryController@updatestory')->name('storyUpdate');
+  Route::Post('deletestory','Backend\BstoryController@deletestory')->name('storyDelete');
   Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
 });
 

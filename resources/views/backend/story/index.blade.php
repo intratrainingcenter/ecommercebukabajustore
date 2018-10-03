@@ -54,11 +54,11 @@
             </div>
             <div class="modal-body">
                 <p>Are you sure will delete this data Story ?</p>
-                <input type="text" name="" value="" id="story_id">
+                <input type="text" name="" value="" id="idStory">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="functionDelete">Delete</button>
+                <button type="button" class="btn btn-secondary waves-effect waves-light pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary waves-effect waves-light" id="deleteStory">Delete</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

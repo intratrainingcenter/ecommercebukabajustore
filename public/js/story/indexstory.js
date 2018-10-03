@@ -10,15 +10,9 @@ $(document).ready(function () {
 $('.deleteData').click(function () {
    $('#modalDelete').modal('show');
    story_id = $(this).attr('attr-id');
-   
-   $(document).find('#story_id').val(story_id);
+   $(document).find('#idStory').val(story_id);
 });
 
-$('#functionDelete').click(function () {
-    $('#modalDelete').modal('hide');
-    swal(
-        'Deleted!',
-        'Data Promo has been deleted.',
-        'success'
-        )
+$('#deleteStory').click(function () {
+    story_id = $(document).find('#idStory').val();
 });
