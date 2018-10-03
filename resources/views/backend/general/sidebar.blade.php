@@ -12,15 +12,15 @@
             <li><a href="{{route('positionIndex')}}">Position User</a></li>
             <li><a href="advanced-animation.html">Data User</a></li>
         </ul>
-    </li> 
+    </li>
 
     <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-buffer"></i> <span> Barang </span> </a>
         <ul class="list-unstyled">
-            <li><a href="advanced-animation.html">Kategori Barang</a></li>
+            <li><a href="{{route('categoryIndex')}}">Category Product</a></li>
             <li><a href="advanced-animation.html">Data Barang</a></li>
         </ul>
-    </li> 
+    </li>
     <li>
         <a href="{{route('promoIndex')}}" class="waves-effect">
             <i class="mdi mdi-cash-100"></i>
@@ -34,14 +34,14 @@
             <li><a href="advanced-animation.html">Story</a></li>
             <li><a href="advanced-animation.html">About</a></li>
         </ul>
-    </li>  
+    </li>
     <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cash-multiple"></i> <span> Transaksi </span> </a>
         <ul class="list-unstyled">
             <li><a href="advanced-animation.html">Transaksi Pemesanan</a></li>
             <li><a href="advanced-animation.html">Transaksi Retur</a></li>
         </ul>
-    </li>   
+    </li>
     <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Laporan </span> </a>
         <ul class="list-unstyled">
@@ -49,7 +49,7 @@
             <li><a href="advanced-animation.html">Laporan Transaksi</a></li>
             <li><a href="advanced-animation.html">Laporan Keuangan</a></li>
         </ul>
-    </li>   
+    </li>
      <li>
         <a href="javascript:void(0);" class="waves-effect">
             <i class="ion-settings"></i>
