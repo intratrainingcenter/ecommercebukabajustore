@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return redirect()->route('dashboardIndex');
+	return redirect()->route('dashboardIndex');
 });
 
 /*
@@ -22,10 +22,14 @@ Route::prefix('dashboard')->group(function ()
 
 Route::prefix('promo')->group(function ()
 {
-	Route::get('','BpromoController@index')->name('promoIndex');
-	Route::get('addpromo','BpromoController@addpromo')->name('promoAdd');
-	Route::post('createpromo','BpromoController@createpromo')->name('promoCreate');
-	Route::get('detailpromo/{id}','BpromoController@detailpromo')->name('promoDetail');
+	Route::get('','Backend\BpromoController@index')->name('promoIndex');
+	Route::get('addpromo','Backend\BpromoController@addpromo')->name('promoAdd');
+	Route::get('editpromo/{id}','Backend\BpromoController@editpromo')->name('promoEdit');
+	Route::put('updatepromo','Backend\BpromoController@updatepromo')->name('promoUpdate');
+	Route::post('createpromo','Backend\BpromoController@createpromo')->name('promoCreate');
+	Route::get('detailpromo/{id}','Backend\BpromoController@detailpromo')->name('promoDetail');
+	Route::delete('deletepromo','Backend\BpromoController@deletepromo')->name('promoDelete');
+	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
 Route::prefix('slider')->group(function ()
 {
@@ -34,6 +38,21 @@ Route::prefix('slider')->group(function ()
 	Route::post('createslider','BsliderController@updateslider')->name('sliderupdate');
 	Route::get('detailslider/{id}','BsliderController@detailslider')->name('sliderDetail');
 });
+
+Route::prefix('position')->group(function ()
+{
+	Route::get('','Backend\BpositionController@index')->name('positionIndex');
+	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
+	Route::get('editposition/{id}','Backend\BpositionController@editposition')->name('positionEdit');
+	Route::put('updateposition','Backend\BpositionController@updateposition')->name('positionUpdate');
+	Route::post('createposition','Backend\BpositionController@createposition')->name('positionCreate');
+	Route::get('detailposition/{id}','Backend\BpositionController@detailposition')->name('positionDetail');
+	Route::delete('deleteposition','Backend\BpositionController@deleteposition')->name('positionDelete');
+	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
+});
+
+
+
 
 
 /* END ROUTE FOR BACKEND */

@@ -6,10 +6,10 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Add Promo</h4>
+                    <h4 class="mt-0 header-title">Edit Promo</h4>
                     <br>
                     <hr>
-                    @include('backend.promo.formaddpromo')
+                    @include('backend.promo.formeditpromo')
                 </div>
             </div>
         </div>
