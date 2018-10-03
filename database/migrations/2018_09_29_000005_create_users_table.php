@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('provider_id')->nullable();
             $table->string('provider')->nullable();
             $table->string('username');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->string('kode_jabatan');
             $table->string('alamat');

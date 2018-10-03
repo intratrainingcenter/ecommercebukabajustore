@@ -27,6 +27,13 @@ Route::prefix('promo')->group(function ()
 	Route::post('createpromo','BpromoController@createpromo')->name('promoCreate');
 	Route::get('detailpromo/{id}','BpromoController@detailpromo')->name('promoDetail');
 });
+Route::prefix('slider')->group(function ()
+{
+	Route::get('','BsliderController@index')->name('sliderIndex');
+	Route::get('addslider','BsliderController@addslider')->name('sliderAdd');
+	Route::post('createslider','BsliderController@updateslider')->name('sliderupdate');
+	Route::get('detailslider/{id}','BsliderController@detailslider')->name('sliderDetail');
+});
 
 
 /* END ROUTE FOR BACKEND */
