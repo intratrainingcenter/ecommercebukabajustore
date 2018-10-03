@@ -59,3 +59,6 @@ Route::prefix('position')->group(function ()
 /*
 | END ROUTE FOR FRONTEND
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
