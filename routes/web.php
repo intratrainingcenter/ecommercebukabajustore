@@ -33,10 +33,14 @@ Route::prefix('promo')->group(function ()
 });
 Route::prefix('slider')->group(function ()
 {
-	Route::get('','BsliderController@index')->name('sliderIndex');
-	Route::get('addslider','BsliderController@addslider')->name('sliderAdd');
-	Route::post('createslider','BsliderController@updateslider')->name('sliderupdate');
-	Route::get('detailslider/{id}','BsliderController@detailslider')->name('sliderDetail');
+	Route::get('','Backend\BsliderController@index')->name('sliderindex');
+	Route::get('addslider','Backend\BsliderController@addslider')->name('sliderAdd');
+	Route::get('editslider/{id}','Backend\BsliderController@editslider')->name('sliderEdit');
+	Route::put('updateslider','Backend\BsliderController@updateslider')->name('sliderUpdate');
+	Route::post('createslider','Backend\BsliderController@createslider')->name('sliderCreate');
+	Route::get('detailslider/{id}','Backend\BsliderController@detailslider')->name('sliderDetail');
+	Route::delete('deleteslider','Backend\BsliderController@deleteslider')->name('sliderDelete');
+	Route::get('loaddataslider','Backend\BsliderController@loaddataslider');
 });
 
 Route::prefix('position')->group(function ()
