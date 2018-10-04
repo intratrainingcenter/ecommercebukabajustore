@@ -24,7 +24,7 @@ class Backendhelper
 			</button></a>';
 		return $data;
 	}
-	public static function CroopieModal($Modalid,$Fileinput)
+	public static function CroopieModal($Modalid,$Fileinput,$name)
 	{
 		$data ='<div id='.$Modalid.' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		    <div class="modal-dialog">
@@ -35,8 +35,8 @@ class Backendhelper
 		            </div>
 		            <div class="modal-body">
 		                <div class="col-sm-12">'.$Fileinput.'</div>
-		                <div id="cropimagestory" class="col-md-12"></div>
-		                <div class="input-field col-md-3"><input type="hidden" name="imageStory" value="" data-error=".err6"></div>
+		                <div id="cropimage'.$name.'" class="col-md-12"></div>
+		                <div class="input-field col-md-3"><input type="hidden" name="image'.$name.'" value="" data-error=".err6"></div>
 		                <div class="col-md-12 accepted"></div>
 		            </div>
 		            <div class="modal-footer">

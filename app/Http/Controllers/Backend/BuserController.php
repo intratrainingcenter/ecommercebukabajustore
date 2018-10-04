@@ -37,6 +37,42 @@ class BuserController extends Controller
         'page'      =>'User',
         'position'  =>$select,
       );
-      return view('backend.user.formadduser',$data);
+      return view('backend.user.adduser',$data);
+    }
+
+    public function adduser(Request $request)
+    {
+      $date = date('Ymdhis');
+      $createdirectory = Storage::makeDirectory('public/imageuser');
+      $image = str_replace('data:image/png;base64,', '', $request->imageuser);
+      $image = str_replace(' ','+',$image);
+      $namefile = str_random(16).'.png';
+      Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
+      $create = User::create([
+         'kode_user'        => $date,
+         'avatar'           => $namefile,
+         'avatar_original'  => 'null',
+         'provider_id'      => 'null',
+         'provider'         => 'Auth',
+         'lokasifoto'       => '/public/imageuser',
+         'name'             => $request->name,
+         'email'            => $request->email,
+         'password'         => bcrypt($request->password),
+         'kode_jabatan'     => $request->position,
+         'alamat'           => $request->addres,
+         'no_telp'          => $request->phonenumber,
+         'jenis_kelamin'    => $request->gender,
+         'status'           => 'Aktif',
+      ]);
+      return redirect('user')->with('add',$request->name);
+    }
+
+    public function detailuser($id)
+    {
+      $data = array(
+        'page'        =>'User',
+        'userdetail'  =>User::find($id),
+      );
+      return view('backend.user.detailuser',$data);
     }
 }

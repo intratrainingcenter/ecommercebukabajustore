@@ -63,7 +63,7 @@ Route::prefix('product')->group(function ()
   Route::get('detailproduct/{id}','Backend\BproductController@detailproduct')->name('detailProduct');
   Route::get('formupdateproduct/{id}','Backend\BproductController@formupdateproduct')->name('formupdateProduct');
   Route::put('updateproduct','Backend\BproductController@updateproduct')->name('updateProduct');
-	Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
+  Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
   Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
@@ -71,6 +71,8 @@ Route::prefix('user')->group(function ()
 {
 	Route::get('','Backend\BuserController@index')->name('userIndex');
 	Route::get('formadduser','Backend\BuserController@formadduser')->name('formadduser');
+	Route::post('adduser','Backend\BuserController@adduser')->name('userCreate');
+	Route::get('detailuser/{id}','Backend\BuserController@detailuser')->name('userDetail');
 	Route::post('positionuser','Backend\BuserController@userposition');
 });
 

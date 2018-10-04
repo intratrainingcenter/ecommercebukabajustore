@@ -8,7 +8,7 @@
                 <div class="card-body">
                   @if(session('add'))
                     <div class="alert alert-success" role="alert">
-                       <strong>Well done!</strong> The data was successfully added.
+                       <strong>Well done!</strong> {{session('add')}} data was successfully added.
                    </div>
                  @elseif (session('update'))
                    <div class="alert alert-success" role="alert">
@@ -17,8 +17,7 @@
                   @endif
                     <h4 class="mt-0 header-title">Data User
                         <a href="{{route('formadduser')}}"><button type="button" class="btn btn-outline-success waves-effect waves-light pull-right"><i class="fa fa-plus  "></i> Add</button></a>
-                    </h4>
-                    <br>
+                    </h4> <br>
                     <ul class="nav nav-pills nav-justified" role="tablist">
                       @foreach ($position as $positionitem)
                         <li class="nav-item waves-effect waves-light">
@@ -31,17 +30,15 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama</th>
-                                <th>Alamat</th>
-                                <th>Jabtan</th>
+                                <th>User Name</th>
+                                <th>Address</th>
+                                <th>Position</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody id="loaddatauser">
-                          @php
-                            $no = 1;
-                          @endphp
+                          @php  $no = 1;  @endphp
                           @foreach($user as $show)
                             <tr>
                                 <td>{{$no++}}</td>
@@ -50,7 +47,7 @@
                                 <td>{{$show->kode_jabatan}}</td>
                                 <td><i class=@if ($show->status == 'Aktif')"badge badge-success" @else "badge badge-primary" @endif >{{$show->status}}</i></td>
                                 <td>
-                                    {!!Backendhelper::story_read_update_delete_byid($show->id,route('ShowstoryUpdate',['id'=>$show->id]),route('storyDetail',['id'=>$show->id]))!!}
+                                    {!!Backendhelper::story_read_update_delete_byid($show->id,route('ShowstoryUpdate',['id'=>$show->id]),route('userDetail',['id'=>$show->id]))!!}
                                 </td>
                             </tr>
                           @endforeach

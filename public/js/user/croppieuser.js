@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	var croppiestory = $('#cropimagestory').croppie({
+	var croppiestory = $('#cropimageuser').croppie({
 		enableExif: true,
 		viewport: {
 			width: 300,
@@ -13,11 +13,11 @@ $(document).ready(function () {
 		url:'../../image/free.jpg'
 	});
 
-	$('.inputImagestory').change(function () {
+	$('.inputImageuser').change(function () {
 		var img='';
 		var reader = new FileReader();
 		reader.onload = function (e) {
-			$('#cropimagestory').croppie('bind', {
+			$('#cropimageuser').croppie('bind', {
 				url: e.target.result
 			}).then(function () {
 				$('.accepted').html('<button class="btn btn-success waves-effect pull-right waves-light green apply">Apply</button>');
@@ -28,7 +28,7 @@ $(document).ready(function () {
 						img +="<img src="+result+" style='display: block;margin-left: auto;margin-right: auto;width: 40%;'>";
 						$('#cropimagestory').empty();
 						$('.imgshow').html(img);
-						$('input[name="imageStory"]').val(result);
+						$('input[name="imageuser"]').val(result);
 					});
 				});
 			});

@@ -26,7 +26,7 @@ class BstoryController extends Controller
     public function createstory(Request $request)
     {
       $createdirectory = Storage::makeDirectory('public/imagestory');
-      $image = str_replace('data:image/png;base64,', '', $request->imageStory);
+      $image = str_replace('data:image/png;base64,', '', $request->imagestory);
       $image = str_replace(' ','+',$image);
       $namefile = str_random(16).'.png';
       Storage::put('public/imagestory'.'/'.$namefile, base64_decode($image));
@@ -62,7 +62,7 @@ class BstoryController extends Controller
       }else
       {
         $createdirectory = Storage::makeDirectory('public/imagestory');
-        $image = str_replace('data:image/png;base64,', '', $request->imageStory);
+        $image = str_replace('data:image/png;base64,', '', $request->imagestory);
         $image = str_replace(' ','+',$image);
         $namefile = str_random(16).'.png';
         Storage::put('public/imagestory'.'/'.$namefile, base64_decode($image));
