@@ -67,9 +67,12 @@ Route::prefix('product')->group(function ()
   Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
-
-
-
+Route::prefix('user')->group(function ()
+{
+	Route::get('','Backend\BuserController@index')->name('userIndex');
+	Route::get('formadduser','Backend\BuserController@formadduser')->name('formadduser');
+	Route::post('positionuser','Backend\BuserController@userposition');
+});
 
 /* END ROUTE FOR BACKEND */
 
