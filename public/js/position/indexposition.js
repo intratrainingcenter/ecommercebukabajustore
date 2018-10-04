@@ -2,36 +2,36 @@ $(document).ready(function () {
 	$('#datatable').DataTable();
 });
 
-function loaddatapromo() {
+function loaddataposition() {
 	$.ajax({
 		headers:{
 			'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content'),
 		},
 		method:'get',
-		url:location.origin+'/promo/loaddatapromo',
+		url:location.origin+'/position/loaddataposition',
 		success:function (data) {
-			$('#dataPromo').html(data);
+			$('#dataPosition').html(data);
 
 		}
 	});
 }
 $(document).on('click','.deleteData',function () {
-	let idPromo = $(this).attr('attr-id');
-	$('#idPromo').val(idPromo);
+	let idPosition = $(this).attr('attr-id');
+	$('#idPosition').val(idPosition);
 	$('#modalDelete').modal('show');
 });
 
 $(document).on('click','#functionDelete',function () {
-	let idPromo = $('#idPromo').val();
+	let idPosition = $('#idPosition').val();
 	$.ajax({
 		headers:{
 			'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content'),
 		},
 		method:'delete',
-		url:location.origin+'/promo/deletepromo',
-		data:{idPromo:idPromo},
+		url:location.origin+'/position/deleteposition',
+		data:{idPosition:idPosition},
 		success:function (data) {
-			loaddatapromo();
+			loaddataposition();
 			$('#modalDelete').modal('hide');
 			if(data == 'success'){
 				swal(
