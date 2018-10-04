@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
      protected $table = 'master_barangs';
-     protected $primaryKey = 'kode_barang';
+
+     public function category()
+        {
+        return $this->belongsTo('App\Kategori','kode_kategori','kode_kategori');
+        }
 }

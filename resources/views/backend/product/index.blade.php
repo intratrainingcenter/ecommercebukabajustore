@@ -22,21 +22,19 @@
                                 <th>Opsi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="dataProduct">
                           @php $no=1; @endphp
                           @forelse ($product as $data)
                                 <tr>
                                   <td> {{ $no++ }} </td>
                                   <td> {{ $data->kode_barang }} </td>
-                                  <td> {{ $data->kode_kategori }} </td>
+                                  <td> {{ $data->category->nama_kategori }} </td>
                                   <td> {{ $data->nama_barang }} </td>
                                   <td> {{ $data->stok }} </td>
-                                  <td> {!!Backendhelper::product_detail_update_delete_bycode($data->kode_barang)!!} </td>
+                                  <td> {!!Backendhelper::read_update_delete_byid($data->id,route('formupdateProduct',['id'=>$data->id]),route('detailProduct',['id'=>$data->id]))!!} </td>
                                 </tr>
                             @empty
-                                <tr>
-                                    <td>Empty Data Product</td>
-                                </tr>
+                                <tr>  <td>Empty Data Product</td>  </tr>
                             @endforelse
                         </tbody>
                     </table>
@@ -54,14 +52,12 @@
             </div>
             <div class="modal-body">
               <p>Are you sure will delete this data promo ?</p>
-              <p>Code Product  <b class="codeproduct"></b></p>
+              <p>Code Product  <b class="idproduct"></b></p>
             </div>
             <div class="modal-footer">
-              {{Form::open(['route'=>'deleteProduct','method'=>'delete'])}}
-              {{ Form::hidden('codeProduct',null,['class'=>'codeproduct']) }}
+              {{ Form::hidden('idProduct',null,['class'=>'idproduct']) }}
               {{Form::button('Cancel',['type'=>'button','class'=>'btn btn-secondary waves-effect','data-dismiss'=>'modal'])}}
-              {{Form::button('Delete',['type'=>'submit','class'=>'btn btn-primary waves-effect waves-light'])}}
-              {{Form::close()}}
+              {{Form::button('Delete',['type'=>'button','class'=>'btn btn-primary waves-effect waves-light functionDelete'])}}
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

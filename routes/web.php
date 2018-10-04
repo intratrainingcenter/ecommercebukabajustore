@@ -43,15 +43,17 @@ Route::prefix('position')->group(function ()
 	Route::delete('deleteposition','Backend\BpositionController@deleteposition')->name('positionDelete');
 	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
 });
+
 Route::prefix('product')->group(function ()
 {
   Route::get('','Backend\BproductController@index')->name('productIndex');
   Route::get('formaddproduct','Backend\BproductController@formaddproduct')->name('formaddProduct');
   Route::post('addproduct','Backend\BproductController@addproduct')->name('addProduct');
-  Route::get('detailproduct/{code}','Backend\BproductController@detailproduct')->name('detailProduct');
-  Route::get('formupdateproduct/{code}','Backend\BproductController@formupdateproduct')->name('formupdateProduct');
+  Route::get('detailproduct/{id}','Backend\BproductController@detailproduct')->name('detailProduct');
+  Route::get('formupdateproduct/{id}','Backend\BproductController@formupdateproduct')->name('formupdateProduct');
   Route::put('updateproduct','Backend\BproductController@updateproduct')->name('updateProduct');
-  Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
+	Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
+  Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
 

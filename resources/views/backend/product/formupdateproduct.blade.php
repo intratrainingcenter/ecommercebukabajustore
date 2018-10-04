@@ -1,5 +1,23 @@
 {{Form::open(['route'=>'updateProduct','method'=>'put'])}}
-              {{Form::hidden('codeProduct',$code)}}
+              {{Form::hidden('idProduct',$id)}}
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-20">
+                <div class="card-body">
+                    <h4 class="mt-0 header-title">Image Product</h4>
+                    <div class="m-b-30 form-group @if($errors->has('imageProduct')) has-primary @endif">
+                        <div class="fallback">
+                            <input name="image" type="file" class="inputImageproduct form-control">
+                              @if($errors->has('imageProduct')) <div class="form-control-feedback">Choose and Crop image again </div> @endif
+                        </div>
+                    </div>
+                    <div id="cropimageproduct" class="col-md-12"></div>
+                    <div class="input-field col-md-3"><input type="hidden" name="imageProduct" value="" data-error=".err6"></div>
+                    <div class="col-md-12 accepted"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
           <div class="form-group col-md-6">
               <div class="col-sm-12">

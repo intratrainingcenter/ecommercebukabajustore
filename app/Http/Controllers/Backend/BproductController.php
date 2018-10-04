@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 // memanggil cntrller di dalam cntrller, karna ada didlama directory backend
 use App\Http\Controllers\Controller;
@@ -12,7 +13,8 @@ class BproductController extends Controller
 {
     public function index()
    {
-     $product = DB::table('master_barangs')->get();
+    $product = Barang::with(['category' => function(){
+    }])->get();
      $data = array(
        'page' => 'Product',
        'product' => $product,
@@ -43,11 +45,26 @@ class BproductController extends Controller
      {
        // WARNING validate -> nama barang , karena harus sesuai dengan didatabase ,
        $validatedData = $request->validate([
-         'nama_barang' => 'unique:master_barangs',
+         'imageProduct' => 'required',
+         'codeCategory' => 'max:255',
+         'nama_barang' => 'unique:master_barangs|max:255',
+         'weightProduct' => 'max:11',
+         'purchaseProduct' => 'max:11',
+         'sellingProduct' => 'max:11',
+         'stoct' => 'max:11',
         ]);
+        // membuat directory
+        $createdirectory = Storage::makeDirectory('public/imageproduct');
+        // str_replace mengganti kalimat
+        $foto = str_replace('data:image/png;base64,', '', $request->imageProduct);
+        $foto = str_replace(' ','+',$foto);
+        // str_random membuat kalimat acak
+        $namefile = str_random(16).'.png';
+        Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($foto));
+
         $addproduct = new Barang;
-        $addproduct->foto = 'kosong';
-        $addproduct->lokasifoto = 'kosong';
+        $addproduct->foto = $namefile;
+        $addproduct->lokasifoto = 'public/imageproduct/';
         $addproduct->kode_kategori = $request->codeCategory;
         $addproduct->kode_barang = 'PR-'.date('Ymdhis');
         $addproduct->nama_barang = $request->nama_barang;
@@ -61,18 +78,20 @@ class BproductController extends Controller
        return redirect('product');
      }
 
-     public function detailproduct($code)
+     public function detailproduct($id)
     {
+      $showproduct = Barang::find($id);
       $data = array(
         'page' => 'Product',
+        'product' => $showproduct,
       );
 
       return view('backend.product.detailproduct',$data);
     }
 
-    public function formupdateproduct($code)
+    public function formupdateproduct($id)
    {
-     $showproduct = Barang::find($code);
+     $showproduct = Barang::find($id);
      $category = DB::table('master_kategoris')->get();
 
      $select=[];
@@ -84,7 +103,7 @@ class BproductController extends Controller
      $data = array(
        'page' => 'Product',
        'product' => $showproduct,
-       'code' => $code,
+       'id' => $id,
        'category' => $select,
      );
 
@@ -93,23 +112,43 @@ class BproductController extends Controller
 
    public function updateproduct(Request $request)
   {
-    $showproduct = Barang::find($request->codeProduct);
+    if ($request->image == true) {
+      // membuat directory
+      $createdirectory = Storage::makeDirectory('public/imageproduct');
+      // str_replace mengganti kalimat
+      $foto = str_replace('data:image/png;base64,', '', $request->imageProduct);
+      $foto = str_replace(' ','+',$foto);
+      // str_random membuat kalimat acak
+      $namefile = str_random(16).'.png';
+      Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($foto));
+      $getdataproduct = Barang::find($request->idProduct);
+      Storage::delete('public/imageproduct'.'/'.$getdataproduct->foto);
+      $updateproduct = Barang::find($request->idProduct);
+      $updateproduct->foto = $namefile;
+      $updateproduct->save();
+    }
+    $showproduct = Barang::find($request->idProduct);
     // jika namabarang di showproduct sama dengan request nama barang maka tidak divalidate
     if ($request->nama_barang == $showproduct->nama_barang) {
-      $updateproduct = Barang::find($request->codeProduct);
+      $updateproduct = Barang::find($request->idProduct);
       $updateproduct->kode_kategori = $request->codeCategory;
       $updateproduct->berat_barang = $request->weightProduct;
       $updateproduct->hpp = $request->purchaseProduct;
       $updateproduct->harga_jual = $request->sellingProduct;
       $updateproduct->stok = $request->stockProduct;
-      $updateproduct->deskripsi = $request->description;
       $updateproduct->save();
+      $updateproduct->deskripsi = $request->description;
     }else {
       // WARNING validate -> nama barang , karena harus sesuai dengan didatabase ,
       $validatedData = $request->validate([
-        'nama_barang' => 'unique:master_barangs',
+        'codeCategory' => 'max:255',
+        'nama_barang' => 'unique:master_barangs|max:255',
+        'weightProduct' => 'max:11',
+        'purchaseProduct' => 'max:11',
+        'sellingProduct' => 'max:11',
+        'stoct' => 'max:11',
        ]);
-      $updateproduct = Barang::find($request->codeProduct);
+      $updateproduct = Barang::find($request->idProduct);
       $updateproduct->kode_kategori = $request->codeCategory;
       $updateproduct->nama_barang = $request->nama_barang;
       $updateproduct->berat_barang = $request->weightProduct;
@@ -124,8 +163,22 @@ class BproductController extends Controller
 
   public function deleteproduct(Request $request)
  {
-   $deleteproduct = Barang::find($request->codeProduct)->delete();
+   $getdataproduct = Barang::find($request->idProduct);
+   Storage::delete('public/imageproduct'.'/'.$getdataproduct->foto);
+   $deleteproduct = Barang::find($request->idProduct)->delete();
 
-   return redirect('product');
+   return 'success';
  }
+
+  public function loaddataproduct()
+  {
+    $product = Barang::with(['category' => function(){
+    }])->get();
+    $data = array(
+      'page' => 'Product',
+      'product' => $product,
+    );
+
+    return view('backend.product.tabledataproduct',$data);
+  }
 }
