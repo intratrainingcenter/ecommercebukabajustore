@@ -14,6 +14,7 @@ $(document).ready(function () {
 	});
 
 	$('.inputImagestory').change(function () {
+		var img='';
 		var reader = new FileReader();
 		reader.onload = function (e) {
 			$('#cropimagestory').croppie('bind', {
@@ -21,9 +22,12 @@ $(document).ready(function () {
 			}).then(function () {
 				$('.accepted').html('<button class="btn btn-success waves-effect pull-right waves-light green apply">Apply</button>');
 				$('.apply').click(function (event) {
+					$('#modalcroopie').modal('hide');
 					event.preventDefault();
 					croppiestory.croppie('result','base64').then(function (result) {
+						img +="<img src="+result+" style='display: block;margin-left: auto;margin-right: auto;width: 40%;'>";
 						$('#cropimagestory').empty();
+						$('.imgshow').html(img);
 						$('input[name="imageStory"]').val(result);
 					});
 				});

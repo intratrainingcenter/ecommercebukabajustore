@@ -1,13 +1,11 @@
 $(document).ready(function () {
   $('#datatable').DataTable();
-
   // set timeout show alert
   setTimeout(function(){
     $(document).find('.alert').fadeOut('slow');
   },3000);
 });
-
-$('.deleteData').click(function () {
+$(document).on('click','.deleteData',function () {
    $('#modalDelete').modal('show');
    story_id = $(this).attr('attr-id');
    $(document).find('#idStory').val(story_id);

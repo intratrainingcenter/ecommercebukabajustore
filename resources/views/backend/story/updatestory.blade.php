@@ -16,15 +16,18 @@
                           <div class="col-sm-12">
                               {{Form::label('Images')}}
                           </div>
+                          <div class="imgshow">
+                            <img src="{{ asset('storage/imagestory'.'/'.$story->foto) }}" alt="" style="display: block;margin-left: auto;margin-right: auto;width: 40%;">
+                          </div>
                             <div class="col-sm-12">
-                                {{Form::file('images',['class'=>'inputImagestory'])}}
+                              <button type="button" class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#modalcroopie">Choose a Image</button>
+                              @php
+                                $input = Form::file('images',['class'=>'inputImagestory']);
+                              @endphp
                                 {{Form::hidden('valueImage',$story->foto)}}
                                 {{Form::hidden('storyid',$story->id)}}
                             </div>
                         </div>
-                        <div id="cropimagestory" class="col-md-12"></div>
-                        <div class="input-field col-md-3"><input type="hidden" name="imageStory" value="" data-error=".err6"></div>
-                        <div class="col-md-12 accepted"></div>
                         <div class="form-group col-md-12">
                             <div class="col-sm-12">
                               {{Form::label('Deskripsi')}}
@@ -40,6 +43,7 @@
                     </div>
                     {{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
                     <a href="{{route('storyIndex')}}" class="btn btn-warning waves-effect waves-light pull-left">Cancel</a>
+                        {!!Backendhelper::CroopieModal('modalcroopie',$input)!!}
                     {{Form::close()}}
                 </div>
             </div>
