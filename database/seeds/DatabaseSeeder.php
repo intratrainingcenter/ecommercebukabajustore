@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
       // $this->call(Barang_Favorit::class);
       // $this->call(Foto_Barang::class);
       $this->call(Kategori::class);
-      $this->call(Setting::class);
+      // $this->call(Setting::class);
       // $this->call(Chat_Cs::class);
       // $this->call(Opsi_Chat::class);
       // $this->call(Pemesanan::class);
