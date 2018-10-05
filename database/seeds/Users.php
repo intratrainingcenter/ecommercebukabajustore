@@ -11,14 +11,14 @@ class Users extends Seeder
      */
     public function run()
     {
-      DB::table('master_users')->insert([ [
+      DB::table('users')->insert([ [
          'kode_user' => '1',
          'avatar' => 'http://www.haipic.com/icon/12247/12247.png',
          'avatar_original' => 'http://www.haipic.com/icon/12247/12247.png',
          'lokasifoto' => 'kosong',
          'provider_id' => '',
          'provider' => '',
-         'username' => 'admin',
+         'name' => 'admin',
          'email' => 'admin@gmail.com',
          'password' => bcrypt('admin'),
          'kode_jabatan' => 'admin',
@@ -33,7 +33,7 @@ class Users extends Seeder
        'lokasifoto' => 'kosong',
        'provider_id' => '',
        'provider' => '',
-       'username' => 'member',
+       'name' => 'member',
        'email' => 'member@gmail.com',
        'password' => bcrypt('member'),
        'kode_jabatan' => 'member',
@@ -48,7 +48,7 @@ class Users extends Seeder
        'lokasifoto' => 'kosong',
        'provider_id' => '',
        'provider' => '',
-       'username' => 'spv',
+       'name' => 'spv',
        'email' => 'spv@gmail.com',
        'password' => bcrypt('spv'),
        'kode_jabatan' => 'spv',
