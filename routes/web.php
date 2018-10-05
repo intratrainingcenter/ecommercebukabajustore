@@ -37,6 +37,17 @@ Route::prefix('promo')->group(function ()
 	Route::delete('deletepromo','Backend\BpromoController@deletepromo')->name('promoDelete');
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
+Route::prefix('slider')->group(function ()
+{
+	Route::get('','Backend\BsliderController@index')->name('sliderindex');
+	Route::get('addslider','Backend\BsliderController@addslider')->name('sliderAdd');
+	Route::get('editslider/{id}','Backend\BsliderController@editslider')->name('sliderEdit');
+	Route::put('updateslider','Backend\BsliderController@updateslider')->name('sliderUpdate');
+	Route::post('createslider','Backend\BsliderController@createslider')->name('sliderCreate');
+	Route::get('detailslider/{id}','Backend\BsliderController@detailslider')->name('sliderDetail');
+	Route::delete('deleteslider','Backend\BsliderController@deleteslider')->name('sliderDelete');
+	Route::get('loaddataslider','Backend\BsliderController@loaddataslider');
+});
 
 Route::prefix('story')->group(function()
 {

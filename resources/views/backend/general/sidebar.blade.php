@@ -30,8 +30,8 @@
      <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-collage"></i> <span> Konten </span> </a>
         <ul class="list-unstyled">
-            <li><a href="advanced-animation.html">Slider</a></li>
             <li><a href="{{route('storyIndex')}}">Story</a></li>
+            <li><a href="{{route('sliderindex')}}">Slider</a></li>
             <li><a href="advanced-animation.html">About</a></li>
         </ul>
     </li>
