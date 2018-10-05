@@ -20,7 +20,7 @@
     <div class="row">
           <div class="form-group col-md-6">
               <div class="col-sm-12">
-                <div class="m-b-30 form-group @if($errors->has('imageProduct')) has-primary @endif">
+                <div class="m-b-30 form-group @if($errors->has('nama_barang')) has-primary @endif">
                 {{Form::label('Name Product')}}
                   {{Form::text('nama_barang',null,['class'=>'form-control','placeholder'=>'Enter Name Product','required'])}}
                   @if($errors->has('nama_barang')) <div class="form-control-feedback">{{ $errors->first('nama_barang') }}</div> @endif
@@ -56,7 +56,7 @@
             <div class="m-b-30 form-group @if($errors->has('sellingProduct')) has-primary @endif">
             <div class="form-group col-sm-12">
               {{Form::label('Selling Price Product')}}
-                {{Form::number('sellingProduct',null,['class'=>'form-control','placeholder'=>'Enter Sellin Price Product','min'=>'0','required'])}}
+                {{Form::number('sellingProduct',null,['class'=>'form-control','placeholder'=>'Enter Selling Price Product','min'=>'0','required'])}}
                 @if($errors->has('sellingProduct')) <div class="form-control-feedback">{{ $errors->first('sellingProduct') }}</div> @endif
               </div>
             </div>

@@ -1,5 +1,5 @@
 @php $no=1; @endphp
-@forelse ($product as $data)
+@foreach ($product as $data)
       <tr>
         <td> {{ $no++ }} </td>
         <td> {{ $data->kode_barang }} </td>
@@ -8,6 +8,4 @@
         <td> {{ $data->stok }} </td>
         <td> {!!Backendhelper::read_update_delete_byid($data->id,route('formupdateProduct',['id'=>$data->id]),route('detailProduct',['id'=>$data->id]))!!} </td>
       </tr>
-  @empty
-      <tr>  <td>Empty Data Product</td>  </tr>
-  @endforelse
+  @endforeach

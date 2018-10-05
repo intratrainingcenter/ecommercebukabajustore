@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-// memanggil cntrller di dalam cntrller, karna ada didlama directory backend
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Barang;
@@ -13,8 +12,7 @@ class BproductController extends Controller
 {
     public function index()
    {
-    $product = Barang::with(['category' => function(){
-    }])->get();
+    $product = Barang::with('category')->get();
      $data = array(
        'page' => 'Product',
        'product' => $product,
@@ -28,10 +26,9 @@ class BproductController extends Controller
     $category = DB::table('master_kategoris')->get();
       $select=[];
       $select['']='Choose Category';
-// foreach data kategori array
-    foreach ($category as $key) {
-      $select[$key->kode_kategori]=$key->nama_kategori;
-    }
+      foreach ($category as $key) {
+        $select[$key->kode_kategori]=$key->nama_kategori;
+      }
 
     $data = array(
       'page' => 'Product',
@@ -43,24 +40,19 @@ class BproductController extends Controller
 
       public function addproduct(Request $request)
      {
-       // WARNING validate -> nama barang , karena harus sesuai dengan didatabase ,
        $validatedData = $request->validate([
          'imageProduct' => 'required',
-         'codeCategory' => 'max:255',
          'nama_barang' => 'unique:master_barangs|max:255',
          'weightProduct' => 'max:11',
          'purchaseProduct' => 'max:11',
          'sellingProduct' => 'max:11',
-         'stoct' => 'max:11',
+         'stockProduct' => 'max:11',
         ]);
-        // membuat directory
         $createdirectory = Storage::makeDirectory('public/imageproduct');
-        // str_replace mengganti kalimat
-        $foto = str_replace('data:image/png;base64,', '', $request->imageProduct);
-        $foto = str_replace(' ','+',$foto);
-        // str_random membuat kalimat acak
+        $image = str_replace('data:image/png;base64,', '', $request->imageProduct);
+        $image = str_replace(' ','+',$image);
         $namefile = str_random(16).'.png';
-        Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($foto));
+        Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($image));
 
         $addproduct = new Barang;
         $addproduct->foto = $namefile;
@@ -93,12 +85,11 @@ class BproductController extends Controller
    {
      $showproduct = Barang::find($id);
      $category = DB::table('master_kategoris')->get();
-
      $select=[];
      $select['']='Choose Category';
-   foreach ($category as $key) {
-     $select[$key->kode_kategori]=$key->nama_kategori;
-   }
+     foreach ($category as $key) {
+       $select[$key->kode_kategori]=$key->nama_kategori;
+     }
 
      $data = array(
        'page' => 'Product',
@@ -112,52 +103,50 @@ class BproductController extends Controller
 
    public function updateproduct(Request $request)
   {
+    $updateproduct = Barang::find($request->idProduct);
     if ($request->image == true) {
-      // membuat directory
       $createdirectory = Storage::makeDirectory('public/imageproduct');
-      // str_replace mengganti kalimat
-      $foto = str_replace('data:image/png;base64,', '', $request->imageProduct);
-      $foto = str_replace(' ','+',$foto);
-      // str_random membuat kalimat acak
+      $image = str_replace('data:image/png;base64,', '', $request->imageProduct);
+      $image = str_replace(' ','+',$image);
       $namefile = str_random(16).'.png';
-      Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($foto));
+      Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($image));
       $getdataproduct = Barang::find($request->idProduct);
       Storage::delete('public/imageproduct'.'/'.$getdataproduct->foto);
-      $updateproduct = Barang::find($request->idProduct);
       $updateproduct->foto = $namefile;
       $updateproduct->save();
     }
-    $showproduct = Barang::find($request->idProduct);
-    // jika namabarang di showproduct sama dengan request nama barang maka tidak divalidate
-    if ($request->nama_barang == $showproduct->nama_barang) {
-      $updateproduct = Barang::find($request->idProduct);
-      $updateproduct->kode_kategori = $request->codeCategory;
-      $updateproduct->berat_barang = $request->weightProduct;
-      $updateproduct->hpp = $request->purchaseProduct;
-      $updateproduct->harga_jual = $request->sellingProduct;
-      $updateproduct->stok = $request->stockProduct;
-      $updateproduct->save();
-      $updateproduct->deskripsi = $request->description;
-    }else {
-      // WARNING validate -> nama barang , karena harus sesuai dengan didatabase ,
+
+    if ($request->nama_barang == $updateproduct->nama_barang) {
+
       $validatedData = $request->validate([
-        'codeCategory' => 'max:255',
-        'nama_barang' => 'unique:master_barangs|max:255',
+        'imageProduct' => 'required',
         'weightProduct' => 'max:11',
         'purchaseProduct' => 'max:11',
         'sellingProduct' => 'max:11',
-        'stoct' => 'max:11',
+        'stockProduct' => 'max:11',
        ]);
-      $updateproduct = Barang::find($request->idProduct);
-      $updateproduct->kode_kategori = $request->codeCategory;
+
+    }else {
+
+      $validatedData = $request->validate([
+        'nama_barang' => 'unique:master_barangs|max:255',
+        'imageProduct' => 'required',
+        'weightProduct' => 'max:11',
+        'purchaseProduct' => 'max:11',
+        'sellingProduct' => 'max:11',
+        'stockProduct' => 'max:11',
+       ]);
+
       $updateproduct->nama_barang = $request->nama_barang;
+    }
+      $updateproduct->kode_kategori = $request->codeCategory;
       $updateproduct->berat_barang = $request->weightProduct;
       $updateproduct->hpp = $request->purchaseProduct;
       $updateproduct->harga_jual = $request->sellingProduct;
       $updateproduct->stok = $request->stockProduct;
       $updateproduct->deskripsi = $request->description;
       $updateproduct->save();
-    }
+
     return redirect('product');
   }
 
