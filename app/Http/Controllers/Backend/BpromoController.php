@@ -66,7 +66,7 @@ class BpromoController extends Controller
       'berlaku_akhir' => $request->periodEnd,
     ]);
 
-    return redirect()->route('promoIndex'); 
+    return redirect()->route('promoIndex');
   }
 
   public function detailpromo($id)
@@ -132,7 +132,7 @@ class BpromoController extends Controller
       ]);
     }
 
-    return redirect()->route('promoIndex'); 
+    return redirect()->route('promoIndex');
   }
 
   public function deletepromo(Request $request)

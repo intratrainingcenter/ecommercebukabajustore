@@ -72,7 +72,11 @@ Route::prefix('user')->group(function ()
 	Route::get('','Backend\BuserController@index')->name('userIndex');
 	Route::get('formadduser','Backend\BuserController@formadduser')->name('formadduser');
 	Route::post('adduser','Backend\BuserController@adduser')->name('userCreate');
+	Route::get('formupdateuser/{id}','Backend\BuserController@formupdateuser')->name('formuserUpdate');
+	Route::post('updateuser','Backend\BuserController@updateuser')->name('userUpdate');
+	Route::delete('deleteuser','Backend\BuserController@deleteuser');
 	Route::get('detailuser/{id}','Backend\BuserController@detailuser')->name('userDetail');
+	Route::get('loaddatauser','Backend\BuserController@loaddatauser');
 	Route::post('positionuser','Backend\BuserController@userposition');
 });
 
