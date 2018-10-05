@@ -38,6 +38,17 @@ Route::prefix('promo')->group(function ()
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
 
+Route::prefix('story')->group(function()
+{
+  Route::get('','Backend\BstoryController@index')->name('storyIndex');
+  Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
+  Route::post('createstory','Backend\BstoryController@createstory')->name('storyCreate');
+  Route::get('updatestory/{id}','Backend\BstoryController@showupdatestory')->name('ShowstoryUpdate');
+  Route::post('updatestory','Backend\BstoryController@updatestory')->name('storyUpdate');
+  Route::delete('deletestory','Backend\BstoryController@deletestory')->name('storyDelete');
+  Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
+  Route::get('loadstory','Backend\BstoryController@loadstory');
+});
 Route::prefix('position')->group(function ()
 {
 	Route::get('','Backend\BpositionController@index')->name('positionIndex');
@@ -69,13 +80,22 @@ Route::prefix('product')->group(function ()
   Route::get('detailproduct/{id}','Backend\BproductController@detailproduct')->name('detailProduct');
   Route::get('formupdateproduct/{id}','Backend\BproductController@formupdateproduct')->name('formupdateProduct');
   Route::put('updateproduct','Backend\BproductController@updateproduct')->name('updateProduct');
-	Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
+  Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
   Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
-
-
-
+Route::prefix('user')->group(function ()
+{
+	Route::get('','Backend\BuserController@index')->name('userIndex');
+	Route::get('formadduser','Backend\BuserController@formadduser')->name('formadduser');
+	Route::post('adduser','Backend\BuserController@adduser')->name('userCreate');
+	Route::get('formupdateuser/{id}','Backend\BuserController@formupdateuser')->name('formuserUpdate');
+	Route::post('updateuser','Backend\BuserController@updateuser')->name('userUpdate');
+	Route::delete('deleteuser','Backend\BuserController@deleteuser');
+	Route::get('detailuser/{id}','Backend\BuserController@detailuser')->name('userDetail');
+	Route::get('loaddatauser','Backend\BuserController@loaddatauser');
+	Route::post('positionuser','Backend\BuserController@userposition');
+});
 
 /* END ROUTE FOR BACKEND */
 

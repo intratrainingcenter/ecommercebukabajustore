@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('master_users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kode_user');
             $table->string('avatar');
@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('lokasifoto');
             $table->string('provider_id')->nullable();
             $table->string('provider')->nullable();
-            $table->string('username');
+            $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('kode_jabatan');
@@ -42,6 +42,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('master_users');
+        Schema::dropIfExists('users');
     }
 }

@@ -10,7 +10,7 @@
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-buffer"></i> <span> User </span> </a>
         <ul class="list-unstyled">
             <li><a href="{{route('positionIndex')}}">Position User</a></li>
-            <li><a href="advanced-animation.html">Data User</a></li>
+            <li><a href="{{route('userIndex')}}">Data User</a></li>
         </ul>
     </li>
 
@@ -31,7 +31,7 @@
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-collage"></i> <span> Konten </span> </a>
         <ul class="list-unstyled">
             <li><a href="advanced-animation.html">Slider</a></li>
-            <li><a href="advanced-animation.html">Story</a></li>
+            <li><a href="{{route('storyIndex')}}">Story</a></li>
             <li><a href="advanced-animation.html">About</a></li>
         </ul>
     </li>
