@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', function () {
-	return redirect()->route('dashboardIndex');
-});
+// Route::get('/', function () {
+// 	return redirect()->route('fronthomeIndex');
+// });
 
 /*
 | ROUTE FOR PAYMENT PAYPAL
@@ -104,6 +104,10 @@ Route::prefix('user')->group(function ()
 | ROUTE FOR FRONTEND
 */
 
+Route::prefix('')->group(function ()
+{	
+	Route::get('','Frontend\FhomeController@index')->name('fronthomeIndex');
+});
 
 /*
 | END ROUTE FOR FRONTEND
