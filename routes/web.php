@@ -50,6 +50,17 @@ Route::prefix('position')->group(function ()
 	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
 });
 
+Route::prefix('category')->group(function ()
+{
+	Route::get('','Backend\BcategoryController@index')->name('categoryIndex');
+	Route::get('addcategory','Backend\BcategoryController@addcategory')->name('categoryAdd');
+	Route::get('editcategory/{id}','Backend\BcategoryController@editcategory')->name('categoryEdit');
+	Route::put('updatecategory','Backend\BcategoryController@updatecategory')->name('categoryUpdate');
+	Route::post('createcategory','Backend\BcategoryController@createcategory')->name('categoryCreate');
+	Route::get('detailcategory/{id}','Backend\BcategoryController@detailcategory')->name('categoryDetail');
+	Route::delete('deletecategory','Backend\BcategoryController@deletecategory')->name('categoryDelete');
+	Route::get('loaddatacategory','Backend\BcategoryController@loaddatacategory');
+});
 Route::prefix('product')->group(function ()
 {
   Route::get('','Backend\BproductController@index')->name('productIndex');
