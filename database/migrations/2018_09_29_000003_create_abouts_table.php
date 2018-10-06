@@ -16,6 +16,7 @@ class CreateAboutsTable extends Migration
         Schema::create('master_abouts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('foto');
+            $table->string('judul');
             $table->string('lokasifoto');
             $table->text('deskripsi');
             $table->string('status');

@@ -73,7 +73,18 @@ Route::prefix('product')->group(function ()
   Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
-
+Route::prefix('about')->group(function ()
+{
+	Route::get('','Backend\BaboutController@index')->name('aboutIndex');
+	Route::get('addabout','Backend\BaboutController@addabout')->name('aboutAdd');
+	Route::get('editabout/{id}','Backend\BaboutController@editabout')->name('aboutEdit');
+	Route::put('updateabout','Backend\BaboutController@updateabout')->name('aboutUpdate');
+	Route::post('createabout','Backend\BaboutController@createabout')->name('aboutCreate');
+	Route::get('detailabout/{id}','Backend\BaboutController@detailabout')->name('aboutDetail');
+	Route::delete('deleteabout','Backend\BaboutController@deleteabout')->name('aboutDelete');
+	Route::get('loaddataabout','Backend\BaboutController@loaddataabout');
+	Route::get('tabledataabout','Backend\BaboutController@tabledataabout');
+});
 
 
 
