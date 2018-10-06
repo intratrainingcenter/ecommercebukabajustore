@@ -15,6 +15,12 @@ Route::get('status', 'PaymentController@getPaymentStatus');
 
 /* ROUTE FOR BACKEND */
 
+Route::prefix('setup')->group(function ()
+{
+	Route::get('','Backend\BsetupController@index')->name('setupIndex');
+	Route::post('postsetup','Backend\BsetupController@postsetup')->name('setupPost');
+});
+
 Route::prefix('dashboard')->group(function ()
 {
 	Route::get('','DashboardController@index')->name('dashboardIndex');
