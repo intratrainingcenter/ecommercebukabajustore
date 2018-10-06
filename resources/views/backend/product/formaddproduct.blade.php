@@ -10,9 +10,10 @@
                               @if($errors->has('imageProduct')) <div class="form-control-feedback">Choose and Crop image again </div> @endif
                         </div>
                     </div>
-                    <div id="cropimageproduct" class="col-md-12"></div>
-                    <div class="input-field col-md-3"><input type="hidden" name="imageProduct" value="" data-error=".err6"></div>
-                    <div class="col-md-12 accepted"></div>
+                      <center>  <div id="showimageproduct" class="col-md-12"></div> </center>
+                        <div id="cropimageproduct" class="col-md-12"></div>
+                        <div class="input-field col-md-3"><input type="hidden" name="imageProduct" value="" data-error=".err6"></div>
+                        <div class="col-md-12 accepted"></div>
                 </div>
             </div>
         </div>
@@ -33,8 +34,6 @@
                   {{Form::select('codeCategory',$category,null,['class'=>'form-control','required'])}}
               </div>
           </div>
-    </div>
-    <div class="row">
         <div class="col-md-6">
             <div class="form-group col-sm-12">
               <div class="m-b-30 form-group @if($errors->has('weightProduct')) has-primary @endif">
@@ -73,7 +72,7 @@
               {{Form::label('Description')}}
                 {{Form::textarea('description',null,['class'=>'form-control','placeholder'=>'Enter Description','required','max'=>'255'])}}
             </div>
+            <br> {{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
         </div>
     </div>
-{{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
 {{Form::close()}}

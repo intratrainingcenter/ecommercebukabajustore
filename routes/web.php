@@ -97,6 +97,8 @@ Route::prefix('product')->group(function ()
 
 Route::prefix('user')->group(function ()
 {
+	Route::get('profile','Backend\BprofileController@index')->name('profileIndex');
+  Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
 	Route::get('','Backend\BuserController@index')->name('userIndex');
 	Route::get('formadduser','Backend\BuserController@formadduser')->name('formadduser');
 	Route::post('adduser','Backend\BuserController@adduser')->name('userCreate');
@@ -107,6 +109,9 @@ Route::prefix('user')->group(function ()
 	Route::get('loaddatauser','Backend\BuserController@loaddatauser');
 	Route::post('positionuser','Backend\BuserController@userposition');
 });
+
+
+
 
 /* END ROUTE FOR BACKEND */
 
