@@ -32,7 +32,7 @@
         <ul class="list-unstyled">
             <li><a href="{{route('storyIndex')}}">Story</a></li>
             <li><a href="{{route('sliderindex')}}">Slider</a></li>
-            <li><a href="advanced-animation.html">About</a></li>
+            <li><a href="{{route('aboutIndex')}}">About</a></li>
         </ul>
     </li>
     <li class="has_sub">
