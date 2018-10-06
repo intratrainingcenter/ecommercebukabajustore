@@ -1,7 +1,7 @@
 <?php
 
 Route::get('/', function () {
-    return redirect()->route('dashboardIndex');
+	return redirect()->route('dashboardIndex');
 });
 
 /*
@@ -14,6 +14,12 @@ Route::post('payment', 'PaymentController@payWithpaypal');
 Route::get('status', 'PaymentController@getPaymentStatus');
 
 /* ROUTE FOR BACKEND */
+
+Route::prefix('setup')->group(function ()
+{
+	Route::get('','Backend\BsetupController@index')->name('setupIndex');
+	Route::post('postsetup','Backend\BsetupController@postsetup')->name('setupPost');
+});
 
 Route::prefix('dashboard')->group(function ()
 {
@@ -32,6 +38,17 @@ Route::prefix('promo')->group(function ()
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
 
+Route::prefix('position')->group(function ()
+{
+	Route::get('','Backend\BpositionController@index')->name('positionIndex');
+	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
+	Route::get('editposition/{id}','Backend\BpositionController@editposition')->name('positionEdit');
+	Route::put('updateposition','Backend\BpositionController@updateposition')->name('positionUpdate');
+	Route::post('createposition','Backend\BpositionController@createposition')->name('positionCreate');
+	Route::get('detailposition/{id}','Backend\BpositionController@detailposition')->name('positionDetail');
+	Route::delete('deleteposition','Backend\BpositionController@deleteposition')->name('positionDelete');
+	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
+});
 Route::prefix('story')->group(function()
 {
   Route::get('','Backend\BstoryController@index')->name('storyIndex');
@@ -43,6 +60,26 @@ Route::prefix('story')->group(function()
   Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
   Route::get('loadstory','Backend\BstoryController@loadstory');
 });
+
+Route::prefix('product')->group(function ()
+{
+  Route::get('','Backend\BproductController@index')->name('productIndex');
+  Route::get('formaddproduct','Backend\BproductController@formaddproduct')->name('formaddProduct');
+  Route::post('addproduct','Backend\BproductController@addproduct')->name('addProduct');
+  Route::get('detailproduct/{id}','Backend\BproductController@detailproduct')->name('detailProduct');
+  Route::get('formupdateproduct/{id}','Backend\BproductController@formupdateproduct')->name('formupdateProduct');
+  Route::put('updateproduct','Backend\BproductController@updateproduct')->name('updateProduct');
+	Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
+  Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
+});
+
+Route::prefix('user')->group(function ()
+{
+	Route::get('profile','Backend\BuserController@index')->name('profileIndex');
+  Route::put('updateprofile','Backend\BuserController@updateprofile')->name('updateProfile');
+});
+
+
 
 
 /* END ROUTE FOR BACKEND */
@@ -56,6 +93,10 @@ Route::prefix('story')->group(function()
 /*
 | END ROUTE FOR FRONTEND
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 
 Auth::routes();
 

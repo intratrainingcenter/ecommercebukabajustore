@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -49,9 +50,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'imageUser' => 'required',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'jenis_kelamin' => 'required',
         ]);
     }
 
@@ -63,10 +68,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $createdirectory = Storage::makeDirectory('public/imageuser');
+        $image = str_replace('data:image/png;base64,', '', $data['imageUser']);
+        $image = str_replace(' ','+',$image);
+        $namefile = str_random(16).'.png';
+        Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
+
         return User::create([
+            'avatar' => $namefile,
+            'lokasifoto' => 'public/imageuser/',
+            'kode_user' => 'ADMN-'.date('Ymdhis'),
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'alamat' => $data['alamat'],
+            'no_telp' => $data['no_telp'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
+            'status' => 'non-aktif',
         ]);
     }
 }

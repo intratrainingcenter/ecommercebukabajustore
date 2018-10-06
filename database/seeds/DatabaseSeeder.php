@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
       $this->call(Story::class);
       // $this->call(About::class);
       $this->call(Jabatan::class);
-      // $this->call(Users::class);
+      $this->call(Users::class);
       // $this->call(Promo::class);
       // $this->call(Barang::class);
       // $this->call(Barang_Favorit::class);
       // $this->call(Foto_Barang::class);
       $this->call(Kategori::class);
-      $this->call(Setting::class);
+      // $this->call(Setting::class);
       // $this->call(Chat_Cs::class);
       // $this->call(Opsi_Chat::class);
       // $this->call(Pemesanan::class);

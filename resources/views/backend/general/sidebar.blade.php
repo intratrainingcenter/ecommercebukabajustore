@@ -9,7 +9,7 @@
      <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-buffer"></i> <span> User </span> </a>
         <ul class="list-unstyled">
-            <li><a href="advanced-animation.html">Position User</a></li>
+            <li><a href="{{route('positionIndex')}}">Position User</a></li>
             <li><a href="advanced-animation.html">Data User</a></li>
         </ul>
     </li>
@@ -18,7 +18,7 @@
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-buffer"></i> <span> Barang </span> </a>
         <ul class="list-unstyled">
             <li><a href="advanced-animation.html">Kategori Barang</a></li>
-            <li><a href="advanced-animation.html">Data Barang</a></li>
+            <li><a href="{{route('productIndex')}}">Data Barang</a></li>
         </ul>
     </li>
     <li>
