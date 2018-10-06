@@ -17,6 +17,7 @@
                                             <input name="image" type="file" class="inputImageuser form-control">
                                         </div>
                                     </div>
+                                        <div id="showimageuser" class="col-md-12"></div>
                                         <div id="cropimageuser" class="col-md-12"></div>
                                         <div class="input-field col-md-3"><input type="hidden" name="imageUser" value="" data-error=".err6"></div>
                                         <div class="col-md-12 accepted"></div>

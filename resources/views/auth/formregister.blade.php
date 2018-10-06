@@ -11,6 +11,7 @@
                               @if($errors->has('imageUser')) <div class="form-control-feedback">Choose and Crop image again </div> @endif
                         </div>
                     </div>
+                        <div id="showimageregister" class="col-md-12"></div>
                         <div id="cropimageregister" class="col-md-12"></div>
                         <div class="input-field col-md-3"><input type="hidden" name="imageUser" value="" data-error=".err6"></div>
                         <div class="col-md-12 accepted"></div>

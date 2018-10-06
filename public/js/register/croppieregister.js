@@ -3,12 +3,12 @@ $(document).ready(function () {
 		enableExif: true,
 		viewport: {
 			width: 250,
-			height: 300,
+			height: 250,
 			type: 'square'
 		},
 		boundary: {
 			width: 320,
-			height: 400
+			height: 320
 		},
 		url:'../../image/free.jpg'
 	});
@@ -20,17 +20,27 @@ $(document).ready(function () {
 				url: e.target.result
 			}).then(function () {
 				$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
-				$('.apply').click(function (event) {
-					event.preventDefault();
-					croppieregister.croppie('result','base64').then(function (result) {
-						$('#cropimageregister').empty();
-						$('input[name="imageUser"]').val(result);
-					});
-				});
 			});
 		};
 		reader.readAsDataURL($(this).get(0).files[0]);
 	});
 
+	$(document).on('click','.apply',function (event) {
+		event.preventDefault();
+		croppieregister.croppie('result','base64').then(function (result) {
+			$('#cropimageregister').hide();
+			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green cancel">Cancel</button>');
+			$('#showimageregister').html('<img src="'+result+'">');
+			$('input[name="imageUser"]').val(result);
+		});
+	});
+
+	$(document).on('click','.cancel',function (event) {
+		event.preventDefault();
+			$('#cropimageregister').show();
+			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
+			$('#showimageregister').html('');
+			$('input[name="imageUser"]').val('');
+		});
 
 });
