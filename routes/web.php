@@ -56,7 +56,11 @@ Route::prefix('product')->group(function ()
   Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
-
+Route::prefix('user')->group(function ()
+{
+	Route::get('profile','Backend\BuserController@index')->name('profileIndex');
+  Route::put('updateprofile','Backend\BuserController@updateprofile')->name('updateProfile');
+});
 
 
 

@@ -33,8 +33,6 @@
                   {{Form::select('codeCategory',$category,null,['class'=>'form-control','required'])}}
               </div>
           </div>
-    </div>
-    <div class="row">
         <div class="col-md-6">
             <div class="form-group col-sm-12">
               <div class="m-b-30 form-group @if($errors->has('weightProduct')) has-primary @endif">
@@ -73,7 +71,7 @@
               {{Form::label('Description')}}
                 {{Form::textarea('description',null,['class'=>'form-control','placeholder'=>'Enter Description','required','max'=>'255'])}}
             </div>
+            <br> {{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
         </div>
     </div>
-{{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
 {{Form::close()}}
