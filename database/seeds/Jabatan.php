@@ -14,6 +14,10 @@ class Jabatan extends Seeder
       DB::table('master_jabatans')->insert([
          'kode_jabatan' => 'admin',
          'nama_jabatan' => 'admin',
+     ],
+    [
+         'kode_jabatan' => 'member',
+         'nama_jabatan' => 'Member',
      ]);
     }
 }
