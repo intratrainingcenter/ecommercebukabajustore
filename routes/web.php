@@ -116,8 +116,14 @@ Route::prefix('user')->group(function ()
 */
 
 Route::prefix('')->group(function ()
-{	
+{
 	Route::get('','Frontend\FhomeController@index')->name('fronthomeIndex');
+});
+
+Route::prefix('loginMember')->group(function(){
+	Route::get('',function(){
+		return view('frontend.Auth.login');
+	});
 });
 
 /*
