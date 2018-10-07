@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class BuserController extends Controller
+class BprofileController extends Controller
 {
   public function index()
    {

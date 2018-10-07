@@ -64,8 +64,8 @@ Route::prefix('product')->group(function ()
 
 Route::prefix('user')->group(function ()
 {
-	Route::get('profile','Backend\BuserController@index')->name('profileIndex');
-  Route::put('updateprofile','Backend\BuserController@updateprofile')->name('updateProfile');
+	Route::get('profile','Backend\BprofileController@index')->name('profileIndex');
+  Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
 });
 
 
