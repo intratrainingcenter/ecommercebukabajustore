@@ -35,7 +35,7 @@
     <div class="form-group col-md-12 @if($errors->has('Status')) has-primary @endif">
         <div class="col-sm-12">
             {{Form::label('Status')}}
-            {{Form::select('Status',['' => 'Choose','Active' => 'Active', 'Nonactive' => 'Nonactive'],$dataAbout->status,['class'=>'form-control','required'])}}
+            {{Form::select('Status',['' => 'Choose','Active' => 'Active', 'NonActive' => 'NonActive'],$dataAbout->status,['class'=>'form-control','required'])}}
             @if($errors->has('Status')) <div class="form-control-feedback">{{ $errors->first('Status') }}</div> @endif
         </div>
     </div>
