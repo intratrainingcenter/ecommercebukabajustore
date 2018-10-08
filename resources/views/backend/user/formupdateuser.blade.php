@@ -2,7 +2,7 @@
 {{Form::open(['route'=>'userUpdate','method'=>'post'])}}
 <div class="row">
       <div class="imgshow col-sm-12 form-group">
-          <img src="{{ asset('storage/imageuser'.'/'.$user->avatar) }}" alt="" style="display: block;margin-left: auto;margin-right: auto;width: 40%;">
+          <img src=@if ($user->avatar == null)"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgjWUXXQEfziJEK2lotHcpB9hXpYSJJtLJfaHWOh78M2XEOka" @else"{{ asset('storage/imageuser'.'/'.$user->avatar) }}"@endif alt="" style="display: block;margin-left: auto;margin-right: auto;width: 40%;">
         </div>
     <div class="form-group col-md-6">
       <div class="col-sm-12">

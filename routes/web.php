@@ -124,8 +124,14 @@ Route::prefix('loginMember')->group(function(){
 	Route::get('',function(){
 		return view('frontend.Auth.login');
 	});
-	Route::get('auth/{provider}', 'Auth\loginController@redirectToProvider');
-	Route::get('auth/{provider}/callback', 'Auth\loginController@handleProviderCallback');
+	Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+	Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+});
+
+Route::prefix('RegisterMember')->group(function(){
+	Route::get('',function(){
+		return view('frontend.Auth.register');
+	});
 });
 
 /*

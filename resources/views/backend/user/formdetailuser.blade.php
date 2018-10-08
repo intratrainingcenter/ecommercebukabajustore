@@ -1,5 +1,5 @@
 <div style="margin-bottom: 10px;" class="col-4">
-<img src="{{ asset('storage/imageuser'.'/'.$userdetail->avatar) }}">
+<img src=@if ($userdetail->avatar == null)"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgjWUXXQEfziJEK2lotHcpB9hXpYSJJtLJfaHWOh78M2XEOka" @else"{{ asset('storage/imageuser'.'/'.$userdetail->avatar) }}"@endif>
 </div>
 <div class="col-8">
 <address>
@@ -73,5 +73,5 @@
                  </div>
              </div>
          </div>
-    </address>                             
+    </address>
 </div>

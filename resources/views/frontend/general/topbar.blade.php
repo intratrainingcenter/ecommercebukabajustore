@@ -13,7 +13,7 @@
 			<a href="loginMember" class="flex-c-m trans-04 p-lr-25">
 				Login
 			</a>
-			<a href="#" class="flex-c-m trans-04 p-lr-25">
+			<a href="RegisterMember" class="flex-c-m trans-04 p-lr-25">
 				Register
 			</a>
 		</div>
