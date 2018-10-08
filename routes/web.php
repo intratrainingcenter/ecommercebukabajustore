@@ -132,6 +132,8 @@ Route::prefix('RegisterMember')->group(function(){
 	Route::get('',function(){
 		return view('frontend.Auth.register');
 	});
+	Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
+	// Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
 });
 
 /*

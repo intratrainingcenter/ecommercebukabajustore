@@ -7,6 +7,11 @@
 			<a href="#" class="flex-c-m trans-04 p-lr-25">
 				Help & FAQs
 			</a>
+			@if(Auth::User() != null)
+			<a href="#" class="flex-c-m trans-04 p-lr-25">
+				Log Out
+			</a>
+			@else
 			<a href="#" class="flex-c-m trans-04 p-lr-25">
 				My Account
 			</a>
@@ -16,6 +21,7 @@
 			<a href="RegisterMember" class="flex-c-m trans-04 p-lr-25">
 				Register
 			</a>
+			@endif
 		</div>
 	</div>
 </div>
