@@ -8,7 +8,7 @@
 				Help & FAQs
 			</a>
 			@if(Auth::User() != null)
-			<a href="#" class="flex-c-m trans-04 p-lr-25">
+			<a href="" class="flex-c-m trans-04 p-lr-25">
 				Log Out
 			</a>
 			@else
