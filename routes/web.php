@@ -26,7 +26,7 @@ Route::prefix('dashboard')->group(function ()
 	Route::get('','DashboardController@index')->name('dashboardIndex');
 });
 
-Route::prefix('promo')->group(function ()
+Route::group(['prefix'=>'promo', 'middleware'=>'admin'], function ()
 {
 	Route::get('','Backend\BpromoController@index')->name('promoIndex');
 	Route::get('addpromo','Backend\BpromoController@addpromo')->name('promoAdd');
@@ -37,7 +37,8 @@ Route::prefix('promo')->group(function ()
 	Route::delete('deletepromo','Backend\BpromoController@deletepromo')->name('promoDelete');
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
-Route::prefix('slider')->group(function ()
+
+Route::group(['prefix'=>'slider', 'middleware'=>'admin'], function ()
 {
 	Route::get('','Backend\BsliderController@index')->name('sliderindex');
 	Route::get('addslider','Backend\BsliderController@addslider')->name('sliderAdd');
@@ -49,7 +50,7 @@ Route::prefix('slider')->group(function ()
 	Route::get('loaddataslider','Backend\BsliderController@loaddataslider');
 });
 
-Route::prefix('story')->group(function()
+Route::group(['prefix'=>'story', 'middleware'=>'admin'], function ()
 {
   Route::get('','Backend\BstoryController@index')->name('storyIndex');
   Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
@@ -60,7 +61,8 @@ Route::prefix('story')->group(function()
   Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
   Route::get('loadstory','Backend\BstoryController@loadstory');
 });
-Route::prefix('position')->group(function ()
+
+Route::group(['prefix'=>'position', 'middleware'=>'admin'], function ()
 {
 	Route::get('','Backend\BpositionController@index')->name('positionIndex');
 	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
@@ -72,7 +74,7 @@ Route::prefix('position')->group(function ()
 	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
 });
 
-Route::prefix('category')->group(function ()
+Route::group(['prefix'=>'category', 'middleware'=>'admin'], function ()
 {
 	Route::get('','Backend\BcategoryController@index')->name('categoryIndex');
 	Route::get('addcategory','Backend\BcategoryController@addcategory')->name('categoryAdd');
@@ -83,7 +85,7 @@ Route::prefix('category')->group(function ()
 	Route::delete('deletecategory','Backend\BcategoryController@deletecategory')->name('categoryDelete');
 	Route::get('loaddatacategory','Backend\BcategoryController@loaddatacategory');
 });
-Route::prefix('product')->group(function ()
+Route::group(['prefix'=>'product', 'middleware'=>'admin'], function ()
 {
   Route::get('','Backend\BproductController@index')->name('productIndex');
   Route::get('formaddproduct','Backend\BproductController@formaddproduct')->name('formaddProduct');
@@ -95,10 +97,8 @@ Route::prefix('product')->group(function ()
   Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
-Route::prefix('user')->group(function ()
+Route::group(['prefix'=>'user', 'middleware'=>'admin'], function ()
 {
-	Route::get('profile','Backend\BprofileController@index')->name('profileIndex');
-  Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
 	Route::get('','Backend\BuserController@index')->name('userIndex');
 	Route::get('formadduser','Backend\BuserController@formadduser')->name('formadduser');
 	Route::post('adduser','Backend\BuserController@adduser')->name('userCreate');
@@ -122,6 +122,11 @@ Route::prefix('about')->group(function ()
 	Route::get('tabledataabout','Backend\BaboutController@tabledataabout');
 });
 
+Route::prefix('profile')->group(function ()
+{
+	Route::get('','Backend\BprofileController@index')->name('profileIndex');
+  Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
+});
 
 
 /* END ROUTE FOR BACKEND */
@@ -132,7 +137,7 @@ Route::prefix('about')->group(function ()
 */
 
 Route::prefix('')->group(function ()
-{	
+{
 	Route::get('','Frontend\FhomeController@index')->name('fronthomeIndex');
 });
 
@@ -141,4 +146,4 @@ Route::prefix('')->group(function ()
 */
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index');

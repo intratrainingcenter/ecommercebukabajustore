@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -25,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -35,5 +38,21 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function logout(Request $request)
+    {
+     $this->guard()->logout();
+     $request->session()->flush();
+     $request->session()->regenerate();
+
+     return redirect('/login');
+    }
+
+    public function showLoginForm()
+    {
+    $useradmin = DB::table('users')->where('kode_jabatan','admin')->count();
+
+     return view('auth.login',['useradmin'=>$useradmin]);
     }
 }

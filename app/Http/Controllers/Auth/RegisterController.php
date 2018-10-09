@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('registerAdmin');
     }
 
     /**
@@ -50,7 +51,6 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'imageUser' => 'required',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -68,11 +68,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      $namefile = '';
+        if ($data['image'] === true) {
         $createdirectory = Storage::makeDirectory('public/imageuser');
         $image = str_replace('data:image/png;base64,', '', $data['imageUser']);
         $image = str_replace(' ','+',$image);
         $namefile = str_random(16).'.png';
         Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
+      }
 
         return User::create([
             'avatar' => $namefile,
@@ -84,6 +87,7 @@ class RegisterController extends Controller
             'alamat' => $data['alamat'],
             'no_telp' => $data['no_telp'],
             'jenis_kelamin' => $data['jenis_kelamin'],
+            'kode_jabatan' => 'admin',
             'status' => 'non-aktif',
         ]);
     }
