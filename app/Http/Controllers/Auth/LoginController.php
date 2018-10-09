@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use Socialite;
-use Auth;
 
 class LoginController extends Controller
 {
@@ -45,11 +44,17 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-     $this->guard()->logout();
-     $request->session()->flush();
-     $request->session()->regenerate();
-
-     return redirect('/login');
+     if (Auth::user()->kode_jabatan === 'member' ){
+       $this->guard()->logout();
+       $request->session()->flush();
+       $request->session()->regenerate();
+       return redirect('/loginMember');
+     }else{
+       $this->guard()->logout();
+       $request->session()->flush();
+       $request->session()->regenerate();
+       return redirect('/login');
+     }
     }
 
     public function showLoginForm()
