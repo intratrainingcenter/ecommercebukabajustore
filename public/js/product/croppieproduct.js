@@ -2,13 +2,13 @@ $(document).ready(function () {
 	var croppieproduct = $('#cropimageproduct').croppie({
 		enableExif: true,
 		viewport: {
-			width: 400,
-			height: 450,
+			width: 270,
+			height: 335,
 			type: 'square'
 		},
 		boundary: {
-			width: 450,
-			height: 500
+			width: 400,
+			height: 400
 		},
 		url:'../../image/free.jpg'
 	});
@@ -20,17 +20,27 @@ $(document).ready(function () {
 				url: e.target.result
 			}).then(function () {
 				$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
-				$('.apply').click(function (event) {
-					event.preventDefault();
-					croppieproduct.croppie('result','base64').then(function (result) {
-						$('#cropimageproduct').empty();
-						$('input[name="imageProduct"]').val(result);
-					});
-				});
 			});
 		};
 		reader.readAsDataURL($(this).get(0).files[0]);
 	});
 
+	$(document).on('click','.apply',function (event) {
+		event.preventDefault();
+		croppieproduct.croppie('result','base64').then(function (result) {
+			$('#cropimageproduct').hide();
+			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green cancel">Cancel</button>');
+			$('#showimageproduct').html('<h4 class="mt-0 header-title">Image Product After Update</h4> <img src="'+result+'">');
+			$('input[name="imageProduct"]').val(result);
+		});
+	});
+
+	$(document).on('click','.cancel',function (event) {
+		event.preventDefault();
+			$('#cropimageproduct').show();
+			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
+			$('#showimageproduct').html('');
+			$('input[name="imageProduct"]').val('');
+		});
 
 });

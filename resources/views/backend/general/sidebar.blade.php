@@ -15,10 +15,10 @@
     </li>
 
     <li class="has_sub">
-        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-buffer"></i> <span> Barang </span> </a>
+        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-buffer"></i> <span> Product </span> </a>
         <ul class="list-unstyled">
             <li><a href="{{route('categoryIndex')}}">Category Product</a></li>
-            <li><a href="{{route('productIndex')}}">Data Barang</a></li>
+            <li><a href="{{route('productIndex')}}">Data Product</a></li>
         </ul>
     </li>
     <li>
@@ -32,7 +32,7 @@
         <ul class="list-unstyled">
             <li><a href="{{route('storyIndex')}}">Story</a></li>
             <li><a href="{{route('sliderindex')}}">Slider</a></li>
-            <li><a href="advanced-animation.html">About</a></li>
+            <li><a href="{{route('aboutIndex')}}">About</a></li>
         </ul>
     </li>
     <li class="has_sub">
@@ -51,7 +51,7 @@
         </ul>
     </li>
      <li>
-        <a href="javascript:void(0);" class="waves-effect">
+        <a href="{{route('settingIndex')}}" class="waves-effect">
             <i class="ion-settings"></i>
             <span> Setting </span>
         </a>

@@ -104,7 +104,7 @@ class BproductController extends Controller
    public function updateproduct(Request $request)
   {
     $updateproduct = Barang::find($request->idProduct);
-    if ($request->image == true) {
+    if ($request->imageProduct == true) {
       $createdirectory = Storage::makeDirectory('public/imageproduct');
       $image = str_replace('data:image/png;base64,', '', $request->imageProduct);
       $image = str_replace(' ','+',$image);
@@ -113,13 +113,11 @@ class BproductController extends Controller
       $getdataproduct = Barang::find($request->idProduct);
       Storage::delete('public/imageproduct'.'/'.$getdataproduct->foto);
       $updateproduct->foto = $namefile;
-      $updateproduct->save();
     }
 
     if ($request->nama_barang == $updateproduct->nama_barang) {
 
       $validatedData = $request->validate([
-        'imageProduct' => 'required',
         'weightProduct' => 'max:11',
         'purchaseProduct' => 'max:11',
         'sellingProduct' => 'max:11',
@@ -130,7 +128,6 @@ class BproductController extends Controller
 
       $validatedData = $request->validate([
         'nama_barang' => 'unique:master_barangs|max:255',
-        'imageProduct' => 'required',
         'weightProduct' => 'max:11',
         'purchaseProduct' => 'max:11',
         'sellingProduct' => 'max:11',

@@ -15,6 +15,9 @@ class BsetupController extends Controller
 	}
 	public function index()
 	{
+				if (setting::count() >= 1) {
+		return redirect('/dashboard');
+				}
 		return view('backend.setup.index');
 	}
 

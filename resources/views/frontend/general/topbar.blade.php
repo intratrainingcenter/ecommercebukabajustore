@@ -5,7 +5,7 @@
 		</div>
 		<div class="right-top-bar flex-w h-full">
 			<a href="#" class="flex-c-m trans-04 p-lr-25">
-				Help & FAQs
+				Track Order
 			</a>
 			@if(Auth::User() != null)
 			<a href="" class="flex-c-m trans-04 p-lr-25">

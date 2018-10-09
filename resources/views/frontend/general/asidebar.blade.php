@@ -28,16 +28,6 @@
 						Track Oder
 					</a>
 				</li>
-				<li class="p-b-13">
-					<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-						Refunds
-					</a>
-				</li>
-				<li class="p-b-13">
-					<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-						Help & FAQs
-					</a>
-				</li>
 			</ul>
 		</div>
 	</div>

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -38,7 +38,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('guest');
+        $this->middleware('guest');
+        $this->middleware('registerAdmin');
     }
 
     /**
@@ -55,6 +56,9 @@ class RegisterController extends Controller
             'phonenumber' => 'required',
             'gender' => 'required',
             'password' => 'required|string|min:6|confirmed',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'jenis_kelamin' => 'required',
         ]);
     }
 
@@ -66,22 +70,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-         $date = date('Ymdhis');
+      $namefile = '';
+        if ($data['image'] === true) {
+        $createdirectory = Storage::makeDirectory('public/imageuser');
+        $image = str_replace('data:image/png;base64,', '', $data['imageUser']);
+        $image = str_replace(' ','+',$image);
+        $namefile = str_random(16).'.png';
+        Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
+      }
+
         return User::create([
-            'kode_user'         => $date,
-            'provider'          => 'Auth',
-            'provider_id'       => '',
-            'avatar'            => '',
-            'avatar_original'   => '',
-            'name'              => $data['name'],
-            'email'             => $data['email'],
-            'password'          => Hash::make($data['password']),
-            'jenis_kelamin'     => $data['gender'],
-            'lokasifoto'        => '/public/imageuser',
-            'alamat'            => '',
-            'kode_jabatan'      => 'member',
-            'no_telp'           => $data['phonenumber'],
-            'status'            => 'Active',
+            'avatar' => $namefile,
+            'lokasifoto' => 'public/imageuser/',
+            'kode_user' => 'ADMN-'.date('Ymdhis'),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'alamat' => $data['alamat'],
+            'no_telp' => $data['no_telp'],
+            'jenis_kelamin' => $data['jenis_kelamin'],
+            'kode_jabatan' => 'admin',
+            'status' => 'non-aktif',
         ]);
     }
 

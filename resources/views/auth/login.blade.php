@@ -13,7 +13,7 @@
                 @csrf
                    <div class="form-group row">
                         <div class="col-12">
-                           <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="User Name">
+                           <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus placeholder="E-Mail">
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -55,10 +55,12 @@
                                     {{ __('Forgot Your Password?') }}
                             </a>
                         </div>
+                        @if ($useradmin < 1)
                         <div class="col-sm-5 m-t-20">
                             <a href="{{route('register')}}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
                         </div>
-                    </div>                      
+                        @endif
+                    </div>
                 </form>
             </div>
         </div>

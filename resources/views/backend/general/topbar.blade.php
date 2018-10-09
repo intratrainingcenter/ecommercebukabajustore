@@ -30,13 +30,21 @@
     <li class="list-inline-item dropdown notification-list">
         <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
         aria-haspopup="false" aria-expanded="false">
-        <img src="{{ asset('backend/assets/images/users/avatar-1.jpg') }}" alt="user" class="rounded-circle">
+        @if (Auth::user()->avatar)
+        <img src="{{ asset('storage/imageuser/'.Auth::user()->avatar) }}" defaultimguser alt="user" class="rounded-circle">
+      	@else
+        <img src="{{ asset('defaultimguser.png') }}" alt="user" class="rounded-circle">
+      	@endif
     </a>
     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-        <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
+        <a class="dropdown-item" href="{{ route('profileIndex') }}"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
         <a class="dropdown-item" href="#"><span class="badge badge-success pull-right">5</span><i class="mdi mdi-settings m-r-5 text-muted"></i> Settings</a>
         <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i> Lock screen</a>
-        <a class="dropdown-item" href="#"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
+        <a class="dropdown-item" href="" onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
 </li>
 </ul>

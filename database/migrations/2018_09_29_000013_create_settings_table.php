@@ -15,8 +15,8 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('master_settings', function (Blueprint $table) {
            $table->increments('id');
-           $table->string('foto');
-           $table->string('lokasifoto');
+           $table->string('foto')->nullable();
+           $table->string('lokasifoto')->nullable();
            $table->string('nama_web');
            $table->string('alamat');
            $table->string('no_telp');
