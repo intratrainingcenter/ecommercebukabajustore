@@ -152,6 +152,11 @@ Route::prefix('shop')->group(function ()
 	Route::get('detailproduct/{id}','Frontend\FshopController@detailproduct')->name('frontdetailProduct');
 });
 
+Route::prefix('cart')->group(function ()
+{
+	Route::post('addtocart','Frontend\FcartController@addtocart');
+});
+
 /*
 | END ROUTE FOR FRONTEND
 */

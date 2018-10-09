@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Opsi_Pemesanan_Temp extends Model
 {
-    //
+    protected $table = 'opsi_pemesanan_temps';
 }
