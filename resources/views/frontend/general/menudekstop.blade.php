@@ -11,16 +11,7 @@
 					<a href="{{ route('fronthomeIndex') }}">Home</a>
 				</li>
 				<li>
-					<a href="index-2.html">Category</a>
-					<ul class="sub-menu">
-						<li><a href="index-2.html">Homepage 1</a></li>
-						<li><a href="home-02.html">Homepage 2</a></li>
-						<li><a href="home-03.html">Homepage 3</a></li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="product.html">Shop</a>
+					<a href="{{ route('frontshopIndex') }}">Shop</a>
 				</li>
 
 				<li class="label1" data-label1="hot">

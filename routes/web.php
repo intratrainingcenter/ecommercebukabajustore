@@ -141,6 +141,12 @@ Route::prefix('')->group(function ()
 	Route::get('','Frontend\FhomeController@index')->name('fronthomeIndex');
 });
 
+Route::prefix('shop')->group(function ()
+{
+	Route::get('','Frontend\FshopController@index')->name('frontshopIndex');
+	Route::get('detailproduct/{id}','Frontend\FshopController@detailproduct')->name('frontdetailProduct');
+});
+
 /*
 | END ROUTE FOR FRONTEND
 */
