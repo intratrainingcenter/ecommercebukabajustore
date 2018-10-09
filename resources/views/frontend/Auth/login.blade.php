@@ -5,8 +5,13 @@
     </h2>
   </section>
   <div class="container" style="padding-left:350px;padding-right:350px;">
-			<div class="">
-				<div class="bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+      <div class="">
+        <div class="bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
+            @if(session('warning'))
+            <div class="bor8 m-b-20 how-pos4-parent notif" style="background-color: #FF4954;">
+              <span style="color: black;">{{session('warning')}}  Login failed because your email was used ..</span>
+            </div>
+            @endif
           <form method="POST"  class="form-horizontal m-t-20" action="{{ route('login') }}">
               @csrf
 						<h4 class="mtext-105 cl2 txt-center p-b-30">

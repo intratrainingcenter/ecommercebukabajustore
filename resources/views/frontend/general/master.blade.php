@@ -166,5 +166,13 @@
 
 		gtag('config', 'UA-23581568-13');
 	</script>
+	<script>
+		$(document).ready(function () {
+		  setTimeout(function(){
+		    $(document).find('.notif').fadeOut('slow');
+		  },3000);
+		});
+	</script>
+
 </body>
 </html>

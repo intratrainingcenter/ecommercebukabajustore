@@ -80,8 +80,12 @@ class LoginController extends Controller
     {
         $user = Socialite::driver($provider)->user();
         $authUser = $this->findOrCreateUser($user, $provider);
+        if ($authUser == false) {
+        return redirect('loginMember')->with('warning','WARNING!!!');
+        }else{
         Auth::login($authUser, true);
         return redirect('/');
+        }
     }
     /**
      * If a user has registered before using social auth, return the user
@@ -95,8 +99,12 @@ class LoginController extends Controller
         $authUser = User::where('provider_id', $user->id)->first();
         if ($authUser) {
             return $authUser;
-        }
-        else{
+        }else{
+
+            $Check = User::where('email',$user->email)->first();
+            if ($Check != null) {
+            return false;
+            }else{
             $date = date('Ymdhis');
             $data = User::create([
                 'kode_user'         => $date,
@@ -115,6 +123,7 @@ class LoginController extends Controller
                 'status'            => 'Active',
             ]);
             return $data;
+             }
         }
     }
 }
