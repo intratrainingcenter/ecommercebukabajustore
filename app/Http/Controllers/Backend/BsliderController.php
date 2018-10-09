@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-
 use App\Slider;
 
 class BsliderController extends Controller
@@ -39,14 +38,6 @@ class BsliderController extends Controller
 
   public function createslider(Request $request)
   {
-    //   dd($request->all());
-    // $validateslider = $request->validate([
-    //   'imageslider' => 'required',
-    //   'created_by' => 'required',
-    //   'status' => 'required',
-    //   'deskripsi' => 'required',
-    // ]);
-
     $createdirectory = Storage::makeDirectory('public/imageslider');
     $foto = str_replace('data:image/png;base64,', '', $request->imageslider);
     $foto = str_replace(' ','+',$foto);
@@ -86,18 +77,6 @@ class BsliderController extends Controller
 
   public function updateslider(Request $request)
   {
-
-    // $validateslider = $request->validate([
-    //   'nameslider' => 'required',
-    //   'codeslider' => 'required|unique:master_sliders,kode_slider,'.$request->id,
-    //   'nameslider' => 'required',
-    //   'minimumPurchase' => 'required',
-    //   'disCount' => 'required',
-    //   'periodStart' => 'required',
-    //   'periodEnd' => 'required',
-    // ]);
-
-
     if($request->imageslider == null){
       $createslider = slider::where('id',$request->id)->update([
       'created_by' => $request->Createdby,
