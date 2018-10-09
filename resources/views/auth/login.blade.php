@@ -55,9 +55,11 @@
                                     {{ __('Forgot Your Password?') }}
                             </a>
                         </div>
+                        @if ($useradmin < 1)
                         <div class="col-sm-5 m-t-20">
                             <a href="{{route('register')}}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
                         </div>
+                        @endif
                     </div>
                 </form>
             </div>

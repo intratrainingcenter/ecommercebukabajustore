@@ -56,7 +56,7 @@
                     <div class="form-group row">
                         <label for="example-text-input" class="col-sm-3 col-form-label">Gender</label>
                         <div class="col-sm-9">
-                          {{Form::select('gender',[''=>'Choose Gender', 'Pria'=>'Man', 'Wanita'=>'Woman',],null,['class'=>'form-control','required'])}}
+                          {{Form::select('gender',['male'=>'male', 'female'=>'Female',],Auth::user()->jenis_kelamin,['class'=>'form-control','required'])}}
                         </div>
                     </div>
                     <div class="form-group row">

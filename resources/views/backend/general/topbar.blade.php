@@ -30,7 +30,11 @@
     <li class="list-inline-item dropdown notification-list">
         <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
         aria-haspopup="false" aria-expanded="false">
-        <img src="{{ asset('storage/imageuser/'.Auth::user()->avatar) }}" alt="user" class="rounded-circle">
+        @if (Auth::user()->avatar)
+        <img src="{{ asset('storage/imageuser/'.Auth::user()->avatar) }}" defaultimguser alt="user" class="rounded-circle">
+      	@else
+        <img src="{{ asset('defaultimguser.png') }}" alt="user" class="rounded-circle">
+      	@endif
     </a>
     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
         <a class="dropdown-item" href="{{ route('profileIndex') }}"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>

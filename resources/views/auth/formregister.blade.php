@@ -63,9 +63,8 @@
         <div class="col-md-12">
             <select id="jenis_kelamin" class="form-control{{ $errors->has('jenis_kelamin') ? ' is-invalid' : '' }}" name="jenis_kelamin">
               <option selected disabled value="">Choose Gender</option>
-              <option value="pria">Pria</option>
-              <option value="wanita">Wanita</option>
-              <option value="other">Other</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
             @if ($errors->has('jenis_kelamin'))
                 <span class="invalid-feedback" role="alert">

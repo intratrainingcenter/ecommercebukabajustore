@@ -13,7 +13,7 @@ class Users extends Seeder
     {
       DB::table('users')->insert([ [
          'kode_user' => '1',
-         'avatar' => 'http://www.haipic.com/icon/12247/12247.png',
+         'avatar' => '',
          'avatar_original' => 'http://www.haipic.com/icon/12247/12247.png',
          'lokasifoto' => 'kosong',
          'provider_id' => '',

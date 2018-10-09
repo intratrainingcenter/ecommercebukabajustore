@@ -22,7 +22,7 @@ class BprofileController extends Controller
   public function updateprofile(Request $request)
  {
    $updateuser = User::find(Auth::user()->id);
-   if ($request->image == true) {
+   if ($request->imageUser == true) {
      $createdirectory = Storage::makeDirectory('public/imageuser');
      $image = str_replace('data:image/png;base64,', '', $request->imageUser);
      $image = str_replace(' ','+',$image);
@@ -47,7 +47,7 @@ class BprofileController extends Controller
   }
   $updateuser->save();
 
-   return redirect('user/profile');
+   return redirect('profile');
  }
 
 }
