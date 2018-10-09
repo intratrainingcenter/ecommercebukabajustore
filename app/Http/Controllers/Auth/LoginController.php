@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -73,7 +73,6 @@ class LoginController extends Controller
             return $authUser;
         }
         else{
-            // dd($user);
             $date = date('Ymdhis');
             $data = User::create([
                 'kode_user'         => $date,

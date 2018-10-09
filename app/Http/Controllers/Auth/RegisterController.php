@@ -87,7 +87,8 @@ class RegisterController extends Controller
 
      public function redirectToProvider($provider)
     {
-        return Socialite::driver($provider)->redirect();
+      $data = Socialite::driver($provider)->redirect();
+      return $data;
     }
     /**
      * Obtain the user information from provider.  Check if the user already exists in our
@@ -97,14 +98,12 @@ class RegisterController extends Controller
      *
      * @return Response
      */
-    //  public function handleProviderCallback($provider)
-    // {
-    //     dd($provider);
-    //     $user = Socialite::driver($provider)->user();
-    //     $authUser = $this->findOrCreateUser($user, $provider);
-    //     // Auth::login($authUser, true);
-    //     // return redirect('/');
-    // }
+     public function handleProviderCallback($provider)
+    {
+      $user = Socialite::driver($provider)->user();
+      $email = $user->email;
+      return view('frontend.Auth.registerSocialite',compact('email'));
+    }
     /**
      * If a user has registered before using social auth, return the user
      * else, create a new user object.
@@ -112,32 +111,6 @@ class RegisterController extends Controller
      * @param $provider Social auth provider
      * @return  User
      */
-    public function findOrCreateUser($user, $provider)
-    {
-            dd($user);
-        // $authUser = User::where('provider_id', $user->id)->first();
-        // if ($authUser) {
-        //     return $authUser;
-        // }
-        // else{
-        //     $date = date('Ymdhis');
-        //     $data = User::create([
-        //         'kode_user'         => $date,
-        //         'name'              => $user->name,
-        //         'email'             => !empty($user->email)? $user->email : '' ,
-        //         'provider'          => $provider,
-        //         'provider_id'       => $user->id,
-        //         'password'          => bcrypt('member'),
-        //         'avatar'            => $user->avatar,
-        //         'avatar_original'   => $user->avatar_original,
-        //         'lokasifoto'        => 'Socialite',
-        //         'kode_jabatan'      => 'member',
-        //         'alamat'            => '',
-        //         'no_telp'           => '',
-        //         'jenis_kelamin'     => '',
-        //         'status'            => 'Active',
-        //     ]);
-        //     return $data;
-        // }
-    }
+
+
 }

@@ -1,5 +1,10 @@
 @extends('frontend.general.master')
+@section('jspersonal')
+	{{-- Drop Your Javascript In Here --}}
+	<script type="text/javascript" src="{{ asset('js/register/register.js') }}"></script>
+@endsection
 @section('content')
+
   <section class="bg-img1 txt-center p-lr-15 p-tb-92">
     <h2 class="ltext-105 cl0 txt-center">
     </h2>
@@ -19,7 +24,6 @@
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
                 @endif
-							<!-- <img class="how-pos4 pointer-none" src="{{asset('frontend/images/icons/user-icon.png')}}" alt="ICON"> -->
 						</div>
             <div class="bor8 m-b-20 how-pos4-parent">
              <input id="email" type="email" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required placeholder="E-mail">
@@ -42,7 +46,6 @@
                           <strong>{{ $errors->first('gender') }}</strong>
                       </span>
                   @endif
-              <img class="how-pos4 pointer-none" src="{{asset('frontend/images/icons/icon-email.png')}}" alt="ICON">
             </div>
              <div class="bor8 m-b-20 how-pos4-parent">
              <input  type="Number" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30{{ $errors->has('phonenumber') ? ' is-invalid' : '' }}" name="phonenumber" value="{{ old('phonenumber') }}" required placeholder="Phone Number">
@@ -51,7 +54,6 @@
                           <strong>{{ $errors->first('phonenumber') }}</strong>
                       </span>
                   @endif
-              <!-- <img class="how-pos4 pointer-none" src="{{asset('frontend/images/icons/icon-phone.png')}}" alt="ICON"> -->
             </div>
 						<div class="bor8 m-b-30">
               <input id="password" type="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Password">
@@ -64,17 +66,12 @@
               <div class="bor8 m-b-30">
               <input id="password-confirm" type="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" name="password_confirmation" required placeholder="Confirm Password">
             </div>
-            <!--  <button class="col-12 col-md-6 col-lg-6 m-lr-auto cl0 size-121  bor1 p-lr-15 trans-04" style="background-color:#B0B0B0;" data-toggle="modal" data-target="#modalcroopie">Choose Image</button><br><br>
-             @php
-              $input = Form::file('images',['class'=>'inputImageuser']);
-            @endphp -->
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">Daftar</button>
 					</form><br>
           <div class="col-md-12">
             <hr>
             <p style="text-align:center;">Or</p><br>
-            <a href="{{ url('/RegisterMember/auth/Facebook') }}"><button class="col-12 col-md-6 col-lg-6 m-lr-auto cl0 size-121  bor1 p-lr-15 trans-04" style="background-color:#4272d7;">Facebook</button></a>
-            <a href="{{ url('/RegisterMember/auth/google') }}"><button class="col-12 col-md-6 col-lg-5 m-lr-auto cl0 size-121 p-lr-15 trans-04 bor1" style="background-color:#fa4521;">  Google  </button></a>
+            <a href="{{ url('/RegisterMember/auth/google/') }}"><button class=" cl0 size-121 p-lr-15 trans-04 bor1" style="background-color:#fa4521;">  Google  </button></a>
           </div><br>
 				</div>
 			</div>
@@ -83,5 +80,4 @@
       <h2 class="ltext-105 cl0 txt-center">
       </h2>
     </section>
-     {!!Backendhelper::CroopieModal('modalcroopie',$input,'user')!!}
 @endsection

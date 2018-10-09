@@ -1,5 +1,5 @@
-<div style="margin-bottom: 10px;" class="col-4">
-<img src=@if ($userdetail->avatar == null)"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgjWUXXQEfziJEK2lotHcpB9hXpYSJJtLJfaHWOh78M2XEOka" @else"{{ asset('storage/imageuser'.'/'.$userdetail->avatar) }}"@endif>
+<div style="margin-bottom: 10px;width:300px;height:300px;" class="col-4">
+<img style="width:300px;height:300px;" src=@if ($userdetail->avatar == null)"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgjWUXXQEfziJEK2lotHcpB9hXpYSJJtLJfaHWOh78M2XEOka" @elseif($userdetail->kode_jabatan === "member"){{$userdetail->avatar_original}} @else"{{ asset('storage/imageuser'.'/'.$userdetail->avatar) }}"@endif>
 </div>
 <div class="col-8">
 <address>

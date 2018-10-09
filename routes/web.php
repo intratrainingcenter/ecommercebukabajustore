@@ -130,10 +130,10 @@ Route::prefix('loginMember')->group(function(){
 
 Route::prefix('RegisterMember')->group(function(){
 	Route::get('',function(){
-		return view('frontend.Auth.register');
+		return view('frontend.Auth.registers');
 	});
 	Route::get('auth/{provider}', 'Auth\RegisterController@redirectToProvider');
-	// Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
+	Route::get('auth/{provider}/callback', 'Auth\RegisterController@handleProviderCallback');
 });
 
 /*
