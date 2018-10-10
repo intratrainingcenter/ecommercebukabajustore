@@ -1,6 +1,6 @@
 <div class="wrap-menu-desktop">
 	<nav class="limiter-menu-desktop p-l-45">
-		<!-- Logo desktop -->		
+		<!-- Logo desktop -->
 		<a href="#" class="logo">
 			<img src="{{ asset('frontend/images/icons/logo-01.png') }}" alt="IMG-LOGO">
 		</a>
@@ -30,7 +30,7 @@
 					<a href="contact.html">Contact</a>
 				</li>
 			</ul>
-		</div>	
+		</div>
 		<!-- Icon header -->
 		<div class="wrap-icon-header flex-w flex-r-m">
 			<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
