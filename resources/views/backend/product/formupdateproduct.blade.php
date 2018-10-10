@@ -10,9 +10,13 @@
                             <input name="image" type="file" class="inputImageproduct form-control">
                               @if($errors->has('imageProduct')) <div class="form-control-feedback">Choose and Crop image again </div> @endif
                         </div>
-                    </div>
-                    <center>  <div id="showimageproduct" class="col-md-12"></div> </center>
-                    <div id="cropimageproduct" class="col-md-12"></div>
+                      </div>
+                      <center>
+                      <div class="row">
+                          <div class="col-md-6"><h4 class="mt-0 header-title">Image Product</h4><img src="{{ asset('storage/imageproduct/'.$product->foto) }}" class="img-fluid" alt="Responsive image"></div>
+                           <div id="showimageproduct"></div>
+                          <div id="cropimageproduct" class="col-md-6"></div>
+                    </div></center>
                     <div class="input-field col-md-3"><input type="hidden" name="imageProduct" value="" data-error=".err6"></div>
                     <div class="col-md-12 accepted"></div>
                 </div>
@@ -32,7 +36,7 @@
           <div class="form-group col-md-6">
               <div class="col-sm-12">
                 {{Form::label('Category')}}
-                  {{Form::select('codeCategory',$category,null,['class'=>'form-control','required'])}}
+                  {{Form::select('codeCategory',$category,$product->kode_kategori,['class'=>'form-control','required'])}}
               </div>
           </div>
     </div>

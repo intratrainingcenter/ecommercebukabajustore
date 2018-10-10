@@ -1,22 +1,22 @@
 $(document).ready(function () {
-	var croppieproduct = $('#cropimageproduct').croppie({
+	var croppiewebsite = $('#cropimagewebsite').croppie({
 		enableExif: true,
 		viewport: {
-			width: 270,
+			width: 335,
 			height: 335,
 			type: 'square'
 		},
 		boundary: {
-			width: 400,
-			height: 400
+			width: 430,
+			height: 430
 		},
 		url:'../../image/free.jpg'
 	});
 
-	$('.inputImageproduct').change(function () {
+	$('.inputImagewebsite').change(function () {
 		var reader = new FileReader();
 		reader.onload = function (e) {
-			$('#cropimageproduct').croppie('bind', {
+			$('#cropimagewebsite').croppie('bind', {
 				url: e.target.result
 			}).then(function () {
 				$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
@@ -27,20 +27,20 @@ $(document).ready(function () {
 
 	$(document).on('click','.apply',function (event) {
 		event.preventDefault();
-		croppieproduct.croppie('result','base64').then(function (result) {
-			$('#cropimageproduct').hide();
+		croppiewebsite.croppie('result','base64').then(function (result) {
+			$('#cropimagewebsite').hide();
 			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green cancel">Cancel</button>');
-			$('#showimageproduct').html('<h4 class="mt-0 header-title">Image Product After Update</h4> <img src="'+result+'">');
-			$('input[name="imageProduct"]').val(result);
+			$('#showimagewebsite').html('<img src="'+result+'">');
+			$('input[name="imageWebsite"]').val(result);
 		});
 	});
 
 	$(document).on('click','.cancel',function (event) {
 		event.preventDefault();
-			$('#cropimageproduct').show();
+			$('#cropimagewebsite').show();
 			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
-			$('#showimageproduct').html('');
-			$('input[name="imageProduct"]').val('');
+			$('#showimagewebsite').html('');
+			$('input[name="imageWebsite"]').val('');
 		});
 
 });
