@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Story;
+use Auth;
 
 class BstoryController extends Controller
 {
@@ -31,7 +32,7 @@ class BstoryController extends Controller
       $namefile = str_random(16).'.png';
       Storage::put('public/imagestory'.'/'.$namefile, base64_decode($image));
       $save = Story::create([
-        'created_by'  =>'tono',
+        'created_by'  =>Auth::User()->name,
         'foto'        =>$namefile,
         'lokasifoto'  =>'/public/imagestory',
         'deskripsi'   =>$request->deskripsi,
@@ -55,6 +56,7 @@ class BstoryController extends Controller
       {
         $storyupdate = Story::find($request->storyid);
         $storyupdate->update([
+          'created_by'  =>Auth::User()->name,
           'deskripsi' =>$request->deskripsi,
           'status'    =>$request->status,
         ]);
@@ -69,6 +71,7 @@ class BstoryController extends Controller
         Storage::delete('public/imagestory'.'/'.$request->valueImage);
         $storyupdate = Story::find($request->storyid);
         $storyupdate->update([
+          'created_by'  =>Auth::User()->name,
           'foto'      =>$namefile,
           'deskripsi' =>$request->deskripsi,
           'status'    =>$request->status,

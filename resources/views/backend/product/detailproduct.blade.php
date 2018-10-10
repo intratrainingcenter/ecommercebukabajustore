@@ -13,16 +13,24 @@
                     <div class="col-8">
                         <div class="card m-b-20">
                             <div class="card-body">
-                                <h4 class="mt-0 header-title">{{ $product->nama_barang }}</h4>
-                                <p class="text-muted m-b-30 font-14"> {{ $product->deskripsi }} </p>
-                                <div class="">
-                                    <img src="{{ asset('storage/imageproduct/'.$product->foto) }}" class="img-fluid" alt="Responsive image">
+                                <div class="row">
+                                  <div class="col-6">
+                                      <img src="{{ asset('storage/imageproduct/'.$product->foto) }}" class="img-fluid" alt="Responsive image">
+                                  </div>
+                                  <div class="col-6">
+                                    <center> <h5>Description</h5> <p class="text-muted m-b-30 font-14"> {!! $product->deskripsi !!} </p> </center>
+                                  </div>
                                 </div>
                             </div>
                         </div>
                     </div>
              <div class="col-4">
-               <br><br>
+                     <div class="col-12">
+                           <address>
+                               <strong>Name Product :</strong><br>
+                               <h4> {{ $product->nama_barang }} </h4>
+                           </address>
+                     </div>
                      <div class="col-12">
                            <address>
                                <strong>Code Product :</strong><br>

@@ -77,7 +77,7 @@
         <div class="col-md-6">
             <div class="form-group col-sm-12">
               {{Form::label('Description')}}
-                {{Form::textarea('description',$product->deskripsi,['class'=>'form-control','placeholder'=>'Enter Description','required','max'=>'255'])}}
+                {{Form::textarea('description',$product->deskripsi,['class'=>'summernote','placeholder'=>'Enter Description','required','max'=>'255'])}}
             </div>
         </div>
     </div>

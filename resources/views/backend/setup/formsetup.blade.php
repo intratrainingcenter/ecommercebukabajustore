@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-<div class="row">   
+<div class="row">
     <div class="form-group col-md-12 @if($errors->has('nameWebsite')) has-primary @endif">
         <div class="col-sm-12">
             {{Form::label('Name Website')}}
@@ -50,7 +50,7 @@
      <div class="form-group col-md-12 @if($errors->has('description')) has-primary @endif">
         <div class="col-sm-12">
             {{Form::label('Description')}}
-            {{Form::text('description',null,['class'=>'form-control','placeholder'=>'Enter Description'])}}
+            {{Form::textarea('description',null,['class'=>'form-control','placeholder'=>'Enter Description'])}}
             @if($errors->has('description')) <div class="form-control-feedback">{{ $errors->first('nameWebsite') }}</div> @endif
         </div>
     </div>

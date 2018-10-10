@@ -36,14 +36,8 @@
                                     <h4>{{ $detailslider->min_pembelian}}</h4><br>
                                 </address>
                             </div>
-                            <div class="col-4">
-                                <address>
-                                    <strong>Period:</strong><br>
-                                    <h4>{{ $detailslider->berlaku_awal}} - {{ $detailslider->berlaku_akhir }}</h4><br>
-                                </address>
-                            </div>
                         </div>   
-                         <a href="{{route('sliderIndex')}}">
+                         <a href="{{route('sliderindex')}}">
                             <button type="button" class="btn btn-success waves-effect waves-light"><i class="fa fa-arrow-left"></i> Back</button>
                         </a>
                     </div>
