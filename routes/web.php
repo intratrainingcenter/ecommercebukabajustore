@@ -152,6 +152,21 @@ Route::prefix('shop')->group(function ()
 	Route::get('detailproduct/{id}','Frontend\FshopController@detailproduct')->name('frontdetailProduct');
 });
 
+Route::prefix('loginMember')->group(function(){
+	Route::get('',function(){
+		return view('frontend.Auth.login');
+	});
+	Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
+	Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+});
+
+Route::prefix('RegisterMember')->group(function(){
+	Route::get('',function(){
+		return view('frontend.Auth.registers');
+	});
+	Route::post('register','Frontend\FRegisterController@create')->name('memberregister');
+});
+
 /*
 | END ROUTE FOR FRONTEND
 */

@@ -14,7 +14,7 @@ class Users extends Seeder
       DB::table('users')->insert([ [
          'kode_user' => '1',
          'avatar' => '',
-         'avatar_original' => 'http://www.haipic.com/icon/12247/12247.png',
+         'avatar_original' => '',
          'lokasifoto' => 'kosong',
          'provider_id' => '',
          'provider' => '',
