@@ -14,18 +14,18 @@ Route::post('payment', 'PaymentController@payWithpaypal');
 Route::get('status', 'PaymentController@getPaymentStatus');
 
 /* ROUTE FOR BACKEND */
-Route::prefix('setup')->group(function ()
+Route::group(['prefix'=>'setup', 'middleware'=>['backendAccess','auth']], function ()
 {
 	Route::get('','Backend\BsetupController@index')->name('setupIndex');
 	Route::post('postsetup','Backend\BsetupController@postsetup')->name('setupPost');
 });
 
-Route::group(['prefix'=>'dashboard', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'dashboard', 'middleware'=>['backendAccess','setup']], function ()
 {
 	Route::get('','DashboardController@index')->name('dashboardIndex');
 });
 
-Route::group(['prefix'=>'promo', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'promo', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BpromoController@index')->name('promoIndex');
 	Route::get('addpromo','Backend\BpromoController@addpromo')->name('promoAdd');
@@ -37,7 +37,7 @@ Route::group(['prefix'=>'promo', 'middleware'=>'admin', 'middleware'=>'auth', 'm
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
 
-Route::group(['prefix'=>'slider', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'slider', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BsliderController@index')->name('sliderindex');
 	Route::get('addslider','Backend\BsliderController@addslider')->name('sliderAdd');
@@ -49,7 +49,7 @@ Route::group(['prefix'=>'slider', 'middleware'=>'admin', 'middleware'=>'auth', '
 	Route::get('loaddataslider','Backend\BsliderController@loaddataslider');
 });
 
-Route::group(['prefix'=>'story', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'story', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
   Route::get('','Backend\BstoryController@index')->name('storyIndex');
   Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
@@ -61,7 +61,7 @@ Route::group(['prefix'=>'story', 'middleware'=>'admin', 'middleware'=>'auth', 'm
   Route::get('loadstory','Backend\BstoryController@loadstory');
 });
 
-Route::group(['prefix'=>'position', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'position', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BpositionController@index')->name('positionIndex');
 	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
@@ -73,7 +73,7 @@ Route::group(['prefix'=>'position', 'middleware'=>'admin', 'middleware'=>'auth',
 	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
 });
 
-Route::group(['prefix'=>'category', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'category', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BcategoryController@index')->name('categoryIndex');
 	Route::get('addcategory','Backend\BcategoryController@addcategory')->name('categoryAdd');
@@ -84,7 +84,7 @@ Route::group(['prefix'=>'category', 'middleware'=>'admin', 'middleware'=>'auth',
 	Route::delete('deletecategory','Backend\BcategoryController@deletecategory')->name('categoryDelete');
 	Route::get('loaddatacategory','Backend\BcategoryController@loaddatacategory');
 });
-Route::group(['prefix'=>'product', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'product', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
   Route::get('','Backend\BproductController@index')->name('productIndex');
   Route::get('formaddproduct','Backend\BproductController@formaddproduct')->name('formaddProduct');
@@ -96,7 +96,7 @@ Route::group(['prefix'=>'product', 'middleware'=>'admin', 'middleware'=>'auth', 
   Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
-Route::group(['prefix'=>'user', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'user', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BuserController@index')->name('userIndex');
 	Route::get('formadduser','Backend\BuserController@formadduser')->name('formadduser');
@@ -109,7 +109,7 @@ Route::group(['prefix'=>'user', 'middleware'=>'admin', 'middleware'=>'auth', 'mi
 	Route::post('positionuser','Backend\BuserController@userposition');
 });
 
-Route::group(['prefix'=>'about', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'about', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BaboutController@index')->name('aboutIndex');
 	Route::get('addabout','Backend\BaboutController@addabout')->name('aboutAdd');
@@ -122,13 +122,13 @@ Route::group(['prefix'=>'about', 'middleware'=>'admin', 'middleware'=>'auth', 'm
 	Route::get('tabledataabout','Backend\BaboutController@tabledataabout');
 });
 
-Route::group(['prefix'=>'profile', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'profile', 'middleware'=>['auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BprofileController@index')->name('profileIndex');
   Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
 });
 
-Route::group(['prefix'=>'setting', 'middleware'=>'admin', 'middleware'=>'auth', 'middleware'=>'setup'], function ()
+Route::group(['prefix'=>'setting', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BsettingController@index')->name('settingIndex');
 	Route::put('updatesetting','Backend\BsettingController@updatesetting')->name('settingUpdate');
