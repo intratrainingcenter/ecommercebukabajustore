@@ -76,4 +76,15 @@ class FcartController extends Controller
 
         return $codeTransaction;
     }
+
+    public function loadcart()
+    {
+         $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+         $listCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
+
+         $data = array(
+            'listCart' => $listCart,
+         );
+         return view('frontend.shop.listsidecart',$data); 
+    }
 }

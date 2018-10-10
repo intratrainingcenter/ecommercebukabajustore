@@ -2,7 +2,7 @@
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-	<title>Home</title>
+	<title>Buka Baju</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content=" {{csrf_token() }}">
@@ -65,6 +65,7 @@
 	<script src="{{ asset('frontend/asset/bootstrap/js/bootstrap.min.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/select2/select2.min.js') }}"></script>
+	<script src="{{ asset('js/frontend/shop/loadcart.js') }}"></script>
 	@yield('jspersonal')
 	<script>
 		$(".js-select2").each(function(){
