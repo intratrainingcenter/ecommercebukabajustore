@@ -28,7 +28,7 @@ $(document).ready(function () {
 						img +="<img src="+result+" style='display: block;margin-left: auto;margin-right: auto;width: 40%;'>";
 						$('#cropimagestory').empty();
 						$('.imgshow').html(img);
-						$('input[name="imageStory"]').val(result);
+						$('input[name="imagestory"]').val(result);
 					});
 				});
 			});

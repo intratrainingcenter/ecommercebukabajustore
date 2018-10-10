@@ -30,7 +30,7 @@ $(document).ready(function () {
 		croppieproduct.croppie('result','base64').then(function (result) {
 			$('#cropimageproduct').hide();
 			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green cancel">Cancel</button>');
-			$('#showimageproduct').html('<img src="'+result+'">');
+			$('#showimageproduct').html('<h4 class="mt-0 header-title">Image Product After Update</h4> <img src="'+result+'">');
 			$('input[name="imageProduct"]').val(result);
 		});
 	});

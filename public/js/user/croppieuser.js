@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	var croppieuser = $('#cropimageuser').croppie({
+	var croppiestory = $('#cropimageuser').croppie({
 		enableExif: true,
 		viewport: {
 			width: 300,
@@ -14,34 +14,27 @@ $(document).ready(function () {
 	});
 
 	$('.inputImageuser').change(function () {
+		var img='';
 		var reader = new FileReader();
 		reader.onload = function (e) {
 			$('#cropimageuser').croppie('bind', {
 				url: e.target.result
 			}).then(function () {
-				$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
-
+				$('.accepted').html('<button class="btn btn-success waves-effect pull-right waves-light green apply">Apply</button>');
+				$('.apply').click(function (event) {
+					$('#modalcroopie').modal('hide');
+					event.preventDefault();
+					croppiestory.croppie('result','base64').then(function (result) {
+						img +="<img src="+result+" style='display: block;margin-left: auto;margin-right: auto;width: 40%;'>";
+						$('#cropimagestory').empty();
+						$('.imgshow').html(img);
+						$('input[name="imageuser"]').val(result);
+					});
+				});
 			});
 		};
 		reader.readAsDataURL($(this).get(0).files[0]);
 	});
 
-	$(document).on('click','.apply',function (event) {
-		event.preventDefault();
-		croppieuser.croppie('result','base64').then(function (result) {
-			$('#cropimageuser').hide();
-			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green cancel">Cancel</button>');
-			$('#showimageuser').html('<img src="'+result+'">');
-			$('input[name="imageUser"]').val(result);
-		});
-	});
-
-	$(document).on('click','.cancel',function (event) {
-		event.preventDefault();
-			$('#cropimageuser').show();
-			$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
-			$('#showimageuser').html('');
-			$('input[name="imageUser"]').val('');
-		});
 
 });

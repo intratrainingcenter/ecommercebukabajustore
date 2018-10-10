@@ -61,12 +61,7 @@
     </div>
     <div class="form-group row">
         <div class="col-md-12">
-            <select id="jenis_kelamin" class="form-control{{ $errors->has('jenis_kelamin') ? ' is-invalid' : '' }}" name="jenis_kelamin">
-              <option selected disabled value="">Choose Gender</option>
-              <option value="pria">Pria</option>
-              <option value="wanita">Wanita</option>
-              <option value="other">Other</option>
-            </select>
+          {{Form::select('jenis_kelamin',[''=>'Choose Gender', 'male'=>'male', 'female'=>'Female',],old('jenis_kelamin'),['class'=>'form-control','required'])}}
             @if ($errors->has('jenis_kelamin'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('jenis_kelamin') }}</strong>

@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('registerAdmin');
     }
 
     /**
@@ -50,9 +51,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'imageUser' => 'required',
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phonenumber' => 'required',
+            'gender' => 'required',
             'password' => 'required|string|min:6|confirmed',
             'alamat' => 'required',
             'no_telp' => 'required',
@@ -68,11 +70,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+      $namefile = '';
+        if ($data['image'] === true) {
         $createdirectory = Storage::makeDirectory('public/imageuser');
         $image = str_replace('data:image/png;base64,', '', $data['imageUser']);
         $image = str_replace(' ','+',$image);
         $namefile = str_random(16).'.png';
         Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
+      }
 
         return User::create([
             'avatar' => $namefile,
@@ -84,7 +89,37 @@ class RegisterController extends Controller
             'alamat' => $data['alamat'],
             'no_telp' => $data['no_telp'],
             'jenis_kelamin' => $data['jenis_kelamin'],
+            'kode_jabatan' => 'admin',
             'status' => 'non-aktif',
         ]);
     }
+
+     public function redirectToProvider($provider)
+    {
+      $data = Socialite::driver($provider)->redirect();
+      return $data;
+    }
+    /**
+     * Obtain the user information from provider.  Check if the user already exists in our
+     * database by looking up their provider_id in the database.
+     * If the user exists, log them in. Otherwise, create a new user then log them in. After that
+     * redirect them to the authenticated users homepage.
+     *
+     * @return Response
+     */
+     public function handleProviderCallback($provider)
+    {
+      $user = Socialite::driver($provider)->user();
+      $email = $user->email;
+      return view('frontend.Auth.registerSocialite',compact('email'));
+    }
+    /**
+     * If a user has registered before using social auth, return the user
+     * else, create a new user object.
+     * @param  $user Socialite user object
+     * @param $provider Social auth provider
+     * @return  User
+     */
+
+
 }
