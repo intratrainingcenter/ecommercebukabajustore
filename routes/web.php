@@ -37,6 +37,17 @@ Route::group(['prefix'=>'promo', 'middleware'=>['admin','auth','setup','backendA
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
 
+Route::prefix('position')->group(function ()
+{
+	Route::get('','Backend\BpositionController@index')->name('positionIndex');
+	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
+	Route::get('editposition/{id}','Backend\BpositionController@editposition')->name('positionEdit');
+	Route::put('updateposition','Backend\BpositionController@updateposition')->name('positionUpdate');
+	Route::post('createposition','Backend\BpositionController@createposition')->name('positionCreate');
+	Route::get('detailposition/{id}','Backend\BpositionController@detailposition')->name('positionDetail');
+	Route::delete('deleteposition','Backend\BpositionController@deleteposition')->name('positionDelete');
+	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
+});
 Route::group(['prefix'=>'slider', 'middleware'=>['admin','auth','setup','backendAccess']], function ()
 {
 	Route::get('','Backend\BsliderController@index')->name('sliderindex');
