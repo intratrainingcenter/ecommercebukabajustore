@@ -4,30 +4,59 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 use App\Pemesanan as TransactionHistory;
 use App\Pemesanan_Temp as TransactionTemp;
 use App\Opsi_Pemesanan_Temp as Cart;
+use App\Barang as Product;
 
 
 class FcartController extends Controller
 {
     public function addtocart(Request $request)
     {
+        $idProduct = decrypt($request->idProduct);
         // Check table pemesanan apakah ada transaksi berstatus 'incart'
-        $incartTransactionTemp = TransactionTemp::where([['kode_user',1],['status','incart']])->get();
-        if($incartTransactionTemp->isEmpty()){
+        $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']]);
+        if($incartTransactionTemp->get()->isEmpty()){
             $codeTransaction = $this->generateCodeTransaction();
+            $createTransactionTemp = TransactionTemp::create([
+                'kode_user' => Auth::user()->kode_user,
+                'kode_pemesanan' => $codeTransaction,
+                'status' => 'incart',
+            ]);
         }else{
-            $codeTransaction = $incartTransactionTemp->kode_pemesanan;
+            $codeTransaction = $incartTransactionTemp->first()->kode_pemesanan;
         }
-    	return $codeTransaction;
+
+        $getProduct = Product::where('id',$idProduct)->first();
+
+        $checkCart = Cart::where([['kode_pemesanan',$codeTransaction],['kode_barang',$getProduct->kode_barang]]);
+        if($checkCart->get()->isEmpty()){
+            $addProductToCart = Cart::create([
+                'kode_pemesanan' => $codeTransaction,
+                'kode_barang' => $getProduct->kode_barang,
+                'qty' => $request->qtyProduct,
+                'harga' => $getProduct->harga_jual,
+                'subtotal' => $getProduct->harga_jual * $request->qtyProduct,
+            ]);
+        }else{
+            $qtyProduct = $checkCart->first()->qty + $request->qtyProduct;
+            $updateProductInCart = $checkCart->update([
+                'qty' => $qtyProduct,
+                'harga' => $getProduct->harga_jual,
+                'subtotal' => $getProduct->harga_jual * $qtyProduct,
+            ]);
+        }
+
+        return 'success';
     }
 
     public function generateCodeTransaction()
     {
         $checkTransactionHistory = TransactionHistory::where('kode_user',1)->max('kode_pemesanan');
-    	$checkTransactionTemp = TransactionTemp::where('kode_user',1)->max('kode_pemesanan');
+        $checkTransactionTemp = TransactionTemp::where('kode_user',1)->max('kode_pemesanan');
 
         $codeMaxHistory = (!is_null($checkTransactionHistory))?$checkTransactionHistory:null;
         $codeMaxTemp = (!is_null($checkTransactionTemp))?$checkTransactionTemp:null;
@@ -44,7 +73,7 @@ class FcartController extends Controller
 
         // $codeTransaction = 'TR-'.$now.'U'.iduserauth.'M'.$sequence;
         $codeTransaction = 'TR-'.$now.'U'.'1'.'M'.$sequence;
-    	
-    	return $codeTransaction;
+
+        return $codeTransaction;
     }
 }

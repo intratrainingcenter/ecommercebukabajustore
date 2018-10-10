@@ -15,7 +15,7 @@ class CreatePemesananTempsTable extends Migration
     {
         Schema::create('pemesanan_temps', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('kode_user');
+            $table->string('kode_user');
             $table->string('kode_pemesanan');
             $table->enum('status',['incart']);
             $table->timestamps();

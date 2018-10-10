@@ -180,6 +180,7 @@ Route::prefix('RegisterMember')->group(function(){
 
 Route::prefix('cart')->group(function ()
 {
+	Route::get('loadcart','Frontend\FcartController@loadcart');
 	Route::post('addtocart','Frontend\FcartController@addtocart');
 });
 
