@@ -1,7 +1,11 @@
 <div class="text-center">
-	<img src="{{ asset('backend/assets/images/users/avatar-1.jpg') }}" alt="" class="rounded-circle">
+	@if (Auth::user()->avatar)
+	<img src="{{ asset('storage/imageuser/'.Auth::user()->avatar) }}" defaultimguser alt="user" class="rounded-circle">
+	@else
+	<img src="{{ asset('defaultimguser.png') }}" alt="user" class="rounded-circle">
+	@endif
 </div>
 <div class="user-info">
-	<h4 class="font-16">Anderson Barden</h4>
+	<h4 class="font-16">  {{ Auth::user()->name }} </h4>
 	<span class="text-muted user-status"><i class="fa fa-dot-circle-o text-success"></i> Online</span>
 </div>
