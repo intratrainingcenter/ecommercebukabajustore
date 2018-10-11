@@ -5,7 +5,7 @@
 	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/favicon.png') }}"/>
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/bootstrap/css/bootstrap.min.css') }}">
@@ -17,13 +17,13 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/fonts/linearicons-v1.0.0/icon-font.min.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/animate/animate.css') }}">
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/css-hamburgers/hamburgers.min.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/animsition/css/animsition.min.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/select2/select2.min.css') }}">
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/daterangepicker/daterangepicker.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/slick/slick.css') }}">
@@ -34,6 +34,9 @@
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/main.css') }}">
+	<!--===============================================================================================-->
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="{{asset('frontend/css/chat.css')}}" rel="stylesheet">
 	<!--===============================================================================================-->
 	@yield('csspersonal')
 </head>
@@ -48,14 +51,15 @@
 	@yield('content')
 	<!-- Footer -->
 	@include('frontend.general.footer')
+	<!-- Chat -->
+	@include('frontend.chat.index')
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/jquery/jquery-3.2.1.min.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/animsition/js/animsition.min.js') }}"></script>
@@ -73,6 +77,9 @@
 			});
 		})
 	</script>
+
+	<!--===============================================================================================-->
+	<script src="{{ asset('frontend/js/chat.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/daterangepicker/moment.min.js') }}"></script>
 	<script src="{{ asset('frontend/asset/daterangepicker/daterangepicker.js') }}"></script>
@@ -173,6 +180,10 @@
 		  },3000);
 		});
 	</script>
+<!--====================================================================================================-->
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+<script src="{{ asset('js/firebase/intializefirebase.js') }}"></script>
+<script src="{{ asset('js/firebase/chatfrontend.js') }}"></script>
 
 </body>
 </html>
