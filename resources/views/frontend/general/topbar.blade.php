@@ -17,10 +17,10 @@
 				@csrf
 			</form>
 			@else
-			<a href="loginMember" class="flex-c-m trans-04 p-lr-25">
+			<a href="{{ route('formLoginMember') }}" class="flex-c-m trans-04 p-lr-25">
 				Login
 			</a>
-			<a href="RegisterMember" class="flex-c-m trans-04 p-lr-25">
+			<a href="{{ route('formRegisterMember') }}" class="flex-c-m trans-04 p-lr-25">
 				Register
 			</a>
 			@endif

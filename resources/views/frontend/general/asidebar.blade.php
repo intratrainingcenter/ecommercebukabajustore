@@ -13,6 +13,7 @@
 						Home
 					</a>
 				</li>
+				@if(Auth::User() != null && Auth::User()->kode_jabatan == 'member')
 				<li class="p-b-13">
 					<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
 						My Wishlist
@@ -28,6 +29,7 @@
 						Track Oder
 					</a>
 				</li>
+				@endif
 			</ul>
 		</div>
 	</div>

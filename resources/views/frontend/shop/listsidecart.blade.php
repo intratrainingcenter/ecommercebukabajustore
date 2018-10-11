@@ -1,7 +1,10 @@
 <ul class="header-cart-wrapitem w-full">
+	@php
+		$grandtotal = 0; 
+	@endphp
 	@foreach($listCart as $itemCart)
 	<li class="header-cart-item flex-w flex-t m-b-12">
-		<div class="header-cart-item-img">
+		<div class="header-cart-item-img removeProductFromCart" attr-code="{{ encrypt($itemCart->kode_barang) }}">
 			<img src="{{ asset('storage/imageproduct/'.$itemCart->detailProduct->foto) }}" alt="IMG">
 		</div>
 		<div class="header-cart-item-txt p-t-8">
@@ -14,12 +17,13 @@
 			</span>
 		</div>
 	</li>
+	@php $grandtotal += $itemCart->subtotal @endphp
 	@endforeach
 
 </ul>
 <div class="w-full">
 	<div class="header-cart-total w-full p-tb-40">
-		Total: $75.00
+		Total: ${{ $grandtotal }}
 	</div>
 	<div class="header-cart-buttons flex-w w-full">
 		<a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">

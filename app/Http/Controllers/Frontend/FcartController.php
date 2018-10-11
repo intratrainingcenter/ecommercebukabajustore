@@ -17,7 +17,7 @@ class FcartController extends Controller
     public function addtocart(Request $request)
     {
         $idProduct = decrypt($request->idProduct);
-        // Check table pemesanan apakah ada transaksi berstatus 'incart'
+// Check table pemesanan apakah ada transaksi berstatus 'incart'
         $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']]);
         if($incartTransactionTemp->get()->isEmpty()){
             $codeTransaction = $this->generateCodeTransaction();
@@ -50,7 +50,9 @@ class FcartController extends Controller
             ]);
         }
 
-        return 'success';
+        $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
+
+        return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
     }
 
     public function generateCodeTransaction()
@@ -71,7 +73,7 @@ class FcartController extends Controller
 
         $now=date("ymdhis");
 
-        // $codeTransaction = 'TR-'.$now.'U'.iduserauth.'M'.$sequence;
+// $codeTransaction = 'TR-'.$now.'U'.iduserauth.'M'.$sequence;
         $codeTransaction = 'TR-'.$now.'U'.'1'.'M'.$sequence;
 
         return $codeTransaction;
@@ -79,12 +81,25 @@ class FcartController extends Controller
 
     public function loadcart()
     {
-         $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
-         $listCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
+        $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+        $listCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
 
-         $data = array(
+        $data = array(
             'listCart' => $listCart,
-         );
-         return view('frontend.shop.listsidecart',$data); 
+        );
+        return view('frontend.shop.listsidecart',$data); 
+    }
+
+    public function removefromcart(Request $request)
+    {
+        $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+        $codeTransaction = $incartTransactionTemp->kode_pemesanan;
+        $codeProduct = decrypt($request->codeProduct);
+
+        $removeProduct = Cart::where([['kode_pemesanan',$codeTransaction],['kode_barang',$codeProduct]])->delete();
+
+        $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
+
+        return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
     }
 }

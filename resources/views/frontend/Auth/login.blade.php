@@ -42,7 +42,7 @@
             <a href="{{ url('/loginMember/auth/Facebook') }}"><button class="col-12 col-md-6 col-lg-6 m-lr-auto cl0 size-121  bor1 p-lr-15 trans-04" style="background-color:#4272d7;">Facebook</button></a>
             <a href="{{ url('/loginMember/auth/google') }}"><button class="col-12 col-md-6 col-lg-5 m-lr-auto cl0 size-121 p-lr-15 trans-04 bor1" style="background-color:#fa4521;">  Google  </button></a>
           </div><br>
-          <a href="/RegisterMember"><p style="text-align:center;">Create an Account</p></a>
+          <a href="{{route('formRegisterMember')}}"><p style="text-align:center;">Create an Account</p></a>
 				</div>
 			</div>
 		</div>

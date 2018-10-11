@@ -65,6 +65,7 @@
 	<script src="{{ asset('frontend/asset/bootstrap/js/bootstrap.min.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/select2/select2.min.js') }}"></script>
+	<script src="{{ asset('js/frontend/shop/addtocart.js') }}"></script>
 	<script src="{{ asset('js/frontend/shop/loadcart.js') }}"></script>
 	@yield('jspersonal')
 	<script>
