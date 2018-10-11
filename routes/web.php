@@ -20,7 +20,7 @@ Route::group(['prefix'=>'setup', 'middleware'=>['backendAccess','auth']], functi
 	Route::post('postsetup','Backend\BsetupController@postsetup')->name('setupPost');
 });
 
-Route::group(['prefix'=>'dashboard', 'middleware'=>['backendAccess','setup']], function ()
+Route::group(['prefix'=>'dashboard', 'middleware'=>['auth','backendAccess','setup']], function ()
 {
 	Route::get('','DashboardController@index')->name('dashboardIndex');
 });
