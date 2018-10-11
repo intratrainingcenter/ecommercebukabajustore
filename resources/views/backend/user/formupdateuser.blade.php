@@ -61,7 +61,7 @@
     <div class="form-group col-md-6">
         <div class="col-sm-12">
           {{Form::label('Status')}}
-          {{Form::select('status', ['Active' => 'Active', 'NonAktif' => 'NonActive'],$user->status,['class'=>'form-control'])}}
+          {{Form::select('status', ['Active' => 'Active', 'nonActive' => 'NonActive'],$user->status,['class'=>'form-control'])}}
         </div>
     </div>
 </div>

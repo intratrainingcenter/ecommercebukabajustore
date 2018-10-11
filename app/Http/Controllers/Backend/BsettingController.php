@@ -44,4 +44,10 @@ class BsettingController extends Controller
     return redirect('setting');
   }
 
+  public function showsetting()
+ {
+   $setting = setting::first();
+   return $setting;
+ }
+
 }
