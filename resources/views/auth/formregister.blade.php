@@ -41,30 +41,30 @@
     </div>
     <div class="form-group row">
         <div class="col-md-12">
-            <input id="alamat" type="text" class="form-control{{ $errors->has('alamat') ? ' is-invalid' : '' }}" name="alamat" value="{{ old('alamat') }}"  placeholder="Address">
-            @if ($errors->has('alamat'))
+            <input id="address" type="text" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}"  placeholder="Address">
+            @if ($errors->has('address'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('alamat') }}</strong>
+                    <strong>{{ $errors->first('address') }}</strong>
                 </span>
             @endif
         </div>
     </div>
     <div class="form-group row">
         <div class="col-md-12">
-            <input id="no_telp" type="number" class="form-control{{ $errors->has('no_telp') ? ' is-invalid' : '' }}" name="no_telp" value="{{ old('no_telp') }}"  placeholder="Phone Number">
-            @if ($errors->has('no_telp'))
+            <input id="phoneNumber" type="number" class="form-control{{ $errors->has('phoneNumber') ? ' is-invalid' : '' }}" name="phoneNumber" value="{{ old('phoneNumber') }}"  placeholder="Phone Number">
+            @if ($errors->has('phoneNumber'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('no_telp') }}</strong>
+                    <strong>{{ $errors->first('phoneNumber') }}</strong>
                 </span>
             @endif
         </div>
     </div>
     <div class="form-group row">
         <div class="col-md-12">
-          {{Form::select('jenis_kelamin',[''=>'Choose Gender', 'male'=>'male', 'female'=>'Female',],old('jenis_kelamin'),['class'=>'form-control','required'])}}
-            @if ($errors->has('jenis_kelamin'))
+          {{Form::select('gender',[''=>'Choose Gender', 'male'=>'male', 'female'=>'Female',],old('gender'),['class'=>'form-control','required'])}}
+            @if ($errors->has('gender'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('jenis_kelamin') }}</strong>
+                    <strong>{{ $errors->first('gender') }}</strong>
                 </span>
             @endif
         </div>
