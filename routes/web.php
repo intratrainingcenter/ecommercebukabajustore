@@ -186,6 +186,7 @@ Route::prefix('cart')->group(function ()
 	Route::get('loadcart','Frontend\FcartController@loadcart');
 	Route::post('addtocart','Frontend\FcartController@addtocart');
 	Route::delete('removefromcart','Frontend\FcartController@removefromcart');
+	Route::get('sumproduct','Frontend\FcartController@sumproduct');
 });
 
 /*

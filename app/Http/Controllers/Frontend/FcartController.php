@@ -17,7 +17,7 @@ class FcartController extends Controller
     public function addtocart(Request $request)
     {
         $idProduct = decrypt($request->idProduct);
-// Check table pemesanan apakah ada transaksi berstatus 'incart'
+        // Check table pemesanan apakah ada transaksi berstatus 'incart'
         $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']]);
         if($incartTransactionTemp->get()->isEmpty()){
             $codeTransaction = $this->generateCodeTransaction();
@@ -73,7 +73,7 @@ class FcartController extends Controller
 
         $now=date("ymdhis");
 
-// $codeTransaction = 'TR-'.$now.'U'.iduserauth.'M'.$sequence;
+        // $codeTransaction = 'TR-'.$now.'U'.iduserauth.'M'.$sequence;
         $codeTransaction = 'TR-'.$now.'U'.'1'.'M'.$sequence;
 
         return $codeTransaction;
@@ -88,6 +88,15 @@ class FcartController extends Controller
             'listCart' => $listCart,
         );
         return view('frontend.shop.listsidecart',$data); 
+    }
+
+    public function sumproduct()
+    {
+        $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+        $codeTransaction = $incartTransactionTemp->kode_pemesanan;
+
+        $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
+        return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
     }
 
     public function removefromcart(Request $request)
