@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="csrf-token" content=" {{csrf_token() }}">
-    <title>Buka Baju - Admin</title>
+    <title></title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="ThemeDesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
+    <link id="shortcut-icon" rel="shortcut icon" href="">
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/morris/morris.css') }}">
     <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('backend/assets/css/icons.css') }}" rel="stylesheet" type="text/css">
@@ -82,6 +82,7 @@
     <!--Responsive-table-->
     <script src="{{ asset('backend/assets/plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backend/assets/plugins/sweet-alert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('js/setting.js') }}"></script>
     <script src="{{ asset('js/croppie.js') }}"></script>
     @yield('jspersonal')
     {{-- <script type="text/javascript">
