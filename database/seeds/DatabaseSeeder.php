@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
       // $this->call(Story::class);
       // $this->call(About::class);
       $this->call(Jabatan::class);
-      $this->call(Users::class);
+      // $this->call(Users::class);
       // $this->call(Promo::class);
       // $this->call(Barang::class);
       // $this->call(Barang_Favorit::class);

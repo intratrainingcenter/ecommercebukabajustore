@@ -169,7 +169,7 @@ Route::prefix('shop')->group(function ()
 Route::prefix('loginMember')->group(function(){
 	Route::get('',function(){
 		return view('frontend.Auth.login');
-	});
+	})->name('formLoginMember');
 	Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 	Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 });
@@ -177,8 +177,16 @@ Route::prefix('loginMember')->group(function(){
 Route::prefix('RegisterMember')->group(function(){
 	Route::get('',function(){
 		return view('frontend.Auth.registers');
-	});
+	})->name('formRegisterMember');
 	Route::post('register','Frontend\FRegisterController@create')->name('memberregister');
+});
+
+Route::prefix('cart')->group(function ()
+{
+	Route::get('loadcart','Frontend\FcartController@loadcart');
+	Route::post('addtocart','Frontend\FcartController@addtocart');
+	Route::delete('removefromcart','Frontend\FcartController@removefromcart');
+	Route::get('sumproduct','Frontend\FcartController@sumproduct');
 });
 
 /*

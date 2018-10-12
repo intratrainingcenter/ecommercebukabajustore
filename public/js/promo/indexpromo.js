@@ -16,7 +16,6 @@ function loaddatapromo() {
 	});
 }
 $(document).on('click','.deleteData',function () {
-	alert('gg');
 	let idPromo = $(this).attr('attr-id');
 	$('#idPromo').val(idPromo);
 	$('#modalDelete').modal('show');
