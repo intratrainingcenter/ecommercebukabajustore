@@ -6,15 +6,50 @@ $(document).ready(function() {
 
 
   $(document).on('click','#btn-chat',function(){
+
+    usercode = $('#usercode').val();
     input = $('#message').val();
-    // alert(input);
-    master_chat.on('value', showmaster_chat, showerror);
+
+    var date = new Date();
+    years = date.getFullYear();  month = date.getMonth(); day = date.getDay(); hours = date.getHours(); minutes = date.getMinutes(); seconds = date.getSeconds();
+
+    code_chat ='KC-'+years.toString()+month.toString()+day.toString()+hours.toString()+minutes.toString()+seconds.toString();
+    // alert(code_chat);
+
+    master_chat.on('value',function(showmaster_chat){
+     var result ='';
+      showmaster_chat.forEach(function(data){
+
+           result += data.val().kode_member;
+
+      });
+      if (result === usercode) {
+        console.log('yes');
+      }else{
+        console.log(result);
+        console.log(usercode);
+      }
+      // console.log(result);
+    });
+
+    // alert(showmaster_chat);
+    // master_chat.push({
+    //   kode_chat     : code_chat,
+    //   kode_cs       : '',
+    //   kode_member   : usercode,
+    //   status        : 'pending'
+    // });
 
   });
+
+
   function showmaster_chat(items)
   {
-    console.log(items.val());
+    
   };
+
+
+
 
   var chats = database.ref('opsi_chat/KC-001');
 
