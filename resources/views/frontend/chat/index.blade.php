@@ -18,27 +18,19 @@
                           <a href="#"><span class="glyphicon glyphicon-remove icon_close" data-id="chat_window_1"></span></a>
                       </div>
                   </div>
-                  <div class="panel-body msg_container_base">
-                      <div class="row msg_container base_sent">
-                          <div class="col-md-10 col-xs-10">
-                              <div class="messages msg_sent default_chat">
-                              {{-- fill in the default chat --}}
-                              </div>
-                          </div>
-                          <div class="col-md-2 col-xs-2 avatar">
-                              <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                  <div class="panel-body msg_container_base opsi_chat">
+                    <div class="col-md-2 col-xs-2 avatar">
+                      <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                    </div>
+                      <div class="col-md-10 col-xs-10">
+                          <div class="messages msg_receive default_chat">
+                          {{-- fill in the default chat --}}
                           </div>
                       </div>
-                      <div class="row msg_container base_receive send_chat">
-
-                      </div>
-                     <div class="row msg_container base_sent receive_chat">
-
-                     </div>
                   </div>
                   <div class="panel-footer">
                       <div class="input-group">
-                          <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+                          <input type="text" name="message" id="message" class="form-control input-sm chat_input" placeholder="Write your message here..." />
                           <span class="input-group-btn">
                           <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
                           </span>
