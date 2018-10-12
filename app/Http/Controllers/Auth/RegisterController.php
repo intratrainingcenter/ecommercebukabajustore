@@ -88,7 +88,7 @@ class RegisterController extends Controller
             'no_telp' => $data['phoneNumber'],
             'jenis_kelamin' => $data['gender'],
             'kode_jabatan' => 'admin',
-            'status' => 'active',
+            'status' => 'Active',
         ]);
     }
 

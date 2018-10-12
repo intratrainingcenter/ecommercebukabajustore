@@ -25,7 +25,7 @@ class Users extends Seeder
          'alamat' => 'kedoya',
          'no_telp' => '09213',
          'jenis_kelamin' => 'laki-laki',
-         'status' => 'Active',
+         'status' => 'nonActive',
      ]
       ]);
     }
