@@ -1,59 +1,56 @@
 $(document).ready(function() {
 
   var database = firebase.database();
-
   var master_chat = database.ref('master_chat');
 
 
   $(document).on('click','#btn-chat',function(){
-
-    usercode = $('#usercode').val();
-    input = $('#message').val();
+    usercode   = $('#usercode').val();
+    input      = $('#message').val();
 
     var date = new Date();
     years = date.getFullYear();  month = date.getMonth(); day = date.getDay(); hours = date.getHours(); minutes = date.getMinutes(); seconds = date.getSeconds();
 
-    code_chat ='KC-'+years.toString()+month.toString()+day.toString()+hours.toString()+minutes.toString()+seconds.toString();
-    // alert(code_chat);
+    var code_chat ='KC-'+years.toString()+month.toString()+day.toString()+hours.toString()+minutes.toString()+seconds.toString();
+    tgl_chat = years.toString()+"-"+month.toString()+"-"+day.toString();
 
-    master_chat.on('value',function(showmaster_chat){
-     var result ='';
-      showmaster_chat.forEach(function(data){
 
-           result += data.val().kode_member;
+     master_chat.orderByChild('kode_member').equalTo(usercode).on('value',function(showmaster_chat){
+       if (showmaster_chat.val()) {
+          console.log('ada')
+          showmaster_chat.forEach(function(data){
 
-      });
-      if (result === usercode) {
-        console.log('yes');
-      }else{
-        console.log(result);
-        console.log(usercode);
-      }
-      // console.log(result);
-    });
+            chat_code = data.val().kode_chat;
+          })
+          opsi_chat = database.ref('opsi_chat/'+chat_code);
+          opsi_chat.push({
+            isi_chat      : input,
+            kode_pembalas : usercode,
+            tgl_chat      : tgl_chat
+          })
 
-    // alert(showmaster_chat);
-    // master_chat.push({
-    //   kode_chat     : code_chat,
-    //   kode_cs       : '',
-    //   kode_member   : usercode,
-    //   status        : 'pending'
-    // });
+       }else{
+           console.log('kosong')
+           master_chat.push({
+             kode_chat   : code_chat,
+             kode_cs     :'',
+             kode_member : usercode
+           })
+           var opsi_chat = database.ref('opsi_chat/'+code_chat);
+
+           opsi_chat.push({
+                    isi_chat       : input,
+                    kode_pembalas  : usercode,
+                    tgl_chat       : tgl_chat
+           })
+       }
+    })
 
   });
 
+  var chats = database.ref('opsi_chat/KC-201896162310');
 
-  function showmaster_chat(items)
-  {
-    
-  };
-
-
-
-
-  var chats = database.ref('opsi_chat/KC-001');
-
-  chats.on('value', showdata, showerror);
+  chats.on('child_added', showdata);
 
   function showdata(items)
   {
@@ -64,9 +61,8 @@ $(document).ready(function() {
     var minutes = date.getMinutes();
     var seconds = date.getSeconds();
 
-    items.forEach(function(data){
-      code = data.val().kode_pembalas[0];
-      // console.log(code);
+      code = items.val().kode_pembalas[0];
+      // console.log(items.val());
       if (code === 'C') {
 
       send +='<div class="row msg_container base_receive">'+
@@ -74,7 +70,7 @@ $(document).ready(function() {
                 '<img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive "></div>'+
                 '<div class="col-md-10 col-xs-10 ">'+
                 '<div class="messages msg_receive">'+
-                '<p>'+data.val().isi_chat+'</p>'+
+                '<p>'+items.val().isi_chat+'</p>'+
                 '<time datetime="2009-11-13T20:00">'+minutes+" : "+seconds+'</time>'+
                 '</div></div>'+
                 '</div>';
@@ -83,7 +79,7 @@ $(document).ready(function() {
       send +='<div class="row msg_container base_sent">'+
               '<div class="col-md-10 col-xs-10">'+
               '<div class="messages msg_sent">'+
-              '<p>'+data.val().isi_chat+'</p>'+
+              '<p>'+items.val().isi_chat+'</p>'+
               '<time datetime="2009-11-13T20:00">'+minutes+" : "+seconds+'</time>'+
               '</div>'+
               '</div>'+
@@ -92,7 +88,6 @@ $(document).ready(function() {
               '</div>'+
               '</div>';
         }
-    })
        text+="<p>Hallo!! Ada yang bisa kami bantu ?</p><time datetime='2009-11-13T20:00'>"+minutes+" : "+seconds+"</time>";
        $(document).find('.opsi_chat').append(send);
        $(document).find('.default_chat').html(text);
