@@ -7,10 +7,10 @@
 		<!-- Menu desktop -->
 		<div class="menu-desktop">
 			<ul class="main-menu">
-				<li class="active-menu">
+				<li class="@if(@$page == 'home') active-menu @endif">
 					<a href="{{ route('fronthomeIndex') }}">Home</a>
 				</li>
-				<li>
+				<li class="@if(@$page == 'shop') active-menu @endif">
 					<a href="{{ route('frontshopIndex') }}">Shop</a>
 				</li>
 

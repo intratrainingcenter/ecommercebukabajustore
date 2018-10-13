@@ -21,7 +21,7 @@
 			</button>
 
 			<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-		</div>	
+		</div>
 	</div>
 
 	<!-- Filter -->
@@ -34,7 +34,7 @@
 
 				<ul>
 					<li class="p-b-6">
-						<a href="#" class="filter-link stext-106 trans-04">
+						<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
 							Default
 						</a>
 					</li>
@@ -52,7 +52,7 @@
 					</li>
 
 					<li class="p-b-6">
-						<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+						<a href="#" class="filter-link stext-106 trans-04">
 							Newness
 						</a>
 					</li>
@@ -84,35 +84,52 @@
 					</li>
 
 					<li class="p-b-6">
+						<label>Minimum Price</label>
+						<input type="text" name="" value="" style="width:100px">
+					</li>
+
+					<li class="p-b-6">
+						<label>Maximum Price</label>
+						<input type="text" name="" value="" style="width:100px">
+					</li>
+
+					<li class="p-b-6">
+						<a href="#" class="filter-link stext-106 trans-04">
+							Submit
+						</a>
+					</li>
+
+				</ul>
+			</div>
+			<div class="filter-col2 p-r-15 p-b-27 col-md-5">
+				<div class="mtext-102 cl2 p-b-15">
+					Category
+				</div>
+				<div class="row">
+
+				<div class="col-md-6">
+				<ul>
+					<li class="p-b-12">
+						<a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+							All
+						</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="col-md-6">
+				<ul>
+					<li class="p-b-12">
 						<a href="#" class="filter-link stext-106 trans-04">
 							$0.00 - $50.00
 						</a>
 					</li>
-
-					<li class="p-b-6">
-						<a href="#" class="filter-link stext-106 trans-04">
-							$50.00 - $100.00
-						</a>
-					</li>
-
-					<li class="p-b-6">
-						<a href="#" class="filter-link stext-106 trans-04">
-							$100.00 - $150.00
-						</a>
-					</li>
-
-					<li class="p-b-6">
-						<a href="#" class="filter-link stext-106 trans-04">
-							$150.00 - $200.00
-						</a>
-					</li>
-
-					<li class="p-b-6">
-						<a href="#" class="filter-link stext-106 trans-04">
-							$200.00+
-						</a>
-					</li>
 				</ul>
+			</div>
+
+
+
+			</div>
 			</div>
 		</div>
 	</div>

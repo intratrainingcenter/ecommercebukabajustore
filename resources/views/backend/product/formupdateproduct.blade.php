@@ -55,15 +55,21 @@
             <div class="form-group col-sm-12">
               <div class="m-b-30 form-group @if($errors->has('purchaseProduct')) has-primary @endif">
               {{Form::label('Purchase Price Product')}}
+              <div class="input-group">
+              <span class="input-group-addon b-0">$</span>
                 {{Form::number('purchaseProduct',$product->hpp,['class'=>'form-control','placeholder'=>'Enter Purchase Price Product','min'=>'0','required'])}}
                 @if($errors->has('purchaseProduct')) <div class="form-control-feedback">{{ $errors->first('purchaseProduct') }}</div> @endif
+              </div>
             </div>
           </div>
           <div class="m-b-30 form-group @if($errors->has('sellingProduct')) has-primary @endif">
             <div class="form-group col-sm-12">
               {{Form::label('Selling Price Product')}}
+              <div class="input-group">
+              <span class="input-group-addon b-0">$</span>
                 {{Form::number('sellingProduct',$product->harga_jual,['class'=>'form-control','placeholder'=>'Enter Sellin Price Product','min'=>'0','required'])}}
                 @if($errors->has('sellingProduct')) <div class="form-control-feedback">{{ $errors->first('sellingProduct') }}</div> @endif
+              </div>
             </div>
           </div>
           <div class="m-b-30 form-group @if($errors->has('stockProduct')) has-primary @endif">

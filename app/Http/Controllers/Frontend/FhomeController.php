@@ -9,6 +9,9 @@ class FhomeController extends Controller
 {
     public function index()
     {
-    	return view('frontend.home.index');
+      $data = array(
+        'page' => 'home',
+      );
+    	return view('frontend.home.index',$data  );
     }
 }
