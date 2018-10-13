@@ -44,6 +44,23 @@ $(document).ready(function () {
 		});
 	});
 
+	$(document).on('click','.clearCart',function () {
+		$.ajax({
+			headers:{
+				'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content'),
+			},
+			method:'delete',
+			url:location.origin+"/cart/clearcart",
+			success:function (data) {
+				$('.loadCart').attr('data-notify',data.amountProduct);
+				if(data.response == 'success'){
+					loadCart();
+					swal('Cart', "is cart has been Clear !", "success");
+				}
+			}
+		});
+	});
+
 
 });
 

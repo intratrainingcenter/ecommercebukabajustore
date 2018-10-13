@@ -187,6 +187,12 @@ Route::prefix('cart')->group(function ()
 	Route::post('addtocart','Frontend\FcartController@addtocart');
 	Route::delete('removefromcart','Frontend\FcartController@removefromcart');
 	Route::get('sumproduct','Frontend\FcartController@sumproduct');
+	Route::delete('clearcart','Frontend\FcartController@clearcart');
+});
+
+Route::prefix('checkout')->group(function ()
+{
+	Route::get('','Frontend\FcheckoutController@index')->name('checkoutIndex');
 });
 
 /*

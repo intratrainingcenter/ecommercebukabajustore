@@ -13,13 +13,8 @@
 				<li class="@if(@$page == 'shop') active-menu @endif">
 					<a href="{{ route('frontshopIndex') }}">Shop</a>
 				</li>
-
-				<li class="label1" data-label1="hot">
-					<a href="shoping-cart.html">Features</a>
-				</li>
-
 				<li>
-					<a href="blog.html">Blog</a>
+					<a href="blog.html">Story</a>
 				</li>
 
 				<li>
