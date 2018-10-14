@@ -22,29 +22,26 @@
 					</span>
 
 					<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9 select2">
-						<select class="js-select2" name="destination">
+						<select class="js-select2 destinationCity" name="destination">
 							<option value="">Select Destination</option>
 							@foreach($destinationCity as $city)
-							<option value="{{$city['city_id']}}">{{$city['city_name']}}</option>
+							<option value="{{$city['city_id']}}">{{$city['city_name']}} - {{$city['city_id']}}</option>
 							@endforeach
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
 					<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9 select2">
-						<select class="js-select2" name="courier">
+						<select class="js-select2 selectCourier" name="courier">
 							<option>Select Courier</option>
-							<option>JNE</option>
-							<option>TIKI</option>
-							<option>POS</option>
+							<option value="jne">JNE</option>
+							<option value="tiki">TIKI</option>
+							<option value="pos">POS</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
 					<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9 select2">
-						<select class="js-select2" name="courier">
+						<select class="js-select2 selectService" name="service">
 							<option>Select Service</option>
-							<option>JNE</option>
-							<option>TIKI</option>
-							<option>POS</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>

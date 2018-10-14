@@ -46,10 +46,45 @@ class FcheckoutController extends Controller
 
 		return $results;
 	}
+
+	public function trackcostshipping(Request $request)
+	{
+		$originCity = 151;
+		$destinationcity = $request->destinationCity;
+		$weightgood = 20;
+
+		$courier = $request->courier;
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => "",
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 30,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => "POST",
+			CURLOPT_POSTFIELDS => "origin=".$originCity."&destination=".$destinationcity."&weight=".$weightgood."&courier=".$courier,
+			CURLOPT_HTTPHEADER => array(
+				"content-type: application/x-www-form-urlencoded",
+				"key: 3c8fa461a2974630d8f0a08824fa0401"
+			),
+		));
+
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+
+		$jsonku = json_decode($response,true);
+		$service = $jsonku['rajaongkir']['results'];
+
+		curl_close($curl);
+		return $service;
+	}
 	public function getlistcart()
 	{
 		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
-        $listCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
-        return $listCart;
+		$listCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
+		return $listCart;
 	}
 }

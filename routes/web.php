@@ -193,6 +193,7 @@ Route::prefix('cart')->group(function ()
 Route::prefix('checkout')->group(function ()
 {
 	Route::get('','Frontend\FcheckoutController@index')->name('checkoutIndex');
+	Route::get('trackcostshipping','Frontend\FcheckoutController@trackcostshipping');
 });
 
 /*
