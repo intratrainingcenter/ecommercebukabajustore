@@ -164,6 +164,14 @@ Route::prefix('shop')->group(function ()
 {
 	Route::get('','Frontend\FshopController@index')->name('frontshopIndex');
 	Route::get('detailproduct/{id}','Frontend\FshopController@detailproduct')->name('frontdetailProduct');
+	Route::get('search={search}','Frontend\FshopController@searchproduct');
+	Route::get('category={codecategory}','Frontend\FshopController@categoryproduct');
+	Route::get('sortby=lowtohight','Frontend\FshopController@lowtohightproduct');
+	Route::get('sortby=highttolow','Frontend\FshopController@highttolowproduct');
+	Route::get('sortby=newness','Frontend\FshopController@newnessproduct');
+	Route::get('sortby=averagerating','Frontend\FshopController@averagerating');
+	Route::get('sortby=popularityproduct','Frontend\FshopController@popularityproduct');
+	Route::get('rangeprice={min}-{max}','Frontend\FshopController@rangepriceproduct');
 });
 
 Route::prefix('loginMember')->group(function(){
