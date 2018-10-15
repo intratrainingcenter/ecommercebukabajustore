@@ -134,6 +134,10 @@ Route::group(['prefix'=>'setting', 'middleware'=>['admin','auth','setup','backen
 	Route::put('updatesetting','Backend\BsettingController@updatesetting')->name('settingUpdate');
 });
 
+Route::group(['prefix'=>'chats'],function(){
+	Route::get('','Backend\BchatsController@index');
+});
+
 /* END ROUTE FOR BACKEND */
 
 

@@ -56,5 +56,10 @@
             <span> Setting </span>
         </a>
     </li>
-
+     <li>
+        <a href="chats" class="waves-effect">
+            <i class="ion-settings"></i>
+            <span> Chatting </span>
+        </a>
+    </li>
 </ul>
