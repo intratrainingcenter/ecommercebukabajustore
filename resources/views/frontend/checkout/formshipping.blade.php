@@ -25,7 +25,7 @@
 						<select class="js-select2 destinationCity" name="destination">
 							<option value="">Select Destination</option>
 							@foreach($destinationCity as $city)
-							<option value="{{$city['city_id']}}">{{$city['city_name']}} - {{$city['city_id']}}</option>
+							<option value="{{$city['city_id']}}">{{$city['city_name']}}</option>
 							@endforeach
 						</select>
 						<div class="dropDownSelect2"></div>
@@ -35,7 +35,6 @@
 							<option>Select Courier</option>
 							<option value="jne">JNE</option>
 							<option value="tiki">TIKI</option>
-							<option value="pos">POS</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
@@ -68,16 +67,17 @@
 				</span>
 			</div>
 			<div class="size-208">
-				<span class="mtext-110 cl2">
-					$0.00
+				<span class="mtext-110 cl2 textshippingCost">
+					
 				</span>
 			</div>
 		</div>
 		<div class="flex-w flex-t p-t-27 p-b-33">
 			<div class="size-209 p-t-1">
-				<div class="bor8 bg0 m-b-22">
+				<div class="bor8 bg0 m-b-22" style="margin-bottom: 0px;">
 					<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="promoCode" placeholder="Enter Code Promo">
 				</div>
+				<div style="font-size: 10px; color: red;">* promo is not available</div>
 			</div>
 			<div class="size-208">
 				<div class="flex-c-m stext-60 cl2 size-112 bg8  hov-btn3 p-lr-15 trans-04 pointer">

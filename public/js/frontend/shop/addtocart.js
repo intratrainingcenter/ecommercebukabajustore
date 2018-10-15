@@ -40,6 +40,12 @@ $(document).ready(function () {
 					loadCart();
 					swal(nameProduct, "is Remove From cart !", "success");
 				}
+				
+				var locationpath = window.location.pathname;
+				locationpath = locationpath.split('/') ;
+				if(locationpath[1] === 'checkout'){
+					location.reload();
+				}
 			}
 		});
 	});

@@ -1,6 +1,6 @@
 $(document).ready(function (argument) {
-		$('.selectCourier').on('change',function () {
-		var courierResults = '';
+	$('.selectCourier').on('change',function () {
+		var serviceResults = '';
 		var destinationCity = $('.destinationCity').val();
 		var courier = $('.selectCourier').val();
 		$.ajax({
@@ -14,29 +14,53 @@ $(document).ready(function (argument) {
 				courier:courier,
 			},
 			success:function (data) {
-				console.log(data);
-				// var no = 0;
-				// $.each(data,function (key, alls) {
-				// 	$.each(alls,function (key,all) {						
-				// 		// console.log(all.costs);	
-				// 		$.each(all.costs,function (key,inall) {
-				// 		no++;
-				// 			// 		console.log(kurir);
-				// 					// console.log(inall.cost[0].value;
-				// 					_courierResults += "<tr>"
-				// 					+"<td>"+no+"</td>"
-				// 					+"<td>"+ all.name +" "+ inall.service +"</td>"
-				// 					+"<td>"+ inall.cost[0].value +"</td>"
-				// 					"</tr>";
+				serviceResults += '<option> Select Service </option>';
+				$.each(data,function (key,courier) {
+					$.each(courier.costs,function (key,services) {
+						serviceResults += '<option value='+services.service+","+services.cost[0].etd+","+services.cost[0].value+'>'+services.service+" ("+services.cost[0].etd+" Day) Rp "+services.cost[0].value+'</option>'
+					});
+				});
 
-				// 				})
-				// 	})
-
-					
-				// })
-				// $('#hasilcari').html(_courierResults);
+				$('.selectService').html(serviceResults);
 			}
 
 		})
-	})
+	});
+
+	$('.selectService').on('change', function () {
+		var cost = $(this).val();	
+		var myarr = cost.split(",");
+
+		var service = myarr[0];	
+		var etd = myarr[1];
+		var amountshipping = myarr[2];
+
+		amountshipping = amountshipping / 14000;
+		
+		$('.textshippingCost').text('$'+amountshipping.toFixed(2));
+
+	});
 });
+
+function currencyrupiahtodollar(amountney) {
+	// NOTE: Sample code uses jQuery to handle jsonp
+	
+	var access_key = '90e7b0a6f55b67b6b6b90371ced0fcf0';
+	var from = 'USD';
+	var to = 'EUR';
+	var amount = '1';
+
+	$.ajax({
+
+		url: 'https://apilayer.net/api/convert?access_key='+access_key+'&from='+from+'&to='+to+'&amount='+amount,
+		dataType: "jsonp",
+		success: function(response) {
+
+			if (response.success) {
+
+				alert('1 USD is worth ' + parseFloat(response.rate).toFixed(2) + ' EUR');
+			}
+		}
+	});
+	
+}

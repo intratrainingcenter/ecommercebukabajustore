@@ -51,6 +51,10 @@ class FcheckoutController extends Controller
 	{
 		$originCity = 151;
 		$destinationcity = $request->destinationCity;
+
+		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+		// $weightgood = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->get()->sum('berat_barang');
+		
 		$weightgood = 20;
 
 		$courier = $request->courier;
