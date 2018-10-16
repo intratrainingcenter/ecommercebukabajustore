@@ -180,7 +180,11 @@ Route::prefix('RegisterMember')->group(function(){
 	});
 	Route::post('register','Frontend\FRegisterController@create')->name('memberregister');
 });
-
+Route::group(['prefix'=>'profileFront'], function ()
+{
+	Route::get('','Frontend\FprofileController@index')->name('profileIndex');
+  Route::put('updateprofile','Frontend\FprofileController@updateprofile')->name('updateProfile');
+});
 /*
 | END ROUTE FOR FRONTEND
 */
