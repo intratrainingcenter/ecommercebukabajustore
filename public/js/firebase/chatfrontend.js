@@ -3,7 +3,6 @@ $(document).ready(function() {
   var database = firebase.database();
   var master_chat = database.ref('master_chat');
 
-
   $(document).on('click','#btn-chat',function(){
     usercode   = $('#usercode').val();
     input      = $('#message').val();
@@ -48,9 +47,25 @@ $(document).ready(function() {
 
   });
 
-  var chats = database.ref('opsi_chat/KC-201896162310');
+  var code_chat='';
+  var code_opsi_chat='';
 
-  chats.on('child_added', showdata);
+  code_user = $('#usercode').val();
+  master_chat.orderByChild('kode_member').equalTo(code_user).on('value',function(master_chat_child){
+    master_chat_child.forEach(function(data){
+
+      code_chat = data.val().kode_chat;
+    })
+    if (code_chat) {
+      code_opsi_chat = code_chat;
+    }else{
+      code_opsi_chat = '';
+    }
+
+    var chats = database.ref('opsi_chat/'+code_opsi_chat);
+
+    chats.on('child_added', showdata);
+})
 
   function showdata(items)
   {

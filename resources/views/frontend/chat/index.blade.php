@@ -1,8 +1,4 @@
 @extends('frontend.chat.component.asset')
-@section('jspersonal')
-	{{-- Drop Your Javascript In Here --}}
-<script src="{{ asset('js/firebase/chatfrontend.js') }}"></script>
-@endsection
 
   <div class="container" style="z-index:100;">
       <div class="row chat-window col-xs-5 col-md-3" id="chat_window_1" style="margin-left:10px;">
@@ -10,8 +6,8 @@
           	<div class="panel panel-default">
                   <div class="panel-heading top-bar">
                       <div class="col-md-8 col-xs-6">
-                          <p class="panel-title"><i class="glyphicon glyphicon-comment"></i>  {{Auth::User()->name}}</p>
-                          <input type="hidden" name="usercode" id="usercode" value="{{Auth::User()->kode_user}}">
+                          <p class="panel-title"><i class="glyphicon glyphicon-comment"></i> Customer </p>
+                          <input type="hidden" name="usercode" id="usercode" value=@if (Auth::User() === null ) "" @else "{{Auth::User()->kode_user}}" @endif>
                       </div>
                       <div class="col-md-4 col-xs-4" style="text-align: right;">
                         <a href="#"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
