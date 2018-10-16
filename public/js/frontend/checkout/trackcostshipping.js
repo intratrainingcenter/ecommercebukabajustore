@@ -36,31 +36,15 @@ $(document).ready(function (argument) {
 		var amountshipping = myarr[2];
 
 		amountshipping = amountshipping / 14000;
-		
-		$('.textshippingCost').text('$'+amountshipping.toFixed(2));
+		if(isNaN(amountshipping)){
+			$('.textshippingCost').text(0);
+			total = parseInt($('.subTotal').text()) + parseInt(0);
+		}else{
+			$('.textshippingCost').text(amountshipping.toFixed(2));
+			total = parseFloat($('.subTotal').text()) + parseFloat(amountshipping);
+		}
+
+		$('.textTotal').text(total.toFixed(2));
 
 	});
 });
-
-function currencyrupiahtodollar(amountney) {
-	// NOTE: Sample code uses jQuery to handle jsonp
-	
-	var access_key = '90e7b0a6f55b67b6b6b90371ced0fcf0';
-	var from = 'USD';
-	var to = 'EUR';
-	var amount = '1';
-
-	$.ajax({
-
-		url: 'https://apilayer.net/api/convert?access_key='+access_key+'&from='+from+'&to='+to+'&amount='+amount,
-		dataType: "jsonp",
-		success: function(response) {
-
-			if (response.success) {
-
-				alert('1 USD is worth ' + parseFloat(response.rate).toFixed(2) + ' EUR');
-			}
-		}
-	});
-	
-}

@@ -2,6 +2,7 @@
 	<div class="m-l-25 m-r--38 m-lr-0-xl">
 		<div class="wrap-table-shopping-cart">
 			<table class="table-shopping-cart">
+				<thead>
 				<tr class="table_head">
 					<th class="column-1">Product</th>
 					<th class="column-1"></th>
@@ -9,25 +10,11 @@
 					<th class="column-2">Qty</th>
 					<th class="column-5">Total</th>
 				</tr>
-				@php
-				$grandtotal = 0; 
-				$weightgood = 0; 
-				@endphp
-				@foreach($listCart as $itemCart)
-				<tr class="table_row">
-					<td class="column-1">
-						<div class="how-itemcart1">
-							<img src="{{ asset('storage/imageproduct/'.$itemCart->detailProduct->foto) }}" alt="IMG">
-						</div>
-					</td>
-					<td class="column-2">{{ $itemCart->detailProduct->nama_barang }}</td>
-					<td class="column-3">$ {{ $itemCart->harga }}</td>
-					<td class="column-3">{{ $itemCart->qty }}</td>
-					<td class="column-5">$ {{ $itemCart->harga * $itemCart->qty }}</td>
-				</tr>
-				@php $weightgood += $itemCart->detailProduct->berat_barang * $itemCart->qty @endphp
-				@php $grandtotal += $itemCart->subtotal @endphp
-				@endforeach
+				</thead>
+				<tbody id="dataProduct">
+					
+				</tbody>
+				
 			</table>
 		</div>
 
@@ -40,9 +27,8 @@
 					Subtotal : 
 				</span>
 				<span class="mtext-110 cl2">
-					$ {{$grandtotal}}
+					$ <span class="textSubtotal"></span>
 				</span>
-				<input type="hidden" name="weightgood" value="{{ $weightgood }}">
 			</div>
 		</div>
 	</div>

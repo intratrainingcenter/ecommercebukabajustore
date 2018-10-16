@@ -62,14 +62,14 @@ Route::group(['prefix'=>'slider', 'middleware'=>['auth','adminAccess','setup','b
 
 Route::group(['prefix'=>'story', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
-  Route::get('','Backend\BstoryController@index')->name('storyIndex');
-  Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
-  Route::post('createstory','Backend\BstoryController@createstory')->name('storyCreate');
-  Route::get('updatestory/{id}','Backend\BstoryController@showupdatestory')->name('ShowstoryUpdate');
-  Route::post('updatestory','Backend\BstoryController@updatestory')->name('storyUpdate');
-  Route::delete('deletestory','Backend\BstoryController@deletestory')->name('storyDelete');
-  Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
-  Route::get('loadstory','Backend\BstoryController@loadstory');
+	Route::get('','Backend\BstoryController@index')->name('storyIndex');
+	Route::get('addstory','Backend\BstoryController@addstory')->name('storyAdd');
+	Route::post('createstory','Backend\BstoryController@createstory')->name('storyCreate');
+	Route::get('updatestory/{id}','Backend\BstoryController@showupdatestory')->name('ShowstoryUpdate');
+	Route::post('updatestory','Backend\BstoryController@updatestory')->name('storyUpdate');
+	Route::delete('deletestory','Backend\BstoryController@deletestory')->name('storyDelete');
+	Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
+	Route::get('loadstory','Backend\BstoryController@loadstory');
 });
 
 Route::group(['prefix'=>'position', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
@@ -97,14 +97,14 @@ Route::group(['prefix'=>'category', 'middleware'=>['auth','adminAccess','setup',
 });
 Route::group(['prefix'=>'product', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
-  Route::get('','Backend\BproductController@index')->name('productIndex');
-  Route::get('formaddproduct','Backend\BproductController@formaddproduct')->name('formaddProduct');
-  Route::post('addproduct','Backend\BproductController@addproduct')->name('addProduct');
-  Route::get('detailproduct/{id}','Backend\BproductController@detailproduct')->name('detailProduct');
-  Route::get('formupdateproduct/{id}','Backend\BproductController@formupdateproduct')->name('formupdateProduct');
-  Route::put('updateproduct','Backend\BproductController@updateproduct')->name('updateProduct');
-  Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
-  Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
+	Route::get('','Backend\BproductController@index')->name('productIndex');
+	Route::get('formaddproduct','Backend\BproductController@formaddproduct')->name('formaddProduct');
+	Route::post('addproduct','Backend\BproductController@addproduct')->name('addProduct');
+	Route::get('detailproduct/{id}','Backend\BproductController@detailproduct')->name('detailProduct');
+	Route::get('formupdateproduct/{id}','Backend\BproductController@formupdateproduct')->name('formupdateProduct');
+	Route::put('updateproduct','Backend\BproductController@updateproduct')->name('updateProduct');
+	Route::delete('deleteproduct','Backend\BproductController@deleteproduct')->name('deleteProduct');
+	Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
 Route::group(['prefix'=>'user', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
@@ -136,7 +136,7 @@ Route::group(['prefix'=>'about', 'middleware'=>['auth','adminAccess','setup','ba
 Route::group(['prefix'=>'profile', 'middleware'=>['auth','setup','backendAccess','status']], function ()
 {
 	Route::get('','Backend\BprofileController@index')->name('profileIndex');
-  Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
+	Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
 });
 
 Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
@@ -194,6 +194,13 @@ Route::prefix('checkout')->group(function ()
 {
 	Route::get('','Frontend\FcheckoutController@index')->name('checkoutIndex');
 	Route::get('trackcostshipping','Frontend\FcheckoutController@trackcostshipping');
+	Route::get('loadcheckoutproduct','Frontend\FcheckoutController@getlistcart');
+	Route::get('checkpromo','Frontend\FcheckoutController@checkpromo');
+
+	// route for processing payment
+	Route::post('payment', 'FPaymentController@payWithpaypal')->name('checkoutPayment');
+	// route for check status of the payment
+	Route::get('status', 'FpaymentController@getPaymentStatus');
 });
 
 /*

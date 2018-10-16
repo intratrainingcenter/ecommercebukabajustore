@@ -73,8 +73,7 @@ class FcartController extends Controller
 
         $now=date("ymdhis");
 
-        // $codeTransaction = 'TR-'.$now.'U'.iduserauth.'M'.$sequence;
-        $codeTransaction = 'TR-'.$now.'U'.'1'.'M'.$sequence;
+        $codeTransaction = 'TR-'.$now.'U'.Auth::user()->id.'M'.$sequence;
 
         return $codeTransaction;
     }

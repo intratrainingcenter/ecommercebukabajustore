@@ -22,8 +22,9 @@ class CreatePemesanansTable extends Migration
             $table->integer('grandtotal');
             $table->integer('dibayar');
             $table->text('keterangan');
+            $table->text('alamat');
             $table->string('kode_ongkir');
-            $table->enum('status',['pending','process','delivery','received','cancel']);
+            $table->enum('status',['pending','paid','process','delivery','received','cancel']);
             $table->timestamps();
         });
     }

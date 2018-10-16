@@ -69,6 +69,22 @@
         <div class="top-right links">
             <a href="">Paypal</a>
         </div>
+        @if ($message = Session::get('success'))
+        <div class="w3-panel w3-green w3-display-container" style="color: green;">
+            <span onclick="this.parentElement.style.display='none'"
+            class="w3-button w3-green w3-large w3-display-topright">&times;</span>
+            <p>{!! $message !!}</p>
+        </div>
+        <?php Session::forget('success');?>
+        @endif
+        @if ($message = Session::get('error'))
+        <div class="w3-panel w3-red w3-display-container" style="color:red;">
+            <span onclick="this.parentElement.style.display='none'"
+            class="w3-button w3-red w3-large w3-display-topright">&times;</span>
+            <p>{!! $message !!}</p>
+        </div>
+        <?php Session::forget('error');?>
+        @endif
 
         <div class="content">
             <div class="title m-b-md">

@@ -8,16 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Pemesanan_Temp as TransactionTemp;
 use App\Opsi_Pemesanan_Temp as Cart;
+use App\Promo;
 
 class FcheckoutController extends Controller
 {
 	public function index()
 	{
 		$destinationCity = $this->destinationcity(); 
-		$listCart = $this->getlistcart();
 		$data = array(
 			'destinationCity' => $destinationCity,
-			'listCart' => $listCart,
 		);
 		return view('frontend.checkout.index',$data);
 	}
@@ -53,7 +52,7 @@ class FcheckoutController extends Controller
 		$destinationcity = $request->destinationCity;
 
 		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
-		// $weightgood = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->get()->sum('berat_barang');
+		$weightgood = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->get()->sum('berat_barang');
 		
 		$weightgood = 20;
 
@@ -85,6 +84,28 @@ class FcheckoutController extends Controller
 		curl_close($curl);
 		return $service;
 	}
+
+	public function checkpromo(Request $request)
+	{
+		$dateNow = date('Y-m-d');
+
+		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+		$subtotal = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->get()->sum('subtotal');
+
+		$resultCheck = Promo::where('kode_promo',$request->promoCode)
+							->where('min_pembelian','<=',$subtotal)
+							->whereRaw('"'. $dateNow .'" between master_promos.berlaku_awal and master_promos.berlaku_akhir')
+							->get()
+							->isNotEmpty();
+						
+		if($resultCheck){
+			return 1;
+		}else{
+			return 0;
+		}
+
+	}
+
 	public function getlistcart()
 	{
 		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
