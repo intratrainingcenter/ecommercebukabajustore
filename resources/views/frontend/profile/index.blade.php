@@ -1,6 +1,9 @@
 @extends('frontend.general.master')
 @extends('frontend.shop.component.asset')
 @section('content')
+<section class="sec-product bg0 p-t-100 p-b-50">
+		<!-- Product -->
+	<div class="container">
     <div class="col-12">
         <div class="card m-b-20">
             <div class="card-body">
@@ -79,4 +82,6 @@
       </div>
     </div>
   </div>
+  </div>
+  </section>
 @endsection
