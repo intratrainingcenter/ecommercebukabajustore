@@ -17,7 +17,7 @@
 			<div class="tab-pane fade show active" id="description" role="tabpanel">
 				<div class="how-pos2 p-lr-15-md">
 					<p class="stext-102 cl6">
-						{{ $detailProduct->deskripsi	 }}
+						{!! $detailProduct->deskripsi !!}
 					</p>
 				</div>
 			</div>

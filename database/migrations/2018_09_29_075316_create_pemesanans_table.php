@@ -23,7 +23,7 @@ class CreatePemesanansTable extends Migration
             $table->integer('dibayar');
             $table->text('keterangan');
             $table->string('kode_ongkir');
-            $table->string('status');
+            $table->enum('status',['pending','process','delivery','received','cancel']);
             $table->timestamps();
         });
     }

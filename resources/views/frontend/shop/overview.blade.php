@@ -2,7 +2,7 @@
 		<!-- Product -->
 	<div class="container">
 		@include('frontend.shop.tool')
-		<div class="row isotope-grid">
+		<div class="row isotope-grid showsearch">
 			@foreach($dataProduct as $itemProduct)
 			<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
 				<div class="block2">
