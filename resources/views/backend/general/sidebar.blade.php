@@ -5,7 +5,12 @@
             <span> Dashboard <span class="badge badge-primary pull-right">8</span></span>
         </a>
     </li>
-
+    <li>
+       <a href="chats" class="waves-effect btn_chatting">
+           <i class="ion-email"></i>
+           <span> Chatting </span>
+       </a>
+   </li>
      <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-buffer"></i> <span> User </span> </a>
         <ul class="list-unstyled">
@@ -56,10 +61,5 @@
             <span> Setting </span>
         </a>
     </li>
-     <li>
-        <a href="chats" class="waves-effect">
-            <i class="ion-settings"></i>
-            <span> Chatting </span>
-        </a>
-    </li>
+
 </ul>

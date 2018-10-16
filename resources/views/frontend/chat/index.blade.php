@@ -10,8 +10,8 @@
           	<div class="panel panel-default">
                   <div class="panel-heading top-bar">
                       <div class="col-md-8 col-xs-6">
-                          <p class="panel-title"><i class="glyphicon glyphicon-comment"></i>  {{Auth::User()->name}}</p>
-                          <input type="hidden" name="usercode" id="usercode" value="{{Auth::User()->kode_user}}">
+                          <p class="panel-title"><i class="glyphicon glyphicon-comment"></i>  Customers</p>
+                          <input type="hidden" name="usercode" id="usercode" value=@if (Auth::User() === null) "" @else "{{Auth::User()->kode_user}}" @endif>
                       </div>
                       <div class="col-md-4 col-xs-4" style="text-align: right;">
                         <a href="#"><span id="minim_chat_window" class="glyphicon glyphicon-minus icon_minim"></span></a>
