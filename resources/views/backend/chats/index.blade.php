@@ -31,10 +31,11 @@
                       			</ul>
                       		</div>
                       		<div class="message-input">
-                      			<div class="wrap">
-                      			<input type="text" id="input_message" placeholder="Write your message...">
+                      			<div class="wrap">                      			
+                      			<input type="text" id="input_message" name="input_message" class="form-control input-sm chat_input" placeholder="Write your message...">
+                      			<input type="hidden" name="" id="default_code_chat">
                       			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                      			<button class="submit" id="btn_send_message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                      			<button  id="btn_send_message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                       			</div>
                       		</div>
                       	</div>

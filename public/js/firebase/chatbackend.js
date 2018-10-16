@@ -65,17 +65,29 @@ $(document).ready(function() {
           }
 
           $(document).find('.show_list_chat').append(text);
+          $(document).find('#default_code_chat').val(code_chat);
       });
   });
 
+
   $(document).on('click','#btn_send_message',function(){
+
+    usercode = $(document).find('.code_user').val();
+    codechat = $(document).find('#default_code_chat').val();  
+
     var date = new Date();
     years = date.getFullYear();  month = date.getMonth(); day = date.getDay(); hours = date.getHours(); minutes = date.getMinutes(); seconds = date.getSeconds();
     var code_chat ='KC-'+years.toString()+month.toString()+day.toString()+hours.toString()+minutes.toString()+seconds.toString();
     tgl_chat = years.toString()+"-"+month.toString()+"-"+day.toString();
 
     message = $('#input_message').val();
-      alert(message);
+
+   opsi_chat = database.ref('opsi_chat/'+codechat);
+        opsi_chat.push({
+          isi_chat      : message,
+          kode_pembalas : usercode,
+          tgl_chat      : tgl_chat
+        })
 
   });
 
