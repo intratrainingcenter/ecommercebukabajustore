@@ -97,7 +97,8 @@
 				<div class="size-208 p-t-1">
 					<span class="mtext-110 cl2">
 						$ <span class="textTotal"></span>
-						<input type="hidden" name="total" class="textTotal">
+						<input type="hidden" name="total" class="valTotal">
+						<input type="hidden" name="totalProduct" class="totalProduct">
 					</span>
 				</div>
 			</div>

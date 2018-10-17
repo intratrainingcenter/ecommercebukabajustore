@@ -4,10 +4,15 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
+
+use App\Pemesanan_Temp as TransactionTemp;
+use App\Opsi_Pemesanan_Temp as Cart;
+use App\Promo;
 
 /** All Paypal Details class **/
 use PayPal\Api\ItemList;
@@ -35,6 +40,28 @@ class FpaymentController extends Controller
 	);
 		$this->_api_context->setConfig($paypal_conf['settings']);
 	}
+
+	public function getcart()
+    {
+        $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+        $listCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
+
+        return $listCart;
+    }
+
+    public function getpromo()
+    {
+            $dateNow = date('Y-m-d');
+
+            $getcart = $this->getcart();
+            $subtotal = $getcart->sum('subtotal');
+            $resultCheck = Promo::where('kode_promo','IDRCUT')
+                            ->where('min_pembelian','<=',$subtotal)
+                            ->whereRaw('"'. $dateNow .'" between master_promos.berlaku_awal and master_promos.berlaku_akhir')
+                            ->first();
+            return $resultCheck;
+    }
+
 
 	public function payWithpaypal(Request $request)
 	{

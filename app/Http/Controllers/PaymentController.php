@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
 use PayPal\Api\Item;
+
+use App\Pemesanan_Temp as TransactionTemp;
+use App\Opsi_Pemesanan_Temp as Cart;
+use App\Promo;
 
 /** All Paypal Details class **/
 use PayPal\Api\ItemList;
@@ -39,24 +44,55 @@ class PaymentController extends Controller
 		return view('paypal');
 	}
 
-	    public function payWithpaypal(Request $request)
+    public function getcart()
+    {
+        $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+        $listCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
+
+        return $listCart;
+    }
+
+    public function getpromo()
+    {
+            $dateNow = date('Y-m-d');
+
+            $getcart = $this->getcart();
+            $subtotal = $getcart->sum('subtotal');
+            $resultCheck = Promo::where('kode_promo','IDRCUT')
+                            ->where('min_pembelian','<=',$subtotal)
+                            ->whereRaw('"'. $dateNow .'" between master_promos.berlaku_awal and master_promos.berlaku_akhir')
+                            ->first();
+            return $resultCheck;
+    }
+
+    public function payWithpaypal(Request $request)
     {
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
+
+        $subtotal = $this->getcart()->sum('subtotal');
+        $getpromo = $this->getpromo();
+
+        $discount = (!is_null($getpromo))?$getpromo->diskon:0;
+        $total = $subtotal - $discount;
+
         $item_1 = new Item();
-        $item_1->setName('Total') /** item name **/
+        $item_1->setName('Total Final Shopping') /** item name **/
             ->setCurrency('USD')
             ->setQuantity(1)
-            ->setPrice($request->get('amount')); /** unit price **/
+            ->setPrice($total); /** unit price **/
+
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
+            
         $amount = new Amount();
         $amount->setCurrency('USD')
-            ->setTotal($request->get('amount'));
+                ->setTotal($total);
+
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($item_list)
-            ->setDescription('Your transaction description');
+            ->setDescription('Payment checkout Buka Baju Store');
         $redirect_urls = new RedirectUrls();
         $redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
             ->setCancelUrl(URL::to('status'));
@@ -65,7 +101,7 @@ class PaymentController extends Controller
             ->setPayer($payer)
             ->setRedirectUrls($redirect_urls)
             ->setTransactions(array($transaction));
-        /** dd($payment->create($this->_api_context));exit; **/
+
         try {
             $payment->create($this->_api_context);
         } catch (\PayPal\Exception\PPConnectionException $ex) {
@@ -77,12 +113,14 @@ class PaymentController extends Controller
                 return Redirect::to('/paypal');
             }
         }
+
         foreach ($payment->getLinks() as $link) {
             if ($link->getRel() == 'approval_url') {
                 $redirect_url = $link->getHref();
                 break;
             }
         }
+
         /** add payment ID to session **/
         Session::put('paypal_payment_id', $payment->getId());
         if (isset($redirect_url)) {

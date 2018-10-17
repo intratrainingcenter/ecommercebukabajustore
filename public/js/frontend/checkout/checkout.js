@@ -34,6 +34,7 @@ $(document).ready(function () {
 function loadlistProduct() {
 	listProduct = '';
 	subTotal = 0;
+	totalProduct = 0;
 	$.ajax({
 		headers: {
 			"X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content'),
@@ -42,6 +43,7 @@ function loadlistProduct() {
 		url: location.origin+"/checkout/loadcheckoutproduct",
 		success:function (data) {
 			$.each(data,function (key,value) {
+				totalProduct++;
 				subTotal += value.subtotal;
 				listProduct += '<tr class="table_row">'+
 				'<td class="column-1">'+
@@ -56,11 +58,14 @@ function loadlistProduct() {
 				'</tr>';
 
 			});
+
 			$('#dataProduct').html(listProduct);		
 			$('.textSubtotal').text(subTotal);
 			total = parseInt(subTotal) + parseInt($('.textshippingCost').text());
 
 			$('.textTotal').text(total);
+			$('.valTotal').val(total);
+			$('.totalProduct').val(total);
 
 		}
 
