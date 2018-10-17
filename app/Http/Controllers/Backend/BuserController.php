@@ -57,7 +57,7 @@ class BuserController extends Controller
           $namefile = str_random(16).'.png';
           Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
           $create = User::create([
-             'kode_user'        => $date,
+             'kode_user'        => 'MB_'.$date,
              'avatar'           => $namefile,
              'avatar_original'  => 'null',
              'provider_id'      => 'null',

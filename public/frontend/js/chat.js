@@ -28,7 +28,7 @@ $(document).ready(function() {
   });
   $(document).on('click', '.icon_close', function (e) {
       //$(this).parent().parent().parent().parent().remove();
-      $( "#chat_window_1" ).remove();
+      $( ".form_chats" ).hide();
   });
 
 });

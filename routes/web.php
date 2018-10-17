@@ -147,6 +147,7 @@ Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','
 
 Route::group(['prefix'=>'chats'],function(){
 	Route::get('','Backend\BchatsController@index');
+	Route::get('/user','Backend\BchatsController@User');
 });
 
 Route::get('/nonActive', 'DashboardController@nonactive');

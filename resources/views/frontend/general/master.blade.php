@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content=" {{csrf_token() }}">
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/favicon.png') }}"/>
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/bootstrap/css/bootstrap.min.css') }}">
@@ -60,6 +60,7 @@
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
+	
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/jquery/jquery-3.2.1.min.js') }}"></script>
 	<!--===============================================================================================-->

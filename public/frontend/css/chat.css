@@ -51,7 +51,7 @@
   }
 .messages > time {
     font-size: 11px;
-    color: #ccc;
+    color: black;
 }
 .msg_container {
     padding: 10px;
@@ -121,5 +121,5 @@ img {
 .btn-group.dropup{
     position:fixed;
     left:0px;
-    bottom:0;
+    bottom:50px;
 }
