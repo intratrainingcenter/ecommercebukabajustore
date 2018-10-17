@@ -61,16 +61,26 @@
 										@endif
 
 									</div>
-								</div>	
+								</div>
 							</div>
 
 							<!--  -->
 							<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-								<div class="flex-m bor9 p-r-10 m-r-11">
-									<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-										<i class="zmdi zmdi-favorite"></i>
+								<div hidden class="block2-txt-child1 flex-col-l">
+									<a class="js-name-b2">{{ $detailProduct->nama_barang }}</a>
+								</div>
+								<div class="block2-txt-child2 flex-r p-t- wishlist">
+									<a href="javascript:void(0)" codeproduct="{{ $detailProduct->kode_barang }}" class="btn-addwish-b2 dis-block pos-relative
+										js-addwish-b2
+											@if($cekbarfav = $dataWishlist->where('kode_barang',$detailProduct->kode_barang)->isNotEmpty())
+											js-addedwish-b2
+											@else
+											@endif
+										">
+										<img class="icon-heart1 dis-block trans-04" src="{{ asset('frontend/images/icons/icon-heart-01.png')}}" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{ asset('frontend/images/icons/icon-heart-02.png')}}" alt="ICON">
 									</a>
-								</div> Add to Wishlist
+		 						</div> | Add to Wishlist
 							</div>
 						</div>
 					</div>

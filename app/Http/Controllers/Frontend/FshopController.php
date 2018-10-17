@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Barang;
 use App\Kategori;
 use App\Opsi_Pemesanan;
+use App\Barang_Favorit;
 use Illuminate\Support\Facades\DB;
 
 class FshopController extends Controller
@@ -18,6 +19,7 @@ class FshopController extends Controller
 			'page' => 'shop',
 			'dataProduct' => Barang::all(),
 			'dataCategory' => Kategori::all(),
+			'dataWishlist' => Barang_Favorit::all(),
 		);
 		return view('frontend.shop.index',$data);
 	}
@@ -28,6 +30,7 @@ class FshopController extends Controller
 		$data = array(
 			'page' => 'shop',
 			'detailProduct' => Barang::where('id',$id)->with('category')->first(),
+			'dataWishlist' => Barang_Favorit::all(),
 		);
 		return view('frontend.shop.detailproduct',$data);
 	}

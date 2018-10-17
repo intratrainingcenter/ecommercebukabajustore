@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content=" {{csrf_token() }}">
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/favicon.png') }}"/>
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/bootstrap/css/bootstrap.min.css') }}">
@@ -18,13 +18,13 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/fonts/linearicons-v1.0.0/icon-font.min.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/animate/animate.css') }}">
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/css-hamburgers/hamburgers.min.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/animsition/css/animsition.min.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/select2/select2.min.css') }}">
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/daterangepicker/daterangepicker.css') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/slick/slick.css') }}">
@@ -56,7 +56,7 @@
 		</span>
 	</div>
 
-	<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/jquery/jquery-3.2.1.min.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/animsition/js/animsition.min.js') }}"></script>
@@ -105,42 +105,7 @@
 	<script src="{{ asset('frontend/asset/isotope/isotope.pkgd.min.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/sweetalert/sweetalert.min.js') }}"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function(e){
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function(){
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-
-				$(this).addClass('js-addedwish-detail');
-				$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function(){
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-
-	</script>
+	<script src="{{ asset('js/frontend/wishlist/wishlist.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 	<script>
