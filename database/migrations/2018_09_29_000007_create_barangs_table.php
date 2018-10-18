@@ -21,8 +21,8 @@ class CreateBarangsTable extends Migration
             $table->string('kode_barang');
             $table->string('nama_barang');
             $table->integer('berat_barang');
-            $table->integer('hpp');
-            $table->integer('harga_jual');
+            $table->float('hpp');
+            $table->float('harga_jual');
             $table->integer('stok');
             $table->text('deskripsi');
             $table->timestamps();
