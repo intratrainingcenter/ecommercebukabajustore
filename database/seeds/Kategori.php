@@ -14,6 +14,8 @@ class Kategori extends Seeder
       DB::table('master_kategoris')->insert([
          'kode_kategori' => 'KT-1',
          'nama_kategori' => 'T-shirt',
+         'foto_kategori' => '---',
+         'lokasifoto' => 'public/imagecategory/',
      ]);
     }
 }

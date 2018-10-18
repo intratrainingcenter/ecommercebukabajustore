@@ -26,7 +26,7 @@
                       <div class="col-12">
                             <address>
                                 <strong> Deskripsi :</strong><br>
-                                <p> {{  $detailAbout->deskripsi  }} </p>
+                                <p> {!!  $detailAbout->deskripsi  !!} </p>
                             </address>
                       </div>
                       <div class="col-12">
