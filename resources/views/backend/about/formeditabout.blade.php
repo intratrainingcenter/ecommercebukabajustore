@@ -28,7 +28,7 @@
     <div class="col-md-12">
         <div class="form-group col-sm-12 @if($errors->has('Description')) has-primary @endif">
           {{Form::label('Description')}}
-            {{Form::textarea('Description',$dataAbout->deskripsi,['class'=>'form-control','placeholder'=>'Enter Description'])}}
+            {{Form::textarea('Description',$dataAbout->deskripsi,['class'=>'summernote','placeholder'=>'Enter Description'])}}
             @if($errors->has('Description')) <div class="form-control-feedback">{{ $errors->first('Description') }}</div> @endif
         </div>
     </div>

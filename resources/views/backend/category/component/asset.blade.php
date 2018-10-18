@@ -3,5 +3,6 @@
 @endsection
 @section('jspersonal')
 	{{-- Drop Your Javascript In Here --}}
+	<script type="text/javascript" src="{{ asset('js/category/croppiecategory.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/category/indexcategory.js') }}"></script>
 @endsection

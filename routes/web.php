@@ -197,6 +197,14 @@ Route::prefix('cart')->group(function ()
 	Route::get('sumproduct','Frontend\FcartController@sumproduct');
 });
 
+Route::prefix('wishlist')->group(function ()
+{
+	Route::get('','Frontend\FwishlistController@wishlist');
+	Route::get('countwishlist','Frontend\FwishlistController@countwishlist');
+	Route::get('showproduct','Frontend\FwishlistController@showproduct')->name('wishlist');
+	Route::get('addproduct/{idproduct}','Frontend\FwishlistController@addproduct');
+	Route::get('removeproduct/{idproduct}','Frontend\FwishlistController@removeproduct');
+});
 /*
 | END ROUTE FOR FRONTEND
 */

@@ -1,5 +1,22 @@
   {{Form::open(['route'=>'categoryCreate','method'=>'post','enctype'=>'multipart/form-data'])}}
   <div class="row">
+    <div class="col-12">
+        <div class="card m-b-20">
+            <div class="card-body">
+                <h4 class="mt-0 header-title">Image Product</h4>
+                <div class="m-b-30 form-group @if($errors->has('imageCategory')) has-primary @endif">
+                    <div class="fallback">
+                        <input name="image" type="file" class="inputimageCategory form-control">
+                          @if($errors->has('imageCategory')) <div class="form-control-feedback">Choose and Crop image again </div> @endif
+                    </div>
+                </div>
+                  <center>  <div id="showiimageCategory" class="col-md-12"></div> </center>
+                    <div id="cropimageCategory" class="col-md-12"></div>
+                    <div class="input-field col-md-3"><input type="hidden" name="imageCategory" value="" data-error=".err6"></div>
+                    <div class="col-md-12 accepted"></div>
+            </div>
+        </div>
+    </div>
       <div class="form-group col-md-6 @if($errors->has('codeCategory')) has-primary @endif">
           <div class="col-sm-12">
               {{Form::label('Code Category')}}
