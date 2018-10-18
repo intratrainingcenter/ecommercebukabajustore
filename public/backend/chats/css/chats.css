@@ -288,7 +288,7 @@
 #frame #sidepanel #search input {
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
   padding: 10px 0 10px 46px;
-  width: calc(100% - 0px);
+  width: calc(98% - 0px);
   border: none;
   background: #EAECEE;
   color: #f5f5f5;
@@ -358,7 +358,7 @@
   border: 2px solid !important;
 }
 #frame #sidepanel #contacts ul li.contact .wrap {
-  width: 88%;
+  width: 100%;
   margin: 0 auto;
   position: relative;
 }
@@ -657,4 +657,8 @@
 }
 #frame .content .message-input .wrap button:focus {
   outline: none;
+}
+time {
+    font-size: 11px;
+    color: #4D4D4D;
 }

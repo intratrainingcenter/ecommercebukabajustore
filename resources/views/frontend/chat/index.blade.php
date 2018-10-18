@@ -33,12 +33,34 @@
                   </div>
       		    </div>
           </div>
+        </div>
       </div>
+  @if (Auth::User())
+    <div class="btn-group dropup">
+      <button type="button" class="btn btn-default btn_chat" title="Live Chats">
+        <span class="glyphicon glyphicon-comment"></span>
+      </button>
+    </div>
+  @endif
+  {{-- modal end chats --}}
+  <div id="myModal" class="modal" tabindex="-1" style="z-index: 100000;" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"> End Chatting</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>you sure you want to stop this chat ?</p>
+          <input type="hidden" name="code_master_chat">
+          <input type="hidden" name="code_opsi_chat">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary pull-left" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary end_chat">Yes </button>
+        </div>
+      </div>
+    </div>
   </div>
-@if (Auth::User())
-  <div class="btn-group dropup">
-    <button type="button" class="btn btn-default btn_chat" title="Live Chats">
-      <span class="glyphicon glyphicon-comment"></span>
-    </button>
-  </div>
-@endif
