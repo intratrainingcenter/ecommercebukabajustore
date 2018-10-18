@@ -70,6 +70,7 @@
 									<a class="js-name-b2">{{ $detailProduct->nama_barang }}</a>
 								</div>
 								<div class="block2-txt-child2 flex-r p-t- wishlist">
+									@if(Auth::User() != null && Auth::User()->kode_jabatan == 'member')
 									<a href="javascript:void(0)" codeproduct="{{ $detailProduct->kode_barang }}" class="btn-addwish-b2 dis-block pos-relative
 										js-addwish-b2
 											@if($cekbarfav = $dataWishlist->where('kode_barang',$detailProduct->kode_barang)->isNotEmpty())
@@ -77,10 +78,13 @@
 											@else
 											@endif
 										">
-										<img class="icon-heart1 dis-block trans-04" src="{{ asset('frontend/images/icons/icon-heart-01.png')}}" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{ asset('frontend/images/icons/icon-heart-02.png')}}" alt="ICON">
-									</a>
-		 						</div> | Add to Wishlist
+									@else
+									<a href="{{ route('formLoginMember') }}" codeproduct="{{ $detailProduct->kode_barang }}" class="btn-addwish-b2 dis-block pos-relative">
+									@endif
+									<img class="icon-heart1 dis-block trans-04" src="{{ asset('frontend/images/icons/icon-heart-01.png')}}" alt="ICON">
+									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{ asset('frontend/images/icons/icon-heart-02.png')}}" alt="ICON">
+								</a>
+							</div> | Add to Wishlist
 							</div>
 						</div>
 					</div>
