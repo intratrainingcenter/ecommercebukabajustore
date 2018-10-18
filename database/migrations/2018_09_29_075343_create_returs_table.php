@@ -20,8 +20,8 @@ class CreateRetursTable extends Migration
             $table->string('kode_user');
             $table->text('keterangan');
             $table->date('tgl_retur');
-            $table->integer('grandtotal');
-            $table->integer('cashback');
+            $table->float('grandtotal');
+            $table->float('cashback');
             $table->string('status');
             $table->timestamps();
         });

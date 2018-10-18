@@ -53,19 +53,20 @@ function loadlistProduct() {
 				'</td>'+
 				'<td class="column-2">'+ value.detail_product.nama_barang +'</td>'+
 				'<td class="column-3">$ '+ value.harga +'</td>'+
-				'<td class="column-3">'+ value.qty +'</td>'+
+				'<td class="column-3"> x '+ value.qty +'</td>'+
 				'<td class="column-5">$ '+ value.harga * value.qty  +'</td>'+
+				'<td><input type="text" name="information" class="information" placeholder="Enter information ordering"/></td>'
 				'</tr>';
 
 			});
 
 			$('#dataProduct').html(listProduct);		
-			$('.textSubtotal').text(subTotal);
-			total = parseInt(subTotal) + parseInt($('.textshippingCost').text());
+			$('.textSubtotal').text(subTotal.toFixed(2));
+			total = parseFloat(subTotal) + parseFloat($('.textshippingCost').text());
 
-			$('.textTotal').text(total);
-			$('.valTotal').val(total);
-			$('.totalProduct').val(total);
+			$('.textTotal').text(total.toFixed(2));
+			$('.valTotal').val(total.toFixed(2));
+			$('.totalProduct').val(totalProduct);
 
 		}
 

@@ -12,7 +12,11 @@ use PayPal\Api\Item;
 
 use App\Pemesanan_Temp as TransactionTemp;
 use App\Opsi_Pemesanan_Temp as Cart;
+use App\Pemesanan;
+use App\Opsi_Pemesanan;
 use App\Promo;
+use App\Barang;
+use App\ongkir;
 
 /** All Paypal Details class **/
 use PayPal\Api\ItemList;
@@ -49,41 +53,68 @@ class FpaymentController extends Controller
         return $listCart;
     }
 
-    public function getpromo()
+    public function getpromo($codePromo)
     {
             $dateNow = date('Y-m-d');
 
             $getcart = $this->getcart();
             $subtotal = $getcart->sum('subtotal');
-            $resultCheck = Promo::where('kode_promo','IDRCUT')
+            $resultCheck = Promo::where('kode_promo',$codePromo)
                             ->where('min_pembelian','<=',$subtotal)
                             ->whereRaw('"'. $dateNow .'" between master_promos.berlaku_awal and master_promos.berlaku_akhir')
                             ->first();
             return $resultCheck;
     }
 
+    public function validationPayment($param)
+    {
+    	$param->validate([
+    		'destinationCity' => 'required', 
+    		'courier' => 'required', 
+    		'service' => 'required', 
+    		'addressShipping' => 'required', 
+    		'total' => 'required', 
+    		'totalProduct' => 'required', 
+    	]);
+    }
 
 	public function payWithpaypal(Request $request)
 	{
-		$payer = new Payer();
-		$payer->setPaymentMethod('paypal');
-		$item_1 = new Item();
-		$item_1->setName('Total') /** item name **/
-		->setCurrency('USD')
-		->setQuantity(1)
-		->setPrice($request->get('amount')); /** unit price **/
-		$item_list = new ItemList();
-		$item_list->setItems(array($item_1));
-		$amount = new Amount();
-		$amount->setCurrency('USD')
-		->setTotal($request->get('amount'));
-		$transaction = new Transaction();
-		$transaction->setAmount($amount)
-		->setItemList($item_list)
-		->setDescription('Your transaction description');
+		$validate = $this->validationPayment($request);
+
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+
+        $total = $request->total;
+        $getpromo = $this->getpromo($request->promoCode);
+      
+        
+        $discount = (!is_null($getpromo))?$getpromo->diskon:0;
+        $total = $total - $discount;
+
+        $item_1 = new Item();
+        $item_1->setName('Total Final Shopping') /** item name **/
+                ->setCurrency('USD')
+                ->setQuantity(1)
+                ->setPrice($total); /** unit price **/ 	
+
+        $item_list = new ItemList();
+        $item_list->setItems(array($item_1));
+
+
+        $amount = new Amount();
+        $amount->setCurrency('USD')
+                ->setTotal($total);
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($item_list)
+            ->setDescription('Payment checkout Buka Baju Store');
+
 		$redirect_urls = new RedirectUrls();
-		$redirect_urls->setReturnUrl(URL::to('status')) /** Specify return URL **/
-		->setCancelUrl(URL::to('status'));
+		$redirect_urls->setReturnUrl(route('statusPayment')) /** Specify return URL **/
+		->setCancelUrl(route('statusPayment'));
+
 		$payment = new Payment();
 		$payment->setIntent('Sale')
 		->setPayer($payer)
@@ -107,8 +138,12 @@ class FpaymentController extends Controller
 				break;
 			}
 		}
-		/** add payment ID to session **/
-		Session::put('paypal_payment_id', $payment->getId());
+        /** add payment ID to session **/
+        Session::put('paypal_payment_id', $payment->getId());
+        
+        /** menambahkan Data Request dari form shipping kedadalam session **/
+		Session::put('request', $request->all());
+
 		if (isset($redirect_url)) {
 			/** redirect to paypal **/
 			return Redirect::away($redirect_url);
@@ -119,8 +154,12 @@ class FpaymentController extends Controller
 
 	public function getPaymentStatus()
     {
+
         /** Get the payment ID before session clear **/
         $payment_id = Session::get('paypal_payment_id');
+
+        /** Pengambilan Data request dari form shipping yang tadi di masukan di session request **/
+        $request = Session::get('request');
         /** clear the session payment ID **/
         Session::forget('paypal_payment_id');
         if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
@@ -133,11 +172,62 @@ class FpaymentController extends Controller
         /**Execute the payment **/
         $result = $payment->execute($execution, $this->_api_context);
         if ($result->getState() == 'approved') {
+            $this->transactionCart($request);
             \Session::put('success', 'Payment success');
             return Redirect::to('/checkout');
         }
         \Session::put('error', 'Payment failed');
         return Redirect::to('/checkout');
+    }
+
+    public function transactionCart($dataRequest)
+    {
+        $getCart = $this->getcart();
+        $transactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+        $dataService = explode(',', $dataRequest['service']);
+        $service = $dataService[0];
+        $periodShipping = $dataService[1];
+        $costShipping = $dataService[2];
+
+        foreach ($getCart as $itemCart) {
+            $moveCart = Opsi_Pemesanan::create([
+                'kode_pemesanan' => $itemCart->kode_pemesanan,
+                'kode_barang' => $itemCart->kode_barang,
+                'qty' => $itemCart->qty,
+                'harga' => $itemCart->harga,
+                'subtotal' => $itemCart->subtotal,
+                'keterangan' => $itemCart->keterangan,
+            ]);
+            $getFirstStockProduct = Barang::where('kode_barang',$itemCart->kode_barang)->first(); 
+            $reductionStockProduct =  Barang::where('kode_barang',$itemCart->kode_barang)->update([
+                'stok' => $getFirstStockProduct->stok - $itemCart->qty, 
+            ]);
+        }
+
+        $removeProductFromCart = Cart::where('kode_pemesanan',$transactionTemp->kode_pemesanan)->delete(); 
+        
+        $codeShipping = "SHP-".date('ymdhis').$service."M".Auth::user()->id;
+        $createTransactionHistory = Pemesanan::create([
+            'kode_pemesanan' => $transactionTemp->kode_pemesanan,
+            'kode_promo' => $dataRequest['promoCode'],
+            'kode_user' => Auth::user()->kode_user,
+            'tgl_pemesanan' => date('Y-m-d'),
+            'grandtotal' => $dataRequest['total'],
+            'dibayar' => $dataRequest['total'],
+            'alamat' => $dataRequest['addressShipping'],
+            'kode_ongkir' => $codeShipping,
+            'status' => 'paid',
+        ]);
+
+        $createDetailShipping = ongkir::create([
+            'kode_ongkir' => $codeShipping,
+            'kurir' => $dataRequest['courier'],
+            'jenis_layanan' => $service,
+            'jangka_pengiriman' => $periodShipping,
+            'tarif' => $costShipping,
+        ]);
+
+        $removeTransactionTemp = TransactionTemp::where('kode_pemesanan',$transactionTemp->kode_pemesanan)->delete();
     }
 
 

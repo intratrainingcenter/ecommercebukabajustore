@@ -9,9 +9,9 @@
 */
 Route::get('paypal','PaymentController@index');
 // route for processing payment
-Route::post('payment', 'PaymentController@payWithpaypal');
+Route::post('payment', 'PaymentController@payWithpaypal')->name('paypalship');
 // route for check status of the payment
-Route::get('status', 'PaymentController@getPaymentStatus');
+Route::get('status', 'PaymentController@getPaymentStatus')->name('paypalstatus');
 
 /* ROUTE FOR BACKEND */
 Route::group(['prefix'=>'setup', 'middleware'=>['auth','backendAccess','status']], function ()
@@ -198,9 +198,10 @@ Route::prefix('checkout')->group(function ()
 	Route::get('checkpromo','Frontend\FcheckoutController@checkpromo');
 
 	// route for processing payment
-	Route::post('payment', 'FPaymentController@payWithpaypal')->name('checkoutPayment');
+	Route::post('payment', 'Frontend\FpaymentController@payWithpaypal')->name('checkoutPayment');
+
 	// route for check status of the payment
-	Route::get('status', 'FpaymentController@getPaymentStatus');
+	Route::get('status', 'Frontend\FpaymentController@getPaymentStatus')->name('statusPayment');
 });
 
 /*

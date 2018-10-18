@@ -19,9 +19,10 @@ class CreatePemesanansTable extends Migration
             $table->string('kode_promo')->nullable();
             $table->string('kode_user');
             $table->date('tgl_pemesanan');
-            $table->integer('grandtotal');
-            $table->integer('dibayar');
-            $table->text('keterangan');
+            $table->date('tgl_diterima')->nullable();
+            $table->float('grandtotal');
+            $table->float('dibayar');
+            $table->text('keterangan')->nullable();
             $table->text('alamat');
             $table->string('kode_ongkir');
             $table->enum('status',['pending','paid','process','delivery','received','cancel']);

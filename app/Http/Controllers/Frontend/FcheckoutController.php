@@ -52,14 +52,15 @@ class FcheckoutController extends Controller
 		$destinationcity = $request->destinationCity;
 
 		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
-		$weightgood = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->get()->sum('berat_barang');
-		
-		$weightgood = 20;
+		$weightGood = 0;
+		$getCart = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->with('detailProduct')->get();
+		foreach ($getCart as $itemCart) {
+			$weightGood += $itemCart->detailProduct->berat_barang * $itemCart->qty;
+		}
 
 		$courier = $request->courier;
 
 		$curl = curl_init();
-
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
 			CURLOPT_RETURNTRANSFER => true,
@@ -68,7 +69,7 @@ class FcheckoutController extends Controller
 			CURLOPT_TIMEOUT => 30,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => "POST",
-			CURLOPT_POSTFIELDS => "origin=".$originCity."&destination=".$destinationcity."&weight=".$weightgood."&courier=".$courier,
+			CURLOPT_POSTFIELDS => "origin=".$originCity."&destination=".$destinationcity."&weight=".$weightGood."&courier=".$courier,
 			CURLOPT_HTTPHEADER => array(
 				"content-type: application/x-www-form-urlencoded",
 				"key: 3c8fa461a2974630d8f0a08824fa0401"

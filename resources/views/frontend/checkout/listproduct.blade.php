@@ -9,6 +9,7 @@
 					<th class="column-3">Price</th>
 					<th class="column-2">Qty</th>
 					<th class="column-5">Total</th>
+					<th class="column-5">Information</th>
 				</tr>
 				</thead>
 				<tbody id="dataProduct">

@@ -14,7 +14,7 @@ $(document).ready(function (argument) {
 				courier:courier,
 			},
 			success:function (data) {
-				serviceResults += '<option> Select Service </option>';
+				serviceResults += '<option value=""> Select Service </option>';
 				$.each(data,function (key,courier) {
 					$.each(courier.costs,function (key,services) {
 						serviceResults += '<option value='+services.service+","+services.cost[0].etd+","+services.cost[0].value+'>'+services.service+" ("+services.cost[0].etd+" Day) Rp "+services.cost[0].value+'</option>'
@@ -45,6 +45,7 @@ $(document).ready(function (argument) {
 		}
 
 		$('.textTotal').text(total.toFixed(2));
+		$('.valTotal').val(total.toFixed(2));
 
 	});
 });
