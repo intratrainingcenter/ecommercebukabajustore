@@ -2,8 +2,8 @@ $(document).ready(function () {
 	var croppieproduct = $('#cropimageCategory').croppie({
 		enableExif: true,
 		viewport: {
-			width: 300,
-			height: 335,
+			width: 335,
+			height: 245,
 			type: 'square'
 		},
 		boundary: {

@@ -22,8 +22,8 @@
 					<a href="blog.html">Blog</a>
 				</li>
 
-				<li>
-					<a href="about.html">About</a>
+				<li class="@if(@$page == 'about') active-menu @endif">
+					<a href="{{ route('frontaboutIndex') }}">About</a>
 				</li>
 
 				<li>
