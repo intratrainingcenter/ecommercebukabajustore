@@ -237,6 +237,11 @@ Route::prefix('story')->group(function ()
 	Route::get('detailshowstory/{idstory}','Frontend\FstoryController@detailstory')->name('detailstory');
 });
 
+Route::group(['prefix'=>'profileFront'], function ()
+{
+	Route::get('','Frontend\FprofileController@index')->name('profileIndex');
+  Route::put('updateprofile','Frontend\FprofileController@updateprofile')->name('updateProfile');
+});
 /*
 | END ROUTE FOR FRONTEND
 */

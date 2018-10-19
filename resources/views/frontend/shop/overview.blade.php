@@ -47,4 +47,5 @@
 		</div>
 			{{ $dataProduct->render() }}
 	</div>
+</section> 
 </section>
