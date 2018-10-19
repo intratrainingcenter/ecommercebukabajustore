@@ -21,7 +21,6 @@
                 @endif
             <div class="bor8 m-b-20 how-pos4-parent">
              <input id="email" type="email" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"placeholder="E-mail">
-						 <img class="how-pos4 pointer-none" src="{{asset('frontend/images/icons/icon-email.png')}}" alt="ICON">
 					 </div>
                   @if ($errors->has('email'))
                       <span style="color:red;">
