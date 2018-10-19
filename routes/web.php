@@ -205,6 +205,12 @@ Route::prefix('wishlist')->group(function ()
 	Route::get('addproduct/{idproduct}','Frontend\FwishlistController@addproduct');
 	Route::get('removeproduct/{idproduct}','Frontend\FwishlistController@removeproduct');
 });
+
+Route::prefix('about')->group(function ()
+{
+	Route::get('showabout','Frontend\FaboutController@showabout')->name('frontaboutIndex');
+});
+
 /*
 | END ROUTE FOR FRONTEND
 */
