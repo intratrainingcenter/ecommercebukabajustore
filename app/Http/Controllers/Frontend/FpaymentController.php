@@ -174,7 +174,7 @@ class FpaymentController extends Controller
         if ($result->getState() == 'approved') {
             $this->transactionCart($request);
             \Session::put('success', 'Payment success');
-            return Redirect::to('/checkout');
+            return Redirect::to('/mypurchase');
         }
         \Session::put('error', 'Payment failed');
         return Redirect::to('/checkout');

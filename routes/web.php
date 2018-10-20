@@ -217,6 +217,12 @@ Route::prefix('checkout')->group(function ()
 	Route::get('status', 'Frontend\FpaymentController@getPaymentStatus')->name('statusPayment');
 });
 
+Route::prefix('mypurchase')->group(function ()
+{
+	Route::get('','Frontend\FmypurchaseController@history')->name('mypurchaseIndex');
+	Route::get('detailhistorytransaction','Frontend\FmypurchaseController@detailhistorytransaction')->name('detailHistoryTransaction');
+});
+
 Route::prefix('wishlist')->group(function ()
 {
 	Route::get('','Frontend\FwishlistController@wishlist');

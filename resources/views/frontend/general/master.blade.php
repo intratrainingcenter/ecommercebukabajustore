@@ -36,8 +36,8 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/main.css') }}">
 	<!--===============================================================================================-->
-	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<link href="{{asset('frontend/css/chat.css')}}" rel="stylesheet">
+	{{-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="{{asset('frontend/css/chat.css')}}" rel="stylesheet"> --}}
 	<!--===============================================================================================-->
 	@yield('csspersonal')
 </head>
