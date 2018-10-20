@@ -3,25 +3,37 @@
 		<h3>Detail Transaction</h3>
 		<hr>
 		Code Transaction<br>
-		<h4>TR-1234631826391725367512731</h4>
+		<h4>{{ $detailHistoryTransaction->kode_pemesanan }}</h4>
 		<br>
 		<div class="row">
 			<div class="col-md-4">
 				<small>
 					Ordered on<br>
-					28 sep 2018 22:01:12<br>
+					{{ $detailHistoryTransaction->tgl_pemesanan }}<br>
 				</small>
 			</div>
 			<div class="col-md-4" style="">
 				<small>
 					Received on<br>
-					28 sep 2018 22:01:12<br>
+					{{ $detailHistoryTransaction->tgl_diterima }}<br>
 				</small>
 			</div>
 			<div class="col-md-4" style="">
 				<small>
 					Status<br>
-					<h5 style="color: red;">Canceled</h5><br>
+					@if($detailHistoryTransaction->status == 'pending')
+						<h5 style="color: orange;"> Pending</h5>
+					@elseif($detailHistoryTransaction->status == 'paid')
+						<h5 style="color: olive;"> Paid</h5>
+					@elseif($detailHistoryTransaction->status == 'process')
+						<h5 style="color: tomato;"> Process</h5>
+					@elseif($detailHistoryTransaction->status == 'delivery')
+						<h5 style="color: blue;"> Delivery</h5>
+					@elseif($detailHistoryTransaction->status == 'received')
+						<h5 style="color: green;"> Received</h5>
+					@elseif($detailHistoryTransaction->status == 'cancel')
+						<h5 style="color: red;"> Canceled</h5>
+					@endif
 				</small>
 			</div>
 		</div>
@@ -29,19 +41,19 @@
 			<div class="col-md-4">
 				<small>
 					Use promo<br>
-					<h5>IDRCUT</h5><br>
+					<h5>{{ (!is_null($detailHistoryTransaction->kode_promo))?$detailHistoryTransaction->detailPromo->kode_promo:'-' }}</h5><br>
 				</small>
 			</div>
 			<div class="col-md-4" style="">
 				<small>
 					Discount Promo<br>
-					$ 5.50<br>
+					{{ (!is_null($detailHistoryTransaction->kode_promo))?"$".$detailHistoryTransaction->detailPromo->diskon:"-" }}<br>
 				</small>
 			</div>
 			<div class="col-md-4" style="">
 				<small>
 					Period Promo<br>
-					28 sept 2018 - 30 sept 2018<br>
+					{{ (!is_null($detailHistoryTransaction->kode_promo))?$detailHistoryTransaction->detailPromo->berlaku_awal." - ".$detailHistoryTransaction->detailPromo->berlaku_akhir:"-" }}<br>
 				</small>
 			</div>
 		</div>
@@ -50,30 +62,37 @@
 			<div class="col-md-4">
 				<small>
 					Courier<br>
-					<h5>JNE</h5><br>
+					<h5>{{ $detailHistoryTransaction->shippingService->kurir }}</h5><br>
 				</small>
 			</div>
 			<div class="col-md-4" style="">
 				<small>
 					Shipping Service<br>
-					REG<br>
+					{{ $detailHistoryTransaction->shippingService->jenis_layanan }}<br>
 				</small>
 			</div>
 			<div class="col-md-4" style="">
 				<small>
 					Shipping Period<br>
-					1 - 3 Day<br>
+					{{ $detailHistoryTransaction->shippingService->jangka_pengiriman }} Day<br>
+				</small>
+			</div>
+			<div class="col-md-4" style="">
+				<small>
+					Shipping Cost<br>
+					{{ money_format('$ %i',$detailHistoryTransaction->shippingService->tarif / 14000) }}<br>
 				</small>
 			</div>
 		</div>
+		<br>
 		<h5> Shipping address :</h5>
 		<p>
-			ds.arjawinangun cirebon blok 2 kongas rt/rw 01/04 arjawinangun cirebon
+			{{ $detailHistoryTransaction->alamat }}
 		</p>
 		<hr>
 		<h5> Information :</h5>
 		<p>
-			Dikarenakan Stock Kosong Bro Uang Akan ditransfer segera kami kirim Contact Admin Kami, Beritahu Norekening kamu ya muah
+			{{ $detailHistoryTransaction->keterangan }}
 		</p>
 		<hr>
 		<!-- Shoping Cart -->

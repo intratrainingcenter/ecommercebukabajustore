@@ -23,9 +23,10 @@ class FmypurchaseController extends Controller
     public function detailhistorytransaction(Request $request)
     {
     	$codeTransaction = decrypt($request->codeTransaction);
-    	$historyTransaction = historyTransaction::where('kode_user',Auth::user()->kode_user)->get();
+    	$detailHistoryTransaction = historyTransaction::where('kode_pemesanan',$codeTransaction)->with(['shippingService','detailPromo','opsiDetailHistory'])->first();
+    	dd($detailHistoryTransaction);
 		$data = array(
-			'detailHistoryTransaction' => $historyTransaction,
+			'detailHistoryTransaction' => $detailHistoryTransaction,
 			'page' => 'detailhistory',
 		);
 		return view('frontend.mypurchase.history',$data);
