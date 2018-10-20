@@ -21,6 +21,6 @@ class Pemesanan extends Model
 
 	public function opsiDetailHistory()
 	{
-		return $this->belongsTo('App\Opsi_Pemesanan','kode_pemesanan','kode_pemesanan');
+		return $this->hasMany('App\Opsi_Pemesanan','kode_pemesanan','kode_pemesanan');
 	}
 }

@@ -80,7 +80,7 @@
 			<div class="col-md-4" style="">
 				<small>
 					Shipping Cost<br>
-					{{ money_format('$ %i',$detailHistoryTransaction->shippingService->tarif / 14000) }}<br>
+					{{ $detailHistoryTransaction->shippingService->tarif }}<br>
 				</small>
 			</div>
 		</div>
@@ -96,55 +96,9 @@
 		</p>
 		<hr>
 		<!-- Shoping Cart -->
-		<div class="wrap-table-shopping-cart">
-			<table class="table-shopping-cart">
-				<tr class="table_head">
-					<th class="column-1">Product</th>
-					<th class="column-2"></th>
-					<th class="column-3">Price</th>
-					<th class="column-4">Quantity</th>
-					<th class="column-5">Annotation</th>
-					<th class="column-5">Subtotal</th>
-				</tr>
-
-				<tr class="table_row">
-					<td class="column-1">
-						<div class="how-itemcart1">
-							<img src="{{ asset('frontend/images/item-cart-04.jpg') }}" alt="IMG">
-						</div>
-					</td>
-					<td class="column-2">Fresh Strawberries</td>
-					<td class="column-3">$ 36.00</td>
-					<td class="column-4">
-						1
-					</td>
-					<td class="column-5">Keterangan</td>
-					<td class="column-5">$ 36.00</td>
-				</tr>
-				<tr>
-					<td colspan="5" style="text-align: right;">
-						Total :
-						<hr>
-						Cost Shipping :<br>
-						Discount :
-						<hr>
-						Grandtotal :<br>
-					</td>
-					<td  style="padding: 10px;">
-						$ 36.00
-						<hr>
-						$ 36.00<br>
-						$ 36.00
-						<hr>
-						$ 36.00<br>
-					</td>
-				</tr>
-			</table>
-		</div>
-
-
+		@include('frontend.mypurchase.datadetailhistory')
 	</div>
-	<a href="history.html">
+	<a href="{{ route('mypurchaseIndex') }}">
 		<div class="pull-left flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
 			Back
 		</div>

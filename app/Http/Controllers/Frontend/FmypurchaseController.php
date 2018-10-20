@@ -23,8 +23,11 @@ class FmypurchaseController extends Controller
     public function detailhistorytransaction(Request $request)
     {
     	$codeTransaction = decrypt($request->codeTransaction);
-    	$detailHistoryTransaction = historyTransaction::where('kode_pemesanan',$codeTransaction)->with(['shippingService','detailPromo','opsiDetailHistory'])->first();
-    	dd($detailHistoryTransaction);
+    	$detailHistoryTransaction = historyTransaction::where('kode_pemesanan',$codeTransaction)->with(['shippingService','detailPromo','opsiDetailHistory' => function ($query)
+    	{
+    		$query->with('detailProduct');
+    	}])->first();
+
 		$data = array(
 			'detailHistoryTransaction' => $detailHistoryTransaction,
 			'page' => 'detailhistory',
