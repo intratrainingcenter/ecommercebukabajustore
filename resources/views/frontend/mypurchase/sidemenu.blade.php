@@ -13,7 +13,7 @@
             </h4>
             <ul>
                 <li class="bor18">
-                    <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                    <a href="{{ route('mypurchaseIndex') }}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
                         History Transaction
                     </a>
                 </li>

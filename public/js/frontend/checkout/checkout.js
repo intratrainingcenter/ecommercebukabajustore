@@ -55,7 +55,7 @@ function loadlistProduct() {
 				'<td class="column-3">$ '+ value.harga +'</td>'+
 				'<td class="column-3"> x '+ value.qty +'</td>'+
 				'<td class="column-5">$ '+ value.harga * value.qty  +'</td>'+
-				'<td><input type="text" name="information" class="information" placeholder="Enter information ordering"/></td>'
+				'<td><input type="text" name="information" class="information" placeholder="Enter annotation ordering"/></td>'
 				'</tr>';
 
 			});

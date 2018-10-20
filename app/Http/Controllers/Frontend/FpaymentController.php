@@ -206,14 +206,18 @@ class FpaymentController extends Controller
 
         $removeProductFromCart = Cart::where('kode_pemesanan',$transactionTemp->kode_pemesanan)->delete(); 
         
+        $getpromo = $this->getpromo($request->promoCode);
+        $discount = (!is_null($getpromo))?$getpromo->diskon:0;        
+        $total = $dataRequest['total'] - $discount;
+        
         $codeShipping = "SHP-".date('ymdhis').$service."M".Auth::user()->id;
         $createTransactionHistory = Pemesanan::create([
             'kode_pemesanan' => $transactionTemp->kode_pemesanan,
             'kode_promo' => $dataRequest['promoCode'],
             'kode_user' => Auth::user()->kode_user,
             'tgl_pemesanan' => date('Y-m-d'),
-            'grandtotal' => $dataRequest['total'],
-            'dibayar' => $dataRequest['total'],
+            'grandtotal' => $total,
+            'dibayar' => $total,
             'alamat' => $dataRequest['addressShipping'],
             'kode_ongkir' => $codeShipping,
             'status' => 'paid',
