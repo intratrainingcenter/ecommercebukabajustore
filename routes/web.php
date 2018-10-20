@@ -153,6 +153,9 @@ Route::group(['prefix'=>'chats'],function(){
 Route::get('/nonActive', 'DashboardController@nonactive');
 Route::get('/showsetting', 'Backend\BsettingController@showsetting');
 
+Route::group(['prefix'=>'laporanbarang'],function(){
+	Route::get('','Backend\BlaporanbarangController@index')->name('laporanbarangIndex');
+});
 /* END ROUTE FOR BACKEND */
 
 

@@ -50,7 +50,7 @@
     <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Laporan </span> </a>
         <ul class="list-unstyled">
-            <li><a href="advanced-animation.html">Laporan Barang</a></li>
+            <li><a href="{{route('laporanbarangIndex')}}">Laporan Barang</a></li>
             <li><a href="advanced-animation.html">Laporan Transaksi</a></li>
             <li><a href="advanced-animation.html">Laporan Keuangan</a></li>
         </ul>
