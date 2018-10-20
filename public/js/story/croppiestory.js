@@ -2,8 +2,8 @@ $(document).ready(function () {
 	var croppiestory = $('#cropimagestory').croppie({
 		enableExif: true,
 		viewport: {
-			width: 300,
-			height: 300,
+			width: 250,
+			height: 120,
 			type: 'square'
 		},
 		boundary: {

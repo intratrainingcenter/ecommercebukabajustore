@@ -26,8 +26,14 @@
                         </div>
                         <div class="form-group col-md-12">
                             <div class="col-sm-12">
+                              {{Form::label('Title')}}
+                              {{Form::text('title',null,['class'=>'form-control','placeholder'=>'Enter Title','required'])}}
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <div class="col-sm-12">
                               {{Form::label('Deskripsi')}}
-                              {{Form::textarea('deskripsi',null,['class'=>'form-control','placeholder'=>'Deskripsi Image','required'])}}
+                              {{Form::textarea('deskripsi',null,['class'=>'summernote','placeholder'=>'Deskripsi Image','required'])}}
                             </div>
                         </div>
                     </div>

@@ -45,5 +45,6 @@
 			</div>
 			@endforeach
 		</div>
+			{{ $dataProduct->render() }}
 	</div>
 </section>

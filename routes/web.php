@@ -211,6 +211,12 @@ Route::prefix('about')->group(function ()
 	Route::get('showabout','Frontend\FaboutController@showabout')->name('frontaboutIndex');
 });
 
+Route::prefix('story')->group(function ()
+{
+	Route::get('showstory','Frontend\FstoryController@showstory')->name('frontstoryIndex');
+	Route::get('detailshowstory/{idstory}','Frontend\FstoryController@detailstory')->name('detailstory');
+});
+
 /*
 | END ROUTE FOR FRONTEND
 */

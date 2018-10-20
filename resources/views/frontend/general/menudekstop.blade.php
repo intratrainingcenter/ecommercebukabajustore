@@ -18,8 +18,8 @@
 					<a href="shoping-cart.html">Features</a>
 				</li>
 
-				<li>
-					<a href="blog.html">Blog</a>
+				<li class="@if(@$page == 'story') active-menu @endif">
+					<a href="{{ route('frontstoryIndex') }}">Blog</a>
 				</li>
 
 				<li class="@if(@$page == 'about') active-menu @endif">

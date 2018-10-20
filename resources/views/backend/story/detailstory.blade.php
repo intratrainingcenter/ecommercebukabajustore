@@ -25,6 +25,19 @@
                                        </div>
                                    </div>
                                </div>
+                             </address>
+                                <address>
+                                    <strong>Judul : </strong><br>
+                                    <div class="custom-dd dd">
+                                         <div class="dd-list">
+                                             <div class="dd-item">
+                                                 <div class="dd-handle">
+                                                   <p>{{ $detailstory->judul }}</p><br>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                </address>
                                 <address>
                                     <strong>Status : </strong><br>
                                     <div class="custom-dd dd">
@@ -43,7 +56,7 @@
                                          <div class="dd-list">
                                              <div class="dd-item">
                                                  <div class="dd-handle">
-                                                   <p>{{ $detailstory->deskripsi}}</p><br>
+                                                   <p>{!! $detailstory->deskripsi !!}</p><br>
                                                  </div>
                                              </div>
                                          </div>

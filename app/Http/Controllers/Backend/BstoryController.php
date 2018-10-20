@@ -35,6 +35,7 @@ class BstoryController extends Controller
         'created_by'  =>Auth::User()->name,
         'foto'        =>$namefile,
         'lokasifoto'  =>'/public/imagestory',
+        'judul'       =>$request->title,
         'deskripsi'   =>$request->deskripsi,
         'status'      =>'Aktif',
       ]);
@@ -57,6 +58,7 @@ class BstoryController extends Controller
         $storyupdate = Story::find($request->storyid);
         $storyupdate->update([
           'created_by'  =>Auth::User()->name,
+          'judul'       =>$request->title,
           'deskripsi' =>$request->deskripsi,
           'status'    =>$request->status,
         ]);

@@ -17,7 +17,7 @@ class FshopController extends Controller
 	{
 		$data = array(
 			'page' => 'shop',
-			'dataProduct' => Barang::all(),
+			'dataProduct' => Barang::paginate(8),
 			'dataCategory' => Kategori::all(),
 			'dataWishlist' => Barang_Favorit::all(),
 		);
