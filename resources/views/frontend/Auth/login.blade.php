@@ -24,7 +24,6 @@
                            <strong>{{ $errors->first('email') }}</strong>
                        </span>
                    @endif
-							<img class="how-pos4 pointer-none" src="{{asset('frontend/images/icons/icon-email.png')}}" alt="ICON">
 						</div>
 						<div class="bor8 m-b-30">
               <input id="password" type="password" class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required placeholder="Password">

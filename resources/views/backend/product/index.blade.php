@@ -27,7 +27,7 @@
                           @foreach ($product as $data)
                                 <tr>
                                   <td> {{ $no++ }} </td>
-                                  <td> {{$data->id}}/{{ $data->kode_barang }} </td>
+                                  <td> {{ $data->kode_barang }} </td>
                                   <td> {{ $data->category->nama_kategori }} </td>
                                   <td> {{ $data->nama_barang }} </td>
                                   <td> {{ $data->stok }} </td>

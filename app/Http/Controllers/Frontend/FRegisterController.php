@@ -20,7 +20,7 @@ class FRegisterController extends Controller
     ]);
      $date = date('Ymdhis');
      User::create([
-         'kode_user'         => $date,
+         'kode_user'         => 'MB-'.$date,
          'provider'          => 'Auth',
          'provider_id'       => '',
          'avatar'            => '',

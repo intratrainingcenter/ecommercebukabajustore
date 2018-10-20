@@ -73,8 +73,7 @@ class FcartController extends Controller
 
         $now=date("ymdhis");
 
-        // $codeTransaction = 'TR-'.$now.'U'.iduserauth.'M'.$sequence;
-        $codeTransaction = 'TR-'.$now.'U'.'1'.'M'.$sequence;
+        $codeTransaction = 'TR-'.$now.'U'.Auth::user()->id.'M'.$sequence;
 
         return $codeTransaction;
     }
@@ -111,4 +110,16 @@ class FcartController extends Controller
 
         return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
     }
+
+    public function clearcart()
+    {
+       $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
+       $codeTransaction = $incartTransactionTemp->kode_pemesanan;
+
+       $removeProduct = Cart::where('kode_pemesanan',$codeTransaction)->delete();
+
+       $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
+
+       return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
+   }
 }

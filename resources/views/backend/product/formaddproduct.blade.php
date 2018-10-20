@@ -50,7 +50,7 @@
               {{Form::label('Purchase Price Product')}}
               <div class="input-group">
               <span class="input-group-addon b-0">$</span>
-                {{Form::number('purchaseProduct',null,['class'=>'form-control','placeholder'=>'Enter Purchase Price Product','min'=>'0','required'])}}
+                {{Form::number('purchaseProduct',null,['class'=>'form-control','placeholder'=>'Enter Purchase Price Product','min'=>'0','step'=>'any','required'])}}
                 @if($errors->has('purchaseProduct')) <div class="form-control-feedback">{{ $errors->first('purchaseProduct') }}</div> @endif
               </div>
               </div>
@@ -62,7 +62,7 @@
               {{Form::label('Selling Price Product')}}
               <div class="input-group">
               <span class="input-group-addon b-0">$</span>
-                {{Form::number('sellingProduct',null,['class'=>'form-control','placeholder'=>'Enter Selling Price Product','min'=>'0','required'])}}
+                {{Form::number('sellingProduct',null,['class'=>'form-control','placeholder'=>'Enter Selling Price Product','min'=>'0','step'=>'any','required'])}}
                 @if($errors->has('sellingProduct')) <div class="form-control-feedback">{{ $errors->first('sellingProduct') }}</div> @endif
               </div>
               </div>

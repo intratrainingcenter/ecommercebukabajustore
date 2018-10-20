@@ -40,6 +40,29 @@ $(document).ready(function () {
 					loadCart();
 					swal(nameProduct, "is Remove From cart !", "success");
 				}
+				
+				var locationpath = window.location.pathname;
+				locationpath = locationpath.split('/') ;
+				if(locationpath[1] === 'checkout'){
+					location.reload();
+				}
+			}
+		});
+	});
+
+	$(document).on('click','.clearCart',function () {
+		$.ajax({
+			headers:{
+				'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content'),
+			},
+			method:'delete',
+			url:location.origin+"/cart/clearcart",
+			success:function (data) {
+				$('.loadCart').attr('data-notify',data.amountProduct);
+				if(data.response == 'success'){
+					loadCart();
+					swal('Cart', "is cart has been Clear !", "success");
+				}
 			}
 		});
 	});
