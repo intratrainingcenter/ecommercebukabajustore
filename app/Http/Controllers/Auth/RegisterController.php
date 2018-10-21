@@ -69,7 +69,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
       $namefile = '';
-        if ($data['image'] === true) {
+        if ($data['imageUser']) {
         $createdirectory = Storage::makeDirectory('public/imageuser');
         $image = str_replace('data:image/png;base64,', '', $data['imageUser']);
         $image = str_replace(' ','+',$image);

@@ -135,8 +135,8 @@ Route::group(['prefix'=>'about', 'middleware'=>['auth','adminAccess','setup','ba
 
 Route::group(['prefix'=>'profile', 'middleware'=>['auth','setup','backendAccess','status']], function ()
 {
-	Route::get('','Backend\BprofileController@index')->name('profileIndex');
-	Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfile');
+	Route::get('','Backend\BprofileController@index')->name('profileIndexBackend');
+	Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfileBackend');
 });
 
 Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()

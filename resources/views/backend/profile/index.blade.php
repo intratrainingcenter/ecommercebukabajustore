@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card m-b-20">
             <div class="card-body">
-              {{Form::open(['route'=>'updateProfile','method'=>'put'])}}
+              {{Form::open(['route'=>'updateProfileBackend','method'=>'put'])}}
               <div class="row">
                   <div class="col-md-6">
                     <div class="row">
