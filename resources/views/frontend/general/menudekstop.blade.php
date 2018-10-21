@@ -19,7 +19,7 @@
 				</li>
 
 				<li class="@if(@$page == 'story') active-menu @endif">
-					<a href="{{ route('frontstoryIndex') }}">Blog</a>
+					<a href="{{ route('frontstoryIndex') }}">Story</a>
 				</li>
 
 				<li class="@if(@$page == 'about') active-menu @endif">

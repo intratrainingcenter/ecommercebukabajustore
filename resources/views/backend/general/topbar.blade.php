@@ -1,5 +1,6 @@
 <nav class="navbar-custom">
     <ul class="list-inline float-right mb-0">
+      @if (Auth::user()->kode_jabatan == 'admin')
       <li class="list-inline-item dropdown notification-list">
           <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
           aria-haspopup="false" aria-expanded="false">
@@ -7,15 +8,17 @@
           <span class="badge badge-success noti-icon-badge notif"></span>
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg ">
-          <div class="dropdown-item noti-title">
-              <h5><span class="badge badge-danger float-right notif"></span>Message</h5>
-          </div>
-          <div class="list_chat">
-            
-          </div>
-          <input type="hidden" class="code_user" value="{{Auth::User()->kode_user}}">
+        <div class="dropdown-item noti-title">
+        <h5><span class="badge badge-danger float-right notif"></span>Message</h5>
       </div>
+      <div class="list_chat">
+
+      </div>
+      <input type="hidden" class="code_user" value="{{Auth::User()->kode_user}}">
+      </div>
+
   </li>
+  @endif
         <li class="list-inline-item dropdown notification-list">
             <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
             aria-haspopup="false" aria-expanded="false">

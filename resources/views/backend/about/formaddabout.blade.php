@@ -11,6 +11,7 @@
                     </div>
                 </div>
                 <div id="cropimageabout" class="col-md-12"></div>
+                <center>  <div id="showimageabout" class="col-md-12"></div> </center>
                 <div class="input-field col-md-3"><input type="hidden" name="imageAbout" value="" data-error=".err6"></div>
                 <div class="col-md-12 accepted"></div>
             </div>
