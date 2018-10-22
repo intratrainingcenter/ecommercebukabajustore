@@ -13,7 +13,7 @@
                     <th></th>
                 </thead>
                 <tbody>
-                    @foreach($historyTransaction as $itemHistoryTransaction)
+                    @forelse($historyTransaction as $itemHistoryTransaction)
                     <tr class="table_row" style="margin-top: 0px;">
                         <td style="padding: 15px;">
                             Code Transaction<br>
@@ -50,7 +50,11 @@
                             </button> --}}
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td style="text-align: center;"> No History Transaction </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
