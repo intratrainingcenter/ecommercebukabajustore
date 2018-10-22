@@ -155,6 +155,7 @@ Route::get('/showsetting', 'Backend\BsettingController@showsetting');
 
 Route::group(['prefix'=>'laporanbarang'],function(){
 	Route::get('','Backend\BlaporanbarangController@index')->name('laporanbarangIndex');
+	Route::post('searchCtaegory','Backend\BlaporanbarangController@category');
 });
 /* END ROUTE FOR BACKEND */
 

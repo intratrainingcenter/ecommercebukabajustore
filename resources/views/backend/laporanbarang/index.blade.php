@@ -10,7 +10,7 @@
                     <div class="tab-pane active p-3" id="home" role="tabpanel">
                     <div class="row">
                     <div class="col-2">
-                      <select class="btn btn-primary  " name="">
+                      <select class="btn btn-primary optionCategory" name="">
                         <option value="">Category All</option>
                         @foreach ($category as $items)
                           <option value="{{$items->kode_kategori}}">{{$items->nama_kategori}}</option>
@@ -36,14 +36,16 @@
                           <thead>
                               <tr>
                                   <th>No</th>
-                                  <th>User Name</th>
-                                  <th>Address</th>
-                                  <th>Position</th>
-                                  <th>Status</th>
-                                  <th>Action</th>
+                                  <th>Name Produck</th>
+                                  <th>Hpp</th>
+                                  <th>Harga Jual</th>
+                                  <th>First Stock</th>
+                                  <th>In</th>
+                                  <th>Out</th>
+                                  <th>Last Stock</th>
                               </tr>
                           </thead>
-                          <tbody class="loaddatauser">
+                          <tbody class="loaddatabarang">
 
                           </tbody>
                       </table>
