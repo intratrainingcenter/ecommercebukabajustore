@@ -80,7 +80,7 @@
 			<div class="col-md-4" style="">
 				<small>
 					Shipping Cost<br>
-					{{ $detailHistoryTransaction->shippingService->tarif }}<br>
+					$ {{ $detailHistoryTransaction->shippingService->tarif / 14000}}<br>
 				</small>
 			</div>
 		</div>

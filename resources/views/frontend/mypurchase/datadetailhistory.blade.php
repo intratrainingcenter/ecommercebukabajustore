@@ -40,7 +40,7 @@
 			<td  style="padding: 10px;">
 				$ {{ $subtotal }}
 				<hr>
-				$ {{ $detailHistoryTransaction->shippingService->tarif }}<br>
+				$ {{ $detailHistoryTransaction->shippingService->tarif / 14000 }}<br>
 				{{ (!is_null($detailHistoryTransaction->kode_promo))?"$ ".$detailHistoryTransaction->detailPromo->diskon:"-" }}
 				<hr>
 				$ {{ $detailHistoryTransaction->grandtotal }}<br>

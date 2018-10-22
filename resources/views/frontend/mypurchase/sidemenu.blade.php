@@ -9,7 +9,7 @@
         </div>
         <div class="p-t-55">
             <h4 class="mtext-112 cl2 p-b-33">
-                My Transaction
+                My Purchase
             </h4>
             <ul>
                 <li class="bor18">

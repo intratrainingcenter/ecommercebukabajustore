@@ -25,6 +25,11 @@
 					</a>
 				</li>
 				<li class="p-b-13">
+					<a href="{{ route('mypurchaseIndex') }}" class="stext-102 cl2 hov-cl1 trans-04">
+						My Purchase
+					</a>
+				</li>
+				<li class="p-b-13">
 					<a href="#" class="stext-102 cl2 hov-cl1 trans-04">
 						Track Oder
 					</a>
