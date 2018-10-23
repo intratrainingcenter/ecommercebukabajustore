@@ -258,6 +258,14 @@ Route::group(['prefix'=>'profileFront'], function ()
 	Route::get('','Frontend\FprofileController@index')->name('profileIndex');
   Route::put('updateprofile','Frontend\FprofileController@updateprofile')->name('updateProfile');
 });
+
+Route::group(['prefix'=>'review'], function ()
+{
+	Route::get('','Frontend\FreviewController@viewreview')->name('reviewIndex');
+	Route::post('addreview','Frontend\FreviewController@addreview')->name('addReview');
+	Route::get('showreview','Frontend\FreviewController@showreview');
+	Route::get('waitingreview','Frontend\FreviewController@waitingreview');
+});
 /*
 | END ROUTE FOR FRONTEND
 */

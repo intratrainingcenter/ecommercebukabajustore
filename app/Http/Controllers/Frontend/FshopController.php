@@ -9,6 +9,7 @@ use App\Barang;
 use App\Kategori;
 use App\Opsi_Pemesanan;
 use App\Barang_Favorit;
+use App\Ulasan;
 use Illuminate\Support\Facades\DB;
 
 class FshopController extends Controller
@@ -26,11 +27,13 @@ class FshopController extends Controller
 
 	public function detailproduct($id)
 	{
+		dd(Ulasan::all());
 		$id = decrypt($id);
 		$data = array(
 			'page' => 'shop',
 			'detailProduct' => Barang::where('id',$id)->with('category')->first(),
 			'dataWishlist' => Barang_Favorit::all(),
+			'dataReview' => Ulasan::with('relationuser')->get(),
 		);
 		return view('frontend.shop.detailproduct',$data);
 	}
