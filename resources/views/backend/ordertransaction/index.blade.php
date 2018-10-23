@@ -48,7 +48,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    Action
+                                    {!! Backendhelper::read_order_transaction(route('ordertransactionDetail',['id'=>encrypt($itemOrder->id)])) !!}
                                 </td>
                             </tr>
                             @endforeach

@@ -14,6 +14,13 @@ class Backendhelper
 		return $data;
 	}
 
+	public static function read_order_transaction($routedetail)
+	{
+		$data = '<a href="'.$routedetail.'"><button type="button" class="btn btn-outline-info waves-effect waves-light pull-right" style="margin-right: 10px;" title="Detail"><i class="fa fa-search"></i>
+			</button></a>';
+		return $data;
+	}
+
 	public static function story_read_update_delete_byid($id,$page_update,$page_detail)
 	{
 		$data = '<a><button type="button" class="btn btn-outline-primary waves-effect waves-light pull-right deleteData" style="margin-right: 10px;" attr-id='.$id.' title="Hapus"><i class="fa fa-trash-o"></i>
