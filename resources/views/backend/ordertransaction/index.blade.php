@@ -8,6 +8,12 @@
                 <div class="card-body">
                     <h4 class="mt-0 header-title">Data Order Transaction</h4>
                     <br>
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success" role="alert">
+                        <strong>Success!</strong> {{ $message }}.
+                    </div>
+                    <?php Session::forget('success');?>
+                    @endif
                     <hr>
                     <table id="datatable" class="table table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                         <thead>

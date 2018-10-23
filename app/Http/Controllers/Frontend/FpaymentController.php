@@ -17,7 +17,6 @@ use App\Opsi_Pemesanan;
 use App\Promo;
 use App\Barang;
 use App\ongkir;
-use App\Ulasan;
 
 /** All Paypal Details class **/
 use PayPal\Api\ItemList;
@@ -200,15 +199,7 @@ class FpaymentController extends Controller
                 'subtotal' => $itemCart->subtotal,
                 'keterangan' => $itemCart->keterangan,
             ]);
-
-            $addtoreview = Ulasan::create([
-                'kode_pemesanan' => $itemCart->kode_pemesanan,
-                'kode_user' => Auth::user()->kode_user,
-                'kode_barang' => $itemCart->kode_barang,
-                'staus' => 'belum',
-            ]);
-
-
+            
             $getFirstStockProduct = Barang::where('kode_barang',$itemCart->kode_barang)->first(); 
             $reductionStockProduct =  Barang::where('kode_barang',$itemCart->kode_barang)->update([
                 'stok' => $getFirstStockProduct->stok - $itemCart->qty, 

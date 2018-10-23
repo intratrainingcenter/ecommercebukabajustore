@@ -38,6 +38,12 @@ class BordertransactionController extends Controller
 
 	public function validationprocess(Request $request)
 	{
-		dd('view');
+		$codeTransaction = decrypt($request->codeProcess);
+
+		$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
+			'status' => 'process',
+		]);
+		
+		return redirect()->route('ordertransactionIndex')->with('success','Process Validation transaction '.$codeTransaction.' Successsfull');
 	}
 }
