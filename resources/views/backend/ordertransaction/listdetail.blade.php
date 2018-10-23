@@ -71,8 +71,8 @@
                                         <a href="{{ route('ordertransactionIndex') }}" class="btn btn-info waves-effect waves-light">Back</a>
                                     </div>
                                     <div class="pull-right">
-                                        @if($detailOrder->status != "received")
-                                        <button class="btn btn-primary waves-effect waves-light">Cancel</button>
+                                        @if($detailOrder->status != "received" && $detailOrder->status != "cancel")
+                                        <button class="btn btn-primary waves-effect waves-light validateCancel" attr-code="{{ encrypt($detailOrder->kode_pemesanan) }}">Cancel</button>
                                         @endif
                                         @if($detailOrder->status == "paid")
                                         <button class="btn btn-danger waves-effect waves-light validateProcess" attr-code="{{ encrypt($detailOrder->kode_pemesanan) }}">Process</button>
