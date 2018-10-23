@@ -196,6 +196,7 @@ Route::prefix('cart')->group(function ()
 	Route::delete('removefromcart','Frontend\FcartController@removefromcart');
 	Route::get('sumproduct','Frontend\FcartController@sumproduct');
 });
+Route::resource('ContactUs', 'Frontend\FcontactsController');
 
 /*
 | END ROUTE FOR FRONTEND

@@ -27,7 +27,7 @@
 				</li>
 
 				<li>
-					<a href="contact.html">Contact</a>
+					<a href="{{route('ContactUs.index')}}">Contact</a>
 				</li>
 			</ul>
 		</div>
