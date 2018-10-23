@@ -35,4 +35,9 @@ class BordertransactionController extends Controller
 
 		return view('backend.ordertransaction.detail',$data);
 	}
+
+	public function validationprocess(Request $request)
+	{
+		dd('view');
+	}
 }
