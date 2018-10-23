@@ -16,7 +16,7 @@ class Backendhelper
 
 	public static function read_order_transaction($routedetail)
 	{
-		$data = '<a href="'.$routedetail.'"><button type="button" class="btn btn-outline-info waves-effect waves-light pull-right" style="margin-right: 10px;" title="Detail"><i class="fa fa-search"></i>
+		$data = '<a href="'.$routedetail.'"><button type="button" class="btn btn-outline-info waves-effect waves-light pull-right" style="margin-right: 10px;" title="Validation"><i class="fa fa-check"></i>
 			</button></a>';
 		return $data;
 	}

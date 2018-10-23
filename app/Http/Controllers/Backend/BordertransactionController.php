@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 Use App\Pemesanan;
+Use App\Opsi_Pemesanan;
+Use App\Ulasan;
 
 
 class BordertransactionController extends Controller
@@ -45,5 +47,44 @@ class BordertransactionController extends Controller
 		]);
 		
 		return redirect()->route('ordertransactionIndex')->with('success','Process Validation transaction '.$codeTransaction.' Successsfull');
+	}
+
+	public function validationdelivery(Request $request)
+	{
+		$codeTransaction = decrypt($request->codeDelivery);
+
+		$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
+			'status' => 'delivery',
+		]);
+		
+		return redirect()->route('ordertransactionIndex')->with('success','Delivery Validation transaction '.$codeTransaction.' Successsfull');
+	}
+
+	// public function validationreceived(Request $request)
+	// {
+	// 	$codeTransaction = decrypt($request->codeReceived);
+
+	// 	$itemsTransaction = $this->getcart($codeTransaction);
+
+	// 	// foreach ($itemsTransaction as $itemTransaction) {
+	// 	// 	$addToReview = Ulasan::create([
+	// 	// 		'kode_pemesanan' => $itemTransaction->kode_pemesanan,
+	// 	// 		'kode_user' => Auth::user()->kode_user,
+	// 	// 		'kode_barang' => $itemTransaction->kode_barang,
+	// 	// 		'status' => 'belum',
+	// 	// 	]);
+	// 	// }
+
+	// 	$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
+	// 		'status' => 'received',
+	// 	]);
+		
+	// 	return redirect()->route('ordertransactionIndex')->with('success','Received Validation transaction '.$codeTransaction.' Successsfull');
+	// }
+
+	public function getcart($codeTransaction)
+	{
+		$getCart = Opsi_Pemesanan::where('kode_pemesanan',$codeTransaction);
+		return $getCart;
 	}
 }

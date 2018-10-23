@@ -77,9 +77,9 @@
                                         @if($detailOrder->status == "paid")
                                         <button class="btn btn-danger waves-effect waves-light validateProcess" attr-code="{{ encrypt($detailOrder->kode_pemesanan) }}">Process</button>
                                         @elseif($detailOrder->status == "process")
-                                        <a href="{{ route('validationprocess') }}" class="btn btn-info waves-effect waves-light">Delivery</a>
+                                        <button class="btn btn-info waves-effect waves-light validateDelivery" attr-code="{{ encrypt($detailOrder->kode_pemesanan) }}">Delivery</button>
                                         @elseif($detailOrder->status == "delivery")
-                                        <a href="{{ route('validationprocess') }}" class="btn btn-success waves-effect waves-light">Received</a>
+                                        <button class="btn btn-success waves-effect waves-light validateReceived" attr-code="{{ encrypt($detailOrder->kode_pemesanan) }}">Received</button>
                                         @endif
                                     </div>
                                 </div>
