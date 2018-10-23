@@ -199,6 +199,7 @@ class FpaymentController extends Controller
                 'subtotal' => $itemCart->subtotal,
                 'keterangan' => $itemCart->keterangan,
             ]);
+            
             $getFirstStockProduct = Barang::where('kode_barang',$itemCart->kode_barang)->first(); 
             $reductionStockProduct =  Barang::where('kode_barang',$itemCart->kode_barang)->update([
                 'stok' => $getFirstStockProduct->stok - $itemCart->qty, 
@@ -211,6 +212,7 @@ class FpaymentController extends Controller
         
         $getpromo = $this->getpromo($dataRequest['promoCode']);
         $discount = (!is_null($getpromo))?$getpromo->diskon:0;        
+        $total = $dataRequest['total'] - $discount;
 
         $createTransactionHistory = Pemesanan::create([
             'kode_pemesanan' => $transactionTemp->kode_pemesanan,
@@ -219,7 +221,7 @@ class FpaymentController extends Controller
             'tgl_pemesanan' => date('Y-m-d'),
             'grandtotal' => $dataRequest['total'],
             'diskon' => $discount,
-            'dibayar' => $dataRequest['total'] - $discount,
+            'dibayar' => $total,
             'alamat' => $dataRequest['addressShipping'],
             'kode_ongkir' => $codeShipping,
             'status' => 'paid',
