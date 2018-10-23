@@ -60,27 +60,27 @@ class BordertransactionController extends Controller
 		return redirect()->route('ordertransactionIndex')->with('success','Delivery Validation transaction '.$codeTransaction.' Successsfull');
 	}
 
-	// public function validationreceived(Request $request)
-	// {
-	// 	$codeTransaction = decrypt($request->codeReceived);
+	public function validationreceived(Request $request)
+	{
+		$codeTransaction = decrypt($request->codeReceived);
 
-	// 	$itemsTransaction = $this->getcart($codeTransaction);
+		$itemsTransaction = $this->getcart($codeTransaction);
 
-	// 	// foreach ($itemsTransaction as $itemTransaction) {
-	// 	// 	$addToReview = Ulasan::create([
-	// 	// 		'kode_pemesanan' => $itemTransaction->kode_pemesanan,
-	// 	// 		'kode_user' => Auth::user()->kode_user,
-	// 	// 		'kode_barang' => $itemTransaction->kode_barang,
-	// 	// 		'status' => 'belum',
-	// 	// 	]);
-	// 	// }
+		// foreach ($itemsTransaction as $itemTransaction) {
+		// 	$addToReview = Ulasan::create([
+		// 		'kode_pemesanan' => $itemTransaction->kode_pemesanan,
+		// 		'kode_user' => Auth::user()->kode_user,
+		// 		'kode_barang' => $itemTransaction->kode_barang,
+		// 		'status' => 'belum',
+		// 	]);
+		// }
 
-	// 	$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
-	// 		'status' => 'received',
-	// 	]);
+		$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
+			'status' => 'received',
+		]);
 		
-	// 	return redirect()->route('ordertransactionIndex')->with('success','Received Validation transaction '.$codeTransaction.' Successsfull');
-	// }
+		return redirect()->route('ordertransactionIndex')->with('success','Received Validation transaction '.$codeTransaction.' Successsfull');
+	}
 
 	public function getcart($codeTransaction)
 	{
