@@ -21,7 +21,7 @@ class CreatePemesanansTable extends Migration
             $table->date('tgl_pemesanan');
             $table->date('tgl_diterima')->nullable();
             $table->float('grandtotal');
-            $table->float('diskon');
+            $table->float('diskon')->nullable();
             $table->float('dibayar');
             $table->text('keterangan')->nullable();
             $table->text('alamat');

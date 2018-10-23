@@ -83,6 +83,12 @@
 					$ {{ $detailHistoryTransaction->shippingService->tarif / 14000}}<br>
 				</small>
 			</div>
+			<div class="col-md-4" style="">
+				<small>
+					No Receipt<br>
+					$ {{ $detailHistoryTransaction->shippingService->no_resi }}<br>
+				</small>
+			</div>
 		</div>
 		<br>
 		<h5> Shipping address :</h5>

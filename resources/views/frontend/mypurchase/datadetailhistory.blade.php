@@ -43,7 +43,7 @@
 				$ {{ $detailHistoryTransaction->shippingService->tarif / 14000 }}<br>
 				{{ (!is_null($detailHistoryTransaction->kode_promo))?"$ ".$detailHistoryTransaction->detailPromo->diskon:"-" }}
 				<hr>
-				$ {{ $detailHistoryTransaction->grandtotal }}<br>
+				$ {{ $detailHistoryTransaction->grandtotal - $detailHistoryTransaction->diskon }}<br>
 			</td>
 		</tr>
 	</table>

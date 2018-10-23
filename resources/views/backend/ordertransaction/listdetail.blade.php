@@ -39,7 +39,7 @@
                                 <td class="thick-line"></td>
                                 <td class="thick-line text-center">
                                     <strong>Subtotal</strong></td>
-                                    <td class="thick-line text-right">$ {{ $itemOrder->subtotal }}</td>
+                                    <td class="thick-line text-right">$ {{ $subtotal }}</td>
                                 </tr>
                                 <tr>
                                     <td colspan="3" class="no-line"></td>
@@ -60,7 +60,7 @@
                                             <td class="no-line"></td>
                                             <td class="no-line text-center">
                                                 <strong>Grandtotal</strong></td>
-                                                <td class="no-line text-right"><h4 class="m-0">$ {{ $detailOrder->grandtotal }}</h4></td>
+                                                <td class="no-line text-right"><h4 class="m-0">$ {{ $detailOrder->grandtotal - $detailOrder->diskon }}</h4></td>
                                             </tr>
                                         </tbody>
                                     </table>

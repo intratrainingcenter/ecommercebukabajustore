@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 Use App\Pemesanan;
+Use App\ongkir;
 Use App\Opsi_Pemesanan;
 Use App\Ulasan;
 
@@ -52,6 +54,11 @@ class BordertransactionController extends Controller
 	public function validationdelivery(Request $request)
 	{
 		$codeTransaction = decrypt($request->codeDelivery);
+		$getTransaction = Pemesanan::where('kode_pemesanan',$codeTransaction)->first();
+
+		$updateShipping = ongkir::where('kode_ongkir',$getTransaction->kode_ongkir)->update([
+			'no_resi' => $request->noReceipt,
+		]);
 
 		$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
 			'status' => 'delivery',
@@ -66,14 +73,16 @@ class BordertransactionController extends Controller
 
 		$itemsTransaction = $this->getcart($codeTransaction);
 
-		// foreach ($itemsTransaction as $itemTransaction) {
-		// 	$addToReview = Ulasan::create([
-		// 		'kode_pemesanan' => $itemTransaction->kode_pemesanan,
-		// 		'kode_user' => Auth::user()->kode_user,
-		// 		'kode_barang' => $itemTransaction->kode_barang,
-		// 		'status' => 'belum',
-		// 	]);
-		// }
+		foreach ($itemsTransaction->get() as $itemTransaction) {
+
+			$addToReview = Ulasan::create([
+				'kode_pemesanan' => $itemTransaction->kode_pemesanan,
+				'kode_user' => Auth::user()->kode_user,
+				'kode_barang' => $itemTransaction->kode_barang,
+				'status' => 'belum',
+			]);
+
+		}
 
 		$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
 			'status' => 'received',

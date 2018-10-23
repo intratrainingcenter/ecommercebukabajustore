@@ -33,6 +33,7 @@
             <div class="modal-body">
                 <p>Are you sure will validate Delivery Transaction?</p>
                 <input type="hidden" name="codeDelivery" id="codeDelivery">
+                {{ Form::text('noReceipt',null,['class'=>'form-control','placeholder'=>'Please Enter no receipt','required']) }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>

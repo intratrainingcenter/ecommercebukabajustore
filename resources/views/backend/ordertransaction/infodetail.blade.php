@@ -96,10 +96,16 @@
                     {{ $detailOrder->shippingService->jangka_pengiriman }} Day<br><br>
                 </address>
             </div>
-            <div class="col-4">
+            <div class="col-5">
                 <address>
                     <strong>Shipping Cost:</strong><br>
                     $ {{ $detailOrder->shippingService->tarif / 14000 }}<br><br>
+                </address>
+            </div>
+             <div class="col-5">
+                <address>
+                    <strong>No Receipt:</strong><br>
+                    {{ $detailOrder->shippingService->no_resi }}<br><br>
                 </address>
             </div>
         </div>
