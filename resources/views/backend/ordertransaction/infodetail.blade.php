@@ -108,7 +108,7 @@
             <div class="col-12">
                 <address>
                     <strong> Information </strong>
-                    <p>{{ $detailOrder->keterangan }}</p>
+                    {!! $detailOrder->keterangan !!}
                 </address>
             </div>
         </div>

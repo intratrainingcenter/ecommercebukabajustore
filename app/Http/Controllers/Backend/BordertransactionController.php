@@ -82,6 +82,19 @@ class BordertransactionController extends Controller
 		return redirect()->route('ordertransactionIndex')->with('success','Received Validation transaction '.$codeTransaction.' Successsfull');
 	}
 
+	public function validationcancel(Request $request)
+	{
+		$codeTransaction = decrypt($request->codeCancel);
+		$itemsTransaction = $this->getcart($codeTransaction);
+
+		$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
+			'keterangan' => $request->explaNation,
+			'status' => 'cancel',
+		]);
+		
+		return redirect()->route('ordertransactionIndex')->with('success','Canceled Validation transaction '.$codeTransaction.' Successsfull');
+	}
+
 	public function getcart($codeTransaction)
 	{
 		$getCart = Opsi_Pemesanan::where('kode_pemesanan',$codeTransaction);

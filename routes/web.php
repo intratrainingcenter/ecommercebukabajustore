@@ -157,6 +157,7 @@ Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','setup','statu
 	Route::put('validationprocess','Backend\BordertransactionController@validationprocess')->name('validationprocess');
 	Route::put('validationdelivery','Backend\BordertransactionController@validationdelivery')->name('validationdelivery');
 	Route::put('validationreceived','Backend\BordertransactionController@validationreceived')->name('validationreceived');
+	Route::put('validationcancel','Backend\BordertransactionController@validationcancel')->name('validationcancel');
 });
 
 Route::get('/nonActive', 'DashboardController@nonactive');
