@@ -9,6 +9,11 @@ class Pemesanan extends Model
     protected $table = 'pemesanans';
     protected $fillable = ['kode_pemesanan','kode_promo','kode_user','tgl_pemesanan','tgl_diterima','grandtotal','dibayar','keterangan','alamat','kode_ongkir','status',''];
 
+    public function detailUser()
+	{
+		return $this->belongsTo('App\User','kode_user','kode_user');
+	}
+
     public function shippingService()
 	{
 		return $this->belongsTo('App\ongkir','kode_ongkir','kode_ongkir');

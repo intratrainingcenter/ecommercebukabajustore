@@ -82,6 +82,7 @@ class FpaymentController extends Controller
 	{
 		$validate = $this->validationPayment($request);
 
+
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
@@ -206,18 +207,19 @@ class FpaymentController extends Controller
 
         $removeProductFromCart = Cart::where('kode_pemesanan',$transactionTemp->kode_pemesanan)->delete(); 
         
-        $getpromo = $this->getpromo($request->promoCode);
-        $discount = (!is_null($getpromo))?$getpromo->diskon:0;        
-        $total = $dataRequest['total'] - $discount;
-        
         $codeShipping = "SHP-".date('ymdhis').$service."M".Auth::user()->id;
+        
+        $getpromo = $this->getpromo($dataRequest['promoCode']);
+        $discount = (!is_null($getpromo))?$getpromo->diskon:0;        
+
         $createTransactionHistory = Pemesanan::create([
             'kode_pemesanan' => $transactionTemp->kode_pemesanan,
             'kode_promo' => $dataRequest['promoCode'],
             'kode_user' => Auth::user()->kode_user,
             'tgl_pemesanan' => date('Y-m-d'),
-            'grandtotal' => $total,
-            'dibayar' => $total,
+            'grandtotal' => $dataRequest['total'],
+            'diskon' => $discount,
+            'dibayar' => $dataRequest['total'] - $discount,
             'alamat' => $dataRequest['addressShipping'],
             'kode_ongkir' => $codeShipping,
             'status' => 'paid',

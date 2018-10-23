@@ -27,7 +27,7 @@
         </a>
     </li>
      <li class="has_sub">
-        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-collage"></i> <span> Konten </span> </a>
+        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-collage"></i> <span> Content </span> </a>
         <ul class="list-unstyled">
             <li><a href="{{route('storyIndex')}}">Story</a></li>
             <li><a href="{{route('sliderindex')}}">Slider</a></li>
@@ -36,19 +36,19 @@
     </li>
     @endif
     <li class="has_sub">
-        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cash-multiple"></i> <span> Transaksi </span> </a>
+        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cash-multiple"></i> <span> Transaction </span> </a>
         <ul class="list-unstyled">
-            <li><a href="advanced-animation.html">Transaksi Pemesanan</a></li>
-            <li><a href="advanced-animation.html">Transaksi Retur</a></li>
+            <li><a href="{{ route('ordertransactionIndex') }}">Order Transaction</a></li>
+            <li><a href="advanced-animation.html">Return Transaction</a></li>
         </ul>
     </li>
     @if (Auth::user()->kode_jabatan == 'admin')
     <li class="has_sub">
-        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Laporan </span> </a>
+        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Report  </span> </a>
         <ul class="list-unstyled">
-            <li><a href="advanced-animation.html">Laporan Barang</a></li>
-            <li><a href="advanced-animation.html">Laporan Transaksi</a></li>
-            <li><a href="advanced-animation.html">Laporan Keuangan</a></li>
+            <li><a href="advanced-animation.html">Report Product</a></li>
+            <li><a href="advanced-animation.html">Report Transaction</a></li>
+            <li><a href="advanced-animation.html">Report Financial</a></li>
         </ul>
     </li>
     @endif

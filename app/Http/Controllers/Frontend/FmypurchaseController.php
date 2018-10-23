@@ -12,7 +12,7 @@ class FmypurchaseController extends Controller
 {
     public function history()
     {
-    	$historyTransaction = historyTransaction::where('kode_user',Auth::user()->kode_user)->get();
+    	$historyTransaction = historyTransaction::where('kode_user',Auth::user()->kode_user)->orderBy('created_at','desc')->get();
 		$data = array(
 			'historyTransaction' => $historyTransaction,
 			'page' => 'history',
