@@ -18,4 +18,21 @@ class BordertransactionController extends Controller
 		
 		return view('backend.ordertransaction.index',$data);
 	}
+
+	public function detailorder(Request $request)
+	{
+		$idTransaction = decrypt($request->id);
+		
+		$detailOrder = Pemesanan::where('id',$idTransaction)->with(['detailUser','shippingService','detailPromo','opsiDetailHistory' => function ($query)
+    	{
+    		$query->with('detailProduct');
+    	}])->first();
+
+		$data = array(
+			'page' => 'Order Transaction',
+			'detailOrder' => $detailOrder,
+		);
+
+		return view('backend.ordertransaction.detail',$data);
+	}
 }

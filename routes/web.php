@@ -153,6 +153,7 @@ Route::group(['prefix'=>'chats', 'middleware'=>['auth','adminAccess']],function(
 Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','setup','status']], function ()
 {
 	Route::get('','Backend\BordertransactionController@index')->name('ordertransactionIndex');
+	Route::get('detailorder','Backend\BordertransactionController@detailorder')->name('ordertransactionDetail');
 });
 
 Route::get('/nonActive', 'DashboardController@nonactive');
