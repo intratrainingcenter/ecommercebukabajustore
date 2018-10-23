@@ -7,11 +7,11 @@
 /*
 | ROUTE FOR PAYMENT PAYPAL
 */
-Route::get('paypal','PaymentController@index');
-// route for processing payment
-Route::post('payment', 'PaymentController@payWithpaypal')->name('paypalship');
-// route for check status of the payment
-Route::get('status', 'PaymentController@getPaymentStatus')->name('paypalstatus');
+// Route::get('paypal','PaymentController@index');
+// // route for processing payment
+// Route::post('payment', 'PaymentController@payWithpaypal')->name('paypalship');
+// // route for check status of the payment
+// Route::get('status', 'PaymentController@getPaymentStatus')->name('paypalstatus');
 
 /* ROUTE FOR BACKEND */
 Route::group(['prefix'=>'setup', 'middleware'=>['auth','backendAccess','status']], function ()
@@ -148,6 +148,11 @@ Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','
 Route::group(['prefix'=>'chats'],function(){
 	Route::get('','Backend\BchatsController@index');
 	Route::get('/user','Backend\BchatsController@User');
+});
+
+Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','setup','status']], function ()
+{
+	Route::get('','Backend\BordertransactionController@index')->name('ordertransactionIndex');
 });
 
 Route::get('/nonActive', 'DashboardController@nonactive');
