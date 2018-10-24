@@ -163,6 +163,12 @@ Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','setup','statu
 Route::get('/nonActive', 'DashboardController@nonactive');
 Route::get('/showsetting', 'Backend\BsettingController@showsetting');
 
+Route::group(['prefix'=>'laporanbarang'],function(){
+	Route::get('','Backend\BlaporanbarangController@index')->name('laporanbarangIndex');
+	Route::get('getdataproduck','Backend\BlaporanbarangController@getdataproduck');
+	Route::post('searchCtaegory','Backend\BlaporanbarangController@category');
+	Route::post('filterwithdate','Backend\BlaporanbarangController@filterwithdate');
+});
 /* END ROUTE FOR BACKEND */
 
 

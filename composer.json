@@ -12,7 +12,8 @@
         "laravel/socialite": "^3.1",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.2.0",
-        "paypal/rest-api-sdk-php": "^1.13"
+        "paypal/rest-api-sdk-php": "^1.13",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

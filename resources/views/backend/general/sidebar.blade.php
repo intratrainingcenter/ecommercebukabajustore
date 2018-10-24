@@ -46,9 +46,9 @@
     <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Report  </span> </a>
         <ul class="list-unstyled">
-            <li><a href="advanced-animation.html">Report Product</a></li>
-            <li><a href="advanced-animation.html">Report Transaction</a></li>
-            <li><a href="advanced-animation.html">Report Financial</a></li>
+            <li><a href="{{route('laporanbarangIndex')}}">Laporan Barang</a></li>
+            <li><a href="advanced-animation.html">Laporan Transaksi</a></li>
+            <li><a href="advanced-animation.html">Laporan Keuangan</a></li>
         </ul>
     </li>
     @endif
