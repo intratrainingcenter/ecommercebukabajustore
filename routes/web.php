@@ -240,6 +240,11 @@ Route::prefix('mypurchase')->group(function ()
 	Route::get('detailhistorytransaction','Frontend\FmypurchaseController@detailhistorytransaction')->name('detailHistoryTransaction');
 });
 
+Route::prefix('trackorder')->group(function ()
+{
+	Route::get('','Frontend\FtrackorderController@index')->name('trackorderIndex');
+});
+
 Route::prefix('wishlist')->group(function ()
 {
 	Route::get('','Frontend\FwishlistController@wishlist');
