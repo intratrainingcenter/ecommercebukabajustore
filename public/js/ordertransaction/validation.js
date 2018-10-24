@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+	$('#datatable').DataTable();
 	setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 
 	$('.summernote').summernote({

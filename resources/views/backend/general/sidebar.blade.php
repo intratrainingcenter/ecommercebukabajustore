@@ -48,7 +48,6 @@
         <ul class="list-unstyled">
             <li><a href="advanced-animation.html">Report Product</a></li>
             <li><a href="advanced-animation.html">Report Transaction</a></li>
-            <li><a href="advanced-animation.html">Report Financial</a></li>
         </ul>
     </li>
     @endif
