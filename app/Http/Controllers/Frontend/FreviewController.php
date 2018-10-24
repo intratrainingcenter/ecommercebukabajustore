@@ -24,7 +24,6 @@ class FreviewController extends Controller
         'rating' => 'required',
        ]);
        $addreview = Ulasan::find($request->idrating);
-       $addreview->kode_user = Auth::user()->id;
        $addreview->rating = $request->rating;
        $addreview->isi_ulasan = $request->description;
        $addreview->status = 'selesai';
