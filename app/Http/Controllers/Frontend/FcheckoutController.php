@@ -107,6 +107,19 @@ class FcheckoutController extends Controller
 
 	}
 
+	public function updateannotation(Request $request)
+	{
+		$updateAnnotation = Cart::where('id',$request->idProduct)->update([
+			'keterangan' => $request->annotation,
+		]);
+
+		if ($updateAnnotation) {
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
 	public function getlistcart()
 	{
 		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();

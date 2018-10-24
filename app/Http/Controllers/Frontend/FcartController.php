@@ -39,6 +39,7 @@ class FcartController extends Controller
                 'kode_barang' => $getProduct->kode_barang,
                 'qty' => $request->qtyProduct,
                 'harga' => $getProduct->harga_jual,
+                'keterangan'=> "",
                 'subtotal' => $getProduct->harga_jual * $request->qtyProduct,
             ]);
         }else{

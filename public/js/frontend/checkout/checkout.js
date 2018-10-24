@@ -1,6 +1,8 @@
 $(document).ready(function () {
 	loadlistProduct();
 
+	
+
 	$('.checkPromo').on('click',function () {
 		promoCode = $('#promoCode').val();
 		if(promoCode != '' ){
@@ -29,6 +31,8 @@ $(document).ready(function () {
 	$('#promoCode').on('keyup',function () {
 		$('.messagePromo').text('');
 	});
+
+
 });
 
 function loadlistProduct() {
@@ -55,7 +59,7 @@ function loadlistProduct() {
 				'<td class="column-3">$ '+ value.harga +'</td>'+
 				'<td class="column-3"> x '+ value.qty +'</td>'+
 				'<td class="column-5">$ '+ value.harga * value.qty  +'</td>'+
-				'<td><input type="text" name="information" class="information" placeholder="Enter annotation ordering"/></td>'
+				'<td><input type="text" name="annotation" class="annotation" attr-id="'+ value.id +'" placeholder="Enter annotation ordering" value="'+ value.keterangan +'"/></td>'
 				'</tr>';
 
 			});
@@ -72,3 +76,22 @@ function loadlistProduct() {
 
 	})
 }
+
+$(document).on('change','.annotation',function () {
+		let idProduct = $(this).attr('attr-id');
+		let annotation = $(this).val();
+			$.ajax({
+				headers: {
+					"X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content'),
+				},
+				method:"put",
+				url: location.origin+"/checkout/updateannotation",
+				data:{
+					idProduct:idProduct,
+					annotation:annotation
+				},
+				success:function (data) {
+					
+				}
+			})
+	});

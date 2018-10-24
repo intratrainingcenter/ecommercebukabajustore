@@ -224,6 +224,7 @@ Route::prefix('checkout')->group(function ()
 	Route::get('','Frontend\FcheckoutController@index')->name('checkoutIndex');
 	Route::get('trackcostshipping','Frontend\FcheckoutController@trackcostshipping');
 	Route::get('loadcheckoutproduct','Frontend\FcheckoutController@getlistcart');
+	Route::put('updateannotation','Frontend\FcheckoutController@updateannotation');
 	Route::get('checkpromo','Frontend\FcheckoutController@checkpromo');
 
 	// route for processing payment
