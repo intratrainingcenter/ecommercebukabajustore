@@ -20,7 +20,7 @@ Route::group(['prefix'=>'setup', 'middleware'=>['auth','backendAccess','status']
 	Route::post('postsetup','Backend\BsetupController@postsetup')->name('setupPost');
 });
 
-Route::group(['prefix'=>'dashboard', 'middleware'=>['auth','backendAccess','setup','status']], function ()
+Route::group(['prefix'=>'dashboard', 'middleware'=>['backendAccess','setup','status']], function ()
 {
 	Route::get('','DashboardController@index')->name('dashboardIndex');
 });
@@ -37,17 +37,17 @@ Route::group(['prefix'=>'promo', 'middleware'=>['auth','adminAccess','setup','ba
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
 
-Route::prefix('position')->group(function ()
-{
-	Route::get('','Backend\BpositionController@index')->name('positionIndex');
-	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
-	Route::get('editposition/{id}','Backend\BpositionController@editposition')->name('positionEdit');
-	Route::put('updateposition','Backend\BpositionController@updateposition')->name('positionUpdate');
-	Route::post('createposition','Backend\BpositionController@createposition')->name('positionCreate');
-	Route::get('detailposition/{id}','Backend\BpositionController@detailposition')->name('positionDetail');
-	Route::delete('deleteposition','Backend\BpositionController@deleteposition')->name('positionDelete');
-	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
-});
+// Route::prefix('position')->group(function ()
+// {
+// 	Route::get('','Backend\BpositionController@index')->name('positionIndex');
+// 	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
+// 	Route::get('editposition/{id}','Backend\BpositionController@editposition')->name('positionEdit');
+// 	Route::put('updateposition','Backend\BpositionController@updateposition')->name('positionUpdate');
+// 	Route::post('createposition','Backend\BpositionController@createposition')->name('positionCreate');
+// 	Route::get('detailposition/{id}','Backend\BpositionController@detailposition')->name('positionDetail');
+// 	Route::delete('deleteposition','Backend\BpositionController@deleteposition')->name('positionDelete');
+// 	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
+// });
 Route::group(['prefix'=>'slider', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
 	Route::get('','Backend\BsliderController@index')->name('sliderindex');
@@ -145,7 +145,7 @@ Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','
 	Route::put('updatesetting','Backend\BsettingController@updatesetting')->name('settingUpdate');
 });
 
-Route::group(['prefix'=>'chats'],function(){
+Route::group(['prefix'=>'chats', 'middleware'=>['auth','adminAccess']],function(){
 	Route::get('','Backend\BchatsController@index');
 	Route::get('/user','Backend\BchatsController@User');
 });
