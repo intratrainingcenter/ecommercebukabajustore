@@ -12,16 +12,16 @@ class Users extends Seeder
     public function run()
     {
       DB::table('users')->insert([ [
-         'kode_user' => '1',
+         'kode_user' => '2',
          'avatar' => '',
          'avatar_original' => '',
          'lokasifoto' => 'kosong',
          'provider_id' => '',
          'provider' => '',
-         'name' => 'admin',
-         'email' => 'admin@gmail.com',
-         'password' => bcrypt('admin'),
-         'kode_jabatan' => 'admin',
+         'name' => 'var',
+         'email' => 'varvar@gmail.com',
+         'password' => bcrypt('asdasd'),
+         'kode_jabatan' => 'member',
          'alamat' => 'kedoya',
          'no_telp' => '09213',
          'jenis_kelamin' => 'laki-laki',
