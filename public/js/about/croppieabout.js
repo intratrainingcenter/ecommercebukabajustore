@@ -2,13 +2,13 @@ $(document).ready(function () {
 	var croppieabout = $('#cropimageabout').croppie({
 		enableExif: true,
 		viewport: {
-			width: 400,
-			height: 450,
+			width: 300,
+			height: 350,
 			type: 'square'
 		},
 		boundary: {
-				width: 500,
-			height: 500
+				width: 400,
+			height: 400
 		},
 		url:'../../image/free.jpg'
 	});

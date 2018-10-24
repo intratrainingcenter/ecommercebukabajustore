@@ -106,12 +106,12 @@ class BaboutController extends Controller
       $getdataabout = About::find($request->id);
       Storage::delete('public/imageabout'.'/'.$getdataabout->foto);
 
-      $createabout = About::where('id',$request->id)->update([
-        'foto' => $namafile,
-        'judul' => $request->Title,
-        'deskripsi' => $request->Description,
-        'status' => $request->Status,
-      ]);
+      $createabout = About::find($request->id);
+      $createabout->foto = $namefile;
+      $createabout->judul = $request->Title;
+      $createabout->deskripsi = $request->Description;
+      $createabout->status = $request->Status;
+      $createabout->save();
     }
     return redirect()->route('aboutIndex');
   }

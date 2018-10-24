@@ -10,7 +10,12 @@
                         @if($errors->has('imageAbout')) <div class="form-control-feedback">Choose and Crop image again </div> @endif
                     </div>
                 </div>
-                <div id="cropimageabout" class="col-md-12"></div>
+                <center>
+                <div class="row">
+                  <div class="col-md-6"><h4 class="mt-0 header-title">Image About</h4><img src="{{ asset('storage/imageabout/'.$dataAbout->foto) }}" class="img-fluid" alt="Responsive image"></div>
+                  <div id="showimageabout"></div>
+                  <div id="cropimageabout" class="col-md-6"></div>
+                </div></center>
                 <div class="input-field col-md-3"><input type="hidden" name="imageAbout" value="" data-error=".err6"></div>
                 <div class="col-md-12 accepted"></div>
             </div>
