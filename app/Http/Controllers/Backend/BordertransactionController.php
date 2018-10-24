@@ -71,13 +71,14 @@ class BordertransactionController extends Controller
 	{
 		$codeTransaction = decrypt($request->codeReceived);
 
+		$getTransaction = Pemesanan::where('kode_pemesanan',$codeTransaction)->first();
 		$itemsTransaction = $this->getcart($codeTransaction);
 
 		foreach ($itemsTransaction->get() as $itemTransaction) {
 
 			$addToReview = Ulasan::create([
 				'kode_pemesanan' => $itemTransaction->kode_pemesanan,
-				'kode_user' => Auth::user()->kode_user,
+				'kode_user' => $getTransaction->kode_user,
 				'kode_barang' => $itemTransaction->kode_barang,
 				'status' => 'belum',
 			]);

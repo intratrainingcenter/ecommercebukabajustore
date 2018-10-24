@@ -29,11 +29,8 @@
 							@foreach($dataReview as $data)
 							<div class="flex-w flex-t p-b-68">
 								<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-									@if (Auth::user()->avatar)
-									<img src="{{ asset('storage/imageuser/'.Auth::user()->avatar) }}" defaultimguser alt="user" class="rounded-circle">
-									@else
-									<img src="{{ asset('defaultimguser.png') }}" alt="user" class="rounded-circle">
-									@endif
+										
+							<img class="rounded-circle" src=@if ($data->relationuser->avatar == null)"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgjWUXXQEfziJEK2lotHcpB9hXpYSJJtLJfaHWOh78M2XEOka" @elseif($data->relationuser->kode_jabatan == "member" && $data->relationuser->provider_id != null){{$data->relationuser->avatar_original}} @else"{{ asset('storage/imageuser'.'/'.$data->relationuser->avatar) }}"@endif>
 								</div>
 
 								<div class="size-207">

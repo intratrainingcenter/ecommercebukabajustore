@@ -12,7 +12,7 @@ class FreviewController extends Controller
     public function viewreview()
     {
       $data = array(
-        'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->id)->where('status','belum')->get(),
+        'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->kode_user)->where('status','belum')->get(),
       );
 
       return view('frontend.mypurchase.review.index',$data);
@@ -35,7 +35,7 @@ class FreviewController extends Controller
     public function showreview()
     {
       $data = array(
-        'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->id)->where('status','selesai')->get(),
+        'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->kode_user)->where('status','selesai')->get(),
       );
 
       return view('frontend.mypurchase.review.myreview',$data);
@@ -44,7 +44,7 @@ class FreviewController extends Controller
     public function waitingreview()
     {
       $data = array(
-        'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->id)->where('status','belum')->get(),
+        'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->kode_user)->where('status','belum')->get(),
       );
 
       return view('frontend.mypurchase.review.waitingreview',$data);

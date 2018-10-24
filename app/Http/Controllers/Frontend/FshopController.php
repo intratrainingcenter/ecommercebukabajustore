@@ -27,14 +27,15 @@ class FshopController extends Controller
 
 	public function detailproduct($id)
 	{
-		dd(Ulasan::all());
 		$id = decrypt($id);
+		$detailProduct =  Barang::where('id',$id)->with('category')->first();
 		$data = array(
 			'page' => 'shop',
-			'detailProduct' => Barang::where('id',$id)->with('category')->first(),
+			'detailProduct' => $detailProduct,
 			'dataWishlist' => Barang_Favorit::all(),
-			'dataReview' => Ulasan::with('relationuser')->where('status','selesai')->get(),
+			'dataReview' => Ulasan::with('relationuser')->where('status','selesai')->where('kode_barang',$detailProduct->kode_barang)->get(),
 		);
+		
 		return view('frontend.shop.detailproduct',$data);
 	}
 

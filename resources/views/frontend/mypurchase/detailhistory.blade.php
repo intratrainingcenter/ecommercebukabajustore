@@ -86,7 +86,7 @@
 			<div class="col-md-4" style="">
 				<small>
 					No Receipt<br>
-					$ {{ $detailHistoryTransaction->shippingService->no_resi }}<br>
+					{{ $detailHistoryTransaction->shippingService->no_resi }}<br>
 				</small>
 			</div>
 		</div>
