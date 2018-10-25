@@ -144,6 +144,7 @@ Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','
 	Route::get('','Backend\BsettingController@index')->name('settingIndex');
 	Route::put('updatesetting','Backend\BsettingController@updatesetting')->name('settingUpdate');
 });
+Route::resource('ContactBack', 'Backend\BcontactsController');
 
 Route::get('/nonActive', 'DashboardController@nonactive');
 Route::get('/showsetting', 'Backend\BsettingController@showsetting');
