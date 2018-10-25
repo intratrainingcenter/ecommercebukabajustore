@@ -270,8 +270,8 @@ Route::prefix('story')->group(function ()
 
 Route::group(['prefix'=>'profileFront'], function ()
 {
-	Route::get('','Frontend\FprofileController@index')->name('profileIndex');
-  Route::put('updateprofile','Frontend\FprofileController@updateprofile')->name('updateProfile');
+	Route::get('','FprofileController@index')->name('profileIndex');
+  Route::put('updateprofile','FprofileController@updateprofile')->name('updateProfile');
 });
 
 Route::group(['prefix'=>'review'], function ()

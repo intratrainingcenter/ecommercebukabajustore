@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\User;
@@ -22,9 +22,9 @@ class FprofileController extends Controller
   public function updateprofile(Request $request)
  {
    $updateuser = User::find(Auth::user()->id);
-   if ($request->imageUser == true) {
+   if ($request->imageProfile == true) {
      $createdirectory = Storage::makeDirectory('public/imageuser');
-     $image = str_replace('data:image/png;base64,', '', $request->imageUser);
+     $image = str_replace('data:image/png;base64,', '', $request->imageProfile);
      $image = str_replace(' ','+',$image);
      $namefile = str_random(16).'.png';
      Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
@@ -47,6 +47,6 @@ class FprofileController extends Controller
   }
   $updateuser->save();
 
-   return redirect('profile');
+   return redirect()->route('profileIndex');
  }
 }

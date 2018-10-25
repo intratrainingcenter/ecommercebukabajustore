@@ -8,7 +8,7 @@
 				Track Order
 			</a>
 			@if(Auth::User() != null && Auth::User()->kode_jabatan == 'member')
-			<a href="#" class="flex-c-m trans-04 p-lr-25">
+			<a href="{{ route('profileIndex') }}" class="flex-c-m trans-04 p-lr-25">
 				My Account
 			</a>
 			<a class="flex-c-m trans-04 p-lr-25" href="" onclick="event.preventDefault();
