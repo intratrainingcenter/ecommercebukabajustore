@@ -29,11 +29,11 @@
 							Send Us A Message
 						</h4>
 						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Masukkan Email Anda">
+							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
               <img class="how-pos4 pointer-none" src="{{asset('image/icons/icon-email.png')}}" alt="ICON">
 						</div>
 						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="pesan" placeholder="Apa Yang Bisa Kami Bantu?"></textarea>
+							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="pesan" placeholder="How Can We Help You?"></textarea>
 						</div>
 						<input class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer" type="submit">
 					</form>
