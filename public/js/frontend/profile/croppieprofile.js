@@ -10,7 +10,7 @@ $(document).ready(function () {
 			width: 250,
 			height: 250
 		},
-		url:'../../image/free.jpg'
+		url:'../../image/chooseimage2.png'
 	});
 
 	$('.inputImageprofile').change(function () {

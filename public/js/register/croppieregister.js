@@ -10,7 +10,7 @@ $(document).ready(function () {
 			width: 320,
 			height: 320
 		},
-		url:'../../image/free.jpg'
+		url:'../../image/chooseimage2.png'
 	});
 
 	$('.inputImageregister').change(function () {
