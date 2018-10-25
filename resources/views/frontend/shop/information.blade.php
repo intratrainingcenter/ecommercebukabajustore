@@ -29,19 +29,22 @@
 							@foreach($dataReview as $data)
 							<div class="flex-w flex-t p-b-68">
 								<div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-									<img src="{{ asset('frontend/images/avatar-01.jpg') }}" alt="AVATAR">
+									@if (Auth::user()->avatar)
+									<img src="{{ asset('storage/imageuser/'.Auth::user()->avatar) }}" defaultimguser alt="user" class="rounded-circle">
+									@else
+									<img src="{{ asset('defaultimguser.png') }}" alt="user" class="rounded-circle">
+									@endif
 								</div>
 
 								<div class="size-207">
 									<div class="flex-w flex-sb-m p-b-17">
 										<span class="mtext-107 cl2 p-r-20">
-											 {{ $data->kode_user }}
+											 {{ $data->relationuser->name }}
 										</span>
 
 										<span class="fs-18 cl11">
 											<div class="col-sm-12 col-lg-12">
 													<div class="p-4 text-center">
-															<h5 class="font-16 m-b-15">Rating</h5>
 															<input type="hidden" data-readonly name="rating" class="rating-tooltip" data-filled="mdi mdi-star font-32 text-primary" data-empty="mdi mdi-star-outline font-32 text-muted" value="{{ $data->rating }}"/>
 													</div>
 											</div>
@@ -49,7 +52,7 @@
 									</div>
 
 									<p class="stext-102 cl6">
-										{{ $data->isi }}
+										{{ $data->isi_ulasan }}
 									</p>
 								</div>
 							</div>

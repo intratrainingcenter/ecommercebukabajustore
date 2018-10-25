@@ -27,7 +27,6 @@ class FshopController extends Controller
 
 	public function detailproduct($id)
 	{
-		dd(Ulasan::all());
 		$id = decrypt($id);
 		$data = array(
 			'page' => 'shop',

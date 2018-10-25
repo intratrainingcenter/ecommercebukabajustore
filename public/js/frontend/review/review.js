@@ -76,10 +76,5 @@ e.preventDefault();
 
 $('.waitingreview').on('click', function(e){
 e.preventDefault();
-  waitingreview();
-});
-
-
-$(document).on('click','.submit_review',function () {
-    $('.submit_review').submit();
+ location.reload();
 });
