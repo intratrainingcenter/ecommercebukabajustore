@@ -47,11 +47,10 @@
 
 						<div class="size-212 p-t-2">
 							<span class="mtext-110 cl2">
-								Address
-							</span>
-
+                Address 
+							</span>  
 							<p class="stext-115 cl6 size-213 p-t-18">
-							
+                {{$data->alamat}}
 							</p>
 						</div>
 					</div>
@@ -67,7 +66,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-							
+							{{$data->no_telp}}
 							</p>
 						</div>
 					</div>
@@ -83,7 +82,7 @@
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								<a href="" class="" data-cfemail="f4979b9a80959780b4918c9599849891da979b99">kokoali2606@gmail.com</a>
+								<a>{{$data->email}}</a>
 							</p>
 						</div>
 					</div>

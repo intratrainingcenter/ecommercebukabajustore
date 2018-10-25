@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\contact;
+use App\setting;
 class FcontactsController extends Controller
 {
     /**
@@ -14,7 +15,10 @@ class FcontactsController extends Controller
      */
     public function index()
     {
-      return view('frontend.contactUs.index');
+        $data =setting::first();
+
+          
+      return view('frontend.contactUs.index',compact('data'));
     }
 
     /**
