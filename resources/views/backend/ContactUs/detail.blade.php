@@ -15,7 +15,7 @@
                     <div class="row">
                     <div class="col-6">
                         <address>
-                            <strong>{{substr($datacontact->pesan,0,35)}}</strong><br>
+                            <strong>{{substr($datacontact->pesan,0,20)}}</strong><br>
                             {{$datacontact->pesan}}
                         </address>
                     </div>
