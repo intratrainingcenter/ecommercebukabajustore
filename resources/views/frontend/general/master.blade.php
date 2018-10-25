@@ -53,7 +53,7 @@
 	<!-- Footer -->
 	@include('frontend.general.footer')
 	<!-- Chat -->
-	@include('frontend.chat.index')
+	{{-- @include('frontend.chat.index') --}}
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -150,9 +150,9 @@
 		});
 	</script>
 <!--====================================================================================================-->
-<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
-<script src="{{ asset('js/firebase/intializefirebase.js') }}"></script>
-<script src="{{ asset('js/firebase/chatfrontend.js') }}"></script>
+{{-- <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script> --}}
+{{-- <script src="{{ asset('js/firebase/intializefirebase.js') }}"></script> --}}
+{{-- <script src="{{ asset('js/firebase/chatfrontend.js') }}"></script> --}}
 
 </body>
 </html>
