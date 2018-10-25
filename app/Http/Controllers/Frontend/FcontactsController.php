@@ -35,6 +35,7 @@ class FcontactsController extends Controller
      */
     public function store(Request $request)
     {
+       
         $item = contact::create([
             'email' => $request->email,
             'pesan' => $request->pesan,
