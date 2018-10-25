@@ -48,6 +48,7 @@ class Backendhelper
 		                <div class="col-md-12 accepted"></div>
 		            </div>
 		            <div class="modal-footer">
+								<button type="button" class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Save</button>
 		            </div>
 		        </div><!-- /.modal-content -->
 		    </div>

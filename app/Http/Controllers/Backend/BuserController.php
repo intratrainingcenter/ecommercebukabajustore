@@ -49,6 +49,8 @@ class BuserController extends Controller
         'password' => 'required',
         'addres' => 'required',
         'phonenumber' => 'required',
+        'gender'    => 'required',
+        'position'  => 'required',
       ]);
           $date = date('Ymdhis');
           $createdirectory = Storage::makeDirectory('public/imageuser');
@@ -56,11 +58,20 @@ class BuserController extends Controller
           $image = str_replace(' ','+',$image);
           $namefile = str_random(16).'.png';
           Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
+
+          // create code with position user
+          if ($request->position == 'admin') {
+            $prefixcode = 'ADMN_';
+          }elseif($request->position == 'member') {
+            $prefixcode = 'MB_';
+          }else {
+            $prefixcode = 'SPV_';
+          }
           $create = User::create([
-             'kode_user'        => 'MB_'.$date,
+             'kode_user'        => $prefixcode.$date,
              'avatar'           => $namefile,
              'avatar_original'  => 'null',
-             'provider_id'      => 'null',
+             'provider_id'      => '',
              'provider'         => 'Auth',
              'lokasifoto'       => '/public/imageuser',
              'name'             => $request->name,
@@ -77,15 +88,9 @@ class BuserController extends Controller
 
     public function formupdateuser($id)
     {
-      $select=[];
-      $position = Jabatan::all();
-      foreach ($position as $key ) {
-        $select[$key->kode_jabatan] = $key->nama_jabatan;
-      }
       $data = array(
         'page'    =>'User',
         'user'    =>User::find($id),
-        'position'=>$select,
       );
       return view('backend.user.updateuser',$data);
     }

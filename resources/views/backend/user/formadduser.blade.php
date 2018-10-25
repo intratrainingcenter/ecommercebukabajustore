@@ -35,10 +35,11 @@
             @if($errors->has('email')) <div class="form-control-feedback">{{ $errors->first('email') }}</div> @endif
         </div>
     </div>
-    <div class="form-group col-md-6 ">
+    <div class="form-group col-md-6 @if($errors->has('gender')) has-primary @endif">
         <div class="col-sm-12">
           {{Form::label('Gender')}}
-          {{Form::select('gender', ['male' => 'Male', 'female' => 'Female'],null,['class'=>'form-control'])}}
+          {{Form::select('gender', [''=> 'Choose your Gender', 'male' => 'Male', 'female' => 'Female'],null,['class'=>'form-control'])}}
+          @if($errors->has('addres')) <div class="form-control-feedback">{{ $errors->first('gender') }}</div> @endif
         </div>
     </div>
     <div class="form-group col-md-6 @if($errors->has('addres')) has-primary @endif">
