@@ -2,9 +2,9 @@
 {{Form::open(['route'=>'userUpdate','method'=>'post'])}}
 <div class="row">
       <div class="imgshow col-sm-12 form-group">
-          <img  src=@if ($user->avatar == null)"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgjWUXXQEfziJEK2lotHcpB9hXpYSJJtLJfaHWOh78M2XEOka"@elseif($user->kode_jabatan === "member"){{$user->avatar_original}} @else"{{ asset('storage/imageuser'.'/'.$user->avatar) }}"@endif alt="" style="display: block;margin-left: auto;margin-right: auto;width: 40%;">
+          <img  src=@if ($user->avatar == null)"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkgjWUXXQEfziJEK2lotHcpB9hXpYSJJtLJfaHWOh78M2XEOka"@elseif($user->kode_jabatan === "member" && $user->provider_id != null){{$user->avatar_original}} @else"{{ asset('storage/imageuser'.'/'.$user->avatar) }}"@endif alt="" style="display: block;margin-left: auto;margin-right: auto;width: 40%;">
         </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-12">
       <div class="col-sm-12">
         {{Form::label('Images')}}
       </div>
@@ -22,6 +22,7 @@
             @if($errors->has('name')) <div class="form-control-feedback">{{ $errors->first('name') }}</div> @endif
           {{Form::hidden('avatar',$user->avatar)}}
           {{Form::hidden('userid',$user->kode_user)}}
+          {{Form::hidden('position',$user->kode_jabatan)}}
           {{Form::hidden('id',$user->id)}}
         </div>
     </div>
@@ -43,12 +44,6 @@
           {{Form::label('Address')}}
           {{Form::text('addres',$user->alamat,['class'=>'form-control','placeholder'=>'Your Addres'])}}
             @if($errors->has('addres')) <div class="form-control-feedback">{{ $errors->first('addres') }}</div> @endif
-        </div>
-    </div>
-    <div class="form-group col-md-6">
-        <div class="col-sm-12">
-          {{Form::label('Position')}}
-          {{Form::select('position',$position,$user->kode_jabatan,['class'=>'form-control'])}}
         </div>
     </div>
     <div class="form-group col-md-6 @if($errors->has('phonenumber')) has-primary @endif">
