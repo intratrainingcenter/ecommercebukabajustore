@@ -144,6 +144,7 @@ Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','
 	Route::get('','Backend\BsettingController@index')->name('settingIndex');
 	Route::put('updatesetting','Backend\BsettingController@updatesetting')->name('settingUpdate');
 });
+Route::resource('ContactBack', 'Backend\BcontactsController');
 
 Route::group(['prefix'=>'chats', 'middleware'=>['auth','adminAccess']],function(){
 	Route::get('','Backend\BchatsController@index');
@@ -239,6 +240,7 @@ Route::prefix('mypurchase')->group(function ()
 	Route::get('','Frontend\FmypurchaseController@history')->name('mypurchaseIndex');
 	Route::get('detailhistorytransaction','Frontend\FmypurchaseController@detailhistorytransaction')->name('detailHistoryTransaction');
 });
+Route::resource('ContactUs', 'Frontend\FcontactsController');
 
 Route::prefix('trackorder')->group(function ()
 {
