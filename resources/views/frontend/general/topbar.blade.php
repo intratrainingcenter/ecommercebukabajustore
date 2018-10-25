@@ -4,10 +4,10 @@
 			Shipping for Freedom
 		</div>
 		<div class="right-top-bar flex-w h-full">
-			@if(Auth::User() != null && Auth::User()->kode_jabatan == 'member')
-			<a href="#" class="flex-c-m trans-04 p-lr-25">
+			<a href="{{ route('trackorderIndex') }}" class="flex-c-m trans-04 p-lr-25">
 				Track Order
 			</a>
+			@if(Auth::User() != null && Auth::User()->kode_jabatan == 'member')
 			<a href="#" class="flex-c-m trans-04 p-lr-25">
 				My Account
 			</a>

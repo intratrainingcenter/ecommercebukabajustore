@@ -1,8 +1,5 @@
 $(document).ready(function () {
 	loadlistProduct();
-
-	
-
 	$('.checkPromo').on('click',function () {
 		promoCode = $('#promoCode').val();
 		if(promoCode != '' ){
