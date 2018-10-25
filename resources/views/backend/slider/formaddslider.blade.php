@@ -18,13 +18,15 @@
         </div>
     </div>
     <div class="row">   
-        <div class="form-group col-md-6 @if($errors->has('Createdby')) has-primary @endif">
+         <div class="form-group col-md-6 @if($errors->has('description')) has-primary @endif">
             <div class="col-sm-12">
-                {{Form::label('Createdby')}}
-                {{Form::text('Createdby',null,['class'=>'form-control','placeholder'=>'Enter Createdby'])}}
-                @if($errors->has('Createdby')) <div class="form-control-feedback">{{ $errors->first('Createdby') }}</div> @endif
+                {{Form::label('Description')}}
+                <div>
+                <textarea required class="form-control" rows="5" placeholder="Enter Description" name="description" id="description"></textarea>
+                </div>
+                @if($errors->has('description')) <div class="form-control-feedback">{{ $errors->first('description') }}</div> @endif
             </div>
-        </div>
+        </div> 
         <div class="form-group col-md-6 @if($errors->has('status')) has-primary @endif">
             <div class="col-sm-12">
                  {{Form::label('status')}}
@@ -36,15 +38,7 @@
                 @if($errors->has('status')) <div class="form-control-feedback">{{ $errors->first('status') }}</div> @endif
             </div>
         </div>
-        <div class="form-group col-md-6 @if($errors->has('deskripsi')) has-primary @endif">
-            <div class="col-sm-12">
-                {{Form::label('deskripsi')}}
-                <div>
-                <textarea required class="form-control" rows="5" placeholder="Enter deskripsi" name="deskripsi" id="deskripsi"></textarea>
-                </div>
-                @if($errors->has('deskripsi')) <div class="form-control-feedback">{{ $errors->first('deskripsi') }}</div> @endif
-            </div>
-        </div> 
+       
     </div> 
     {{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
     {{Form::close()}}

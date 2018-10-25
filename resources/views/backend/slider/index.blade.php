@@ -16,7 +16,6 @@
                             <tr>
                                 <th>No</th>
                                 <th>images</th>
-                                <th>Created By</th>
                                 <th>status</th>
                                 <th>Action</th>
                             </tr>
@@ -29,7 +28,6 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td><img width='130px' height='130px' src="{{ asset('storage/imageslider'.'/'.$itemslider->foto) }}" alt=""></td>
-                                <td>{{$itemslider->created_by}}</td>
                                 <td>{{$itemslider->status}}</td>
                                 <td>{!!Backendhelper::read_update_delete_byid($itemslider->id,route('sliderEdit',['id'=>$itemslider->id]),route('sliderDetail',['id'=>$itemslider->id]))!!}</td>
                             </tr>

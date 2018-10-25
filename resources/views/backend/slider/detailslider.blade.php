@@ -15,26 +15,8 @@
                         </div>
                         <div class="col-4">
                             <address>
-                                <strong>Code slider:</strong><br>
-                                <h4>{{ $detailslider->kode_slider }}</h4><br>
-                            </div>
-                            <div class="col-4">
-                                <address>
-                                    <strong>Name slider:</strong><br>
-                                    <h4>{{ $detailslider->nama_slider }}</h4><br>
-                                </address>
-                            </div>
-                            <div class="col-4">
-                                <address>
-                                    <strong>Discount:</strong><br>
-                                    <h4>{{ $detailslider->diskon }}</h4><br>
-                                </address>
-                            </div>
-                            <div class="col-4">
-                                <address>
-                                    <strong>Minimum Purchase:</strong><br>
-                                    <h4>{{ $detailslider->min_pembelian}}</h4><br>
-                                </address>
+                                <strong>Description:</strong><br>
+                                <h4>{{ $detailslider->deskripsi }}</h4><br>
                             </div>
                         </div>   
                          <a href="{{route('sliderindex')}}">

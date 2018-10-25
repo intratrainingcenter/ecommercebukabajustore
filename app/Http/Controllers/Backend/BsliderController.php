@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Slider;
 
 class BsliderController extends Controller
@@ -47,12 +48,12 @@ class BsliderController extends Controller
     $createslider = slider::create([
       'foto' => $namefile,
       'lokasifoto' => 'public/imageslider',
-      'created_by' => $request->Createdby,
+      'created_by' => Auth::user()->kode_user,
       'status' => $request->status,
-      'deskripsi' => $request->deskripsi,
+      'deskripsi' => $request->description,
     ]);
 
-    return redirect('slider'); 
+    return redirect()->route('sliderindex'); 
   }
 
   public function detailslider($id)
@@ -79,7 +80,7 @@ class BsliderController extends Controller
   {
     if($request->imageslider == null){
       $createslider = slider::where('id',$request->id)->update([
-      'created_by' => $request->Createdby,
+      'created_by' => Auth::user()->kode_user,
       'status' => $request->status,
       'deskripsi' => $request->deskripsi,
       ]);
@@ -94,13 +95,13 @@ class BsliderController extends Controller
 
       $createslider = slider::where('id',$request->id)->update([
         'foto' => $namefile,
-        'created_by' => $request->Createdby,
+        'created_by' => Auth::user()->kode_user,
         'status' => $request->status,
         'deskripsi' => $request->deskripsi,
       ]);
     }
 
-    return redirect()->route('sliderIndex'); 
+    return redirect()->route('sliderindex'); 
   }
 
   public function deleteslider(Request $request)
