@@ -32,7 +32,7 @@ class FshopController extends Controller
 			'page' => 'shop',
 			'detailProduct' => Barang::where('id',$id)->with('category')->first(),
 			'dataWishlist' => Barang_Favorit::all(),
-			'dataReview' => Ulasan::with('relationuser')->get(),
+			'dataReview' => Ulasan::with('relationuser')->where('status','selesai')->get(),
 		);
 		return view('frontend.shop.detailproduct',$data);
 	}
