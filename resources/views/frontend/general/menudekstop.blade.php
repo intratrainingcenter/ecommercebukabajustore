@@ -11,7 +11,7 @@
 					<a href="{{ route('fronthomeIndex') }}">Home</a>
 				</li>
 				<li class="@if(@$page == 'shop') active-menu @endif">
-					<a href="{{ route('frontshopIndex') }}">Shop</a>
+					<a href="{{ route('frontshopIndex',['category'=>'all']) }}">Shop</a>
 				</li>
 
 				<li class="label1 @if(@$page == 'story') active-menu @endif" data-label1="hot">
