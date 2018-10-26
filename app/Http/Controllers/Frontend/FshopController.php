@@ -14,11 +14,32 @@ use Illuminate\Support\Facades\DB;
 
 class FshopController extends Controller
 {
-	public function index()
+	public function index(Request $request,$category)
 	{
+		switch ($category) {
+			case 'all':
+				if($request->pmin != null){
+					$dataProduct = Barang::where('nama_barang','like','%'.$request->q.'%')->whereBetween('harga_jual',[$request->pmin,$request->pmax])->paginate(20);	
+				}else{
+					$dataProduct = Barang::where('nama_barang','like','%'.$request->q.'%')->paginate(20);
+				}
+			break;
+			
+			default:
+				$getCategory = Kategori::where('nama_kategori',$category)->first();
+				$codecategory = (!is_null($getCategory))?$getCategory->kode_kategori:"";
+
+				if($request->pmin != null){
+					$dataProduct = Barang::where('kode_kategori',$codecategory)->where('nama_barang','like','%'.$request->q.'%')->whereBetween('harga_jual',[$request->pmin,$request->pmax])->paginate(20);	
+				}else{
+					$dataProduct = Barang::where('kode_kategori',$codecategory)->where('nama_barang','like','%'.$request->q.'%')->paginate(20);
+				}
+			break;
+		}
+		
 		$data = array(
 			'page' => 'shop',
-			'dataProduct' => Barang::paginate(8),
+			'dataProduct' => $dataProduct,
 			'dataCategory' => Kategori::all(),
 			'dataWishlist' => Barang_Favorit::all(),
 		);
@@ -39,77 +60,4 @@ class FshopController extends Controller
 		return view('frontend.shop.detailproduct',$data);
 	}
 
-	public function searchproduct($search)
-	{
-		$data = array(
-			'page' => 'shop',
-			'dataProduct' => Barang::where('nama_barang','like','%'.$search.'%')->get(),
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
-
-	public function categoryproduct($codecategory)
-	{
-		$data = array(
-			'page' => 'shop',
-			'dataProduct' => Barang::where('kode_kategori',$codecategory)->get(),
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
-
-	public function lowtohightproduct()
-	{
-		$data = array(
-			'page' => 'shop',
-			'sortbyactive' => 'Price: Low to High',
-			'dataProduct' => Barang::orderBy('harga_jual','asc')->get()
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
-
-	public function highttolowproduct()
-	{
-		$data = array(
-			'page' => 'shop',
-			'dataProduct' => Barang::orderBy('harga_jual','desc')->get()
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
-
-	public function newnessproduct()
-	{
-		$data = array(
-			'page' => 'shop',
-			'dataProduct' => Barang::orderBy('created_at','asc')->get()
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
-
-	public function averagerating()
-	{
-		$data = array(
-			'page' => 'shop',
-			'dataProduct' => Barang::orderBy('created_at','asc')->get()
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
-
-	public function popularityproduct()
-	{
-		dd(Opsi_Pemesanan::count('kode_barang'));
-		$data = array(
-			'page' => 'shop',
-			'dataProduct' => Barang::orderBy('created_at','asc')->get()
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
-
-	public function rangepriceproduct($min,$max)
-	{
-		$data = array(
-			'page' => 'shop',
-			'dataProduct' => Barang::whereBetween('harga_jual',[$min,$max])->get()
-		);
-		return view('frontend.shop.showproductafterfilter',$data);
-	}
 }
