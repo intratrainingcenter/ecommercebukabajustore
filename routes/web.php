@@ -207,7 +207,7 @@ Route::prefix('RegisterMember')->group(function(){
 	Route::get('',function(){
 		return view('frontend.Auth.registers');
 	})->name('formRegisterMember');
-	Route::post('register','Frontend\FRegisterController@create')->name('memberregister');
+	Route::post('register','Frontend\FRegisterController@register')->name('memberregister');
 });
 
 Route::prefix('cart')->group(function ()
@@ -276,6 +276,9 @@ Route::group(['prefix'=>'review'], function ()
 /*
 | END ROUTE FOR FRONTEND
 */
+
+// verify email
+Route::get('/verifyemail/{token}', 'Frontend\FRegisterController@verify');
 Auth::routes();
 
 

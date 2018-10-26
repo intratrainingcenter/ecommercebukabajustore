@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('no_telp');
             $table->string('jenis_kelamin');
             $table->string('status');
+            $table->string('email_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
             // $table->timestamp('email_verified_at')->nullable();
