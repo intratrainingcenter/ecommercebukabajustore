@@ -238,6 +238,8 @@ Route::prefix('mypurchase')->group(function ()
 {
 	Route::get('','Frontend\FmypurchaseController@history')->name('mypurchaseIndex');
 	Route::get('detailhistorytransaction','Frontend\FmypurchaseController@detailhistorytransaction')->name('detailHistoryTransaction');
+	Route::get('returntransaction','Frontend\FmypurchaseController@retuntransaction')->name('RetunTransaction');
+	Route::post('formreturntransaction','Frontend\FmypurchaseController@formretuntransaction')->name('FormRetunTransaction');
 });
 
 Route::prefix('wishlist')->group(function ()

@@ -5,6 +5,7 @@
 @endsection
 @section('jspersonal')
 	<script type="text/javascript" src="{{ asset('js/frontend/mypurchase/indexhistory.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/frontend/mypurchase/returnTransaction.js') }}"></script>
 	<!-- JS REVIEW -->
 	<script src="{{ asset('backend/assets/plugins/bootstrap-rating/bootstrap-rating.min.js') }}"></script>
 	<script src="{{ asset('backend/assets/pages/rating-init.js') }}"></script>
