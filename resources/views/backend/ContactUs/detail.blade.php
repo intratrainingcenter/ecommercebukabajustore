@@ -15,7 +15,7 @@
                     <div class="row">
                     <div class="col-6">
                         <address>
-                            <strong>{{substr($datacontact->pesan,0,20)}}</strong><br>
+                            <strong>Message</strong><br>
                             {{$datacontact->pesan}}
                         </address>
                     </div>
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>   
-        <a href="{{route('ContactBack.index')}}"><button class="btn btn-primary" type="button"><i class="fa fa-arrow-circle-left"></i> Cancle</button></a>
+        <a href="{{route('ContactBack.index')}}"><button class="btn btn-primary" type="button"><i class="fa fa-arrow-circle-left"></i> Back</button></a>
     </div>
 </section>
 @endsection

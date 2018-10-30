@@ -1,4 +1,5 @@
 @extends('frontend.general.master')
+@extends('frontend.ContactUs.component.asset')
 @section('content')
 <section class="sec-product bg0 p-t-100 p-b-50">
     <!-- Product -->

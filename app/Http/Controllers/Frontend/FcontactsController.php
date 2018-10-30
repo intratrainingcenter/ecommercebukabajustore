@@ -44,7 +44,7 @@ class FcontactsController extends Controller
             'email' => $request->email,
             'pesan' => $request->pesan,
         ]);
-             return redirect()->route('ContactUs.index')->with('success', 'Pesan anda telah terkirim');
+             return redirect()->route('ContactUs.index')->with('success', 'Thanks For Your Suggest We Have got Your Message');
 
        
     }
