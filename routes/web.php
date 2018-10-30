@@ -203,13 +203,16 @@ Route::prefix('loginMember')->group(function(){
 	})->name('formLoginMember');
 	Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 	Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+	Route::get('emailresetpassword', function () {
+		return view('frontend.Auth.emailresetpassword');
+	})->name('emailresetpassword');
 });
 
 Route::prefix('RegisterMember')->group(function(){
 	Route::get('',function(){
 		return view('frontend.Auth.registers');
 	})->name('formRegisterMember');
-	Route::post('register','Frontend\FRegisterController@create')->name('memberregister');
+	Route::post('register','Frontend\FRegisterController@register')->name('memberregister');
 });
 
 Route::prefix('cart')->group(function ()
@@ -282,9 +285,16 @@ Route::group(['prefix'=>'review'], function ()
 	Route::get('showreview','Frontend\FreviewController@showreview');
 	Route::get('waitingreview','Frontend\FreviewController@waitingreview');
 });
+// VerifyEmail
+Route::get('/verifyemail', function () {
+	return view('frontend.checkstatus');
+});
 /*
 | END ROUTE FOR FRONTEND
 */
+
+// verify email
+Route::get('/verifyemail/{token}', 'Frontend\FRegisterController@verify');
 Auth::routes();
 
 

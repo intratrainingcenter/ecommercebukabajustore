@@ -42,6 +42,7 @@
             <a href="{{ url('/loginMember/auth/google') }}"><button class="col-12 col-md-6 col-lg-5 m-lr-auto cl0 size-121 p-lr-15 trans-04 bor1" style="background-color:#fa4521;">  Google  </button></a>
           </div><br>
           <a href="{{route('formRegisterMember')}}"><p style="text-align:center;">Create an Account</p></a>
+          <a href="{{route('emailresetpassword')}}"><p style="text-align:center;">Forgot Your Password</p></a>
 				</div>
 			</div>
 		</div>
