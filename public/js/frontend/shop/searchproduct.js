@@ -19,7 +19,7 @@ $(document).ready(function () {
 	}
 
 	$('.filterPrice').removeClass('filter-link-active sortactive');
-	if(paramPmin == 0){
+	if(paramPmin == 1){
 		$("button.filterPrice[attr-pmin='"+ paramPmin +"']").addClass('filter-link-active priceactive');
 	}else if(paramPmin == 50){
 		$("button.filterPrice[attr-pmin='"+ paramPmin +"']").addClass('filter-link-active priceactive');

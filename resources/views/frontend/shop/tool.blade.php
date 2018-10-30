@@ -41,19 +41,6 @@
 						News
 					</button>
 				</li>
-
-				<li class="p-b-6">
-					<button href="" class="sortby filter-link stext-106 trans-04" attr-sort="popularity">
-						Popularity
-					</button>
-				</li>
-
-				<li class="p-b-6">
-					<button href="" class="sortby filter-link stext-106 trans-04" attr-sort="rating">
-						Average rating
-					</button>
-				</li>
-
 				<li class="p-b-6">
 					<button href="" class="sortby filter-link stext-106 trans-04" attr-sort="plow">
 						Price: Low to High
@@ -78,10 +65,9 @@
 						All
 					</button>
 				</li>
-
 				<li class="p-b-6">
-					<button class="filterPrice filter-link stext-106 trans-04" attr-pmin="0" attr-pmax="50">
-						$0.00 - $50.00
+					<button class="filterPrice filter-link stext-106 trans-04" attr-pmin="1" attr-pmax="50">
+						$1.00 - $50.00
 					</button>
 				</li>
 
@@ -104,7 +90,7 @@
 				</li>
 
 				<li class="p-b-6">
-					<button class="filterPrice filter-link stext-106 trans-04" attr-pmin="200" attr-pmax="+">
+					<button class="filterPrice filter-link stext-106 trans-04" attr-pmin="200" attr-pmax="">
 						$200.00+
 					</button>
 				</li>
