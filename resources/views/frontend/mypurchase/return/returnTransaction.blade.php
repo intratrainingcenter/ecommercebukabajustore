@@ -11,14 +11,14 @@
 			Back
 		</div>
 	</a>
-	<form action="{{ route('FormRetunTransaction')}}" method="post" class="pull-right">
+	<form action="{{ route('FormRetunTransaction')}}" method="post" class="pull-right next_return">
 		{{ csrf_field() }}
 		<button type="submit">
 			<div class="pull-right flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" style="background-color: #282828; color: #ECECEC; margin-right:40px;">
 				Next Return
 			</div>
 		</button>
-		<input type="hidden" name="productId[]" class="productId">
-		<input type="hidden" name="transactionId[]" class="transactionId">
+		<input type="hidden" name="productId" class="productId">
+		<input type="hidden" name="transactionId" class="transactionId">
 </form>
 </div>

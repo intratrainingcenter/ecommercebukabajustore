@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
-  disabled();
+});
+
 
   $(document).on('click','input[name=checkbox]',function(){
-
       $('input:checkbox').not(this).prop('checked', this.checked);
       idtransaction = $('input[name=idtransaction]').val();
       var id = [];
@@ -15,48 +15,41 @@ $(document).ready(function() {
   });
 
   $(document).on('click','input[name=idProduck]',function(){
-    idProduck = $('input[name=idProduck]:checked').val();
+    var id = [];
+    	$('.idProduck:checked').each(function(){
+    		id.push($(this).val());
+    	});
     idtransaction = $('input[name=idtransaction]').val();
-    $(document).find('.productId').val(idProduck);
+    $(document).find('.productId').val(id);
     $(document).find('.transactionId').val(idtransaction);
   });
 
+
     // make max value input quantity base on quantity producttransaction
-    $(document).on('click','.plus',function(){
-      quantityProduck = parseInt($('.quantityProduck').val());
-      quantityReturn = parseInt($('.quantityReturn').val());
+    $(document).on('click','.btnAddvalueInput',function(){
+      // codetransaction = $('.codeTransaction').val();
 
-      $('.minus').removeAttr('disabled', true);
+      codeProduct = $(this).attr('codeProduct');
+      quantityProduct = $(this).attr('attr_qty');
+      quantityReturn = $('.quantityReturn'+codeProduct).val();
+      console.log(quantityProduct);
+      console.log(quantityReturn);
+      $('.minus'+codeProduct).removeAttr('disabled', true);
 
-      if (quantityReturn == quantityProduck) {
-         $('.plus').attr('disabled', true);
-      }
+      if (quantityReturn == quantityProduct) {
+          $('.plus'+codeProduct).attr('disabled', true);
+        }
   });
+
 
     // make minus value input quantity
-    $(document).on('click','.minus',function(){
+    $(document).on('click','.btnminusvalueInput',function(){
+      codeProduct = $(this).attr('codeProduct');
+      quantityProduct = $(this).attr('attr_qty');
+      quantityReturn = $('.quantityReturn'+codeProduct).val();
 
-      quantityReturn = parseInt($('.quantityReturn').val());
-
-      $('.plus').removeAttr('disabled', true);
-
+      $('.plus'+codeProduct).removeAttr('disabled', true);
       if (quantityReturn == '1') {
-         $('.minus').attr('disabled', true);
+         $('.minus'+codeProduct).attr('disabled', true);
       }
   });
-
-  // function chek value in quantity Produck
-  function disabled()
-  {
-    quantityProduck = parseInt($('.quantityProduck').val());
-    quantityReturn = parseInt($('.quantityReturn').val());
-
-    if (quantityReturn == quantityProduck) {
-       $('.plus').attr('disabled', true);
-    }
-    if (quantityReturn == '1') {
-      $('.minus').attr('disabled', true);
-    }
-  }
-
-});

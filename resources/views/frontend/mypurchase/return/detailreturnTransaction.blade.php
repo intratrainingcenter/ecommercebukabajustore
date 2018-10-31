@@ -6,6 +6,7 @@
 			</th>
 			<th class="column-2">Product</th>
 			<th class=""></th>
+			<th class="column-3">Quantity</th>
 			<th class="column-4">Price</th>
 			<th class="column-4"></th>
 		</tr>
@@ -21,6 +22,7 @@
 				</div>
 			</td>
 			<td class="column-3">{{ $itemDetailHistory->detailProduct->nama_barang }}</td>
+			<td class="column-3">{{ $itemDetailHistory->qty }} Pcs</td>
 			<td class="column-4">$ {{ $itemDetailHistory->harga }}</td>
 			<td class="column-4"></td>
 		</tr>
