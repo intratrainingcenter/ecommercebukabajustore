@@ -27,12 +27,6 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-      $checkstatususer = User::where('email',$request->email)->first();
-      if ($checkstatususer->status == 'VerifyEmail') {
-        return view('frontend.checkstatus',['info'=>'VerifyEmail']);
-      }else if ($checkstatususer->status == 'nonActive') {
-        return view('frontend.checkstatus',['info'=>'nonActive']);
-      }
         $this->validateLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -71,6 +65,9 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        if (Auth::user()) {
+          $this->middleware('verifyemail')->except('logout');;
+        }
     }
 
     public function logout(Request $request)

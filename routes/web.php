@@ -201,6 +201,9 @@ Route::prefix('loginMember')->group(function(){
 	})->name('formLoginMember');
 	Route::get('auth/{provider}', 'Auth\LoginController@redirectToProvider');
 	Route::get('auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+	Route::get('emailresetpassword', function () {
+		return view('frontend.Auth.emailresetpassword');
+	})->name('emailresetpassword');
 });
 
 Route::prefix('RegisterMember')->group(function(){
@@ -272,6 +275,10 @@ Route::group(['prefix'=>'review'], function ()
 	Route::post('addreview','Frontend\FreviewController@addreview')->name('addReview');
 	Route::get('showreview','Frontend\FreviewController@showreview');
 	Route::get('waitingreview','Frontend\FreviewController@waitingreview');
+});
+// VerifyEmail
+Route::get('/verifyemail', function () {
+	return view('frontend.checkstatus');
 });
 /*
 | END ROUTE FOR FRONTEND

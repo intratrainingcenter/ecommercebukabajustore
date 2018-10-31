@@ -49,12 +49,6 @@
                         </div>
                     </div>
                     <div class="form-group m-t-10 mb-0 row">
-                        <div class="col-sm-7 m-t-20">
-                            <a class="text-muted" href="{{ route('password.request') }}">
-                                <i class="mdi mdi-lock    "></i>
-                                    {{ __('Forgot Your Password?') }}
-                            </a>
-                        </div>
                         @if ($useradmin < 1)
                         <div class="col-sm-5 m-t-20">
                             <a href="{{route('register')}}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
