@@ -1,6 +1,8 @@
 $(document).ready(function () {
   $('#datatable').DataTable();
 
+  setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
+
   $('.summernote').summernote({
       height: 300,                 // set editor height
       minHeight: null,             // set minimum height of editor
@@ -9,9 +11,7 @@ $(document).ready(function () {
   });
   
   // set timeout show alert
-  setTimeout(function(){
-    $(document).find('.alert').fadeOut('slow');
-  },3000);
+  setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 });
 $(document).on('click','.deleteData',function () {
    $('#modalDelete').modal('show');

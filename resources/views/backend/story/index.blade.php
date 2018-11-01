@@ -6,15 +6,10 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                  @if(session('add'))
-                    <div class="alert alert-success" role="alert">
-                       <strong>Well done!</strong> The data was successfully added.
-                   </div>
-                 @elseif (session('update'))
-                   <div class="alert alert-success" role="alert">
-                      <strong>Well done!</strong> Story data has been updated successfully.
-                  </div>
-                  @endif
+                    @if ($message = Session::get('success'))
+                    {!! Backendhelper::alertsuccess($message) !!}
+                    <?php Session::forget('success');?>
+                    @endif
                     <h4 class="mt-0 header-title">Data Story
                         <a href="{{route('storyAdd')}}"><button type="button" class="btn btn-outline-success waves-effect waves-light pull-right"><i class="fa fa-plus  "></i> Add</button></a>
                     </h4>
@@ -31,10 +26,10 @@
                             </tr>
                         </thead>
                         <tbody id="loaddatastory">
-                          @php
+                            @php
                             $no = 1;
-                          @endphp
-                          @foreach($story as $show)
+                            @endphp
+                            @foreach($story as $show)
                             <tr>
                                 <td>{{$no++}}</td>
                                 <td><img src="{{ asset('storage/imagestory'.'/'.$show->foto) }}" alt="" style="width:100px; height:100px;"></td>
@@ -44,7 +39,7 @@
                                     {!!Backendhelper::story_read_update_delete_byid($show->id,route('ShowstoryUpdate',['id'=>$show->id]),route('storyDetail',['id'=>$show->id]))!!}
                                 </td>
                             </tr>
-                          @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

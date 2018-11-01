@@ -48,7 +48,7 @@ class BpositionController extends Controller
 			'nama_jabatan' => $request->namePosition,
 		]);
 
-		return redirect()->route('positionIndex'); 
+		return redirect()->route('positionIndex')->with('success','data was successfully added.'); 
 	}
 
 	public function detailposition($id)
@@ -85,7 +85,7 @@ class BpositionController extends Controller
 			'nama_jabatan' => $request->namePosition,
 		]);
 
-		return redirect()->route('positionIndex'); 
+		return redirect()->route('positionIndex')->with('success','data was successfully updated.'); 
 	}
 
 	public function deleteposition(Request $request)

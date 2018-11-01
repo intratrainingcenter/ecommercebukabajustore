@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	var croppiestory = $('#cropimageuser').croppie({
+	var croppieuser = $('#cropimageuser').croppie({
 		enableExif: true,
 		viewport: {
 			width: 300,
@@ -29,7 +29,7 @@ $(document).ready(function () {
 	$(document).on('click','.apply',function (event) {
 		var img='';
 		event.preventDefault();
-		croppiestory.croppie('result','base64').then(function (result) {
+		croppieuser.croppie('result','base64').then(function (result) {
 			$('#cropimageuser').hide();
 			img +="<img src="+result+" style='display: block;margin-left: auto;margin-right: auto;width: 40%;'>";
 			$('.accepted').html('<button type="button" class="btn btn-large waves-effect pull-right waves-light green cancel">Cancel</button>');
@@ -37,7 +37,7 @@ $(document).ready(function () {
 			$('input[name="imageuser"]').val(result);
 		});
 	});
-	//
+
 	$(document).on('click','.cancel',function (event) {
 		event.preventDefault();
 			$('#cropimageuser').show();

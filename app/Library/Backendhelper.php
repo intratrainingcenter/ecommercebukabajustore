@@ -79,4 +79,13 @@ class Backendhelper
 
 		return $data;
 	}
+
+	public static function alertsuccess($message)
+	{
+		$data = '<div class="alert alert-success" role="alert">
+                       <strong>Success!</strong> '.$message.'
+                </div>';
+
+        return $data;
+	}
 }

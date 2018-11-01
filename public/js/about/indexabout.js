@@ -1,6 +1,8 @@
 $(document).ready(function () {
 	$('#datatable').DataTable();
 
+	setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
+
 	$('.summernote').summernote({
 	    height: 300,                 // set editor height
 	    minHeight: null,             // set minimum height of editor

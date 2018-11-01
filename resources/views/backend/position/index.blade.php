@@ -6,6 +6,10 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
+                    @if ($message = Session::get('success'))
+                        {!! Backendhelper::alertsuccess($message) !!}
+                    <?php Session::forget('success');?>
+                    @endif
                     <h4 class="mt-0 header-title">Data Position
                         <a href="{{route('positionAdd')}}"><button type="button" class="btn btn-outline-success waves-effect waves-light pull-right"><i class="fa fa-plus  "></i> Add</button></a>
                     </h4>

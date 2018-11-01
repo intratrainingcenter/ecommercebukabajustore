@@ -59,7 +59,7 @@ class BaboutController extends Controller
       'status'=> 'Active',
     ]);
 
-    return redirect()->route('aboutIndex');
+    return redirect()->route('aboutIndex')->with('success','data was successfully added.');
   }
 
   public function detailabout($id)
@@ -113,7 +113,7 @@ class BaboutController extends Controller
       $createabout->status = $request->Status;
       $createabout->save();
     }
-    return redirect()->route('aboutIndex');
+    return redirect()->route('aboutIndex')->with('success','data was successfully updated.');
   }
 
   public function deleteabout(Request $request)

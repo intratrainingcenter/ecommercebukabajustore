@@ -53,7 +53,7 @@ class BsliderController extends Controller
       'deskripsi' => $request->description,
     ]);
 
-    return redirect()->route('sliderindex'); 
+    return redirect()->route('sliderindex')->with('success','data was successfully added.'); 
   }
 
   public function detailslider($id)
@@ -101,7 +101,7 @@ class BsliderController extends Controller
       ]);
     }
 
-    return redirect()->route('sliderindex'); 
+    return redirect()->route('sliderindex')->with('success','data was successfully updated.'); 
   }
 
   public function deleteslider(Request $request)

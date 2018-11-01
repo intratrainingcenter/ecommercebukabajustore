@@ -31,7 +31,7 @@
                         <div class="form-group col-md-12">
                             <div class="col-sm-12">
                               {{Form::label('Title')}}
-                              {{Form::text('title',$story->title,['class'=>'form-control','placeholder'=>'Enter Title','required'])}}
+                              {{Form::text('title',$story->judul,['class'=>'form-control','placeholder'=>'Enter Title','required'])}}
                             </div>
                         </div>
                         <div class="form-group col-md-12">

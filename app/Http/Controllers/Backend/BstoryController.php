@@ -39,7 +39,7 @@ class BstoryController extends Controller
         'deskripsi'   =>$request->deskripsi,
         'status'      =>'Aktif',
       ]);
-      return redirect('story')->with('add','Story');
+      return redirect('story')->with('success','data was successfully added.');
     }
 
     public function showupdatestory($id)
@@ -62,7 +62,7 @@ class BstoryController extends Controller
           'deskripsi' =>$request->deskripsi,
           'status'    =>$request->status,
         ]);
-        return redirect('story')->with('update','Story');
+
       }else
       {
         $createdirectory = Storage::makeDirectory('public/imagestory');
@@ -78,8 +78,8 @@ class BstoryController extends Controller
           'deskripsi' =>$request->deskripsi,
           'status'    =>$request->status,
         ]);
-        return redirect('story')->with('update','Story');
       }
+        return redirect('story')->with('success','data was successfully updated.');
     }
 
     public function deletestory(Request $request)

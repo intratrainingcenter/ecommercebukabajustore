@@ -6,6 +6,10 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
+                    @if ($message = Session::get('success'))
+                    {!! Backendhelper::alertsuccess($message) !!}
+                    <?php Session::forget('success');?>
+                    @endif
                     <h4 class="mt-0 header-title">Data Promo
                         <a href="{{route('promoAdd')}}"><button type="button" class="btn btn-outline-success waves-effect waves-light pull-right"><i class="fa fa-plus  "></i> Add</button></a>
                     </h4>
@@ -23,7 +27,7 @@
                         </thead>
                         <tbody id="dataPromo">
                             @php
-                                $no = 1;
+                            $no = 1;
                             @endphp
                             @foreach($dataPromo as $itemPromo)
                             <tr>

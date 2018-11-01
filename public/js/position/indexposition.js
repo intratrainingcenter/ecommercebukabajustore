@@ -1,5 +1,6 @@
 $(document).ready(function () {
 	$('#datatable').DataTable();
+	setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 });
 
 function loaddataposition() {
@@ -15,6 +16,7 @@ function loaddataposition() {
 		}
 	});
 }
+
 $(document).on('click','.deleteData',function () {
 	let idPosition = $(this).attr('attr-id');
 	$('#idPosition').val(idPosition);

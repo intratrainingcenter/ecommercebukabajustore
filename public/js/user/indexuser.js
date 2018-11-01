@@ -1,9 +1,7 @@
 $(document).ready(function () {
   $('#datatable').DataTable();
   // set timeout show alert
-  setTimeout(function(){
-    $(document).find('.alert').fadeOut('slow');
-  },3000);
+  setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 });
 
 // filter show data with code position

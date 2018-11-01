@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $('#datatable').DataTable();
+  setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 
 $('.summernote').summernote({
     height: 300,                 // set editor height
@@ -19,7 +20,7 @@ $('.functionDelete').click(function () {
     $('#modalDelete').modal('hide');
     swal(
         'Deleted!',
-        'Data Promo has been deleted.',
+        'Data Product has been deleted.',
         'success'
         )
 });
@@ -52,7 +53,7 @@ $(document).on('click','.functionDelete',function (e) {
 			if(data == 'success'){
 				swal(
 				'Deleted!',
-				'Data Promo has been deleted.',
+				'Data Product has been deleted.',
 				'success'
 				);
 			}

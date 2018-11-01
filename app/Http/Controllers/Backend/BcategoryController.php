@@ -58,7 +58,7 @@ class BcategoryController extends Controller
         'lokasifoto' => 'public/imagecategory/',
       ]);
 
-      return redirect()->route('categoryIndex');
+      return redirect()->route('categoryIndex')->with('success','data was successfully added.');
     }
 
     public function deletecategory(Request $request)
@@ -112,7 +112,7 @@ class BcategoryController extends Controller
         'nama_kategori' => $request->nameCategory,
       ]);
 
-      return redirect()->route('categoryIndex');
+      return redirect()->route('categoryIndex')->with('success','data was successfully updated.');
     }
 
 }
