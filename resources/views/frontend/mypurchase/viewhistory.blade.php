@@ -6,6 +6,14 @@
         	@include('frontend.mypurchase.listhistorytransaction')
         @elseif($page=='detailhistory')
         	@include('frontend.mypurchase.detailhistory')
+        @elseif($page=='listreturn')
+          @include('frontend.mypurchase.return.listreturntransaction')
+        @elseif($page=='detailreturn')
+          @include('frontend.mypurchase.return.listdetailreturnTransaction')
+        @elseif($page=='Return Transaction')
+        	@include('frontend.mypurchase.return.returnTransaction')
+        @elseif($page=='List Data Return Transaction')
+          @include('frontend.mypurchase.return.formreturnTransaction')
         @endif
         </div>
     </div>

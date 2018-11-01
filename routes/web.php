@@ -170,6 +170,12 @@ Route::group(['prefix'=>'laporanbarang'],function(){
 	Route::post('searchCtaegory','Backend\BlaporanbarangController@category');
 	Route::post('filterwithdate','Backend\BlaporanbarangController@filterwithdate');
 });
+
+Route::group(['prefix'=>'Return'],function(){
+	Route::get('','Backend\BreturnController@index')->name('indexReturn');
+	Route::get('processreturn','Backend\BreturnController@returnProcess')->name('processReturn');
+	Route::put('validationreturn','Backend\BreturnController@validationReturn')->name('validationReturn');
+});
 /* END ROUTE FOR BACKEND */
 
 
@@ -243,6 +249,11 @@ Route::prefix('mypurchase')->group(function ()
 {
 	Route::get('','Frontend\FmypurchaseController@history')->name('mypurchaseIndex');
 	Route::get('detailhistorytransaction','Frontend\FmypurchaseController@detailhistorytransaction')->name('detailHistoryTransaction');
+	Route::get('returntransaction','Frontend\FmypurchaseController@retuntransaction')->name('RetunTransaction');
+	Route::get('detailretuntransaction','Frontend\FmypurchaseController@detailretuntransaction')->name('DetailRetunTransaction');
+	Route::get('listretuntransaction','Frontend\FmypurchaseController@listretuntransaction')->name('listRetunTransaction');
+	Route::post('formreturntransaction','Frontend\FmypurchaseController@formretuntransaction')->name('FormRetunTransaction');
+	Route::post('processreturntransaction','Frontend\FmypurchaseController@processretuntransaction')->name('processRetunTransaction');
 });
 Route::resource('ContactUs', 'Frontend\FcontactsController');
 

@@ -36,6 +36,8 @@ use App\Mail\SendInvoicePurchase;
 
 class FpaymentController extends Controller
 {
+   private $_api_context;
+
 	public function __construct()
 	{
 		/** PayPal api context **/
@@ -71,12 +73,12 @@ class FpaymentController extends Controller
     public function validationPayment($param)
     {
     	$param->validate([
-    		'destinationCity' => 'required', 
-    		'courier' => 'required', 
-    		'service' => 'required', 
-    		'addressShipping' => 'required', 
-    		'total' => 'required', 
-    		'totalProduct' => 'required', 
+    		'destinationCity' => 'required',
+    		'courier' => 'required',
+    		'service' => 'required',
+    		'addressShipping' => 'required',
+    		'total' => 'required',
+    		'totalProduct' => 'required',
     	]);
     }
 
@@ -101,7 +103,7 @@ class FpaymentController extends Controller
         $item_1->setName('Total Final Shopping') /** item name **/
                 ->setCurrency('USD')
                 ->setQuantity(1)
-                ->setPrice($total); /** unit price **/ 	
+                ->setPrice($total); /** unit price **/
 
         $item_list = new ItemList();
         $item_list->setItems(array($item_1));
@@ -145,7 +147,7 @@ class FpaymentController extends Controller
 		}
         /** add payment ID to session **/
         Session::put('paypal_payment_id', $payment->getId());
-        
+
         /** menambahkan Data Request dari form shipping kedadalam session **/
 		Session::put('request', $request->all());
 
@@ -203,17 +205,17 @@ class FpaymentController extends Controller
                 'subtotal' => $itemCart->subtotal,
                 'keterangan' => $itemCart->keterangan,
             ]);
-            
-            $getFirstStockProduct = Barang::where('kode_barang',$itemCart->kode_barang)->first(); 
+
+            $getFirstStockProduct = Barang::where('kode_barang',$itemCart->kode_barang)->first();
             $reductionStockProduct =  Barang::where('kode_barang',$itemCart->kode_barang)->update([
-                'stok' => $getFirstStockProduct->stok - $itemCart->qty, 
+                'stok' => $getFirstStockProduct->stok - $itemCart->qty,
             ]);
         }
 
-        $removeProductFromCart = Cart::where('kode_pemesanan',$transactionTemp->kode_pemesanan)->delete(); 
-        
+        $removeProductFromCart = Cart::where('kode_pemesanan',$transactionTemp->kode_pemesanan)->delete();
+
         $codeShipping = "SHP-".date('ymdhis').$service."M".Auth::user()->id;
-             
+
         $createTransactionHistory = Pemesanan::create([
             'kode_pemesanan' => $transactionTemp->kode_pemesanan,
             'kode_promo' => $dataRequest['promoCode'],

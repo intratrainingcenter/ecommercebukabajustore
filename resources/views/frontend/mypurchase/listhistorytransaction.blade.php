@@ -5,7 +5,12 @@
             <strong>Payment Success!</strong> Payment was successfully paid.
         </div>
         <?php Session::forget('success');?>
-        @endif        
+      @elseif (Session('Return'))
+        <div class="alert alert-success" role="alert">
+            <strong>Return Success!</strong> Return was successfully paid.
+        </div>
+        <?php Session('Return');?>
+        @endif
         <div class="wrap-table-shopping-cart">
             <table class="table-shopping-cart" style="padding: 10px;">
                 <thead class="table_head">
@@ -20,7 +25,7 @@
                             <h4>{{ $itemHistoryTransaction->kode_pemesanan }}</h4>
                             <small>
                                 Ordered on<br>
-                                {{ $itemHistoryTransaction->updated_at }} 
+                                {{ $itemHistoryTransaction->updated_at }}
                                 @if($itemHistoryTransaction->status == 'pending')
                                 <h5 style="color: orange;" class="pull-right"> Pending</h5>
                                 @elseif($itemHistoryTransaction->status == 'paid')
@@ -45,9 +50,23 @@
                                     Detail Transaction
                                 </div>
                             </a>
-                           {{--  <button class="flex-c-m stext-101 cl0 size-116 bg3 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-                                Cancel Transaction
-                            </button> --}}
+                            @if ($itemHistoryTransaction->status == 'received')
+                              @if ($itemHistoryTransaction->Return != null)
+                                @if ($itemHistoryTransaction->Return->status == 'reject')
+                                  <a href="{{ route('RetunTransaction',['codeTransaction'=>encrypt($itemHistoryTransaction->kode_pemesanan)]) }}">
+                                      <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" style="background-color: #282828; color: #ECECEC">
+                                          Return Transaction
+                                      </div>
+                                  </a>
+                                @endif
+                              @else
+                                <a href="{{ route('RetunTransaction',['codeTransaction'=>encrypt($itemHistoryTransaction->kode_pemesanan)]) }}">
+                                    <div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5" style="background-color: #282828; color: #ECECEC">
+                                        Return Transaction
+                                    </div>
+                                </a>
+                              @endif
+                            @endif
                         </td>
                     </tr>
                     @empty
