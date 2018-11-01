@@ -5,7 +5,7 @@
         <div class="col-12">
             <div class="card m-b-20">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title">Data Slider
+                    <h4 class="mt-0 header-title">Data Message
                     </h4>
                     <br>
                     <hr>
@@ -14,21 +14,24 @@
                             <tr>
                                 <th>No</th>
                                 <th>email</th>
-                                <th>Pesan</th>
-                                <th></th>
+                                <th>Message</th>
+                                <th>action</th>
                             </tr>
                         </thead>
                         <tbody id="dataslider">
                             @php
                                 $no = 1;
                             @endphp
-                            @foreach($datacontact as $itemcontact)
+
+							@foreach($datacontact as $itemcontact)
                             <tr>
-                                <td>{{ $no++ }}</td>
-                                <td>{{$itemcontact->email}}</td>
-                                <td>{{$itemcontact->pesan}}</td>
-                                <td></td>
-                            </tr>
+								<td>{{ $no++ }}</td>
+								<td>{{$itemcontact->email}}</td>
+								<td>
+									{{substr($itemcontact->pesan,0,35)}}
+								</td>
+                                <td><a href="{{route('ContactBack.show',$itemcontact->id)}}"><button type="button" class="btn btn-outline-info waves-effect waves-light pull-right" style="margin-right: 10px;" title="Detail"><i class="fa fa-search"></i></button></a></td>
+							</tr>
                             @endforeach
                         </tbody>
                     </table>

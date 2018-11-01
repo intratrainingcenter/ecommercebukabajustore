@@ -17,8 +17,9 @@ class BcontactsController extends Controller
         $data = array(
             'page' => 'contact',
             'datacontact' => contact::all(), 
-          );
-          
+          ); 
+
+      
        return view('backend.ContactUs.index',$data);
     }
 
@@ -51,7 +52,12 @@ class BcontactsController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = array(
+            'page' => 'contact',
+            'datacontact' => contact::where('id',$id)->first(), 
+          );
+          
+       return view('backend.ContactUs.detail',$data);
     }
 
     /**

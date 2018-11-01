@@ -65,5 +65,11 @@
        </a>
    </li>
    @endif
+    <li>
+        <a href="{{route('ContactBack.index')}}" class="waves-effect">
+        <img class="how-pos4 pointer-none" src="{{asset('image/icons/icon-email.png')}}" alt="ICON">
+            <span> Contact Message </span>
+        </a>
+    </li>
 
 </ul>
