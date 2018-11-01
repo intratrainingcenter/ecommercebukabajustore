@@ -18,7 +18,7 @@ class FcontactsController extends Controller
         $data =setting::first();
 
           
-      return view('frontend.contactUs.index',compact('data'));
+      return view('frontend.ContactUs.index',compact('data'));
     }
 
     /**

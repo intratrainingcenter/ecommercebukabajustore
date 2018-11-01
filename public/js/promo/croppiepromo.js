@@ -20,16 +20,32 @@ $(document).ready(function () {
 				url: e.target.result
 			}).then(function () {
 				$('.accepted').html('<button class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
-				$('.apply').click(function (event) {
-					event.preventDefault();
-					croppiepromo.croppie('result','base64').then(function (result) {
-						$('#cropimagepromo').empty();
-						$('input[name="imagePromo"]').val(result);
-					});
-				});
+				// $('.apply').click(function (event) {
+				// 	event.preventDefault();
+				// 	croppiepromo.croppie('result','base64').then(function (result) {
+				// 		$('#cropimagepromo').empty();
+				// 		$('input[name="imagePromo"]').val(result);
+				// 	});
+				// });
 			});
 		};
 		reader.readAsDataURL($(this).get(0).files[0]);
+	});
+
+	$(document).on('click','.apply',function (event) {
+		event.preventDefault();
+		croppiepromo.croppie('result','base64').then(function (result) {
+			$('#cropimagepromo').hide();
+			$('.accepted').html('<button type="button" class="btn btn-large waves-effect pull-right waves-light green cancel">Cancel</button>');
+			$('input[name="imagePromo"]').val(result);
+		});
+	});
+
+	$(document).on('click','.cancel',function (event) {
+		event.preventDefault();
+			$('#cropimagepromo').show();
+			$('.accepted').html('<button type="button" class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
+			$('input[name="imagePromo"]').val('');
 	});
 
 
