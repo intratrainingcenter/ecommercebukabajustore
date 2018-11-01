@@ -7,15 +7,17 @@ $('.summernote').summernote({
     maxHeight: null,             // set maximum height of editor
     focus: true                 // set focus to editable area after initializing summernote
 });
-
-  $(".deleteData").click(function(){
-     $('#modalDelete').modal('show');
-          let idProduct = $(this).attr('attr-id');
-          $('.idproduct').text(idProduct).val(idProduct);
-        });
 });
 
-$('.functionDelete').click(function () {
+$(document).on('click','.deleteData',function(){
+// $(".deleteData").click(function(){
+   $('#modalDelete').modal('show');
+        let idProduct = $(this).attr('attr-id');
+        $('.idproduct').text(idProduct).val(idProduct);
+});
+
+$(document).on('click','.functionDelete',function(){
+// $('.functionDelete').click(function () {
     $('#modalDelete').modal('hide');
     swal(
         'Deleted!',

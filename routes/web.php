@@ -170,6 +170,11 @@ Route::group(['prefix'=>'laporanbarang'],function(){
 	Route::post('searchCtaegory','Backend\BlaporanbarangController@category');
 	Route::post('filterwithdate','Backend\BlaporanbarangController@filterwithdate');
 });
+
+Route::group(['prefix'=>'reporttransaction'],function(){
+	Route::get('','Backend\BreporttransactionController@showtransaction')->name('reporttransaction');
+	Route::post('filter','Backend\BreporttransactionController@showfilter');
+});
 /* END ROUTE FOR BACKEND */
 
 

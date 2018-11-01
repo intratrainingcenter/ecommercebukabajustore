@@ -13,4 +13,9 @@ class Opsi_Pemesanan extends Model
 	{
 		return $this->belongsTo('App\Barang','kode_barang','kode_barang');
 	}
+
+  public function transaction()
+  {
+    return $this->belongsTo('App\Pemesanan','kode_pemesanan','kode_pemesanan');
+  }
 }
