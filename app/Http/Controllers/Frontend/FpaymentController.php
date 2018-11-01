@@ -30,6 +30,8 @@ use PayPal\Rest\ApiContext;
 use Redirect;
 use Session;
 use URL;
+use Mail;
+use App\Mail\SendInvoicePurchase;
 
 
 class FpaymentController extends Controller
@@ -234,6 +236,8 @@ class FpaymentController extends Controller
         ]);
 
         $removeTransactionTemp = TransactionTemp::where('kode_pemesanan',$transactionTemp->kode_pemesanan)->delete();
+
+        Mail::send(new SendInvoicePurchase($transactionTemp->kode_pemesanan));
     }
 
 
