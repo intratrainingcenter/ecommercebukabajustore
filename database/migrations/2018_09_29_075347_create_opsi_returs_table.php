@@ -17,6 +17,7 @@ class CreateOpsiRetursTable extends Migration
             $table->increments('id');
             $table->string('kode_retur');
             $table->string('kode_barang');
+            $table->text('keterangan');
             $table->integer('qty');
             $table->float('harga');
             $table->float('subtotal');

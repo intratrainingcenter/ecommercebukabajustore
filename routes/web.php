@@ -243,6 +243,11 @@ Route::prefix('mypurchase')->group(function ()
 {
 	Route::get('','Frontend\FmypurchaseController@history')->name('mypurchaseIndex');
 	Route::get('detailhistorytransaction','Frontend\FmypurchaseController@detailhistorytransaction')->name('detailHistoryTransaction');
+	Route::get('returntransaction','Frontend\FmypurchaseController@retuntransaction')->name('RetunTransaction');
+	Route::get('detailretuntransaction','Frontend\FmypurchaseController@detailretuntransaction')->name('DetailRetunTransaction');
+	Route::get('listretuntransaction','Frontend\FmypurchaseController@listretuntransaction')->name('listRetunTransaction');
+	Route::post('formreturntransaction','Frontend\FmypurchaseController@formretuntransaction')->name('FormRetunTransaction');
+	Route::post('processreturntransaction','Frontend\FmypurchaseController@processretuntransaction')->name('processRetunTransaction');
 });
 Route::resource('ContactUs', 'Frontend\FcontactsController');
 
