@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Barang;
+use App\Opsi_Pemesanan;
 
 class BproductController extends Controller
 {
@@ -149,9 +150,14 @@ class BproductController extends Controller
 
   public function deleteproduct(Request $request)
  {
-   $getdataproduct = Barang::find($request->idProduct);
+   $getnameproduct = Barang::where('kode_barang',$request->idProduct)->first();
+   $checkproduct = Opsi_Pemesanan::where('kode_barang',$getnameproduct->kode_barang)->count();
+   if ($checkproduct >= 1) {
+     return 'cancel';
+   }
+   $getdataproduct = Barang::find($getnameproduct->id);
    Storage::delete('public/imageproduct'.'/'.$getdataproduct->foto);
-   $deleteproduct = Barang::find($request->idProduct)->delete();
+   $deleteproduct = Barang::find($getnameproduct->id)->delete();
 
    return 'success';
  }

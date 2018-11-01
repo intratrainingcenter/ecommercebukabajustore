@@ -43,7 +43,7 @@
      <div class="form-group col-md-12 @if($errors->has('email')) has-primary @endif">
         <div class="col-sm-12">
             {{Form::label('Email')}}
-            {{Form::text('email',null,['class'=>'form-control','placeholder'=>'Enter Email'])}}
+            {{Form::email('email',null,['class'=>'form-control','placeholder'=>'Enter Email'])}}
             @if($errors->has('email')) <div class="form-control-feedback">{{ $errors->first('email') }}</div> @endif
         </div>
     </div>
