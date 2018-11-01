@@ -33,4 +33,9 @@ class Pemesanan extends Model
   {
     return $this->belongsTo('App\Retur','kode_pemesanan','kode_pemesanan');
   }
+
+  public function opsi_transaction()
+  {
+    return $this->hasMany('App\Opsi_Pemesanan','kode_pemesanan','kode_pemesanan');
+  }
 }

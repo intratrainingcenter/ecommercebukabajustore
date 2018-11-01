@@ -176,6 +176,11 @@ Route::group(['prefix'=>'Return'],function(){
 	Route::get('processreturn','Backend\BreturnController@returnProcess')->name('processReturn');
 	Route::put('validationreturn','Backend\BreturnController@validationReturn')->name('validationReturn');
 });
+
+Route::group(['prefix'=>'reporttransaction'],function(){
+	Route::get('','Backend\BreporttransactionController@showtransaction')->name('reporttransaction');
+	Route::post('filter','Backend\BreporttransactionController@showfilter');
+});
 /* END ROUTE FOR BACKEND */
 
 

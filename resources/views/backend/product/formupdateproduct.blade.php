@@ -46,7 +46,7 @@
               {{Form::label('Weight Product')}}
               <div class="m-b-30 form-group @if($errors->has('weightProduct')) has-primary @endif">
               <div class="input-group">
-                {{Form::number('weightProduct',$product->berat_barang,['class'=>'form-control','placeholder'=>'Enter Weight Product','min'=>'0','required'])}}
+                {{Form::number('weightProduct',$product->berat_barang,['class'=>'form-control','placeholder'=>'Enter Weight Product','min'=>'1','required'])}}
                 <span class="input-group-addon b-0">gram</span>
                 @if($errors->has('weightProduct')) <div class="form-control-feedback">{{ $errors->first('weightProduct') }} </div> @endif
               </div>
@@ -57,7 +57,7 @@
               {{Form::label('Purchase Price Product')}}
               <div class="input-group">
               <span class="input-group-addon b-0">$</span>
-                {{Form::number('purchaseProduct',$product->hpp,['class'=>'form-control','placeholder'=>'Enter Purchase Price Product','min'=>'0','required'])}}
+                {{Form::number('purchaseProduct',$product->hpp,['class'=>'form-control','placeholder'=>'Enter Purchase Price Product','min'=>'1','step'=>'any','required'])}}
                 @if($errors->has('purchaseProduct')) <div class="form-control-feedback">{{ $errors->first('purchaseProduct') }}</div> @endif
               </div>
             </div>
@@ -67,7 +67,7 @@
               {{Form::label('Selling Price Product')}}
               <div class="input-group">
               <span class="input-group-addon b-0">$</span>
-                {{Form::number('sellingProduct',$product->harga_jual,['class'=>'form-control','placeholder'=>'Enter Sellin Price Product','min'=>'0','required'])}}
+                {{Form::number('sellingProduct',$product->harga_jual,['class'=>'form-control','placeholder'=>'Enter Sellin Price Product','min'=>'1','step'=>'any','required'])}}
                 @if($errors->has('sellingProduct')) <div class="form-control-feedback">{{ $errors->first('sellingProduct') }}</div> @endif
               </div>
             </div>
@@ -75,7 +75,7 @@
           <div class="m-b-30 form-group @if($errors->has('stockProduct')) has-primary @endif">
             <div class="form-group col-sm-12">
               {{Form::label('Stock Product')}}
-                {{Form::number('stockProduct',$product->stok,['class'=>'form-control','placeholder'=>'Enter Stock Product','min'=>'0','required'])}}
+                {{Form::number('stockProduct',$product->stok,['class'=>'form-control','placeholder'=>'Enter Stock Product','min'=>'1','required'])}}
                 @if($errors->has('stockProduct')) <div class="form-control-feedback">{{ $errors->first('stockProduct') }}</div> @endif
             </div>
           </div>

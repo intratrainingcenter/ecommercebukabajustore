@@ -8,21 +8,16 @@ $('.summernote').summernote({
     maxHeight: null,             // set maximum height of editor
     focus: true                 // set focus to editable area after initializing summernote
 });
-
-  $(".deleteData").click(function(){
-     $('#modalDelete').modal('show');
-          let idProduct = $(this).attr('attr-id');
-          $('.idproduct').text(idProduct).val(idProduct);
-        });
 });
 
-$('.functionDelete').click(function () {
+$(document).on('click','.deleteData',function(){
+   $('#modalDelete').modal('show');
+        let idProduct = $(this).attr('attr-id');
+        $('.idproduct').text(idProduct).val(idProduct);
+});
+
+$(document).on('click','.functionDelete',function(){
     $('#modalDelete').modal('hide');
-    swal(
-        'Deleted!',
-        'Data Product has been deleted.',
-        'success'
-        )
 });
 
 function loaddataproduct() {
@@ -50,13 +45,15 @@ $(document).on('click','.functionDelete',function (e) {
 		success:function (data) {
 			loaddataproduct();
 			$('#modalDelete').modal('hide');
-			if(data == 'success'){
-				swal(
+			if(data == 'cancel'){
+				alert('cancel, items on the transaction');
+			}else {
+        swal(
 				'Deleted!',
 				'Data Product has been deleted.',
 				'success'
 				);
-			}
+      }
 		}
 	});
 });
