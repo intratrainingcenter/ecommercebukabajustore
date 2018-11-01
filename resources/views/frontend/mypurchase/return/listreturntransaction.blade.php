@@ -17,16 +17,12 @@
                                 {{ $itemreturnProduct->updated_at }}
                                 @if($itemreturnProduct->status == 'Pending')
                                 <h5 style="color: orange;" class="pull-right"> Pending</h5>
-                                @elseif($itemreturnProduct->status == 'paid')
-                                <h5 style="color: olive;" class="pull-right"> Paid</h5>
-                                @elseif($itemreturnProduct->status == 'process')
+                              @elseif($itemreturnProduct->status == 'process')
                                 <h5 style="color: tomato;" class="pull-right"> Process</h5>
-                                @elseif($itemreturnProduct->status == 'delivery')
-                                <h5 style="color: blue;" class="pull-right"> Delivery</h5>
-                                @elseif($itemreturnProduct->status == 'received')
+                              @elseif($itemreturnProduct->status == 'received')
                                 <h5 style="color: green;" class="pull-right"> Received</h5>
-                                @elseif($itemreturnProduct->status == 'cancel')
-                                <h5 style="color: red;" class="pull-right"> Canceled</h5>
+                              @elseif($itemreturnProduct->status == 'reject')
+                                <h5 style="color: red;" class="pull-right"> Reject</h5>
                                 @endif
                             </small>
                             <hr>

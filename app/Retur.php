@@ -13,4 +13,9 @@ class Retur extends Model
   {
     return $this->hasMany('App\Opsi_Retur','kode_retur','kode_retur');
   }
+
+  public function userMember()
+  {
+    return $this->belongsTo('App\User','kode_user','kode_user');
+  }
 }

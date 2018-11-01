@@ -17,10 +17,12 @@
 					Status<br>
 					@if($detailretunTransaction->status == 'Pending')
 						<h5 style="color: orange;"> Pending</h5>
-					@elseif($detailretunTransaction->status == 'paid')
-						<h5 style="color: olive;"> Paid</h5>
 					@elseif($detailretunTransaction->status == 'process')
-						<h5 style="color: red;"> Canceled</h5>
+						<h5 style="color: olive;"> Process</h5>
+					@elseif($detailretunTransaction->status == 'received')
+						<h5 style="color: blue;"> Received</h5>
+					@elseif($detailretunTransaction->status == 'reject')
+						<h5 style="color: red;"> Reject</h5>
 					@endif
 				</small>
 			</div>
@@ -34,7 +36,7 @@
 			</div>
 			<div class="col-md-4" style="">
 				<small>
-					Castback : <br>
+					Cashback : <br>
 					<h5>$ {{ $detailretunTransaction->cashback }}</h5><br>
 				</small>
 			</div>

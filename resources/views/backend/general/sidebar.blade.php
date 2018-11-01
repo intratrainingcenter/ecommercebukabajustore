@@ -39,7 +39,7 @@
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cash-multiple"></i> <span> Transaction </span> </a>
         <ul class="list-unstyled">
             <li><a href="{{ route('ordertransactionIndex') }}">Order Transaction</a></li>
-            <li><a href="advanced-animation.html">Return Transaction</a></li>
+            <li><a href="{{route('indexReturn')}}">Return Transaction</a></li>
         </ul>
     </li>
     @if (Auth::user()->kode_jabatan == 'admin')
