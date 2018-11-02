@@ -36,7 +36,7 @@
             </button>
             <div class="topbar-left">
                 <div class="text-center">
-                    <a href="index-2.html" class="logo"><img src="{{ asset('backend/assets/images/logo.png') }}" height="42" alt="logo"></a>
+                    <a href="index-2.html" class="logo"></a>
                 </div>
             </div>
             <div class="sidebar-inner slimscrollleft">

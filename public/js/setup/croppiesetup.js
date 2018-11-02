@@ -2,14 +2,15 @@ $(document).ready(function () {
 	var croppiesetup = $('#cropimagesetup').croppie({
 		enableExif: true,
 		viewport: {
-			width: 200,
+			width: 400,
 			height: 200,
 			type: 'square'
 		},
 		boundary: {
-			width: 250,
+			width: 400,
 			height: 250
 		},
+		enableZoom: true,
 		url:'../../image/chooseimage2.png'
 	});
 

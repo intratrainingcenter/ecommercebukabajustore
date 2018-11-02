@@ -8,6 +8,8 @@ $(document).ready(function () {
     success:function (data) {
       $('title').append(data.nama_web);
       $('#shortcut-icon').attr('href',location.origin+'/storage/imagesetup/'+data.foto);
+      $('.logo').html('<img src='+location.origin+'/storage/imagesetup/'+data.foto+' height="42" alt="logo">');
+      
     }
   });
 });
