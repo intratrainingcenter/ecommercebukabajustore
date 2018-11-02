@@ -177,6 +177,11 @@ Route::group(['prefix'=>'laporanbarang'],function(){
 | ROUTE FOR FRONTEND
 */
 
+Route::prefix('promo')->group(function ()
+{
+	Route::get('show','Frontend\FpromoController@index')->name('frontpromoIndex');
+});
+
 Route::prefix('')->group(function ()
 {
 	Route::get('','Frontend\FhomeController@index')->name('fronthomeIndex');

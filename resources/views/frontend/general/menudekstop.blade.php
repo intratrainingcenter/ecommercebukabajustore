@@ -18,6 +18,10 @@
 					<a href="{{ route('frontstoryIndex') }}">Story</a>
 				</li>
 
+				<li class="@if(@$page == 'promo') active-menu @endif">
+					<a href="{{ route('frontpromoIndex') }}">Promo</a>
+				</li>
+
 				<li class="@if(@$page == 'about') active-menu @endif">
 					<a href="{{ route('frontaboutIndex') }}">About</a>
 				</li>
