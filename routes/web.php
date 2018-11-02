@@ -163,6 +163,7 @@ Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','setup','statu
 
 Route::get('/nonActive', 'DashboardController@nonactive');
 Route::get('/showsetting', 'Backend\BsettingController@showsetting');
+Route::get('/settingfront', 'Backend\BsettingController@settingfront');
 
 Route::group(['prefix'=>'laporanbarang'],function(){
 	Route::get('','Backend\BlaporanbarangController@index')->name('laporanbarangIndex');
