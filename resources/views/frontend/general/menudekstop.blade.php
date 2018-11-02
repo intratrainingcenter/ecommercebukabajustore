@@ -1,9 +1,7 @@
 <div class="wrap-menu-desktop">
 	<nav class="limiter-menu-desktop p-l-45">
 		<!-- Logo desktop -->
-		<a href="#" class="logo">
-			<img src="{{ asset('frontend/images/icons/logo-01.png') }}" alt="IMG-LOGO">
-		</a>
+		<a href="#" class="logo"></a>
 		<!-- Menu desktop -->
 		<div class="menu-desktop">
 			<ul class="main-menu">
