@@ -21,7 +21,7 @@
     <div class="form-group col-md-6 @if($errors->has('codePromo')) has-primary @endif">
         <div class="col-sm-12">
             {{Form::label('Code Promo')}}
-            {{Form::text('codePromo',null,['class'=>'form-control','placeholder'=>'Enter Code Promo'])}}
+            {{Form::text('codePromo',null,['class'=>'form-control codePromo','placeholder'=>'Enter Code Promo'])}}
             @if($errors->has('codePromo')) <div class="form-control-feedback">{{ $errors->first('codePromo') }}</div> @endif
         </div>
     </div>

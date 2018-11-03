@@ -2,6 +2,11 @@ $(document).ready(function () {
 	$('#datatable').DataTable();
 });
 
+$('.codePromo').keypress(function( e ) {
+	if(e.which === 32)
+			return false;
+});
+
 function loaddatapromo() {
 	$.ajax({
 		headers:{
