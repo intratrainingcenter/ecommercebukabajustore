@@ -79,6 +79,8 @@
     <script src="{{ asset('backend/assets/pages/dashborad.js') }}"></script>
     <script src="{{ asset('backend/assets/js/app.js') }}"></script>
     <script type="text/javascript" src="{{asset('backend/chats/js/chats.js')}}"></script>
+    <!-- Notification on backend -->
+    <script type="text/javascript" src="{{asset('js/backend/index.js')}}"></script>
 
     <!-- Required datatable js -->
     <script src="{{ asset('backend/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
