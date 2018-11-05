@@ -2,12 +2,12 @@
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
-	<title>Buka Baju</title>
+	<title></title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content=" {{csrf_token() }}">
 	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{{ asset('frontend/images/icons/favicon.png') }}"/>
+	<link id="shortcut-icon" rel="icon" type="image/png" href=""/>
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/asset/bootstrap/css/bootstrap.min.css') }}">
 	<!--===============================================================================================-->
@@ -47,7 +47,22 @@
 	<!-- Sidebar -->
 	@include('frontend.general.asidebar')
 	<!-- Cart -->
-	@include('frontend.general.cart')
+	@include('frontend.general.cart')<link rel="manifest" href="/manifest.json" />
+<link rel="manifest" href="/manifest.json" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "9c0712c7-6d43-4435-978f-a57f306b7d4f",
+      autoRegister: false,
+      notifyButton: {
+        enable: true,
+      },
+      allowLocalhostAsSecureOrigin: true,
+    });
+  });
+</script>
 	<!-- Content -->
 	@yield('content')
 	<!-- Footer -->
@@ -97,6 +112,7 @@
 
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/js/chat.js') }}"></script>
+	<script src="{{ asset('js/frontend/setting/setting.js') }}"></script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/daterangepicker/moment.min.js') }}"></script>
 	<script src="{{ asset('frontend/asset/daterangepicker/daterangepicker.js') }}"></script>

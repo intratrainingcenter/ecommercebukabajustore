@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Barang;
 use App\Kategori;
 use App\Opsi_Pemesanan;
 use App\Barang_Favorit;
 use App\Ulasan;
-use Illuminate\Support\Facades\DB;
 
 class FshopController extends Controller
 {
@@ -45,7 +46,7 @@ class FshopController extends Controller
 			'page' => 'shop',
 			'dataProduct' => $dataProduct,
 			'dataCategory' => Kategori::all(),
-			'dataWishlist' => Barang_Favorit::all(),
+			'dataWishlist' => Barang_Favorit::where('kode_user',Auth::user()->kode_user)->get(),
 		);
 		return view('frontend.shop.index',$data);
 	}
@@ -57,7 +58,7 @@ class FshopController extends Controller
 		$data = array(
 			'page' => 'shop',
 			'detailProduct' => $detailProduct,
-			'dataWishlist' => Barang_Favorit::all(),
+			'dataWishlist' => Barang_Favorit::where('kode_user',Auth::user()->kode_user)->get(),
 			'dataReview' => Ulasan::with('relationuser')->where('status','selesai')->where('kode_barang',$detailProduct->kode_barang)->get(),
 		);
 		
