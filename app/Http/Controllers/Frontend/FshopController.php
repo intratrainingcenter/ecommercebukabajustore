@@ -46,7 +46,7 @@ class FshopController extends Controller
 			'page' => 'shop',
 			'dataProduct' => $dataProduct,
 			'dataCategory' => Kategori::all(),
-			'dataWishlist' => Barang_Favorit::where('kode_user',Auth::user()->kode_user)->get(),
+			'dataWishlist' => Barang_Favorit::all(),
 		);
 		return view('frontend.shop.index',$data);
 	}
@@ -58,7 +58,7 @@ class FshopController extends Controller
 		$data = array(
 			'page' => 'shop',
 			'detailProduct' => $detailProduct,
-			'dataWishlist' => Barang_Favorit::where('kode_user',Auth::user()->kode_user)->get(),
+			'dataWishlist' => Barang_Favorit::all(),
 			'dataReview' => Ulasan::with('relationuser')->where('status','selesai')->where('kode_barang',$detailProduct->kode_barang)->get(),
 		);
 		
