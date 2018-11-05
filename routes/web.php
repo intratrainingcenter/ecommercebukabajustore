@@ -185,6 +185,7 @@ Route::group(['prefix'=>'reporttransaction'],function(){
 
 // Notification
 Route::get('notification','Backend\BsettingController@notification');
+
 /* END ROUTE FOR BACKEND */
 
 

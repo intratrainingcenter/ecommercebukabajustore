@@ -14,7 +14,7 @@ class FwishlistController extends Controller
   public function addproduct($idproduct)
   {
     $addwishlist = new Barang_Favorit;
-    $addwishlist->kode_user = Auth::user()->id;
+    $addwishlist->kode_user = Auth::user()->kode_user;
     $addwishlist->kode_barang = $idproduct;
     $addwishlist->save();
 
@@ -23,14 +23,14 @@ class FwishlistController extends Controller
 
   public function removeproduct($idproduct)
   {
-    Barang_Favorit::where('kode_barang',$idproduct)->where('kode_user',Auth::user()->id)->delete();
+    Barang_Favorit::where('kode_barang',$idproduct)->where('kode_user',Auth::user()->kode_user)->delete();
 
     return 'success';
   }
 
   public function showproduct()
   {
-    $showwishlist = Barang_Favorit::with('product')->where('kode_user',Auth::user()->id)->get();
+    $showwishlist = Barang_Favorit::with('product')->where('kode_user',Auth::user()->kode_user)->get();
 
     $data = array(
       'wishlist' => $showwishlist,
@@ -40,14 +40,14 @@ class FwishlistController extends Controller
 
   public function wishlist()
   {
-    $showwishlist = Barang_Favorit::with('product')->where('kode_user',Auth::user()->id)->get();
+    $showwishlist = Barang_Favorit::with('product')->where('kode_user',Auth::user()->kode_user)->get();
 
     return 'success';
   }
 
   public function countwishlist()
   {
-    $countwislist = Barang_Favorit::where('kode_user',Auth::user()->id)->count();
+    $countwislist = Barang_Favorit::where('kode_user',Auth::user()->kode_user)->count();
 
     return $countwislist;
   }
