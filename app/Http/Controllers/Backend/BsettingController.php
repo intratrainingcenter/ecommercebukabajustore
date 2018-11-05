@@ -9,7 +9,8 @@ use App\setting;
 use App\Kategori;
 use App\Pemesanan;
 use App\Retur;
-
+use App\User;
+use App\Barang;
 class BsettingController extends Controller
 {
   public function index()
@@ -65,7 +66,14 @@ class BsettingController extends Controller
   {
     $transaction = Pemesanan::where('status','pending')->count();
     $transaction_return = Retur::where('status','pending')->count();
-
-    return [$transaction,$transaction_return];
+    $transaction_succes = pemesanan::where('status','received')->count();
+    $transaction_return_success = Retur::where('status','received')->count();
+    $member = user::where('kode_jabatan','member')->count();
+    $product = Barang::all();
+    $count_product = 0;
+   foreach($product as $count){
+    $count_product += $count->stock;
+   }
+    return [$transaction,$transaction_return,$transaction_succes,$transaction_return_success,$member,$count_product];
   }
 }

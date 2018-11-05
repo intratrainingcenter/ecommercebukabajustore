@@ -4,37 +4,37 @@
       <div class="row">
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="mini-stat clearfix bg-primary">
-                <span class="mini-stat-icon"><i class="mdi mdi-cart-outline"></i></span>
+                <span class="mini-stat-icon"><i class="mdi mdi-check-all"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter">15852</span>
-                    Total Sales
+                    <span class="counter" id="transaction_success"></span>
+                    Transaction success
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="mini-stat clearfix bg-primary">
-                <span class="mini-stat-icon"><i class="mdi mdi-currency-usd"></i></span>
+                <span class="mini-stat-icon"><i class="mdi mdi-backup-restore"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter">956</span>
-                    New Orders
+                    <span class="counter" id="transaction_return_success"></span>
+                    return success
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="mini-stat clearfix bg-primary">
-                <span class="mini-stat-icon"><i class="mdi mdi-cube-outline"></i></span>
+                <span class="mini-stat-icon"><i class="mdi mdi-account"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter">5210</span>
-                    New Users
+                    <span class="counter" id="member"></span>
+                   Users
                 </div>
             </div>
         </div>
         <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="mini-stat clearfix bg-primary">
-                <span class="mini-stat-icon"><i class="mdi mdi-currency-btc"></i></span>
+                <span class="mini-stat-icon"><i class="mdi mdi-tshirt-crew"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter">20544</span>
-                    Unique Visitors
+                    <span class="counter" id="count_product"></span>
+                    Stock All Product
                 </div>
             </div>
         </div>
