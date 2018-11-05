@@ -54,10 +54,9 @@
 				</div>
       </div>
       @empty
-      <center>
-      <h1> Empty Promo </h1>
-      </center>
+			<h1> Empty Promo </h1>
       @endforelse
 		</div>
+{{ $showpromo->links() }}
 	</div>
 </div>

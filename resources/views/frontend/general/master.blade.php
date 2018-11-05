@@ -47,7 +47,22 @@
 	<!-- Sidebar -->
 	@include('frontend.general.asidebar')
 	<!-- Cart -->
-	@include('frontend.general.cart')
+	@include('frontend.general.cart')<link rel="manifest" href="/manifest.json" />
+<link rel="manifest" href="/manifest.json" />
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  var OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "9c0712c7-6d43-4435-978f-a57f306b7d4f",
+      autoRegister: false,
+      notifyButton: {
+        enable: true,
+      },
+      allowLocalhostAsSecureOrigin: true,
+    });
+  });
+</script>
 	<!-- Content -->
 	@yield('content')
 	<!-- Footer -->

@@ -67,7 +67,10 @@ class BpromoController extends Controller
       'berlaku_akhir' => $request->periodEnd,
     ]);
 
-    SendPromoNotification::dispatch($request->codePromo);
+    if(date("Y-m-d") >= $request->periodStart && date("Y-m-d") <= $request->periodEnd) {
+      SendPromoNotification::dispatch($request->codePromo);
+    }
+
     return redirect()->route('promoIndex')->with('success','data was successfully added.');
   }
 
@@ -132,6 +135,10 @@ class BpromoController extends Controller
         'berlaku_awal' => $request->periodStart,
         'berlaku_akhir' => $request->periodEnd,
       ]);
+    }
+    
+    if(date("Y-m-d") >= $request->periodStart && date("Y-m-d") <= $request->periodEnd) {
+      SendPromoNotification::dispatch($request->codePromo);
     }
 
     return redirect()->route('promoIndex')->with('success','data was successfully updated.');
