@@ -27,7 +27,7 @@
 							@if(Auth::User() != null && Auth::User()->kode_jabatan == 'member')
 							<a href="javascript:void(0)" codeproduct="{{ $itemProduct->kode_barang }}" class="btn-addwish-b2 dis-block pos-relative
 								js-addwish-b2
-									@if($cekbarfav = $dataWishlist->where('kode_barang',$itemProduct->kode_barang)->isNotEmpty())
+									@if($cekbarfav = $dataWishlist->where('kode_barang',$itemProduct->kode_barang)->where('kode_user',Auth::user()->kode_user)->isNotEmpty())
 									js-addedwish-b2
 									@else
 									@endif

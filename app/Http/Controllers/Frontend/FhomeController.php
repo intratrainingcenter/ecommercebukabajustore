@@ -41,7 +41,6 @@ class FhomeController extends Controller
 	        'page' => 'home',
 	        'showslider' => Slider::where('status', 'Active')->get(),
 	        'showcategory' => Kategori::orderBy('created_at', 'DESC')->limit(5)->get(),
-	        'dataWishlist' => Barang_Favorit::where('kode_user',Auth::user()->kode_user)->get(),
 	        'bestSeller' => $bestSeller,
 	        'topRate' => $topRate,
 	      );
