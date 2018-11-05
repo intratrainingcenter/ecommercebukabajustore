@@ -135,7 +135,7 @@ class LoginController extends Controller
             }else{
             $date = date('Ymdhis');
             $data = User::create([
-                'kode_user'         => $date,
+                'kode_user'         => 'MB-'.$date,
                 'name'              => $user->name,
                 'email'             => !empty($user->email)? $user->email : '' ,
                 'provider'          => $provider,
