@@ -182,12 +182,20 @@ Route::group(['prefix'=>'reporttransaction'],function(){
 	Route::get('','Backend\BreporttransactionController@showtransaction')->name('reporttransaction');
 	Route::post('filter','Backend\BreporttransactionController@showfilter');
 });
+
+// Notification
+Route::get('notification','Backend\BsettingController@notification');
 /* END ROUTE FOR BACKEND */
 
 
 /*
 | ROUTE FOR FRONTEND
 */
+
+Route::prefix('promo')->group(function ()
+{
+	Route::get('show','Frontend\FpromoController@index')->name('frontpromoIndex');
+});
 
 Route::prefix('')->group(function ()
 {

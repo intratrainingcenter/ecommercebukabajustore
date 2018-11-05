@@ -60,7 +60,20 @@
 			<i class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-	
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+	<script>
+	  var OneSignal = window.OneSignal || [];
+	  OneSignal.push(function() {
+	    OneSignal.init({
+	      appId: "9c0712c7-6d43-4435-978f-a57f306b7d4f",
+	      autoRegister: false,
+	      notifyButton: {
+	        enable: true,
+	      },
+	      allowLocalhostAsSecureOrigin: true,
+	    });
+	  });
+	</script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/jquery/jquery-3.2.1.min.js') }}"></script>
 	<!--===============================================================================================-->

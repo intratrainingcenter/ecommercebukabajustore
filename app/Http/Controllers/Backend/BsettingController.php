@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\setting;
 use App\Kategori;
+use App\Pemesanan;
+use App\Retur;
 
 class BsettingController extends Controller
 {
@@ -59,4 +61,11 @@ class BsettingController extends Controller
     return response()->json(['setting'=>$setting,'category'=>$category]);
   }
 
+   public function notification()
+  {
+    $transaction = Pemesanan::where('status','pending')->count();
+    $transaction_return = Retur::where('status','pending')->count();
+
+    return [$transaction,$transaction_return];
+  }
 }

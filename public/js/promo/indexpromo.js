@@ -3,6 +3,11 @@ $(document).ready(function () {
 	setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 });
 
+$('.codePromo').keypress(function( e ) {
+	if(e.which === 32)
+			return false;
+});
+
 function loaddatapromo() {
 	$.ajax({
 		headers:{

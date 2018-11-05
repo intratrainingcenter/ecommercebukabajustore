@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Promo;
+use App\Jobs\SendPromoNotification;
+
 class BpromoController extends Controller
 {
   public function index()
   {
-
     $data = array(
       'page' => 'Promo',
       'dataPromo' => Promo::all(),
@@ -66,6 +67,7 @@ class BpromoController extends Controller
       'berlaku_akhir' => $request->periodEnd,
     ]);
 
+    SendPromoNotification::dispatch($request->codePromo);
     return redirect()->route('promoIndex')->with('success','data was successfully added.');
   }
 
