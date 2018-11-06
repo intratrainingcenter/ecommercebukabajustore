@@ -22,6 +22,10 @@ $(document).ready(function() {
       database.ref('master_chat/'+codechat).update({
         kode_cs : usercode,
       });
+
+      if(window.location.pathname != '/chats'){
+        $(this).prop("href", location.origin+"/chats")
+      }
     });
 
 
