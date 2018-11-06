@@ -31,10 +31,3 @@ $("#status-options ul li").click(function() {
 
 	$("#status-options").removeClass("active");
 });
-
-$(window).on('keydown', function(e) {
-  if (e.which == 13) {
-    newMessage();
-    return false;
-  }
-});

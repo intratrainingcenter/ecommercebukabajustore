@@ -1,46 +1,57 @@
 $(document).ready(function() {
-  // connect database firebase
-  var database = firebase.database();
-  var master_chat = database.ref('master_chat');
 
-  $(document).find('.form_chats').hide();
+  $(document).find('#live-chat').hide();
+  $(document).find('.end_chat').hide();
+
+});
+firebase.database().ref('master_chat').on('child_added',dataMaster);
+// end document ready
 
     // show form chat
-  $(document).on('click','.btn_chat',function(){
-      $(document).find('.form_chats').show();
+  $(document).on('click','.start_chat',function(){
+      $(document).find('#box-chat').hide();
+      $(document).find('#live-chat').show();
 
-        master_chat.on('child_added',dataMaster);
   });
 
       // send Message
-  $(document).on('click','#btn-chat',function(){
+  $('#form_send_message').on('submit',function(e) {
+      e.preventDefault();
+      $(document).find('.end_chat').show();
 
-       master_chat.orderByChild('kode_member').equalTo(usercode).on('value',showmaster_chat)
-
-      $('#message').val('');
+       firebase.database().ref('master_chat').orderByChild('kode_member').equalTo(usercode).once('value').then(showmaster_chat);
   });
 
-        // end chatting
-  $(document).on('click','.end_chat',function(){
+   // end chatting
+  $(document).on('click','#endchatting',function(e){
+    e.preventDefault();
 
       key_master_chat = $(document).find('input[name="code_master_chat"]').val();
       code_opsi_chat = $(document).find('input[name="code_opsi_chat"]').val();
+      var text = '';
 
-          master_chat.child(key_master_chat).remove();
+        firebase.database().ref('opsi_chat').child(code_opsi_chat).remove();
+        firebase.database().ref('master_chat').child(key_master_chat).remove();
+       $(document).find('#modal_endchat').modal('hide');
+       $(document).find('#box-chat').show();
 
-         var opsi_chat = database.ref('opsi_chat');
+       $('.opsi_chat').html('');
 
-         opsi_chat.child(code_opsi_chat).remove();
-
-       // $(document).find('.form_chats').hide();
-       $(document).find('#myModal').modal('hide');
+       text +='<hr><p style="text-align:left;">Customer</p><div class="chat-message clearfix chat-box">\
+               <div class="chat-message-content clearfix default_chat">\
+               <p>Hallo !! ada yang Bisa Kami Bantu.</p>\
+               <span class="chat-time-received">'+hours+':'+minutes+'</span>\
+               </div>\
+             </div>';
+       $(document).find('.opsi_chat').html(text);
   });
-});
-// end document ready
 
+  // cancel end chatting
+  $(document).on('click','.cancelEndChat',function(){
+    $(document).find('#live-chat').show();
+  });
 
-var database = firebase.database();
-
+// check data is exist or not
 function dataMaster(items)
 {
   var date = new Date();
@@ -52,22 +63,26 @@ function dataMaster(items)
     keyMaster = items.val().kode_chat;
 
     if (items.val().kode_member === usercode) {
-
-      var chats = database.ref('opsi_chat/'+keyMaster);
+      var chats = firebase.database().ref('opsi_chat/'+keyMaster);
 
       $(document).find('input[name="code_master_chat"]').val(items.key);
       $(document).find('input[name="code_opsi_chat"]').val(keyMaster);
 
       chats.on('child_added', showdata);
+      $(document).find('.end_chat').show();
 
     }else{
-
-      text +="<p>Hallo!! Ada yang bisa kami bantu ?</p><time datetime='2009-11-13T20:00'>"+hours+" : "+minutes+"</time>";
-      $(document).find('.default_chat').html(text);
+      text +='<hr><p style="text-align:left;">Customer</p><div class="chat-message clearfix chat-box">\
+              <div class="chat-message-content clearfix default_chat">\
+              <p>Hallo !! ada yang Bisa Kami Bantu.</p>\
+              <span class="chat-time-received">'+hours+':'+minutes+'</span>\
+              </div>\
+            </div>';
+      $(document).find('.opsi_chat').html(text);
     }
 }
 
-  // show history message
+//   // show history message
   function showdata(items)
   {
     var send='';
@@ -76,41 +91,28 @@ function dataMaster(items)
     var minutes = date.getMinutes();
       code = items.val().kode_pembalas[0];
       if (code === 'M') {
-        send +='<div class="row msg_container base_sent">'+
-        '<div class="col-md-10 col-xs-10">'+
-        '<div class="messages msg_sent">'+
-        '<p>'+items.val().isi_chat+'</p>'+
-        '<time datetime="2009-11-13T20:00">'+items.val().time_chat+'</time>'+
-        '</div>'+
-        '</div>'+
-        '<div class="col-md-2 col-xs-2 avatar">'+
-        '<img src="https://www.logolynx.com/images/logolynx/e5/e5ba79334133d2cb362dd639f755a392.png" class=" img-responsive ">'+
-        '</div>'+
-        '</div>';
-
+        send +='<hr><p style="text-align:right;">You</p><div class="chat-message clearfix chat-box">\
+					     <div class="chat-message-content clearfix send">\
+						   <p>'+items.val().isi_chat+'</p>\
+               <span class="chat-time-send">'+items.val().time_chat+'</span>\
+      					</div>\
+      				</div>';
     }else{
-      send +='<div class="row msg_container base_receive">'+
-      '<div class="col-md-2 col-xs-2 avatar">'+
-      '<img src="http://www.ectricol.com/media/images/customerservice.png" class=" img-responsive "></div>'+
-      '<div class="col-md-10 col-xs-10 ">'+
-      '<div class="messages msg_receive" style="background-color:#BFBFBF;">'+
-      '<p>'+items.val().isi_chat+'</p>'+
-      '<time datetime="2009-11-13T20:00">'+items.val().time_chat+'</time>'+
-      '</div></div>'+
-      '</div>';
-
+        send +='<hr><p style="text-align:left;">Customer</p><div class="chat-message clearfix chat-box">\
+                <div class="chat-message-content clearfix default_chat">\
+                <p>'+items.val().isi_chat+'</p>\
+                <span class="chat-time-received">'+items.val().time_chat+'</span>\
+                </div>\
+              </div>';
         }
-       var text = "<p>Hallo!! Ada yang bisa kami bantu ?</p><time datetime='2009-11-13T20:00'>"+hours+" : "+minutes+"</time>";
-
        $(document).find('.opsi_chat').append(send);
-       $(document).find('.default_chat').html(text);
   }
 
-    // detection has already been chat what have not yet
+     // detection has already been chat what have not yet
     function showmaster_chat(items)
     {
       usercode   = $('#usercode').val();
-      input      = $('#message').val();
+      input    = $('input[name=message]').val();
 
       var date = new Date();
       years = date.getFullYear();  month = date.getMonth(); day = date.getDay(); hours = date.getHours(); minutes = date.getMinutes(); seconds = date.getSeconds();
@@ -118,13 +120,11 @@ function dataMaster(items)
       var code_chat ='KC-'+years.toString()+month.toString()+day.toString()+hours.toString()+minutes.toString()+seconds.toString();
       tgl_chat = years.toString()+"-"+month.toString()+"-"+day.toString();
       time_chat = hours.toString()+":"+minutes.toString();
-
           if (items.val()) {
-             items.forEach(function(data){
-
-               chat_code = data.val().kode_chat;
-             })
-             opsi_chat = database.ref('opsi_chat/'+chat_code);
+            items.forEach(function(e){
+              chatCode= e.val().kode_chat;
+            })
+             opsi_chat = firebase.database().ref('opsi_chat/'+chatCode);
              opsi_chat.push({
                isi_chat      : input,
                kode_pembalas : usercode,
@@ -133,20 +133,20 @@ function dataMaster(items)
              })
 
           }else{
-              var opsi_chat_save = database.ref('opsi_chat/'+code_chat);
-              opsi_chat_save.update({
+              var opsi_chat_save = firebase.database().ref('opsi_chat/'+code_chat);
+              opsi_chat_save.push({
+                  isi_chat      : input,
+                  kode_pembalas : usercode,
+                  tgl_chat      : tgl_chat,
+                  time_chat     : time_chat
               });
 
-              var master_chat_push = database.ref('master_chat');
-              master_chat_push.push({
+              firebase.database().ref('master_chat').push({
                 kode_chat   : code_chat,
                 kode_cs     :'',
                 kode_member : usercode
-              })
-          }
-    }
+              });
+            }
 
-  function showerror(err)
-  {
-      console.log(err);
-  }
+        $('#message').val('');
+    }

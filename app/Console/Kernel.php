@@ -36,7 +36,7 @@ class Kernel extends ConsoleKernel
                 SendPromoNotification::dispatch($itemPromo->kode_promo)
                 ->delay(now()->addSeconds($delay));
             }
-        })->everyMinute();
+        })->twiceDaily(7, 15);
 
        $schedule->command('queue:work')->everyMinute();
     }
