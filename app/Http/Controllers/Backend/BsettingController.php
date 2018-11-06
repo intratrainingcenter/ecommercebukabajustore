@@ -62,18 +62,12 @@ class BsettingController extends Controller
     return response()->json(['setting'=>$setting,'category'=>$category]);
   }
 
-   public function notification()
+  public function notification()
   {
     $transaction = Pemesanan::where('status','pending')->count();
-    $transaction_return = Retur::where('status','pending')->count();
-    $transaction_succes = pemesanan::where('status','received')->count();
-    $transaction_return_success = Retur::where('status','received')->count();
-    $member = user::where('kode_jabatan','member')->count();
-    $product = Barang::all();
-    $count_product = 0;
-   foreach($product as $count){
-    $count_product += $count->stock;
-   }
-    return [$transaction,$transaction_return,$transaction_succes,$transaction_return_success,$member,$count_product];
+    $transactionReturn = Retur::where('status','pending')->count();
+
+    return response()->json(['transaction'=>$transaction, 'transactionReturn'=>$transactionReturn]);
   }
+
 }

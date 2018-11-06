@@ -6,8 +6,8 @@
             <div class="mini-stat clearfix bg-primary">
                 <span class="mini-stat-icon"><i class="mdi mdi-check-all"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter" id="transaction_success"></span>
-                    Transaction success
+                    <span class="counter">{{ $transactionSuccess }}</span>
+                   Transaction success
                 </div>
             </div>
         </div>
@@ -15,8 +15,8 @@
             <div class="mini-stat clearfix bg-primary">
                 <span class="mini-stat-icon"><i class="mdi mdi-backup-restore"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter" id="transaction_return_success"></span>
-                    return success
+                    <span class="counter">{{ $transactionReturSuccess }}</span>
+                     <br> return success
                 </div>
             </div>
         </div>
@@ -24,8 +24,8 @@
             <div class="mini-stat clearfix bg-primary">
                 <span class="mini-stat-icon"><i class="mdi mdi-account"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter" id="member"></span>
-                   Users
+                    <span class="counter">{{ $userMember }}</span>
+                    <br> Users
                 </div>
             </div>
         </div>
@@ -33,8 +33,8 @@
             <div class="mini-stat clearfix bg-primary">
                 <span class="mini-stat-icon"><i class="mdi mdi-tshirt-crew"></i></span>
                 <div class="mini-stat-info text-right text-white">
-                    <span class="counter" id="count_product"></span>
-                    Stock All Product
+                    <span class="counter">{{ $countProduct }}</span>
+                    <br> Stock All Product
                 </div>
             </div>
         </div>
