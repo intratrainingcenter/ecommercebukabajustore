@@ -9,6 +9,8 @@ use App\Pemesanan;
 use App\Retur;
 use App\user;
 use App\Barang;
+use Carbon\Carbon;
+
 
 class DashboardController extends Controller
 {
@@ -19,11 +21,31 @@ class DashboardController extends Controller
       $userMember = user::where('kode_jabatan','member')->count();
       $countProduct = Barang::select(DB::raw('SUM(stok) as stok'))->first()->stok;
 
-    	$data = array(
+      $transactionReceived = Pemesanan::where('status','received')->get();
+
+      $memberLastweek = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
+                                   ->count();
+      $memberLastmonth = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
+                                   ->count();
+      $memberLastyear = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfYear(),Carbon::now()->endOfYear()])
+                                   ->count();
+
+      $transactionLastweek = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
+                                   ->count();
+      $transactionLastmonth = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
+                                   ->count();
+      $transactionLastyear = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfYear(),Carbon::now()->endOfYear()])
+                                   ->count();
+
+      $data = array(
     		'transactionSuccess' => $transactionSucces,
     		'transactionReturSuccess' => $transactionReturnSuccess,
     		'userMember' => $userMember,
     		'countProduct' => $countProduct,
+        'transactionReceived' => $transactionReceived,
+        'memberLastweek' => $memberLastweek,
+        'memberLastmonth' => $memberLastmonth,
+        'memberLastyear' => $memberLastyear,
     		'page' => 'Dashboard',
     	);
 
@@ -37,6 +59,18 @@ class DashboardController extends Controller
         }else {
           return redirect('/dashboard');
         }
+    }
+
+    public function gettransactionorder()
+    {
+      $gettransactionorder = Pemesanan::select(DB::raw('count(*) as countorder,status'))->groupBy('status')->orderBy('status','desc')->get();
+      return $gettransactionorder; 
+    }
+
+     public function gettransactionretur()
+    {
+      $gettransactionretur = Retur::select(DB::raw('count(*) as countretur,status'))->groupBy('status')->orderBy('status','desc')->get();
+      return $gettransactionretur; 
     }
 
 }

@@ -86,6 +86,7 @@ class BordertransactionController extends Controller
 		}
 
 		$validationProcess = Pemesanan::where('kode_pemesanan',$codeTransaction)->update([
+			'tgl_diterima' => date('Y-m-d'),
 			'status' => 'received',
 		]);
 		
