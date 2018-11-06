@@ -51,25 +51,24 @@
         </ul>
     </li>
     @endif
-    <li>
-        <a href="{{route('settingIndex')}}" class="waves-effect">
-            <i class="ion-settings"></i>
-            <span> Setting </span>
-        </a>
-    </li>
     @if (Auth::user()->kode_jabatan == 'admin')
     <li>
        <a href="chats" class="waves-effect btn_chatting">
-           <i class="ion-email"></i>
+           <i class="ion-chatbubbles"></i>
            <span> Chatting </span>
        </a>
    </li>
    @endif
     <li>
         <a href="{{route('ContactBack.index')}}" class="waves-effect">
-        <img class="how-pos4 pointer-none" src="{{asset('image/icons/icon-email.png')}}" alt="ICON">
+          <i class="ion-android-mail"></i>
             <span> Contact Message </span>
         </a>
     </li>
-
+    <li>
+        <a href="{{route('settingIndex')}}" class="waves-effect">
+            <i class="ion-settings"></i>
+            <span> Setting </span>
+        </a>
+    </li>
 </ul>
