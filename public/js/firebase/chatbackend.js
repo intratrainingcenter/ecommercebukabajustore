@@ -7,6 +7,13 @@ $(document).ready(function() {
   $(document).find('.message-input').hide();
 
     master_chat.on('value',showmaster_chat)
+    master_chat.on('child_removed',function(removed){
+      var removecodeChat = $(document).find('#default_code_chat').val();
+      if (removed.val().kode_chat == removecodeChat){
+          $('.show_list_chat').html('');
+          $(document).find('.username').html('');
+      }
+    })
 
    // btn add chats member to list member
     $(document).on('click','.btn_add_tolistUser',function(){
@@ -16,6 +23,7 @@ $(document).ready(function() {
         kode_cs : usercode,
       });
     });
+
 
   $(document).on('click','.btn_list_member',function(){
       $(document).find('.show_list_chat').empty();
@@ -33,12 +41,10 @@ $(document).ready(function() {
 
             if (code === 'M') {
                 text += '<li class="sent">'+
-                        '<img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />'+
                         '<p>'+items.val().isi_chat+'<br><time class="pull-right">'+items.val().time_chat+'</time></p>'+
                       '</li>';
             }else{
                 text +='<li class="replies">'+
-                      '<img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />'+
                       '<p>'+items.val().isi_chat+'<br><time class="pull-right">'+items.val().time_chat+'</time></p>'+
                     '</li>';
             }
@@ -49,11 +55,10 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('click','#btn_send_message',function(){
-
+    // send message with enter
+    $('#input_message').on('change',function(){
       usercode = $(document).find('.code_user').val();
       codechat = $(document).find('#default_code_chat').val();
-
       var date = new Date();
       years = date.getFullYear();  month = date.getMonth(); day = date.getDay(); hours = date.getHours(); minutes = date.getMinutes(); seconds = date.getSeconds();
       var code_chat ='KC-'+years.toString()+month.toString()+day.toString()+hours.toString()+minutes.toString()+seconds.toString();
@@ -70,9 +75,10 @@ $(document).ready(function() {
             time_chat     : time_chat
           })
 
-        $('.contact.active .preview').html(message);
+        $('.preview'+codechat).html(message);
         $('#input_message').val('');
-    });
+    })
+
 });
 // end document ready
 
@@ -97,18 +103,28 @@ $(document).ready(function() {
           if(data.val().kode_cs === usercode){
             var isi = '';
             opsi_chat = database.ref('opsi_chat/'+data.val().kode_chat);
-            opsi_chat.on('child_added',function(data){
-                isi = data.val().isi_chat;
-                $('.contact.active .preview').html(isi);
+            opsi_chat.on('child_added',function(item){
+                isi = item.val().isi_chat;
+                code = data.val().kode_chat;
+                $('.preview'+code).html(isi);
             })
+            var img = '';
             var datauser = datausers.filter( obj => obj.kode_user ===data.val().kode_member)[0];
+            if (datauser.avatar == '') {
+              img = "https://www.clipartmax.com/png/middle/15-153150_user-icon-vector-clip-art-clipart-pink-person-icon-png.png";
+            }else if (datauser.kode_jabatan == 'member' && datauser.provider_id != null) {
+              img = datauser.avatar_original;
+            }else {
+              img = "asset('storage/imageuser'.'/'."+datauser.avatar+")";
+            }
+
               list_user +='<a class="btn_list_member" code_chat_master="'+data.val().kode_chat+'" name_user="'+datauser.name+'" ><li class="contact active ">'+
               '<div class="wrap">'+
               '<span class="contact-status busy"></span>'+
-              '<img src="https://www.clipartmax.com/png/middle/15-153150_user-icon-vector-clip-art-clipart-pink-person-icon-png.png " alt="" />'+
+              '<img src="'+img+'" alt="" />'+
               '<div class="meta">'+
               '<p class="name ">'+datauser.name+'</p>'+
-              '<p class="preview">'+isi+'</p>'+
+              '<p class="preview'+data.val().kode_chat+'"></p>'+
               '</div>'+
               '</div>'+
               '</li></a><hr>';

@@ -273,8 +273,10 @@
   background: #435f7a;
 }
 #frame #sidepanel #search {
-  border-bottom: 1px solid #FF7A7A;
+  height:60px;
+  border-bottom: 1px solid #9A9A9A;
   font-weight: 300;
+  background-color:  #EAECEE;
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel #search {
@@ -292,6 +294,7 @@
   border: none;
   background: #EAECEE;
   color: #f5f5f5;
+  margin-top: 10px;
 }
 #frame #sidepanel #search input:focus {
   outline: none;
@@ -604,7 +607,7 @@
   font-family: "proxima-nova",  "Source Sans Pro", sans-serif;
   float: left;
   border: none;
-  width: calc(100% - 100px);
+  width: calc(100% - 20px);
   margin: 15px 0px 0px 10px;
   padding: 11px 32px 10px 8px;
   font-size: 0.8em;

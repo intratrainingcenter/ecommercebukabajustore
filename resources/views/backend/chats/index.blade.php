@@ -1,8 +1,7 @@
 
 @extends('backend.general.master')
-
 @section('content')
-      <div id="frame">
+      <div id="frame" class="loadpagechat-backend">
       	<div id="sidepanel">
       		<div id="search">
       			<label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
@@ -27,7 +26,6 @@
       			<div class="wrap">
         			<input type="text" id="input_message" name="input_message" class="form-control input-sm chat_input" placeholder="Write your message...">
         			<input type="hidden" name="" id="default_code_chat">
-        			<button id="btn_send_message"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
       			</div>
       		</div>
       	</div>

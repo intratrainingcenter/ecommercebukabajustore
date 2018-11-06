@@ -61,11 +61,11 @@ class BuserController extends Controller
 
 // create code with position user
     if ($request->position == 'admin') {
-      $prefixcode = 'ADMN_';
+      $prefixcode = 'ADMN-';
     }elseif($request->position == 'member') {
-      $prefixcode = 'MB_';
+      $prefixcode = 'MB-';
     }else {
-      $prefixcode = 'SPV_';
+      $prefixcode = 'SPV-';
     }
     $create = User::create([
       'kode_user'        => $prefixcode.$date,

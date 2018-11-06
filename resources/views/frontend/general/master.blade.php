@@ -36,8 +36,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('frontend/css/main.css') }}">
 	<!--===============================================================================================-->
-	{{-- <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<link href="{{asset('frontend/css/chat.css')}}" rel="stylesheet"> --}}
+	<link href="{{asset('frontend/css/chat.css')}}" rel="stylesheet">
 	<!--===============================================================================================-->
 	@yield('csspersonal')
 </head>
@@ -68,7 +67,7 @@
 	<!-- Footer -->
 	@include('frontend.general.footer')
 	<!-- Chat -->
-	{{-- @include('frontend.chat.index') --}}
+	@include('frontend.chat.index')
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -179,9 +178,9 @@
 		});
 	</script>
 <!--====================================================================================================-->
-{{-- <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script> --}}
-{{-- <script src="{{ asset('js/firebase/intializefirebase.js') }}"></script> --}}
-{{-- <script src="{{ asset('js/firebase/chatfrontend.js') }}"></script> --}}
+<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+ <script src="{{ asset('js/firebase/intializefirebase.js') }}"></script>
+ <script src="{{ asset('js/firebase/chatfrontend.js') }}"></script>
 
 </body>
 </html>
