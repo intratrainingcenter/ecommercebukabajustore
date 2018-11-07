@@ -1,7 +1,7 @@
 <div class="wrap-menu-desktop">
 	<nav class="limiter-menu-desktop p-l-45">
 		<!-- Logo desktop -->
-		<a href="#" class="logo"></a>
+		<a href="javascript:void(0)" class="logo"></a>
 		<!-- Menu desktop -->
 		<div class="menu-desktop">
 			<ul class="main-menu">
@@ -12,11 +12,11 @@
 					<a href="{{ route('frontshopIndex',['category'=>'all']) }}">Shop</a>
 				</li>
 
-				<li class="label1 @if(@$page == 'story') active-menu @endif" data-label1="hot">
+				<li class="@if(@$page == 'story') active-menu @endif">
 					<a href="{{ route('frontstoryIndex') }}">Story</a>
 				</li>
 
-				<li class="@if(@$page == 'promo') active-menu @endif">
+				<li class="label1 @if(@$page == 'promo') active-menu @endif"  data-label1="hot">
 					<a href="{{ route('frontpromoIndex') }}">Promo</a>
 				</li>
 

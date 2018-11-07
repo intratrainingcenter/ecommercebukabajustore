@@ -22,7 +22,7 @@
             <span class="mini-stat-icon"><i class="mdi mdi-account"></i></span>
             <div class="mini-stat-info text-right text-white">
                 <span class="counter">{{ $userMember }}</span>
-                <br> Users
+                <br> Users Active
             </div>
         </div>
     </div>

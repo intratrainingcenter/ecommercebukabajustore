@@ -23,6 +23,7 @@ Route::group(['prefix'=>'setup', 'middleware'=>['auth','backendAccess','status']
 Route::group(['prefix'=>'dashboard', 'middleware'=>['auth','backendAccess','setup','status']], function ()
 {
 	Route::get('','DashboardController@index')->name('dashboardIndex');
+	Route::get('getdatamember','DashboardController@getdatamember');
 	Route::get('gettransactionorder','DashboardController@gettransactionorder');
 	Route::get('gettransactionretur','DashboardController@gettransactionretur');
 });

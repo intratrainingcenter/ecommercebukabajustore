@@ -18,24 +18,10 @@ class DashboardController extends Controller
     {
       $transactionSucces = pemesanan::where('status','received')->count();
       $transactionReturnSuccess = Retur::where('status','received')->count();
-      $userMember = user::where('kode_jabatan','member')->count();
+      $userMember = user::where('status','Active')->count();
       $countProduct = Barang::select(DB::raw('SUM(stok) as stok'))->first()->stok;
 
       $transactionReceived = Pemesanan::where('status','received')->get();
-
-      $memberLastweek = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
-                                   ->count();
-      $memberLastmonth = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
-                                   ->count();
-      $memberLastyear = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfYear(),Carbon::now()->endOfYear()])
-                                   ->count();
-
-      $transactionLastweek = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfWeek(),Carbon::now()->endOfWeek()])
-                                   ->count();
-      $transactionLastmonth = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfMonth(),Carbon::now()->endOfMonth()])
-                                   ->count();
-      $transactionLastyear = user::where('kode_jabatan','member')->whereBetween('created_at', [Carbon::now()->startOfYear(),Carbon::now()->endOfYear()])
-                                   ->count();
 
       $data = array(
     		'transactionSuccess' => $transactionSucces,
@@ -43,9 +29,6 @@ class DashboardController extends Controller
     		'userMember' => $userMember,
     		'countProduct' => $countProduct,
         'transactionReceived' => $transactionReceived,
-        'memberLastweek' => $memberLastweek,
-        'memberLastmonth' => $memberLastmonth,
-        'memberLastyear' => $memberLastyear,
     		'page' => 'Dashboard',
     	);
 
@@ -59,6 +42,14 @@ class DashboardController extends Controller
         }else {
           return redirect('/dashboard');
         }
+    }
+
+     public function getdatamember()
+    {
+      $last = Carbon::today()->subYears(5);
+
+      $getdatamember = User::where('created_at','>=',$last)->select(DB::raw('YEAR(created_at) tahun'), DB::raw('count(*) as total'))->groupBy('tahun')->get();
+      return $getdatamember; 
     }
 
     public function gettransactionorder()
