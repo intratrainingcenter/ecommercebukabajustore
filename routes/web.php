@@ -142,19 +142,19 @@ Route::group(['prefix'=>'profile', 'middleware'=>['auth','setup','backendAccess'
 	Route::put('updateprofile','Backend\BprofileController@updateprofile')->name('updateProfileBackend');
 });
 
-Route::group(['prefix'=>'setting', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
+Route::group(['prefix'=>'setting', 'middleware'=>['auth','setup','backendAccess','status']], function ()
 {
 	Route::get('','Backend\BsettingController@index')->name('settingIndex');
 	Route::put('updatesetting','Backend\BsettingController@updatesetting')->name('settingUpdate');
 });
 Route::resource('ContactBack', 'Backend\BcontactsController');
 
-Route::group(['prefix'=>'chats', 'middleware'=>['auth','adminAccess']],function(){
+Route::group(['prefix'=>'chats', 'middleware'=>['auth','adminAccess','setup']],function(){
 	Route::get('','Backend\BchatsController@index');
 	Route::get('/user','Backend\BchatsController@User');
 });
 
-Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','setup','status']], function ()
+Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','backendAccess','setup','status']], function ()
 {
 	Route::get('','Backend\BordertransactionController@index')->name('ordertransactionIndex');
 	Route::get('detailorder','Backend\BordertransactionController@detailorder')->name('ordertransactionDetail');
@@ -168,20 +168,20 @@ Route::get('/nonActive', 'DashboardController@nonactive');
 Route::get('/showsetting', 'Backend\BsettingController@showsetting');
 Route::get('/settingfront', 'Backend\BsettingController@settingfront');
 
-Route::group(['prefix'=>'laporanbarang'],function(){
+Route::group(['prefix'=>'laporanbarang', 'middleware'=>['auth','adminAccess','setup','status']],function(){
 	Route::get('','Backend\BlaporanbarangController@index')->name('laporanbarangIndex');
 	Route::get('getdataproduck','Backend\BlaporanbarangController@getdataproduck');
 	Route::post('searchCtaegory','Backend\BlaporanbarangController@category');
 	Route::post('filterwithdate','Backend\BlaporanbarangController@filterwithdate');
 });
 
-Route::group(['prefix'=>'Return'],function(){
+Route::group(['prefix'=>'Return', 'middleware'=>['auth','backendAccess','setup','status']],function(){
 	Route::get('','Backend\BreturnController@index')->name('indexReturn');
 	Route::get('processreturn','Backend\BreturnController@returnProcess')->name('processReturn');
 	Route::put('validationreturn','Backend\BreturnController@validationReturn')->name('validationReturn');
 });
 
-Route::group(['prefix'=>'reporttransaction'],function(){
+Route::group(['prefix'=>'reporttransaction', 'middleware'=>['auth','adminAccess','setup','status']],function(){
 	Route::get('','Backend\BreporttransactionController@showtransaction')->name('reporttransaction');
 	Route::post('filter','Backend\BreporttransactionController@showfilter');
 });

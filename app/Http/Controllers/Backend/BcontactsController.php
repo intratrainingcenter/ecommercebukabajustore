@@ -12,6 +12,14 @@ class BcontactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('backendAccess');
+        $this->middleware('setup');
+        $this->middleware('status');
+    }
+
     public function index()
     {
         $data = array(

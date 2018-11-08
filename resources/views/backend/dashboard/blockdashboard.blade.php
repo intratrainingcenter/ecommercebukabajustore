@@ -30,7 +30,7 @@
         <div class="mini-stat clearfix bg-primary">
             <span class="mini-stat-icon"><i class="mdi mdi-tshirt-crew"></i></span>
             <div class="mini-stat-info text-right text-white">
-                <span class="counter">{{ $countProduct }}</span>
+                <span class="counter">@if($countProduct) $countProduct @else 0 @endif</span>
                 <br> Stock All Product
             </div>
         </div>
