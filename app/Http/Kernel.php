@@ -66,5 +66,7 @@ class Kernel extends HttpKernel
         'backendAccess' => \App\Http\Middleware\backendAccess::class,
         'status' => \App\Http\Middleware\status::class,
         'verifyemail' => \App\Http\Middleware\verifyemail::class,
+        'memberAcces' => \App\Http\Middleware\memberAcces::class,
+        'Authfrontend' => \App\Http\Middleware\Authfrontend::class,
     ];
 }

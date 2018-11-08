@@ -107,10 +107,13 @@ $(document).ready(function() {
           if(data.val().kode_cs === usercode){
             var isi = '';
             opsi_chat = database.ref('opsi_chat/'+data.val().kode_chat);
-            opsi_chat.on('child_added',function(item){
-                isi = item.val().isi_chat;
+            opsi_chat.on('value',function(item){
+              item.forEach(function(e){
+                isi = e.val().isi_chat;
+                console.log(isi);
+              })
                 code = data.val().kode_chat;
-                $('.preview'+code).html(isi);
+                $('.preview'+code).append(isi);
             })
             var img = '';
             var datauser = datausers.filter( obj => obj.kode_user ===data.val().kode_member)[0];

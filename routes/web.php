@@ -206,7 +206,7 @@ Route::prefix('')->group(function ()
 	Route::get('','Frontend\FhomeController@index')->name('fronthomeIndex');
 });
 
-Route::prefix('shop')->group(function ()
+Route::group(['prefix'=>'shop'],function ()
 {
 	Route::get('/{category}','Frontend\FshopController@index')->name('frontshopIndex');
 	Route::get('detailproduct/{id}','Frontend\FshopController@detailproduct')->name('frontdetailProduct');
@@ -221,7 +221,7 @@ Route::prefix('shop')->group(function ()
 	Route::get('search','Frontend\FshopController@search');
 });
 
-Route::prefix('loginMember')->group(function(){
+Route::group(['prefix'=>'loginMember','middleware'=>['Authfrontend']],function(){
 	Route::get('',function(){
 		return view('frontend.Auth.login');
 	})->name('formLoginMember');
@@ -239,7 +239,7 @@ Route::prefix('RegisterMember')->group(function(){
 	Route::post('register','Frontend\FRegisterController@register')->name('memberregister');
 });
 
-Route::prefix('cart')->group(function ()
+Route::group(['prefix'=>'cart','middleware'=>['memberAcces']],function ()
 {
 	Route::get('loadcart','Frontend\FcartController@loadcart');
 	Route::post('addtocart','Frontend\FcartController@addtocart');
@@ -248,7 +248,7 @@ Route::prefix('cart')->group(function ()
 	Route::delete('clearcart','Frontend\FcartController@clearcart');
 });
 
-Route::prefix('checkout')->group(function ()
+Route::group(['prefix'=>'checkout','middleware'=>['memberAcces']],function ()
 {
 	Route::get('','Frontend\FcheckoutController@index')->name('checkoutIndex');
 	Route::get('trackcostshipping','Frontend\FcheckoutController@trackcostshipping');
@@ -263,7 +263,7 @@ Route::prefix('checkout')->group(function ()
 	Route::get('status', 'Frontend\FpaymentController@getPaymentStatus')->name('statusPayment');
 });
 
-Route::prefix('mypurchase')->group(function ()
+Route::group(['prefix'=>'mypurchase','middleware'=>['memberAcces']],function ()
 {
 	Route::get('','Frontend\FmypurchaseController@history')->name('mypurchaseIndex');
 	Route::get('detailhistorytransaction','Frontend\FmypurchaseController@detailhistorytransaction')->name('detailHistoryTransaction');
@@ -275,13 +275,13 @@ Route::prefix('mypurchase')->group(function ()
 });
 Route::resource('ContactUs', 'Frontend\FcontactsController');
 
-Route::prefix('trackorder')->group(function ()
+Route::group(['prefix'=>'trackorder','middleware'=>['memberAcces']],function ()
 {
 	Route::get('','Frontend\FtrackorderController@index')->name('trackorderIndex');
 	Route::get('tracking','Frontend\FtrackorderController@tracking')->name('trackingOrder');
 });
 
-Route::prefix('wishlist')->group(function ()
+Route::group(['prefix'=>'wishlist','middleware'=>['memberAcces']],function ()
 {
 	Route::get('','Frontend\FwishlistController@wishlist');
 	Route::get('countwishlist','Frontend\FwishlistController@countwishlist');
@@ -301,13 +301,13 @@ Route::prefix('story')->group(function ()
 	Route::get('detailshowstory/{idstory}','Frontend\FstoryController@detailstory')->name('detailstory');
 });
 
-Route::group(['prefix'=>'profileFront'], function ()
+Route::group(['prefix'=>'profileFront','middleware'=>['memberAcces']], function ()
 {
 	Route::get('','FprofileController@index')->name('profileIndex');
   Route::put('updateprofile','FprofileController@updateprofile')->name('updateProfile');
 });
 
-Route::group(['prefix'=>'review'], function ()
+	Route::group(['prefix'=>'review','middleware'=>['memberAcces']], function ()
 {
 	Route::get('','Frontend\FreviewController@viewreview')->name('reviewIndex');
 	Route::post('addreview','Frontend\FreviewController@addreview')->name('addReview');
