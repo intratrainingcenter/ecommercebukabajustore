@@ -41,18 +41,13 @@
 				</h4>
 				<ul>
 					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+						<a href="{{ route('trackorderIndex') }}" class="stext-107 cl7 hov-cl1 trans-04">
 							Track Order
 						</a>
 					</li>
 					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Returns 
-						</a>
-					</li>
-					<li class="p-b-10">
-						<a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-							Shipping
+						<a href="{{route('ContactUs.index')}}" class="stext-107 cl7 hov-cl1 trans-04">
+							Contact Us
 						</a>
 					</li>
 				</ul>
