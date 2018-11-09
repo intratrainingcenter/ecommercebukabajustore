@@ -2,7 +2,7 @@
     <li>
         <a href="{{route('dashboardIndex')}}" class="waves-effect">
             <i class="mdi mdi-view-dashboard"></i>
-            <span> Dashboard <span class="badge badge-primary pull-right">8</span></span>
+            <span> Dashboard </span>
         </a>
     </li>
     @if (Auth::user()->kode_jabatan == 'admin')

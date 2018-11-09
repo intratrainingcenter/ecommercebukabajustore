@@ -18,6 +18,7 @@ class CreateSettingsTable extends Migration
            $table->string('foto')->nullable();
            $table->string('lokasifoto')->nullable();
            $table->string('nama_web');
+           $table->string('id_kota');
            $table->string('alamat');
            $table->string('no_telp');
            $table->string('email');

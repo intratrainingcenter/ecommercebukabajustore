@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Pemesanan_Temp as TransactionTemp;
 use App\Opsi_Pemesanan_Temp as Cart;
 use App\Promo;
+use App\setting;
 
 class FcheckoutController extends Controller
 {
@@ -48,7 +49,8 @@ class FcheckoutController extends Controller
 
 	public function trackcostshipping(Request $request)
 	{
-		$originCity = 151;
+		$setting = setting::first();
+		$originCity = $setting->id_kota;
 		$destinationcity = $request->destinationCity;
 
 		$incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
@@ -94,11 +96,11 @@ class FcheckoutController extends Controller
 		$subtotal = Cart::where('kode_pemesanan',$incartTransactionTemp->kode_pemesanan)->get()->sum('subtotal');
 
 		$resultCheck = Promo::where('kode_promo',$request->promoCode)
-							->where('min_pembelian','<=',$subtotal)
-							->whereRaw('"'. $dateNow .'" between master_promos.berlaku_awal and master_promos.berlaku_akhir')
-							->get()
-							->isNotEmpty();
-						
+		->where('min_pembelian','<=',$subtotal)
+		->whereRaw('"'. $dateNow .'" between master_promos.berlaku_awal and master_promos.berlaku_akhir')
+		->get()
+		->isNotEmpty();
+
 		if($resultCheck){
 			return 1;
 		}else{
