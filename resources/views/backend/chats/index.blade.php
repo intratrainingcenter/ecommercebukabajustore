@@ -17,12 +17,12 @@
       		<div class="contact-profile">
       			<p style="padding-left:25px;" class="username"></p>
       		</div>
-      		<div class="messages">
+      		<div style="padding-bottom: 10px;" class="messages" id="messageDiv">
       			<ul class="show_list_chat">
 
       			</ul>
-      		</div>
-      		<div class="message-input">
+                  </div>
+      		<div  class="message-input">
       			<div class="wrap">
         			<input type="text" id="input_message" name="input_message" class="form-control input-sm chat_input" placeholder="Write your message...">
         			<input type="hidden" name="" id="default_code_chat">

@@ -44,14 +44,6 @@ class DashboardController extends Controller
         }
     }
 
-     public function getdatamember()
-    {
-      $last = Carbon::today()->subYears(5);
-
-      $getdatamember = User::where('created_at','>=',$last)->select(DB::raw('YEAR(created_at) tahun'), DB::raw('count(*) as total'))->groupBy('tahun')->get();
-      return $getdatamember; 
-    }
-
     public function gettransactionorder()
     {
       $gettransactionorder = Pemesanan::select(DB::raw('count(*) as countorder,status'))->groupBy('status')->orderBy('status','desc')->get();

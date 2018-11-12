@@ -29,11 +29,11 @@
             <div class="dropdown-item noti-title">
                 <h5>Notification</h5>
             </div>
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <a href="{{ route('ordertransactionIndex') }}" class="dropdown-item notify-item">
                 <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
                 <p class="notify-details"><b>Transaction pending</b><small class="text-muted">You Have <b id="transaction_pending"></b> pending transaction</small></p>
             </a>
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
+            <a href="{{ route('indexReturn') }}" class="dropdown-item notify-item">
                 <div class="notify-icon bg-primary"><i class="mdi mdi-file-restore"></i></div>
                 <p class="notify-details"><b>Transaction return pending</b><small class="text-muted">You Have <b id="transactionreturn_pending"></b> pending transaction return</small></p>
             </a>

@@ -55,43 +55,6 @@
         },
 
         Dashboard.prototype.init = function () {
-
-            //creating area chart
-            // var getmember = getdatabyajax("getdatamember");
-            //  var $datamember = [];
-            // if(getmember.length != 0){
-            //     $.each(getmember,function(object,invalue) {
-            //         $datamember.push({y: invalue.tahun  , a: invalue.total, b: invalue.total});
-            //     });
-            // }else{
-
-            //     $datamember.push({y: 'empty', a: 0, b: 0});
-            // }
-            // // var $areaData = [
-            // // {y: '2009', a: 10, b: 20},
-            // // {y: '2010', a: 75, b: 65},
-            // // {y: '2011', a: 50, b: 40},
-            // // {y: '2012', a: 75, b: 65},
-            // // {y: '2013', a: 50, b: 40},
-            // // {y: '2014', a: 75, b: 65},
-            // // {y: '2015', a: 90, b: 60},
-            // // {y: '2016', a: 90, b: 75}
-            // // ];
-            // this.createAreaChart('charts-new-member', 0, 0, $datamember, 'y', ['a', 'b'], ['Active', 'Non Active'], ['#ca6364', '#eb7475']);
-
-            // //creating bar chart
-            // var $barData = [
-            // {y: '2009', a: 100, b: 90},
-            // {y: '2010', a: 75, b: 65},
-            // {y: '2011', a: 50, b: 40},
-            // {y: '2012', a: 75, b: 65},
-            // {y: '2013', a: 50, b: 40},
-            // {y: '2014', a: 75, b: 65},
-            // {y: '2015', a: 100, b: 90},
-            // {y: '2016', a: 90, b: 75}
-            // ];
-            // this.createBarChart('charts-revenue', $barData, 'y', ['a', 'b'], ['Series A', 'Series B'], ['#ca6364', '#eb7475']);
-
             //creating donut chart
             var getdataorder = getdatabyajax("gettransactionorder");
 

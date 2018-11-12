@@ -3,7 +3,7 @@
         <div class="invoice-title">
             <h4 class="pull-right font-16"><strong>Code Return # {{$returntransaction->kode_retur}}</strong></h4>
             <h3 class="m-t-0">
-                <img src="{{ asset('backend/assets/images/logo.png')}}" alt="logo" height="42"/>
+                <img src="{{ asset('storage/imagesetup/'.$setting->foto)}}" alt="logo" height="42"/>
             </h3>
         </div>
         <hr>

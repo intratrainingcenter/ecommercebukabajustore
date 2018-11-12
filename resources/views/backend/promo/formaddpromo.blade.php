@@ -37,15 +37,21 @@
     <div class="form-group col-md-6 @if($errors->has('minimumPurchase')) has-primary @endif">
         <div class="col-sm-12">
             {{Form::label('Minimum purchase')}}
-            {{Form::number('minimumPurchase',null,['class'=>'form-control','placeholder'=>'Enter Minimum purchase'])}}
-            @if($errors->has('minimumPurchase')) <div class="form-control-feedback">{{ $errors->first('minimumPurchase') }}</div> @endif
+            <div class="input-group">
+                <span class="input-group-addon b-0">$</span>
+                {{Form::number('minimumPurchase',null,['class'=>'form-control','placeholder'=>'Enter Minimum purchase'])}}
+                @if($errors->has('minimumPurchase')) <div class="form-control-feedback">{{ $errors->first('minimumPurchase') }}</div> @endif
+            </div>
         </div>
     </div>
     <div class="form-group col-md-6 @if($errors->has('disCount')) has-primary @endif">
         <div class="col-sm-12">
             {{Form::label('Discount')}}
-            {{Form::number('disCount',null,['class'=>'form-control','placeholder'=>'Enter Discount Promo'])}}
-            @if($errors->has('disCount')) <div class="form-control-feedback">{{ $errors->first('disCount') }}</div> @endif
+            <div class="input-group">
+                <span class="input-group-addon b-0">$</span>
+                {{Form::number('disCount',null,['class'=>'form-control','placeholder'=>'Enter Discount Promo'])}}
+                @if($errors->has('disCount')) <div class="form-control-feedback">{{ $errors->first('disCount') }}</div> @endif
+            </div>
         </div>
     </div>
 </div>

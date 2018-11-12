@@ -24,7 +24,7 @@
 					<!-- Slide2 -->
 					<div class="wrap-slick2">
 						<div class="slick2">
-							@foreach($bestSeller as $itemSeller)
+							@forelse($bestSeller as $itemSeller)
 							<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 								<!-- Block2 -->
 								<div class="block2">
@@ -49,7 +49,11 @@
 									</div>
 								</div>
 							</div>
-							@endforeach
+							@empty
+								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+									<center>Empty Data</center>
+								</div>
+							@endforelse
 						</div>
 					</div>
 				</div>
@@ -57,7 +61,7 @@
 					<!-- Slide2 -->
 					<div class="wrap-slick2">
 						<div class="slick2">
-							@foreach($topRate as $itemRate)
+							@forelse($topRate as $itemRate)
 							<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 								<!-- Block2 -->
 								<div class="block2">
@@ -82,7 +86,11 @@
 									</div>
 								</div>
 							</div>
-							@endforeach
+							@empty
+								<div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+									<center>Empty Data</center>
+								</div>
+							@endforelse
 						</div>
 					</div>
 				</div>

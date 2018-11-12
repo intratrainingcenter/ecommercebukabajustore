@@ -14,7 +14,7 @@ class BlaporanbarangController extends Controller
     public function index()
     {
       $data = array(
-        'page'      => 'Laporan Barang',
+        'page'      => 'Product Report',
         'category'  => Kategori::all(),
       );
       return view('backend.laporanbarang.index',$data);

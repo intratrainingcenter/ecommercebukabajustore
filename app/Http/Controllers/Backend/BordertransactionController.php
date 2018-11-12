@@ -9,6 +9,7 @@ Use App\Pemesanan;
 Use App\ongkir;
 Use App\Opsi_Pemesanan;
 Use App\Ulasan;
+Use App\setting;
 
 
 class BordertransactionController extends Controller
@@ -26,7 +27,8 @@ class BordertransactionController extends Controller
 	public function detailorder(Request $request)
 	{
 		$idTransaction = decrypt($request->id);
-		
+		$setting = setting::first();
+
 		$detailOrder = Pemesanan::where('id',$idTransaction)->with(['detailUser','shippingService','detailPromo','opsiDetailHistory' => function ($query)
     	{
     		$query->with('detailProduct');
@@ -34,6 +36,7 @@ class BordertransactionController extends Controller
 
 		$data = array(
 			'page' => 'Order Transaction',
+			'setting' => $setting,
 			'detailOrder' => $detailOrder,
 		);
 

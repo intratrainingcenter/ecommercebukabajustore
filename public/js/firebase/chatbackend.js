@@ -3,10 +3,12 @@ $(document).ready(function() {
   var database = firebase.database();
   var master_chat = database.ref('master_chat');
 
+
   usercode = $(document).find('.code_user').val();
   $(document).find('.message-input').hide();
 
-    master_chat.on('value',showmaster_chat)
+    master_chat.on('value',showmaster_chat);
+
     master_chat.on('child_removed',function(removed){
       var removecodeChat = $(document).find('#default_code_chat').val();
       if (removed.val().kode_chat == removecodeChat){
@@ -33,14 +35,16 @@ $(document).ready(function() {
       $(document).find('.show_list_chat').empty();
       $(document).find('.message-input').show();
 
-      code_chat = $(this).attr('code_chat_master');
-      name_user = $(this).attr('name_user');
+        code_chat = $(this).attr('code_chat_master');
+        name_user = $(this).attr('name_user');
+        opsi_chat = database.ref('opsi_chat/'+code_chat);
+        
+        opsi_chat.off("child_added");
 
-        opsi_chat = database.ref('opsi_chat/'+code_chat)
-
+        opsi_chat = database.ref('opsi_chat/'+code_chat);
+        
         opsi_chat.on('child_added',function(items){
           var text = '';
-
             code = items.val().kode_pembalas[0];
 
             if (code === 'M') {
@@ -57,8 +61,9 @@ $(document).ready(function() {
             $(document).find('.username').text(name_user);
             $(document).find('#default_code_chat').val(code_chat);
         });
+         scrollToBottom();
     });
-
+       
     // send message with enter
     $('#input_message').on('change',function(){
       usercode = $(document).find('.code_user').val();
@@ -81,10 +86,21 @@ $(document).ready(function() {
 
         $('.preview'+codechat).html(message);
         $('#input_message').val('');
+        scrollToBottom();
     })
 
 });
 // end document ready
+
+function scrollToBottom() {
+   var height = 0;
+    $('ul li').each(function(i, value){
+        height += parseInt($(this).height());
+    });
+
+    height += '';
+    $('.messages').animate({scrollTop: height+10});
+}
 
   var database = firebase.database();
 
@@ -107,14 +123,15 @@ $(document).ready(function() {
           if(data.val().kode_cs === usercode){
             var isi = '';
             opsi_chat = database.ref('opsi_chat/'+data.val().kode_chat);
+
             opsi_chat.on('value',function(item){
               item.forEach(function(e){
                 isi = e.val().isi_chat;
-                console.log(isi);
               })
                 code = data.val().kode_chat;
                 $('.preview'+code).append(isi);
             })
+
             var img = '';
             var datauser = datausers.filter( obj => obj.kode_user ===data.val().kode_member)[0];
             if (datauser.avatar == '') {

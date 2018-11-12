@@ -198,7 +198,7 @@ Route::group(['prefix'=>'loginMember','middleware'=>['Authfrontend']],function()
 	})->name('emailresetpassword');
 });
 
-Route::prefix('RegisterMember')->group(function(){
+Route::group(['prefix'=>'RegisterMember','middleware'=>['Authfrontend']],function(){
 	Route::get('',function(){
 		return view('frontend.Auth.registers');
 	})->name('formRegisterMember');

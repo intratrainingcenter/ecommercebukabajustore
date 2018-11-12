@@ -46,22 +46,22 @@
 	<!-- Sidebar -->
 	@include('frontend.general.asidebar')
 	<!-- Cart -->
-	@include('frontend.general.cart')<link rel="manifest" href="/manifest.json" />
-<link rel="manifest" href="/manifest.json" />
-<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-<script>
-  var OneSignal = window.OneSignal || [];
-  OneSignal.push(function() {
-    OneSignal.init({
-      appId: "9c0712c7-6d43-4435-978f-a57f306b7d4f",
-      autoRegister: false,
-      notifyButton: {
-        enable: true,
-      },
-      allowLocalhostAsSecureOrigin: true,
-    });
-  });
-</script>
+	@include('frontend.general.cart')
+	<link rel="manifest" href="/manifest.json" />
+	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+	<script>
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(function() {
+			OneSignal.init({
+				appId: "9c0712c7-6d43-4435-978f-a57f306b7d4f",
+				autoRegister: false,
+				notifyButton: {
+					enable: true,
+				},
+				allowLocalhostAsSecureOrigin: true,
+			});
+		});
+	</script>
 	<!-- Content -->
 	@yield('content')
 	<!-- Footer -->
@@ -76,17 +76,17 @@
 	</div>
 	<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
 	<script>
-	  var OneSignal = window.OneSignal || [];
-	  OneSignal.push(function() {
-	    OneSignal.init({
-	      appId: "9c0712c7-6d43-4435-978f-a57f306b7d4f",
-	      autoRegister: false,
-	      notifyButton: {
-	        enable: true,
-	      },
-	      allowLocalhostAsSecureOrigin: true,
-	    });
-	  });
+		var OneSignal = window.OneSignal || [];
+		OneSignal.push(function() {
+			OneSignal.init({
+				appId: "9c0712c7-6d43-4435-978f-a57f306b7d4f",
+				autoRegister: false,
+				notifyButton: {
+					enable: true,
+				},
+				allowLocalhostAsSecureOrigin: true,
+			});
+		});
 	</script>
 	<!--===============================================================================================-->
 	<script src="{{ asset('frontend/asset/jquery/jquery-3.2.1.min.js') }}"></script>
@@ -172,15 +172,15 @@
 	</script>
 	<script>
 		$(document).ready(function () {
-		  setTimeout(function(){
-		    $(document).find('.notif').fadeOut('slow');
-		  },3000);
+			setTimeout(function(){
+				$(document).find('.notif').fadeOut('slow');
+			},3000);
 		});
 	</script>
-<!--====================================================================================================-->
-<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
- <script src="{{ asset('js/firebase/intializefirebase.js') }}"></script>
- <script src="{{ asset('js/firebase/chatfrontend.js') }}"></script>
+	<!--====================================================================================================-->
+	<script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+	<script src="{{ asset('js/firebase/intializefirebase.js') }}"></script>
+	<script src="{{ asset('js/firebase/chatfrontend.js') }}"></script>
 
 </body>
 </html>

@@ -16,13 +16,13 @@
                                 Return on<br>
                                 {{ $itemreturnProduct->updated_at }}
                                 @if($itemreturnProduct->status == 'Pending')
-                                <h5 style="color: orange;" class="pull-right"> Pending</h5>
+                                <h5 style="color: orange;"> Pending</h5>
                               @elseif($itemreturnProduct->status == 'process')
-                                <h5 style="color: tomato;" class="pull-right"> Process</h5>
+                                <h5 style="color: tomato;"> Process</h5>
                               @elseif($itemreturnProduct->status == 'received')
-                                <h5 style="color: green;" class="pull-right"> Received</h5>
+                                <h5 style="color: green;"> Received</h5>
                               @elseif($itemreturnProduct->status == 'reject')
-                                <h5 style="color: red;" class="pull-right"> Reject</h5>
+                                <h5 style="color: red;"> Reject</h5>
                                 @endif
                             </small>
                             <hr>

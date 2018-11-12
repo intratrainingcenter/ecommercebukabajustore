@@ -95,7 +95,7 @@ class FcartController extends Controller
         $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
         $codeTransaction = $incartTransactionTemp->kode_pemesanan;
 
-        $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
+        $sumProductcart = (!is_null($codeTransaction))?Cart::where('kode_pemesanan',$codeTransaction)->get()->count():0;
         return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
     }
 

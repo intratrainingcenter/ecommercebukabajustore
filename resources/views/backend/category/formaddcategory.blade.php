@@ -3,7 +3,7 @@
     <div class="col-12">
         <div class="card m-b-20">
             <div class="card-body">
-                <h4 class="mt-0 header-title">Image Product</h4>
+                <h4 class="mt-0 header-title">Image Category</h4>
                 <div class="m-b-30 form-group @if($errors->has('imageCategory')) has-primary @endif">
                     <div class="fallback">
                         <input name="image" type="file" class="inputimageCategory form-control">

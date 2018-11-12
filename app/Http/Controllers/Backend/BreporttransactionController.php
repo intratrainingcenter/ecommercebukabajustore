@@ -23,7 +23,7 @@ class BreporttransactionController extends Controller
       });
 
       $data = array(
-        'page' => 'Report Transaction',
+        'page' => 'Transaction Report',
         'opsi_transaction' => $opsi_transaction,
         'opsi_retur' => $opsi_retur,
       );

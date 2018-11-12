@@ -27,17 +27,17 @@
                                 Ordered on<br>
                                 {{ $itemHistoryTransaction->updated_at }}
                                 @if($itemHistoryTransaction->status == 'pending')
-                                <h5 style="color: orange;" class="pull-right"> Pending</h5>
+                                <h5 style="color: orange;"> Pending</h5>
                                 @elseif($itemHistoryTransaction->status == 'paid')
-                                <h5 style="color: olive;" class="pull-right"> Paid</h5>
+                                <h5 style="color: olive;"> Paid</h5>
                                 @elseif($itemHistoryTransaction->status == 'process')
-                                <h5 style="color: tomato;" class="pull-right"> Process</h5>
+                                <h5 style="color: tomato;"> Process</h5>
                                 @elseif($itemHistoryTransaction->status == 'delivery')
-                                <h5 style="color: blue;" class="pull-right"> Delivery</h5>
+                                <h5 style="color: blue;"> Delivery</h5>
                                 @elseif($itemHistoryTransaction->status == 'received')
-                                <h5 style="color: green;" class="pull-right"> Received</h5>
+                                <h5 style="color: green;"> Received</h5>
                                 @elseif($itemHistoryTransaction->status == 'cancel')
-                                <h5 style="color: red;" class="pull-right"> Canceled</h5>
+                                <h5 style="color: red;"> Canceled</h5>
                                 @endif
                             </small>
                             <hr>
