@@ -1,18 +1,5 @@
 <?php
 
-// Route::get('/', function () {
-// 	return redirect()->route('fronthomeIndex');
-// });
-
-/*
-| ROUTE FOR PAYMENT PAYPAL
-*/
-// Route::get('paypal','PaymentController@index');
-// // route for processing payment
-// Route::post('payment', 'PaymentController@payWithpaypal')->name('paypalship');
-// // route for check status of the payment
-// Route::get('status', 'PaymentController@getPaymentStatus')->name('paypalstatus');
-
 /* ROUTE FOR BACKEND */
 Route::group(['prefix'=>'setup', 'middleware'=>['auth','backendAccess','status']], function ()
 {
@@ -40,17 +27,6 @@ Route::group(['prefix'=>'promo', 'middleware'=>['auth','adminAccess','setup','ba
 	Route::get('loaddatapromo','Backend\BpromoController@loaddatapromo');
 });
 
-// Route::prefix('position')->group(function ()
-// {
-// 	Route::get('','Backend\BpositionController@index')->name('positionIndex');
-// 	Route::get('addposition','Backend\BpositionController@addposition')->name('positionAdd');
-// 	Route::get('editposition/{id}','Backend\BpositionController@editposition')->name('positionEdit');
-// 	Route::put('updateposition','Backend\BpositionController@updateposition')->name('positionUpdate');
-// 	Route::post('createposition','Backend\BpositionController@createposition')->name('positionCreate');
-// 	Route::get('detailposition/{id}','Backend\BpositionController@detailposition')->name('positionDetail');
-// 	Route::delete('deleteposition','Backend\BpositionController@deleteposition')->name('positionDelete');
-// 	Route::get('loaddataposition','Backend\BpositionController@loaddataposition');
-// });
 Route::group(['prefix'=>'slider', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
 	Route::get('','Backend\BsliderController@index')->name('sliderindex');
@@ -147,6 +123,7 @@ Route::group(['prefix'=>'setting', 'middleware'=>['auth','setup','backendAccess'
 	Route::get('','Backend\BsettingController@index')->name('settingIndex');
 	Route::put('updatesetting','Backend\BsettingController@updatesetting')->name('settingUpdate');
 });
+
 Route::resource('ContactBack', 'Backend\BcontactsController');
 
 Route::group(['prefix'=>'chats', 'middleware'=>['auth','adminAccess','setup']],function(){
@@ -192,9 +169,7 @@ Route::get('notification','Backend\BsettingController@notification');
 /* END ROUTE FOR BACKEND */
 
 
-/*
-| ROUTE FOR FRONTEND
-*/
+/* ROUTE FOR FRONTEND */
 
 Route::prefix('promo')->group(function ()
 {
@@ -210,15 +185,6 @@ Route::group(['prefix'=>'shop'],function ()
 {
 	Route::get('/{category}','Frontend\FshopController@index')->name('frontshopIndex');
 	Route::get('detailproduct/{id}','Frontend\FshopController@detailproduct')->name('frontdetailProduct');
-	Route::get('search={search}','Frontend\FshopController@searchproduct');
-	Route::get('category={codecategory}','Frontend\FshopController@categoryproduct');
-	Route::get('sortby=lowtohight','Frontend\FshopController@lowtohightproduct');
-	Route::get('sortby=highttolow','Frontend\FshopController@highttolowproduct');
-	Route::get('sortby=newness','Frontend\FshopController@newnessproduct');
-	Route::get('sortby=averagerating','Frontend\FshopController@averagerating');
-	Route::get('sortby=popularityproduct','Frontend\FshopController@popularityproduct');
-	Route::get('rangeprice={min}-{max}','Frontend\FshopController@rangepriceproduct');
-	Route::get('search','Frontend\FshopController@search');
 });
 
 Route::group(['prefix'=>'loginMember','middleware'=>['Authfrontend']],function(){
@@ -318,9 +284,7 @@ Route::group(['prefix'=>'profileFront','middleware'=>['memberAcces']], function 
 Route::get('/verifyemail', function () {
 	return view('frontend.checkstatus');
 });
-/*
-| END ROUTE FOR FRONTEND
-*/
+/* END ROUTE FOR FRONTEND */
 
 // verify email
 Route::get('/verifyemail/{token}', 'Frontend\FRegisterController@verify');
