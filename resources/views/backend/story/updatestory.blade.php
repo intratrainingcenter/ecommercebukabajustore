@@ -49,7 +49,7 @@
                     </div>
                     {{Form::button('Save',['type'=>'submit','class'=>'btn btn-success waves-effect waves-light pull-right'])}}
                     <a href="{{route('storyIndex')}}" class="btn btn-warning waves-effect waves-light pull-left">Cancel</a>
-                        {!!Backendhelper::CroopieModal('modalcroopie',$input,'story')!!}
+                        {!!Backendhelper::CroopieModal('modalcroopie',$input,'story')!!} {{-- include backendhelper in app/library/backendhelper --}}
                     {{Form::close()}}
                 </div>
             </div>

@@ -48,12 +48,12 @@
                                     </div>
                                       <div class="pull-right">
                                           @if($returntransaction->status != "received" && $returntransaction->status != "delivery" && $returntransaction->status != "reject")
-                                          <button class="btn btn-primary waves-effect waves-light validatereject" attr-code="{{ encrypt($returntransaction->kode_retur) }}">Reject</button>
+                                            <button class="btn btn-primary waves-effect waves-light validatereject" attr-code="{{ encrypt($returntransaction->kode_retur) }}">Reject</button>
                                           @endif
                                           @if($returntransaction->status == "Pending")
-                                          <button class="btn btn-danger waves-effect waves-light validateProcess" attr-code="{{ encrypt($returntransaction->kode_retur) }}">Process</button>
-                                        @elseif($returntransaction->status == "process")
-                                          <button class="btn btn-success waves-effect waves-light validateReceived" attr-code="{{ encrypt($returntransaction->kode_retur) }}">Received</button>
+                                            <button class="btn btn-danger waves-effect waves-light validateProcess" attr-code="{{ encrypt($returntransaction->kode_retur) }}">Process</button>
+                                          @elseif($returntransaction->status == "process")
+                                            <button class="btn btn-success waves-effect waves-light validateReceived" attr-code="{{ encrypt($returntransaction->kode_retur) }}">Received</button>
                                           @endif
                                       </div>
                                 </div>

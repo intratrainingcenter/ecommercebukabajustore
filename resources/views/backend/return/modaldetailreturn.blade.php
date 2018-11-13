@@ -47,7 +47,7 @@
 </div><!-- /.modal -->
 {{-- END MODAL VALIDATION RECEIVED --}}
 
-{{-- MODAL VALIDATION CANCEL --}}
+{{-- MODAL VALIDATION REJECT --}}
 <div id="modalreturnReject" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

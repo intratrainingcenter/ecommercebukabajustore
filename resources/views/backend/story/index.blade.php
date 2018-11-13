@@ -7,7 +7,7 @@
             <div class="card m-b-20">
                 <div class="card-body">
                     @if ($message = Session::get('success'))
-                    {!! Backendhelper::alertsuccess($message) !!}
+                    {!! Backendhelper::alertsuccess($message) !!} {{-- include backendhelper in app/library/backendhelper --}}
                     <?php Session::forget('success');?>
                     @endif
                     <h4 class="mt-0 header-title">Data Story
@@ -36,6 +36,7 @@
                                 <td>{{$show->created_by}}</td>
                                 <td><i class=@if ($show->status == 'Aktif')"badge badge-success" @else "badge badge-primary" @endif >{{$show->status}}</i></td>
                                 <td>
+                                  {{-- include backendhelper in app/library/backendhelper --}}
                                     {!!Backendhelper::story_read_update_delete_byid($show->id,route('ShowstoryUpdate',['id'=>$show->id]),route('storyDetail',['id'=>$show->id]))!!}
                                 </td>
                             </tr>
@@ -47,6 +48,7 @@
         </div>
     </div>
 </div>
+{{-- modal delete story --}}
 <div id="modalDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

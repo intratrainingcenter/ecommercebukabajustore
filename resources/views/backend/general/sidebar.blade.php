@@ -46,7 +46,7 @@
     <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Report  </span> </a>
         <ul class="list-unstyled">
-            <li><a href="{{route('laporanbarangIndex')}}">Product Report</a></li>
+            <li><a href="{{route('reportproductIndex')}}">Product Report</a></li>
             <li><a href="{{route('reporttransaction')}}">Transaction Report</a></li>
         </ul>
     </li>
