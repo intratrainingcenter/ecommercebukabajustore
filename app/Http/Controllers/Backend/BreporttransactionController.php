@@ -13,12 +13,15 @@ class BreporttransactionController extends Controller
 {
     public function showtransaction()
     {
+      // every 1 minutes
       $minutes = now()->addMinutes(1);
       $opsi_transaction = Cache::remember('reporttransaction',$minutes, function(){
+        // leftjoin ( relationships left table )
         return Opsi_Pemesanan::leftjoin('pemesanans', 'opsi_pemesanans.kode_pemesanan', '=', 'pemesanans.kode_pemesanan')->where('status','received')->get();
       });
 
       $opsi_retur = Cache::remember('reportretur',$minutes, function(){
+        // leftjoin ( relationships left table )
         return Opsi_Retur::leftjoin('returs', 'opsi_returs.kode_retur', '=', 'returs.kode_retur')->where('status','received')->get();
       });
 
@@ -32,10 +35,12 @@ class BreporttransactionController extends Controller
 
     public function showfilter(Request $req)
     {
+      // leftjoin ( relationships left table )
       $opsi_transaction = [];
       $opsi_retur = [];
+      // every 1 mcinutes
       $minutes = now()->addMinutes(1);
-      // if select ( Transaction ) , date
+      // if select ( Transaction ) & date
       if ($req->category == 'Transaction' && $req->start_date && $req->end_date) {
         $data = Cache::remember('reporttransaction',$minutes, function(){
           return Opsi_Pemesanan::leftjoin('pemesanans', 'opsi_pemesanans.kode_pemesanan', '=', 'pemesanans.kode_pemesanan')->where('status','received')->get();
@@ -48,7 +53,7 @@ class BreporttransactionController extends Controller
           return Opsi_Pemesanan::leftjoin('pemesanans', 'opsi_pemesanans.kode_pemesanan', '=', 'pemesanans.kode_pemesanan')->where('status','received')->get();
         });
       }
-      // if select ( Retur ) , date
+      // if select ( Retur ) & date
       elseif ($req->category == 'Retur' && $req->start_date && $req->end_date) {
         $data = Cache::remember('reporretur',$minutes, function(){
           return Opsi_Retur::leftjoin('returs', 'opsi_returs.kode_retur', '=', 'returs.kode_retur')->where('status','received')->get();

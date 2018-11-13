@@ -12,7 +12,7 @@ class FaboutController extends Controller
     {
       $data = array(
         'page' => 'about',
-        'showabout' => About::all(),
+        'showabout' => About::where('status','Active')->get(),
       );
 
       return view('frontend.about.index',$data);

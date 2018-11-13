@@ -26,10 +26,14 @@ class BstoryController extends Controller
 
     public function createstory(Request $request)
     {
+      // makeDirectory ( create Directory )
       $createdirectory = Storage::makeDirectory('public/imagestory');
+      // str_replace ( take string )
       $image = str_replace('data:image/png;base64,', '', $request->imagestory);
       $image = str_replace(' ','+',$image);
+      // str_random ( create string random )
       $namefile = str_random(16).'.png';
+      // put ( move )
       Storage::put('public/imagestory'.'/'.$namefile, base64_decode($image));
       $save = Story::create([
         'created_by'  =>Auth::User()->name,
@@ -37,8 +41,9 @@ class BstoryController extends Controller
         'lokasifoto'  =>'/public/imagestory',
         'judul'       =>$request->title,
         'deskripsi'   =>$request->deskripsi,
-        'status'      =>'Aktif',
+        'status'      =>'Active',
       ]);
+      
       return redirect('story')->with('success','data was successfully added.');
     }
 
@@ -65,11 +70,15 @@ class BstoryController extends Controller
 
       }else
       {
+        // makeDirectory ( create Directory )
         $createdirectory = Storage::makeDirectory('public/imagestory');
+        // str_replace ( take string  )
         $image = str_replace('data:image/png;base64,', '', $request->imagestory);
         $image = str_replace(' ','+',$image);
         $namefile = str_random(16).'.png';
+        // put ( move )
         Storage::put('public/imagestory'.'/'.$namefile, base64_decode($image));
+        // delete ( delete file )
         Storage::delete('public/imagestory'.'/'.$request->valueImage);
         $storyupdate = Story::find($request->storyid);
         $storyupdate->update([
@@ -85,6 +94,7 @@ class BstoryController extends Controller
     public function deletestory(Request $request)
     {
       $deletestory = Story::find($request->idStory);
+      // delete ( delete file )
       Storage::delete('public/imagestory'.'/'.$deletestory->foto);
       $deletestory->delete();
 

@@ -13,6 +13,7 @@ class BproductController extends Controller
 {
   public function index()
   {
+    // with ( relationships ) call funtion on model
     $product = Barang::with('category')->get();
     $data = array(
       'page' => 'Product',
@@ -49,10 +50,14 @@ class BproductController extends Controller
       'sellingProduct' => 'max:11',
       'stockProduct' => 'max:11',
     ]);
+    // makeDirectory ( create Directory )
     $createdirectory = Storage::makeDirectory('public/imageproduct');
+    // str_replace ( take string )
     $image = str_replace('data:image/png;base64,', '', $request->imageProduct);
     $image = str_replace(' ','+',$image);
+    // str_random ( create string random )
     $namefile = str_random(16).'.png';
+    // put ( move )
     Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($image));
 
     $addproduct = new Barang;
@@ -106,12 +111,17 @@ class BproductController extends Controller
   {
     $updateproduct = Barang::find($request->idProduct);
     if ($request->imageProduct == true) {
+      // makeDirectory ( create Directory )
       $createdirectory = Storage::makeDirectory('public/imageproduct');
+      // str_replace ( take string )
       $image = str_replace('data:image/png;base64,', '', $request->imageProduct);
       $image = str_replace(' ','+',$image);
+      // str_random ( create string random )
       $namefile = str_random(16).'.png';
+      // put ( move )
       Storage::put('public/imageproduct'.'/'.$namefile, base64_decode($image));
       $getdataproduct = Barang::find($request->idProduct);
+      // delete ( delete file )
       Storage::delete('public/imageproduct'.'/'.$getdataproduct->foto);
       $updateproduct->foto = $namefile;
     }
@@ -156,6 +166,7 @@ class BproductController extends Controller
      return 'cancel';
    }
    $getdataproduct = Barang::find($getnameproduct->id);
+   // delete ( delete file )
    Storage::delete('public/imageproduct'.'/'.$getdataproduct->foto);
    $deleteproduct = Barang::find($getnameproduct->id)->delete();
 
@@ -164,6 +175,7 @@ class BproductController extends Controller
 
   public function loaddataproduct()
   {
+    // with ( relationships ) call funtion on model
     $product = Barang::with(['category' => function(){
     }])->get();
     $data = array(

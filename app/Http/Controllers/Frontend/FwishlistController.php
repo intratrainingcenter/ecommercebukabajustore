@@ -30,6 +30,7 @@ class FwishlistController extends Controller
 
   public function showproduct()
   {
+  // with ( relationships ) call funtion on model
     $showwishlist = Barang_Favorit::with('product')->where('kode_user',Auth::user()->kode_user)->get();
 
     $data = array(
@@ -40,6 +41,7 @@ class FwishlistController extends Controller
 
   public function wishlist()
   {
+    // with ( relationships ) call funtion on model
     $showwishlist = Barang_Favorit::with('product')->where('kode_user',Auth::user()->kode_user)->get();
 
     return 'success';

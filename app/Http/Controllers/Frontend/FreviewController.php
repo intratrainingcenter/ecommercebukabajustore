@@ -12,6 +12,7 @@ class FreviewController extends Controller
     public function viewreview()
     {
       $data = array(
+        // with ( relationships ) call funtion on model
         'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->kode_user)->where('status','belum')->get(),
       );
 
@@ -35,6 +36,7 @@ class FreviewController extends Controller
     public function showreview()
     {
       $data = array(
+        // with ( relationships ) call funtion on model
         'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->kode_user)->where('status','selesai')->get(),
       );
 
@@ -44,6 +46,7 @@ class FreviewController extends Controller
     public function waitingreview()
     {
       $data = array(
+        // with ( relationships ) call funtion on model
         'showreview' => Ulasan::with('relationproduct')->where('kode_user',Auth::user()->kode_user)->where('status','belum')->get(),
       );
 

@@ -28,6 +28,7 @@ $(document).on('click','#functionDelete',function () {
 		url:location.origin+'/about/deleteabout',
 		data:{idAbout:idAbout},
 		success:function (data) {
+			// call function
 			loaddataabout();
 			$('#modalDelete').modal('hide');
 			if(data == 'success'){

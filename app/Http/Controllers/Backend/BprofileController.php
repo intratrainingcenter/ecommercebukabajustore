@@ -23,11 +23,16 @@ class BprofileController extends Controller
  {
    $updateuser = User::find(Auth::user()->id);
    if ($request->imageUser == true) {
+     // makeDirectory ( create Directory )
      $createdirectory = Storage::makeDirectory('public/imageuser');
+     // str_replace ( take string )
      $image = str_replace('data:image/png;base64,', '', $request->imageUser);
      $image = str_replace(' ','+',$image);
+     // str_random ( create string random )
      $namefile = str_random(16).'.png';
+     // put ( move )
      Storage::put('public/imageuser'.'/'.$namefile, base64_decode($image));
+     // delete ( delete file )
      Storage::delete('public/imageuser'.'/'.$updateuser->avatar);
      $updateuser->avatar = $namefile;
    }
@@ -43,6 +48,7 @@ class BprofileController extends Controller
     $updateuser->no_telp = $request->phone;
     $updateuser->jenis_kelamin = $request->gender;
   if ($request->password = true) {
+    // bcrypt ( secret password )
     $updateuser->password = bcrypt($request->password);
   }
   $updateuser->save();

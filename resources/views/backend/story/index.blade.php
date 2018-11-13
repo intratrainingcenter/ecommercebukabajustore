@@ -36,6 +36,7 @@
                                 <td>{{$show->created_by}}</td>
                                 <td><i class=@if ($show->status == 'Aktif')"badge badge-success" @else "badge badge-primary" @endif >{{$show->status}}</i></td>
                                 <td>
+                                  <!-- call helper for UPDATE,DELETE,DETAIL Button from app/Library/Backendhelper -->
                                     {!!Backendhelper::story_read_update_delete_byid($show->id,route('ShowstoryUpdate',['id'=>$show->id]),route('storyDetail',['id'=>$show->id]))!!}
                                 </td>
                             </tr>

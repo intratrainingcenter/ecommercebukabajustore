@@ -28,12 +28,17 @@ class BsettingController extends Controller
     $updatesetting = setting::find($request->id);
 
     if ($request->imageWebsite) {
+      // makeDirectory ( create Directory )
       $createdirectory = Storage::makeDirectory('public/imagesetup');
+      // str_replace ( take string )
       $image = str_replace('data:image/png;base64,', '', $request->imageWebsite);
       $image = str_replace(' ','+',$image);
+      // str_random ( create string random )
       $namefile = str_random(16).'.png';
+      // put ( move )
       Storage::put('public/imagesetup'.'/'.$namefile, base64_decode($image));
       $getdatasetting = setting::find($request->id);
+      // delete ( delete file )
       Storage::delete('public/imagesetup'.'/'.$getdatasetting->foto);
       $updatesetting->foto = $namefile;
     }
@@ -57,6 +62,7 @@ class BsettingController extends Controller
   public function settingfront()
   {
     $setting = setting::first();
+    // take ( take 5 data )
     $category = Kategori::orderBy('created_at','desc')->take(5)->get();
 
     return response()->json(['setting'=>$setting,'category'=>$category]);
