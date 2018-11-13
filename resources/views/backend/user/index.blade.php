@@ -49,7 +49,11 @@
                     <td>{{$show->position->nama_jabatan}}</td>
                     <td><i class=@if ($show->status == 'Active')"badge badge-success" @else "badge badge-primary" @endif >{{$show->status}}</i></td>
                     <td>
-                      {!!Backendhelper::story_read_update_delete_byid($show->id,route('formuserUpdate',['id'=>$show->id]),route('userDetail',['id'=>$show->id]))!!}
+                        @if(Auth::user()->kode_user == $show->kode_user )
+                           Not to be managed
+                        @else
+                        {!!Backendhelper::story_read_update_delete_byid($show->id,route('formuserUpdate',['id'=>$show->id]),route('userDetail',['id'=>$show->id]))!!}
+                        @endif
                     </td>
                   </tr>
                   @endforeach

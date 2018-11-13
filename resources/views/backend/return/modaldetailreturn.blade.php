@@ -35,7 +35,7 @@
                 <p>Are you sure will validate Received Return Transaction?</p>
                 <input type="hidden" name="codeReceivedReturn" id="codeReceivedreturn">
                 <input type="hidden" name="opsi" value="received">
-                {{ Form::text('cashback',null,['class'=>'form-control','placeholder'=>'Please Enter no Cashback','required']) }}
+                {{ Form::number('cashback',null,['class'=>'form-control','placeholder'=>'Please Enter no Cashback','step'=>'any','required']) }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>

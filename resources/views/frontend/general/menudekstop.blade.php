@@ -12,12 +12,12 @@
 					<a href="{{ route('frontshopIndex',['category'=>'all']) }}">Shop</a>
 				</li>
 
-				<li class="@if(@$page == 'story') active-menu @endif">
-					<a href="{{ route('frontstoryIndex') }}">Story</a>
-				</li>
-
 				<li class="label1 @if(@$page == 'promo') active-menu @endif"  data-label1="hot">
 					<a href="{{ route('frontpromoIndex') }}">Promo</a>
+				</li>
+
+				<li class="@if(@$page == 'story') active-menu @endif">
+					<a href="{{ route('frontstoryIndex') }}">Story</a>
 				</li>
 
 				<li class="@if(@$page == 'about') active-menu @endif">

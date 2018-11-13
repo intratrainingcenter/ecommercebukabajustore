@@ -35,19 +35,13 @@
         </ul>
     </li>
     @endif
+    
+    @if (Auth::user()->kode_jabatan == 'admin')
     <li class="has_sub">
         <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-cash-multiple"></i> <span> Transaction </span> </a>
         <ul class="list-unstyled">
             <li><a href="{{ route('ordertransactionIndex') }}">Order Transaction</a></li>
             <li><a href="{{route('indexReturn')}}">Return Transaction</a></li>
-        </ul>
-    </li>
-    @if (Auth::user()->kode_jabatan == 'admin')
-    <li class="has_sub">
-        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Report  </span> </a>
-        <ul class="list-unstyled">
-            <li><a href="{{route('reportproductIndex')}}">Product Report</a></li>
-            <li><a href="{{route('reporttransaction')}}">Transaction Report</a></li>
         </ul>
     </li>
     @endif
@@ -59,6 +53,13 @@
        </a>
    </li>
    @endif
+   <li class="has_sub">
+        <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-line"></i> <span> Report  </span> </a>
+        <ul class="list-unstyled">
+            <li><a href="{{route('reportproductIndex')}}">Product Report</a></li>
+            <li><a href="{{route('reporttransaction')}}">Transaction Report</a></li>
+        </ul>
+    </li>
     <li>
         <a href="{{route('ContactBack.index')}}" class="waves-effect">
           <i class="ion-android-mail"></i>

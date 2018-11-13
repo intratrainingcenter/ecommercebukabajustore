@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class BprofileController extends Controller
@@ -47,9 +48,9 @@ class BprofileController extends Controller
     $updateuser->alamat = $request->address;
     $updateuser->no_telp = $request->phone;
     $updateuser->jenis_kelamin = $request->gender;
-  if ($request->password = true) {
-    // bcrypt ( secret password )
-    $updateuser->password = bcrypt($request->password);
+  if ($request->password == true) {
+    // Hash make ( secret password )
+    $updateuser->password =  Hash::make($request->password);
   }
   $updateuser->save();
 

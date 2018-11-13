@@ -31,6 +31,7 @@ class BsliderController extends Controller
 
   public function addslider()
   {
+     
     $data = array(
       'page' => 'Slider',
     );
@@ -39,6 +40,12 @@ class BsliderController extends Controller
 
   public function createslider(Request $request)
   {
+    $validatepromo = $request->validate([
+      'imageslider' => 'required',
+      'description' => 'required',
+      'status' => 'required',
+    ]);
+
     // makeDirectory ( create Directory )
     $createdirectory = Storage::makeDirectory('public/imageslider');
     // str_replace ( take string )
@@ -82,6 +89,11 @@ class BsliderController extends Controller
 
   public function updateslider(Request $request)
   {
+    $validatepromo = $request->validate([
+      'description' => 'required',
+      'status' => 'required',
+    ]);
+    
     if($request->imageslider == null){
       $createslider = slider::where('id',$request->id)->update([
       'created_by' => Auth::user()->kode_user,

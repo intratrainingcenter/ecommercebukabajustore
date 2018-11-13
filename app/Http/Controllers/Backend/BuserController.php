@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Jabatan;
 
@@ -76,7 +77,7 @@ class BuserController extends Controller
       'lokasifoto'       => '/public/imageuser',
       'name'             => $request->name,
       'email'            => $request->email,
-      'password'         => bcrypt($request->password),
+      'password'         => Hash::make($request->password),
       'kode_jabatan'     => $request->position,
       'alamat'           => $request->addres,
       'no_telp'          => $request->phonenumber,

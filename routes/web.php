@@ -149,7 +149,7 @@ Route::get('/showsetting', 'Backend\BsettingController@showsetting');
 Route::get('/settingfront', 'Backend\BsettingController@settingfront');
 
 // report product route
-Route::group(['prefix'=>'reportproduct', 'middleware'=>['auth','adminAccess','setup','status']],function(){
+Route::group(['prefix'=>'reportproduct', 'middleware'=>['auth','setup','status']],function(){
 	Route::get('','Backend\BreportproductController@index')->name('reportproductIndex');
 	Route::get('getdataproduck','Backend\BreportproductController@getdataproduck');
 	Route::post('searchCtaegory','Backend\BreportproductController@category');
@@ -163,7 +163,7 @@ Route::group(['prefix'=>'Return', 'middleware'=>['auth','backendAccess','setup',
 	Route::put('validationreturn','Backend\BreturnController@validationReturn')->name('validationReturn');
 }); /* end return route */
 
-Route::group(['prefix'=>'reporttransaction', 'middleware'=>['auth','adminAccess','setup','status']],function(){
+Route::group(['prefix'=>'reporttransaction', 'middleware'=>['auth','setup','status']],function(){
 	Route::get('','Backend\BreporttransactionController@showtransaction')->name('reporttransaction');
 	Route::post('filter','Backend\BreporttransactionController@showfilter');
 });

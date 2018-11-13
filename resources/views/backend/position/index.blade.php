@@ -34,8 +34,13 @@
                                 <td>{{ $itemPosition->kode_jabatan }}</td>
                                 <td>{{ $itemPosition->nama_jabatan }}</td>
                                 <td>
+                                    @if($itemPosition->kode_jabatan == 'spv' || $itemPosition->kode_jabatan == 'admin' || $itemPosition->kode_jabatan == 'member')
+                                        Not to be managed
+                                    @else
                                     {{-- Load Backend Helper in file Library/Backendhelper.php. --}}
                                     {!!Backendhelper::read_update_delete_byid($itemPosition->id,route('positionEdit',['id'=>$itemPosition->id]),route('positionDetail',['id'=>$itemPosition->id]))!!}
+                                    @endif
+
                                 </td>
                             </tr>
                             @endforeach
