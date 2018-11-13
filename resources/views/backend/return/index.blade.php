@@ -10,15 +10,15 @@
                     <div class="alert alert-success" role="alert">
                        <strong>Success !</strong> Return Process is successfully.
                    </div>
-                 @elseif (session('received'))
-                   <div class="alert alert-success" role="alert">
-                      <strong>Success !</strong> Return Received is successfully.
-                  </div>
-                @elseif (session('reject'))
-                  <div class="alert alert-success" role="alert">
-                     <strong>Success !</strong> Return Reject is successfully.
-                 </div>
-                @endif
+                   @elseif (session('received'))
+                     <div class="alert alert-success" role="alert">
+                        <strong>Success !</strong> Return Received is successfully.
+                    </div>
+                  @elseif (session('reject'))
+                    <div class="alert alert-success" role="alert">
+                       <strong>Success !</strong> Return Reject is successfully.
+                   </div>
+                  @endif
                     <h4 class="mt-0 header-title">Data Return Transaction</h4>
                     <br>
                     <hr>
@@ -58,22 +58,4 @@
         </div>
     </div>
 </div>
-<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mt-0" id="myModalLabel">Confirmation Delete</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure will delete this data Story ?</p>
-                <input type="hidden" name="" value="" id="idStory">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect waves-light pull-left" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light" id="deleteStory">Delete</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 @endsection

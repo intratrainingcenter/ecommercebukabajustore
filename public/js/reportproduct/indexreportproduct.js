@@ -13,14 +13,13 @@
     param = {
       codecategory  : codecategory,
       methode       : "post",
-      url           : "/laporanbarang/searchCtaegory"
+      url           : "/reportproduct/searchCtaegory"
     };
     var items = callAjax(param);
-    console.log(items);
+
     let no = 1;
     $.each( items , function(index, data) {
         text +="<tr><td>"+no+++"</td><td>"+data.nama_barang+"</td><td>"+data.hpp+"</td><td>"+data.harga_jual+"</td><td>"+data.stok+"</td></tr>>";
-        console.log(data);
     });
       if (codecategory == '') {
         getdataproduck();
@@ -39,38 +38,36 @@
       idcategory  : category,
       start       : start,
       end         : end,
-      url         : "/laporanbarang/filterwithdate",
+      url         : "/reportproduct/filterwithdate",
       methode     : "post"
     }
     var text = '';
     var items = callAjax(param);
     let no = 1;
     $.each( items , function(index,item) {
-      console.log(item);
         text +="<tr><td>"+no+++"</td><td>"+item.nama_barang+"</td><td>"+item.hpp+"</td><td>"+item.harga_jual+"</td><td>"+item.stok+"</td></tr>>";
     });
     $(document).find('.loaddatareportproduct').html(text);
   });
 
-  // get data Produck
+  // get data Produck all
   function getdataproduck()
   {
     param = {
-      url     : "/laporanbarang/getdataproduck",
+      url     : "/reportproduct/getdataproduck",
       methode : "get"
     }
     var text = '';
     var items = callAjax(param);
     let no = 1;
     $.each( items , function(index,item) {
-      console.log(item);
         text +="<tr><td>"+no+++"</td><td>"+item.nama_barang+"</td><td>"+item.hpp+"</td><td>"+item.harga_jual+"</td><td>"+item.stok+"</td></tr>>";
     });
     $(document).find('.loaddatareportproduct').html(text);
   }
 
 
-  // get data in laporan controller
+  // get data in laporan controller with filter
   function callAjax(param){
     var returny = '';
     var ajax = $.ajax({
@@ -88,7 +85,7 @@
      return returny;
   };
 
-  // function print data
+  // function print data with id
   function printDiv(id){
     var printContents = document.getElementById(id).innerHTML;
     var originalContents = document.body.innerHTML;

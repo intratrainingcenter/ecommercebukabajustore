@@ -25,13 +25,14 @@ $(document).on('click','.Position',function () {
   }
 });
 
+// enter id value to modal delete
 $(document).on('click','.deleteData',function () {
    $('#modalDelete').modal('show');
    user_id = $(this).attr('attr-id');
    $(document).find('#iduser').val(user_id);
 });
 
-// delete data user by ajax
+// process delete data user by ajax
 $('#deleteUser').click(function () {
     user_id = $(document).find('#iduser').val();
     $.ajax({

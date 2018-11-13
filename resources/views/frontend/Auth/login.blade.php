@@ -35,11 +35,10 @@
 						</div>
 						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">Sign In</button>
 					</form><br>
-          <div class="col-md-12">
+          <div class="">
             <hr>
             <p style="text-align:center;">Or</p><br>
-            <a href="{{ url('/loginMember/auth/Facebook') }}"><button class="col-12 col-md-6 col-lg-6 m-lr-auto cl0 size-121  bor1 p-lr-15 trans-04" style="background-color:#4272d7;">Facebook</button></a>
-            <a href="{{ url('/loginMember/auth/google') }}"><button class="col-12 col-md-6 col-lg-5 m-lr-auto cl0 size-121 p-lr-15 trans-04 bor1" style="background-color:#fa4521;">  Google  </button></a>
+            <a href="{{ url('/loginMember/auth/google') }}"><button class="m-lr-auto cl0 size-121 p-lr-15 trans-04 bor1" style="background-color:#ff3E30;">  Google  </button></a>
           </div><br>
           <a href="{{route('formRegisterMember')}}"><p style="text-align:center;">Create an Account</p></a>
           <a href="{{route('emailresetpassword')}}"><p style="text-align:center;">Forgot Your Password</p></a>

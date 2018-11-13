@@ -1,5 +1,5 @@
 @extends('backend.general.master')
-@extends('backend.laporanbarang.component.asset')
+@extends('backend.reportproduct.component.asset')
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -42,7 +42,7 @@
                               </tr>
                           </thead>
                           <tbody class="loaddatareportproduct">
-
+                              
                           </tbody>
                       </table>
                     </div>

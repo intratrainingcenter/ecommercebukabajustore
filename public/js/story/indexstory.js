@@ -9,16 +9,19 @@ $(document).ready(function () {
       maxHeight: null,             // set maximum height of editor
       focus: true                 // set focus to editable area after initializing summernote
   });
-  
+
   // set timeout show alert
   setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 });
+
+// enter id value in modal delete
 $(document).on('click','.deleteData',function () {
    $('#modalDelete').modal('show');
    story_id = $(this).attr('attr-id');
    $(document).find('#idStory').val(story_id);
 });
 
+// procsess delete story
 $('#deleteStory').click(function () {
     story_id = $(document).find('#idStory').val();
     $.ajax({
@@ -41,6 +44,7 @@ $('#deleteStory').click(function () {
       }
     });
 
+    // load data story all
   function loaddatastory()
   {
     $.ajax({

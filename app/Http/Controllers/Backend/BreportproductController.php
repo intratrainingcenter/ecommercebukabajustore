@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Kategori;
 
-class BlaporanbarangController extends Controller
+class BreportproductController extends Controller
 {
     public function index()
     {
@@ -17,12 +17,13 @@ class BlaporanbarangController extends Controller
         'page'      => 'Product Report',
         'category'  => Kategori::all(),
       );
-      return view('backend.laporanbarang.index',$data);
+      return view('backend.reportproduct.index',$data);
     }
 
     public function category(Request $request)
     {
       $code = $request->codecategory;
+      // get data in 1 minutes to data base
       $minutes = now()->addMinutes(1);
       $data = Cache::remember('productreport', $minutes, function (){
         return DB::table('master_barangs')->get();
@@ -45,6 +46,7 @@ class BlaporanbarangController extends Controller
       // add onedays to enddate
       $dateEnd = Carbon::parse($request->end)->addDays(1);
       $idcategory = $request->idcategory;
+      // get data in 1 minutes to data base
       $minutes = now()->addMinutes(1);
 
       $data = Cache::remember('productreport',$minutes, function(){

@@ -1,8 +1,7 @@
 $(document).ready(function() {
 
 });
-
-
+// checked all product return
   $(document).on('click','input[name=checkbox]',function(){
       $('input:checkbox').not(this).prop('checked', this.checked);
       idtransaction = $('input[name=idtransaction]').val();
@@ -14,6 +13,7 @@ $(document).ready(function() {
     $(document).find('.transactionId').val(idtransaction);
   });
 
+// checked some product to for return
   $(document).on('click','input[name=idProduck]',function(){
     var id = [];
     	$('.idProduck:checked').each(function(){
@@ -23,7 +23,6 @@ $(document).ready(function() {
     $(document).find('.productId').val(id);
     $(document).find('.transactionId').val(idtransaction);
   });
-
 
     // make max value input quantity base on quantity producttransaction
     $(document).on('click','.btnAddvalueInput',function(){
@@ -40,7 +39,6 @@ $(document).ready(function() {
           $('.plus'+codeProduct).attr('disabled', true);
         }
   });
-
 
     // make minus value input quantity
     $(document).on('click','.btnminusvalueInput',function(){

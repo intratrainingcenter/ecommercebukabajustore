@@ -39,6 +39,7 @@ Route::group(['prefix'=>'slider', 'middleware'=>['auth','adminAccess','setup','b
 	Route::get('loaddataslider','Backend\BsliderController@loaddataslider');
 });
 
+// story route
 Route::group(['prefix'=>'story', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
 	Route::get('','Backend\BstoryController@index')->name('storyIndex');
@@ -49,7 +50,7 @@ Route::group(['prefix'=>'story', 'middleware'=>['auth','adminAccess','setup','ba
 	Route::delete('deletestory','Backend\BstoryController@deletestory')->name('storyDelete');
 	Route::get('detailstory/{id}','Backend\BstoryController@detailstory')->name('storyDetail');
 	Route::get('loadstory','Backend\BstoryController@loadstory');
-});
+}); /* end story */
 
 Route::group(['prefix'=>'position', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
@@ -86,6 +87,7 @@ Route::group(['prefix'=>'product', 'middleware'=>['auth','adminAccess','setup','
 	Route::get('loaddataproduct','Backend\BproductController@loaddataproduct');
 });
 
+// user route
 Route::group(['prefix'=>'user', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
 	Route::get('','Backend\BuserController@index')->name('userIndex');
@@ -97,7 +99,7 @@ Route::group(['prefix'=>'user', 'middleware'=>['auth','adminAccess','setup','bac
 	Route::get('detailuser/{id}','Backend\BuserController@detailuser')->name('userDetail');
 	Route::get('loaddatauser','Backend\BuserController@loaddatauser');
 	Route::post('positionuser','Backend\BuserController@userposition');
-});
+}); /* end user route */
 
 Route::group(['prefix'=>'about', 'middleware'=>['auth','adminAccess','setup','backendAccess','status']], function ()
 {
@@ -126,10 +128,11 @@ Route::group(['prefix'=>'setting', 'middleware'=>['auth','setup','backendAccess'
 
 Route::resource('ContactBack', 'Backend\BcontactsController');
 
+// chats route
 Route::group(['prefix'=>'chats', 'middleware'=>['auth','adminAccess','setup']],function(){
 	Route::get('','Backend\BchatsController@index');
 	Route::get('/user','Backend\BchatsController@User');
-});
+}); /* end chats route */
 
 Route::group(['prefix'=>'ordertransaction', 'middleware'=>['auth','backendAccess','setup','status']], function ()
 {
@@ -145,18 +148,20 @@ Route::get('/nonActive', 'DashboardController@nonactive');
 Route::get('/showsetting', 'Backend\BsettingController@showsetting');
 Route::get('/settingfront', 'Backend\BsettingController@settingfront');
 
-Route::group(['prefix'=>'laporanbarang', 'middleware'=>['auth','adminAccess','setup','status']],function(){
-	Route::get('','Backend\BlaporanbarangController@index')->name('laporanbarangIndex');
-	Route::get('getdataproduck','Backend\BlaporanbarangController@getdataproduck');
-	Route::post('searchCtaegory','Backend\BlaporanbarangController@category');
-	Route::post('filterwithdate','Backend\BlaporanbarangController@filterwithdate');
-});
+// report product route
+Route::group(['prefix'=>'reportproduct', 'middleware'=>['auth','adminAccess','setup','status']],function(){
+	Route::get('','Backend\BreportproductController@index')->name('reportproductIndex');
+	Route::get('getdataproduck','Backend\BreportproductController@getdataproduck');
+	Route::post('searchCtaegory','Backend\BreportproductController@category');
+	Route::post('filterwithdate','Backend\BreportproductController@filterwithdate');
+}); /* end report product route*/
 
+// return routes
 Route::group(['prefix'=>'Return', 'middleware'=>['auth','backendAccess','setup','status']],function(){
 	Route::get('','Backend\BreturnController@index')->name('indexReturn');
 	Route::get('processreturn','Backend\BreturnController@returnProcess')->name('processReturn');
 	Route::put('validationreturn','Backend\BreturnController@validationReturn')->name('validationReturn');
-});
+}); /* end return route */
 
 Route::group(['prefix'=>'reporttransaction', 'middleware'=>['auth','adminAccess','setup','status']],function(){
 	Route::get('','Backend\BreporttransactionController@showtransaction')->name('reporttransaction');
@@ -187,6 +192,7 @@ Route::group(['prefix'=>'shop'],function ()
 	Route::get('detailproduct/{id}','Frontend\FshopController@detailproduct')->name('frontdetailProduct');
 });
 
+// loginnmemeber route
 Route::group(['prefix'=>'loginMember','middleware'=>['Authfrontend']],function(){
 	Route::get('',function(){
 		return view('frontend.Auth.login');
@@ -196,14 +202,15 @@ Route::group(['prefix'=>'loginMember','middleware'=>['Authfrontend']],function()
 	Route::get('emailresetpassword', function () {
 		return view('frontend.Auth.emailresetpassword');
 	})->name('emailresetpassword');
-});
+}); /* end loginmember route */
 
+// register member route
 Route::group(['prefix'=>'RegisterMember','middleware'=>['Authfrontend']],function(){
 	Route::get('',function(){
 		return view('frontend.Auth.registers');
 	})->name('formRegisterMember');
 	Route::post('register','Frontend\FRegisterController@register')->name('memberregister');
-});
+}); /* end register route */
 
 Route::group(['prefix'=>'cart','middleware'=>['memberAcces']],function ()
 {

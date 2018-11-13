@@ -18,10 +18,10 @@
       			<p style="padding-left:25px;" class="username"></p>
       		</div>
       		<div style="padding-bottom: 10px;" class="messages" id="messageDiv">
-      			<ul class="show_list_chat">
+        			<ul class="show_list_chat">
 
-      			</ul>
-                  </div>
+        			</ul>
+            </div>
       		<div  class="message-input">
       			<div class="wrap">
         			<input type="text" id="input_message" name="input_message" class="form-control input-sm chat_input" placeholder="Write your message...">
