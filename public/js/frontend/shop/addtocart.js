@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	// Function add to cart
 	$(document).on('click','.addProductToCart',function () {
 		let nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
 		let idProduct	= $(this).attr('attr-id');
@@ -22,6 +23,7 @@ $(document).ready(function () {
 		});
 	});
 
+	// Function Remove product from cart
 	$(document).on('click','.removeProductFromCart',function () {
 		let nameProduct = $(this).parent().find('.header-cart-item-name').html();
 		var codeProduct	= $(this).attr('attr-code');
@@ -41,6 +43,7 @@ $(document).ready(function () {
 					swal(nameProduct, "is Remove From cart !", "success");
 				}
 				
+				// Condition if window location pathname == 'checkout' will reload the page
 				var locationpath = window.location.pathname;
 				locationpath = locationpath.split('/') ;
 				if(locationpath[1] === 'checkout'){
@@ -50,6 +53,7 @@ $(document).ready(function () {
 		});
 	});
 
+	// Function clear cart
 	$(document).on('click','.clearCart',function () {
 		$.ajax({
 			headers:{
@@ -70,6 +74,7 @@ $(document).ready(function () {
 
 });
 
+// Function Load Cart
 function loadCart() {
 	$.ajax({
 		headers:{

@@ -2,6 +2,7 @@ $(document).ready(function () {
 	sumProduct();	
 });
 
+// Function load cart
 $(document).on('click','.loadCart',function () {
 	$.ajax({
 		headers:{
@@ -16,6 +17,7 @@ $(document).on('click','.loadCart',function () {
 	});
 });
 
+// Function to sum product incart
 function sumProduct() {
 	$.ajax({
 		headers:{

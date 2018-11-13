@@ -1,8 +1,10 @@
 $(document).ready(function () {
 	$('#datatable').DataTable();
+	// settimeout for alert after action
 	setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 });
 
+// Function for load data position 
 function loaddataposition() {
 	$.ajax({
 		headers:{
@@ -17,12 +19,14 @@ function loaddataposition() {
 	});
 }
 
+// Function For pop up Modal delete
 $(document).on('click','.deleteData',function () {
 	let idPosition = $(this).attr('attr-id');
 	$('#idPosition').val(idPosition);
 	$('#modalDelete').modal('show');
 });
 
+// Function For Delete DAta Position
 $(document).on('click','#functionDelete',function () {
 	let idPosition = $('#idPosition').val();
 	$.ajax({

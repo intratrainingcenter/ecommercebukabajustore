@@ -19,8 +19,10 @@ class FshopController extends Controller
 	{
 
 		$getCategory = Kategori::where('nama_kategori',$category)->first();
+		// Condition if $getCategory not null
 		$codeCategory = (!is_null($getCategory))?$getCategory->kode_kategori:"";
 
+		// Condition of query search by when 
 		$dataProduct = DB::table('master_barangs')->when($category != 'all', function ($query) use ($codeCategory)
 		{
 			return $query->where('kode_kategori',$codeCategory);

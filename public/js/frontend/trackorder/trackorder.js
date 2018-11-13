@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	// FUnction to track order Shipping
 	$('.functionTrackOrder').on('click',function () {
 		let codeTransaction = $('.codeTransaction').val();
 		if(codeTransaction){
@@ -20,6 +21,7 @@ $(document).ready(function () {
 		}
 	});
 
+	// Function to clean message Tracking by keyup 
 	$('.codeTransaction').on('keyup',function () {
 		$('.messageTracking').text('');
 	});

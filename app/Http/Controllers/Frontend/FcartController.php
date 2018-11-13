@@ -17,9 +17,11 @@ class FcartController extends Controller
     public function addtocart(Request $request)
     {
         $idProduct = decrypt($request->idProduct);
-        // Check table pemesanan apakah ada transaksi berstatus 'incart'
+        // check the 'pemesanan' table if there are transactions that are status = 'incart' by user login
         $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']]);
+        // if transaction 'incart' is empty,system will generate a new code that is status incart
         if($incartTransactionTemp->get()->isEmpty()){
+            // Call Function Generate new code
             $codeTransaction = $this->generateCodeTransaction();
             $createTransactionTemp = TransactionTemp::create([
                 'kode_user' => Auth::user()->kode_user,
@@ -32,6 +34,7 @@ class FcartController extends Controller
 
         $getProduct = Product::where('id',$idProduct)->first();
 
+        // check the Cart if there is the same product, the system will only update the stock, price and subtotal
         $checkCart = Cart::where([['kode_pemesanan',$codeTransaction],['kode_barang',$getProduct->kode_barang]]);
         if($checkCart->get()->isEmpty()){
             $addProductToCart = Cart::create([
@@ -51,6 +54,7 @@ class FcartController extends Controller
             ]);
         }
 
+        // count cart to response for update data notify in cart 
         $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
 
         return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
@@ -58,22 +62,30 @@ class FcartController extends Controller
 
     public function generateCodeTransaction()
     {
-        $checkTransactionHistory = TransactionHistory::where('kode_user',1)->max('kode_pemesanan');
-        $checkTransactionTemp = TransactionTemp::where('kode_user',1)->max('kode_pemesanan');
+        // Get transaction history by user login and get max
+        $checkTransactionHistory = TransactionHistory::where('kode_user',Auth::user()->kode_user)->max('kode_pemesanan');
+        // Get transaction temp by user login and get max
+        $checkTransactionTemp = TransactionTemp::where('kode_user',Auth::user()->kode_user)->max('kode_pemesanan');
 
+        // Check code max history and pick code max history 
         $codeMaxHistory = (!is_null($checkTransactionHistory))?$checkTransactionHistory:null;
+        // Check code max temp and pick code max temp 
         $codeMaxTemp = (!is_null($checkTransactionTemp))?$checkTransactionTemp:null;
 
+        // retrieval sequence after letter 18 if code max history not null
         $sequenceHistory = (!is_null($codeMaxHistory))?substr($codeMaxHistory, 18):0; 
+        // retrieval sequence after letter 18 if code max temp not null
         $sequenceTemp = (!is_null($codeMaxTemp))?substr($codeMaxTemp, 18):0; 
 
+        // comparison between sequence temp >= sequence history, if true the system will take the sequence from the sequence Temp
         $sequence = ($sequenceTemp >= $sequenceHistory)?$sequenceTemp:$sequenceHistory;
 
-
+        // squence addition
         $sequence+=1;   
 
         $now=date("ymdhis");
 
+        // Generate new code
         $codeTransaction = 'TR-'.$now.'U'.Auth::user()->id.'M'.$sequence;
 
         return $codeTransaction;
@@ -94,7 +106,8 @@ class FcartController extends Controller
     {
         $incartTransactionTemp = TransactionTemp::where([['kode_user',Auth::user()->kode_user],['status','incart']])->first();
         $codeTransaction = $incartTransactionTemp->kode_pemesanan;
-
+        
+        // count cart to response for update data notify in cart 
         $sumProductcart = (!is_null($codeTransaction))?Cart::where('kode_pemesanan',$codeTransaction)->get()->count():0;
         return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
     }
@@ -107,6 +120,7 @@ class FcartController extends Controller
 
         $removeProduct = Cart::where([['kode_pemesanan',$codeTransaction],['kode_barang',$codeProduct]])->delete();
 
+        // count cart to response for update data notify in cart 
         $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
 
         return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);
@@ -119,6 +133,7 @@ class FcartController extends Controller
 
        $removeProduct = Cart::where('kode_pemesanan',$codeTransaction)->delete();
 
+       // count cart to response for update data notify in cart 
        $sumProductcart = Cart::where('kode_pemesanan',$codeTransaction)->get()->count();
 
        return response()->json(['response'=>'success','amountProduct'=>$sumProductcart]);

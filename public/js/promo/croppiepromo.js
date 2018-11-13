@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	// Function to setup implementation croppie function
 	var croppiepromo = $('#cropimagepromo').croppie({
 		enableExif: true,
 		viewport: {
@@ -13,6 +14,7 @@ $(document).ready(function () {
 		url:'../../image/chooseimage2.png'
 	});
 
+	// Function to get image
 	$('.inputImagepromo').change(function () {
 		var reader = new FileReader();
 		reader.onload = function (e) {
@@ -25,6 +27,7 @@ $(document).ready(function () {
 		reader.readAsDataURL($(this).get(0).files[0]);
 	});
 
+	// Function To apply image and encode image to base64
 	$(document).on('click','.apply',function (event) {
 		event.preventDefault();
 		croppiepromo.croppie('result','base64').then(function (result) {
@@ -34,11 +37,12 @@ $(document).ready(function () {
 		});
 	});
 
+	// function cancel image 
 	$(document).on('click','.cancel',function (event) {
 		event.preventDefault();
-			$('#cropimagepromo').show();
-			$('.accepted').html('<button type="button" class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
-			$('input[name="imagePromo"]').val('');
+		$('#cropimagepromo').show();
+		$('.accepted').html('<button type="button" class="btn btn-large waves-effect pull-right waves-light green apply">Apply</button>');
+		$('input[name="imagePromo"]').val('');
 	});
 
 

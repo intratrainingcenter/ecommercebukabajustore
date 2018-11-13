@@ -79,7 +79,6 @@ class BpositionController extends Controller
 			'namePosition' => 'required',
 		]);
 
-
 		$createPosition = Jabatan::where('id',$request->id)->update([
 			'kode_jabatan' => $request->codePosition,
 			'nama_jabatan' => $request->namePosition,

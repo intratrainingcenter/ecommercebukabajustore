@@ -51,6 +51,7 @@ class BpromoController extends Controller
     ]);
 
     $createdirectory = Storage::makeDirectory('public/imagepromo');
+    // Get data base64 and decode to image
     $foto = str_replace('data:image/png;base64,', '', $request->imagePromo);
     $foto = str_replace(' ','+',$foto);
     $namefile = str_random(16).'.png';
@@ -67,6 +68,7 @@ class BpromoController extends Controller
       'berlaku_akhir' => $request->periodEnd,
     ]);
 
+    // Send Promo Notification if periodstart less than today
     if(date("Y-m-d") >= $request->periodStart && date("Y-m-d") <= $request->periodEnd) {
       SendPromoNotification::dispatch($request->codePromo);
     }
@@ -119,6 +121,7 @@ class BpromoController extends Controller
       ]);
     }else{
       $createdirectory = Storage::makeDirectory('public/imagepromo');
+      // Get data base64 and decode to image
       $foto = str_replace('data:image/png;base64,', '', $request->imagePromo);
       $foto = str_replace(' ','+',$foto);
       $namefile = str_random(16).'.png';
@@ -137,6 +140,7 @@ class BpromoController extends Controller
       ]);
     }
     
+    // Send Promo Notification if periodstart less than today
     if(date("Y-m-d") >= $request->periodStart && date("Y-m-d") <= $request->periodEnd) {
       SendPromoNotification::dispatch($request->codePromo);
     }

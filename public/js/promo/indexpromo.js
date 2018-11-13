@@ -1,13 +1,16 @@
 $(document).ready(function () {
 	$('#datatable').DataTable();
+	// Settimeout for alert after action
 	setTimeout(function(){ $('.alert-success').hide(1000); }, 5000);
 });
 
+// Function to disable button space
 $('.codePromo').keypress(function( e ) {
 	if(e.which === 32)
 			return false;
 });
 
+// Function to load data promo
 function loaddatapromo() {
 	$.ajax({
 		headers:{
@@ -21,12 +24,15 @@ function loaddatapromo() {
 		}
 	});
 }
+
+// Function For pop up Modal delete
 $(document).on('click','.deleteData',function () {
 	let idPromo = $(this).attr('attr-id');
 	$('#idPromo').val(idPromo);
 	$('#modalDelete').modal('show');
 });
 
+// Function For Delete DAta Position
 $(document).on('click','#functionDelete',function () {
 	let idPromo = $('#idPromo').val();
 	$.ajax({

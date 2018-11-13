@@ -1,5 +1,7 @@
 $(document).ready(function () {
+	// Call function loadlistProduct()
 	loadlistProduct();
+	// Function to check promo valid or not
 	$('.checkPromo').on('click',function () {
 		promoCode = $('#promoCode').val();
 		if(promoCode != '' ){
@@ -25,6 +27,7 @@ $(document).ready(function () {
 		}
 	});
 
+	// Function to clean message promo by keyup
 	$('#promoCode').on('keyup',function () {
 		$('.messagePromo').text('');
 	});
@@ -32,6 +35,7 @@ $(document).ready(function () {
 
 });
 
+// Function to load list Product
 function loadlistProduct() {
 	listProduct = '';
 	subTotal = 0;
@@ -74,21 +78,22 @@ function loadlistProduct() {
 	})
 }
 
+// Function to update annotation in list product in checkout
 $(document).on('change','.annotation',function () {
-		let idProduct = $(this).attr('attr-id');
-		let annotation = $(this).val();
-			$.ajax({
-				headers: {
-					"X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content'),
-				},
-				method:"put",
-				url: location.origin+"/checkout/updateannotation",
-				data:{
-					idProduct:idProduct,
-					annotation:annotation
-				},
-				success:function (data) {
-					
-				}
-			})
-	});
+	let idProduct = $(this).attr('attr-id');
+	let annotation = $(this).val();
+	$.ajax({
+		headers: {
+			"X-CSRF-TOKEN" : $('meta[name=csrf-token]').attr('content'),
+		},
+		method:"put",
+		url: location.origin+"/checkout/updateannotation",
+		data:{
+			idProduct:idProduct,
+			annotation:annotation
+		},
+		success:function (data) {
+
+		}
+	})
+});

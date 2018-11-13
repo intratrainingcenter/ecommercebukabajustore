@@ -90,8 +90,8 @@
 				</li>
 
 				<li class="p-b-6">
-					<button class="filterPrice filter-link stext-106 trans-04" attr-pmin="200" attr-pmax="">
-						$200.00+
+					<button class="filterPrice filter-link stext-106 trans-04" attr-pmin="200" attr-pmax="300">
+						$200.00 - $300.00
 					</button>
 				</li>
 			</ul>
