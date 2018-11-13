@@ -42,12 +42,12 @@ class BsliderController extends Controller
     // makeDirectory ( create Directory )
     $createdirectory = Storage::makeDirectory('public/imageslider');
     // str_replace ( take string )
-    $foto = str_replace('data:image/png;base64,', '', $request->imageslider);
-    $foto = str_replace(' ','+',$foto);
+    $image = str_replace('data:image/png;base64,', '', $request->imageslider);
+    $image = str_replace(' ','+',$image);
     // str_random ( create string random )
     $namefile = str_random(16).'.png';
     // put ( move )
-    Storage::put('public/imageslider'.'/'.$namefile, base64_decode($foto));
+    Storage::put('public/imageslider'.'/'.$namefile, base64_decode($image));
 
     $createslider = slider::create([
       'foto' => $namefile,
@@ -57,7 +57,7 @@ class BsliderController extends Controller
       'deskripsi' => $request->description,
     ]);
     // redirect->route ( call name in route )
-    return redirect()->route('sliderindex')->with('success','data was successfully added.'); 
+    return redirect()->route('sliderindex')->with('success','data was successfully added.');
   }
 
   public function detailslider($id)
@@ -90,12 +90,12 @@ class BsliderController extends Controller
       ]);
     }else{
       $createdirectory = Storage::makeDirectory('public/imageslider');
-      $foto = str_replace('data:image/png;base64,', '', $request->imageslider);
-      $foto = str_replace(' ','+',$foto);
+      $image = str_replace('data:image/png;base64,', '', $request->imageslider);
+      $image = str_replace(' ','+',$image);
       // str_random ( make string random )
       $namefile = str_random(16).'.png';
       // put ( move )
-      Storage::put('public/imageslider'.'/'.$namefile, base64_decode($foto));
+      Storage::put('public/imageslider'.'/'.$namefile, base64_decode($image));
       $getdataslider = slider::find($request->id);
       // delete ( delete file )
       Storage::delete('public/imageslider'.'/'.$getdataslider->foto);
