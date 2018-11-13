@@ -18,8 +18,9 @@ class CreateOpsiPemesananTempsTable extends Migration
             $table->string('kode_pemesanan');
             $table->string('kode_barang');
             $table->integer('qty');
-            $table->integer('harga');
-            $table->integer('subtotal');
+            $table->float('harga');
+            $table->text('keterangan')->nullable();
+            $table->float('subtotal');
             $table->timestamps();
         });
     }

@@ -17,9 +17,10 @@ class CreateOngkirsTable extends Migration
             $table->increments('id');
             $table->string('kode_ongkir');
             $table->string('kurir');
+            $table->string('no_resi')->nullable();
             $table->string('jenis_layanan');
+            $table->string('jangka_pengiriman');
             $table->integer('tarif');
-            $table->date('tgl_diterima');
             $table->timestamps();
         });
     }
