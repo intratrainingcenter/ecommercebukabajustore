@@ -12,26 +12,12 @@ use Socialite;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     public function login(Request $request)
     {
         $this->validateLogin($request);
 
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the login attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
@@ -42,26 +28,13 @@ class LoginController extends Controller
             return $this->sendLoginResponse($request);
         }
 
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
     }
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
     protected $redirectTo = '/dashboard';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -96,14 +69,7 @@ class LoginController extends Controller
     {
         return Socialite::driver($provider)->redirect();
     }
-    /**
-     * Obtain the user information from provider.  Check if the user already exists in our
-     * database by looking up their provider_id in the database.
-     * If the user exists, log them in. Otherwise, create a new user then log them in. After that
-     * redirect them to the authenticated users homepage.
-     *
-     * @return Response
-     */
+
      public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
@@ -115,13 +81,7 @@ class LoginController extends Controller
         return redirect('/');
         }
     }
-    /**
-     * If a user has registered before using social auth, return the user
-     * else, create a new user object.
-     * @param  $user Socialite user object
-     * @param $provider Social auth provider
-     * @return  User
-     */
+
     public function findOrCreateUser($user, $provider)
     {
         $authUser = User::where('provider_id', $user->id)->first();

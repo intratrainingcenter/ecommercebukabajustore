@@ -36,6 +36,7 @@
                 <td> {{ $data->category->nama_kategori }} </td>
                 <td> {{ $data->nama_barang }} </td>
                 <td> {{ $data->stok }} </td>
+                <!-- call helper for UPDATE,DELETE,DETAIL Button from app/Library/Backendhelper -->
                                   <td> {!!Backendhelper::read_update_delete_byid($data->kode_barang,route('formupdateProduct',['id'=>$data->id]),route('detailProduct',['id'=>$data->id]))!!} </td>
               </tr>
               @endforeach

@@ -43,7 +43,7 @@
                         <div class="form-group col-md-12">
                             <div class="col-sm-12">
                               {{Form::label('Status')}}
-                              {{Form::select('status', ['Aktif' => 'Aktif', 'NonAktif' => 'NonAktif'], $story->status,['class'=>'form-control','required'])}}
+                              {{Form::select('status', ['Active' => 'Active', 'NonActive' => 'NonActive'], $story->status,['class'=>'form-control','required'])}}
                             </div>
                         </div>
                     </div>

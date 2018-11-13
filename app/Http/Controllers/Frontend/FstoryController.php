@@ -14,7 +14,9 @@ class FstoryController extends Controller
     {
       $data = array(
         'page' => 'story',
-        'showstory' => Story::orderBy('created_at','desc')->paginate(3),
+        // paginate ( create page )
+        'showstory' => Story::orderBy('created_at','desc')->where('status','Active')->paginate(3),
+        // limit ( limit data )
         'newnessproduct' => Barang::orderBy('created_at','desc')->limit(3)->get(),
         'showcategory' => Kategori::all(),
       );

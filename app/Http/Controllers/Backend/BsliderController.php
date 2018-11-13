@@ -15,7 +15,7 @@ class BsliderController extends Controller
 
     $data = array(
       'page' => 'Slider',
-      'dataslider' => Slider::all(), 
+      'dataslider' => Slider::all(),
     );
 
     return view('backend.slider.index',$data);
@@ -39,11 +39,15 @@ class BsliderController extends Controller
 
   public function createslider(Request $request)
   {
+    // makeDirectory ( create Directory )
     $createdirectory = Storage::makeDirectory('public/imageslider');
-    $foto = str_replace('data:image/png;base64,', '', $request->imageslider);
-    $foto = str_replace(' ','+',$foto);
+    // str_replace ( take string )
+    $image = str_replace('data:image/png;base64,', '', $request->imageslider);
+    $image = str_replace(' ','+',$image);
+    // str_random ( create string random )
     $namefile = str_random(16).'.png';
-    Storage::put('public/imageslider'.'/'.$namefile, base64_decode($foto));
+    // put ( move )
+    Storage::put('public/imageslider'.'/'.$namefile, base64_decode($image));
 
     $createslider = slider::create([
       'foto' => $namefile,
@@ -52,8 +56,8 @@ class BsliderController extends Controller
       'status' => $request->status,
       'deskripsi' => $request->description,
     ]);
-
-    return redirect()->route('sliderindex')->with('success','data was successfully added.'); 
+    // redirect->route ( call name in route )
+    return redirect()->route('sliderindex')->with('success','data was successfully added.');
   }
 
   public function detailslider($id)
@@ -86,11 +90,14 @@ class BsliderController extends Controller
       ]);
     }else{
       $createdirectory = Storage::makeDirectory('public/imageslider');
-      $foto = str_replace('data:image/png;base64,', '', $request->imageslider);
-      $foto = str_replace(' ','+',$foto);
+      $image = str_replace('data:image/png;base64,', '', $request->imageslider);
+      $image = str_replace(' ','+',$image);
+      // str_random ( make string random )
       $namefile = str_random(16).'.png';
-      Storage::put('public/imageslider'.'/'.$namefile, base64_decode($foto));
+      // put ( move )
+      Storage::put('public/imageslider'.'/'.$namefile, base64_decode($image));
       $getdataslider = slider::find($request->id);
+      // delete ( delete file )
       Storage::delete('public/imageslider'.'/'.$getdataslider->foto);
 
       $createslider = slider::where('id',$request->id)->update([
@@ -100,13 +107,14 @@ class BsliderController extends Controller
         'deskripsi' => $request->deskripsi,
       ]);
     }
-
-    return redirect()->route('sliderindex')->with('success','data was successfully updated.'); 
+    // redirect -> route ( call name in route )
+    return redirect()->route('sliderindex')->with('success','data was successfully updated.');
   }
 
   public function deleteslider(Request $request)
   {
     $deleteslider = slider::find($request->idslider);
+    // delete ( delete file )
     Storage::delete('public/imageslider'.'/'.$deleteslider->foto);
     $deleteslider->delete();
 

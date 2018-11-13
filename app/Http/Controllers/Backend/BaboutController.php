@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 use App\About;
 
 class BaboutController extends Controller
@@ -59,6 +58,7 @@ class BaboutController extends Controller
       'status'=> 'Active',
     ]);
 
+    // redirect->route ( call name in route )
     return redirect()->route('aboutIndex')->with('success','data was successfully added.');
   }
 
@@ -113,6 +113,7 @@ class BaboutController extends Controller
       $createabout->status = $request->Status;
       $createabout->save();
     }
+    // redirect->route ( call name in route )
     return redirect()->route('aboutIndex')->with('success','data was successfully updated.');
   }
 
@@ -133,5 +134,4 @@ class BaboutController extends Controller
     return view('backend.about.tabledataabout',$data);
   }
 
-  // }
 }

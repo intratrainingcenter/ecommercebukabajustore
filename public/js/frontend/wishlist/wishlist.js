@@ -19,6 +19,7 @@
 
 	$('.js-addwish-b2').on('click', function(e){
 		e.preventDefault();
+		// call parent / on
 		let nameProduct = $(this).parent().parent().find('.js-name-b2').html();
 		let idproduct = $(this).attr("codeproduct");
 
@@ -34,8 +35,9 @@
 								swal(nameProduct, "is added to wishlist !", "success");
 							}
 						});
-
+						// call function
 						countwishlist();
+						// add class
 						$(this).addClass('js-addedwish-b2');
 
 				}else {
@@ -50,7 +52,9 @@
 							swal(nameProduct, "is removed to wishlist !", "success");
 							}
 						});
+						// call function
 						countwishlist();
+						// remove class
 					$(this).removeClass('js-addedwish-b2');
 
 				}
