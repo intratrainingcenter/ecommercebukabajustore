@@ -45,6 +45,8 @@ class SendPromoNotification implements ShouldQueue
       		$fields = array(
       			'app_id' => "9c0712c7-6d43-4435-978f-a57f306b7d4f",
       			'included_segments' => array('Active Users'),
+            'chrome_web_image'  => asset('storage/imagepromo/'.$showpromo->foto),
+            'chrome_web_icon'  => asset('storage/imagesetup/'.$showsetting->foto),
             'url' => route('frontpromoIndex'),
             'contents' => $content,
             'headings' => $heading,
